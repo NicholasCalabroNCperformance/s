@@ -100,16 +100,18 @@ function pcts(s){ // estrae i numeri % da una cella
   const m=String(s).match(/\d+(?:[.,]\d+)?(?=\s*[-–]\s*\d|\s*%)/g);
   return m?m.map(x=>parseFloat(x.replace(",","."))):[];
 }
+function topOut(tk,pct,st){const tv=parseFloat(state[tk]);
+  return (isFinite(tv)&&tv>0&&pct)?'<b>'+f(q(tv*pct/100,st))+' kg</b>':'<span class="wait">dopo il top</span>';}
 function carico(r,b,k,raw){
   if(raw===undefined)raw=true;
   const pc=String(r.pc||"").trim(), orig=String(r.ca||"").trim();
   // back-off su un top trovato in seduta
   if(/del top/i.test(pc)){
     const p=pcts(pc), pct=p.length?p[p.length-1]:null;
-    const tk="top_"+k, tv=parseFloat(state[tk]);
-    const out=isFinite(tv)&&tv>0&&pct?'<b>'+f(q(tv*pct/100,b.lift?stepOf(b.lift):2.5))+' kg</b>':'<span class="wait">dopo il top</span>';
-    return '<input type="number" step="2.5" data-k="'+tk+'" value="'+esc(state[tk]||"")+
-           '" placeholder="top"> <span class="raw">'+out+' &middot; '+pc+'</span>';
+    const tk="top_"+k, st=b.lift?stepOf(b.lift):2.5;
+    return '<input type="number" step="2.5" inputmode="decimal" data-k="'+tk+'" data-pct="'+(pct||"")+
+           '" data-st="'+st+'" value="'+esc(state[tk]||"")+'" placeholder="top"> '+
+           '<span class="raw"><span id="o_'+tk+'">'+topOut(tk,pct,st)+'</span> &middot; '+pc+'</span>';
   }
   const R=b.lift?ref(b.lift):null, p=pcts(pc), st=b.lift?stepOf(b.lift):2.5;
   if(R&&p.length){
@@ -125,8 +127,10 @@ function carico(r,b,k,raw){
 function bind(){
   document.querySelectorAll("[data-k]").forEach(i=>{
     if(i.dataset.bound)return; i.dataset.bound=1;
-    i.addEventListener("input",e=>{state[e.target.dataset.k]=e.target.value;save();
-      if(/^top_/.test(e.target.dataset.k))draw();});
+    i.addEventListener("input",e=>{const k=e.target.dataset.k;
+      state[k]=e.target.value;save();
+      if(/^top_/.test(k)){const el=document.getElementById("o_"+k);
+        if(el)el.innerHTML=topOut(k,parseFloat(e.target.dataset.pct)||null,parseFloat(e.target.dataset.st)||2.5);}});
   });
 }
 (function(){const rw=document.getElementById("refs");let lastg="";
@@ -137,7 +141,7 @@ function bind(){
   const d=document.createElement("div");d.className="r";
   if(state["ref_"+x.id]===undefined)state["ref_"+x.id]=x.def;
   d.innerHTML='<label for="r_'+x.id+'">'+x.lab+'</label>'+
-    '<input type="number" step="2.5" id="r_'+x.id+'" value="'+esc(state["ref_"+x.id])+'">'+
+    '<input type="number" step="2.5" inputmode="decimal" id="r_'+x.id+'" value="'+esc(state["ref_"+x.id])+'">'+
     '<span class="tag">'+x.tag+'</span>';
   rw.appendChild(d);
   d.querySelector("input").addEventListener("input",e=>{state["ref_"+x.id]=e.target.value;save();draw()});});
