@@ -120,7 +120,9 @@ const REFS=[{id:"sq",lab:"Squat",def:"200",tag:"stima",step:2.5,g:"Massimali del
             {id:"t3",lab:"Leg press",def:"",tag:"test 8RM in S1",step:5,g:"Test di settimana 1",anc:"dell\'8RM"}];
 function stepOf(id){const r=REFS.find(x=>x.id===id);return r?r.step:2.5}
 function ancOf(id){const r=REFS.find(x=>x.id===id);return r&&r.anc?' '+r.anc:''}
-function ref(id){const v=parseFloat(state["ref_"+id]);return isFinite(v)&&v>0?v:null}
+function num(v){v=String(v==null?"":v).replace(",",".").trim();
+  const x=parseFloat(v);return isFinite(x)?x:NaN}
+function ref(id){const v=num(state["ref_"+id]);return isFinite(v)&&v>0?v:null}
 function q(x,st){st=st||2.5;return Math.ceil(x/st-0.5)*st}
 function f(x){return (Math.round(x*100)/100).toString().replace(".",",")}
 function pcts(s){ // estrae i numeri % da una cella
@@ -145,12 +147,12 @@ function caricoParte(p,b,k,i){
   if(/^test$/i.test(pc)) return '<span class="wait">trova il peso</span>';
   if(/^RPE/i.test(pc)&&!/%/.test(pc)){
     return '<span class="at">'+pc.replace(/^RPE\s*/i,"@")+'</span>'+
-      ' <input type="number" step="2.5" inputmode="decimal" data-k="'+tk+'" data-pct="" data-st="'+st+
+      ' <input type="text" inputmode="decimal" data-k="'+tk+'" data-pct="" data-st="'+st+
       '" value="'+esc(state[tk]||"")+'" placeholder="kg">';
   }
   if(/del top/i.test(pc)){
     const a=pcts(pc), pct=a.length?a[a.length-1]:null;
-    return '<span id="o_'+tk+'_'+i+'">'+topOut(tk,pct,st)+'</span><span class="raw">'+pc+'</span>';
+    return topSpan(tk,pct,st)+'<span class="raw">'+pc+'</span>';
   }
   const R=b.lift?ref(b.lift):null, a=pcts(pc);
   if(R&&a.length){
@@ -167,7 +169,15 @@ function rangeVals(R,a,st){
   if(st>=5 && Math.ceil(lo/st)*st > hi) return [f(Math.floor(lo/st)*st), f(Math.ceil(hi/st)*st)];
   return [f(Math.round(lo*2)/2), f(Math.round(hi*2)/2)];
 }
-function topOut(tk,pct,st){const tv=parseFloat(state[tk]);
+function topSpan(tk,pct,st){
+  return '<span class="topout" data-tk="'+tk+'" data-pct="'+(pct||"")+'" data-st="'+st+'">'+
+         topOut(tk,pct,st)+'</span>';
+}
+function repaintTops(){
+  document.querySelectorAll(".topout").forEach(function(e){
+    e.innerHTML=topOut(e.dataset.tk,parseFloat(e.dataset.pct)||null,parseFloat(e.dataset.st)||2.5)});
+}
+function topOut(tk,pct,st){const tv=num(state[tk]);
   return (isFinite(tv)&&tv>0&&pct)?'<b>'+f(q(tv*pct/100,st))+' kg</b>':'<span class="wait">dopo il top</span>';}
 function carico(r,b,k,raw){
   if(raw===undefined)raw=true;
@@ -177,9 +187,9 @@ function carico(r,b,k,raw){
   if(/del top/i.test(pc)){
     const p=pcts(pc), pct=p.length?p[p.length-1]:null;
     const tk="top_"+k, st=b.lift?stepOf(b.lift):2.5;
-    return '<input type="number" step="2.5" inputmode="decimal" data-k="'+tk+'" data-pct="'+(pct||"")+
+    return '<input type="text" inputmode="decimal" data-k="'+tk+'" data-pct="'+(pct||"")+
            '" data-st="'+st+'" value="'+esc(state[tk]||"")+'" placeholder="top"> '+
-           '<span class="raw"><span id="o_'+tk+'">'+topOut(tk,pct,st)+'</span> &middot; '+pc+'</span>';
+           '<span class="raw">'+topSpan(tk,pct,st)+' &middot; '+pc+'</span>';
   }
   const R=b.lift?ref(b.lift):null, p=pcts(pc), st=b.lift?stepOf(b.lift):2.5;
   if(R&&p.length){
@@ -199,8 +209,7 @@ function bind(){
     if(i.dataset.bound)return; i.dataset.bound=1;
     i.addEventListener("input",e=>{const k=e.target.dataset.k;
       state[k]=e.target.value;save();
-      if(/^top_/.test(k)){const el=document.getElementById("o_"+k);
-        if(el)el.innerHTML=topOut(k,parseFloat(e.target.dataset.pct)||null,parseFloat(e.target.dataset.st)||2.5);}});
+      if(/^top_/.test(k)) repaintTops();});
   });
 }
 (function(){const rw=document.getElementById("refs");let lastg="";
@@ -211,13 +220,28 @@ function bind(){
   const d=document.createElement("div");d.className="r";
   if(state["ref_"+x.id]===undefined)state["ref_"+x.id]=x.def;
   d.innerHTML='<label for="r_'+x.id+'">'+x.lab+'</label>'+
-    '<input type="number" step="2.5" inputmode="decimal" id="r_'+x.id+'" value="'+esc(state["ref_"+x.id])+'">'+
+    '<input type="text" inputmode="decimal" id="r_'+x.id+'" value="'+esc(state["ref_"+x.id])+'">'+
     '<span class="tag">'+x.tag+'</span>';
   rw.appendChild(d);
-  d.querySelector("input").addEventListener("input",e=>{state["ref_"+x.id]=e.target.value;save();draw()});});
+  d.querySelector("input").addEventListener("input",e=>{state["ref_"+x.id]=e.target.value;save();
+    (typeof paint==="function"?paint:draw)()});});
 })();
 
-let sel=1, dsel="";
+let sel=1, dsel="", CELLS=[];
+function cel(fn){const id="c"+CELLS.length;CELLS.push({id:id,fn:fn});return '<span id="'+id+'"></span>'}
+function isTopPc(pc){pc=String(pc||"");return /del top/i.test(pc)||(/^RPE/i.test(pc)&&!/%/.test(pc))}
+function carCell(r,b,k){return isTopPc(r.pc)?carico(r,b,k)
+  :cel(function(){return carico(r,b,k)})}
+function parteCell(p,b,k,i){return isTopPc(p.pc)?caricoParte(p,b,k,i)
+  :cel(function(){return caricoParte(p,b,k,i)})}
+function paint(){
+  CELLS.forEach(function(c){const e=document.getElementById(c.id);if(e)e.innerHTML=c.fn()});
+  repaintTops();
+  REFS.forEach(function(x){const v=state["ref_"+x.id]===undefined?"":state["ref_"+x.id];
+    const e=document.getElementById("r_"+x.id);
+    if(e&&e!==document.activeElement&&e.value!==v)e.value=v});
+  bind();
+}
 const chips=document.getElementById("chips");
 [1,2,3,4,5].forEach(w=>{const b=document.createElement("button");b.textContent="S"+w;
   b.onclick=()=>{sel=w;draw()};chips.appendChild(b)});
@@ -229,6 +253,7 @@ DAYS.forEach(d=>{const b=document.createElement("button");b.textContent=d.id;
 const db=document.createElement("button");db.className="all";db.textContent="TUTTI";
 db.onclick=()=>{dsel="";draw()};dchips.appendChild(db);
 function draw(){
+  CELLS=[];
   [...chips.children].forEach((b,i)=>b.setAttribute("aria-pressed",(i+1===sel)||(i===5&&sel===0)?"true":"false"));
   [...dchips.children].forEach((b,i)=>b.setAttribute("aria-pressed",
     (i<DAYS.length&&DAYS[i].id===dsel)||(i===DAYS.length&&dsel==="")?"true":"false"));
@@ -249,10 +274,10 @@ function draw(){
           (pz? '<div class="multi">'+(r.rec?'<div class="recw">'+pill+'</div>':'')+
                pz.map((p,i)=>'<div class="parte">'+
                '<div class="sch">'+schema({se:p.se,rp:p.rp})+'</div>'+
-               '<div class="car">'+caricoParte(p,b,k,i)+'</div></div>').join('<div class="poi">poi</div>')+
+               '<div class="car">'+parteCell(p,b,k,i)+'</div></div>').join('<div class="poi">poi</div>')+
                '</div>'
              : '<div class="sch">'+schema(r)+pill+'</div>'+
-               '<div class="car">'+carico(r,b,k)+'</div>')+
+               '<div class="car">'+carCell(r,b,k)+'</div>')+
           (r.n?'<div class="nota">'+r.n+'</div>':'')+
           '<div class="app"><span>Come è andata</span><input type="text" data-k="ap_'+k+
             '" value="'+esc(state["ap_"+k]!==undefined?state["ap_"+k]:(r.ap||""))+
@@ -262,7 +287,7 @@ function draw(){
     });
   });
   document.getElementById("out").innerHTML=h||'<p class="note">Nessun giorno selezionato.</p>';
-  bind();
+  bind(); paint();
 }
 draw();
 </script></body></html>
