@@ -142,6 +142,7 @@ function schema(r){
 }
 function caricoParte(p,b,k,i){
   const pc=String(p.pc||"").trim(), st=b.lift?stepOf(b.lift):2.5, tk="top_"+k;
+  if(/^test$/i.test(pc)) return '<span class="wait">trova il peso</span>';
   if(/^RPE/i.test(pc)&&!/%/.test(pc)){
     return '<span class="at">'+pc.replace(/^RPE\s*/i,"@")+'</span>'+
       ' <input type="number" step="2.5" inputmode="decimal" data-k="'+tk+'" data-pct="" data-st="'+st+
@@ -152,15 +153,26 @@ function caricoParte(p,b,k,i){
     return '<span id="o_'+tk+'_'+i+'">'+topOut(tk,pct,st)+'</span><span class="raw">'+pc+'</span>';
   }
   const R=b.lift?ref(b.lift):null, a=pcts(pc);
-  if(R&&a.length) return f(q(R*a[0]/100,st))+' kg<span class="raw">'+pc+ancOf(b.lift)+'</span>';
+  if(R&&a.length){
+    const isRange=/\d\s*[-–]\s*\d/.test(pc);
+    const vals=isRange?rangeVals(R,a,st):[f(q(R*a[0]/100,st))];
+    return vals.join("–")+' kg<span class="raw">'+pc+ancOf(b.lift)+'</span>';
+  }
+  if(a.length&&b.lift) return '<span class="wait">dopo il test</span><span class="raw">'+pc+ancOf(b.lift)+'</span>';
   if(pc) return '<span class="wait">'+pc+'</span>';
   return '';
+}
+function rangeVals(R,a,st){
+  const lo=R*a[0]/100, hi=R*a[a.length-1]/100;
+  if(st>=5 && Math.ceil(lo/st)*st > hi) return [f(Math.floor(lo/st)*st), f(Math.ceil(hi/st)*st)];
+  return [f(Math.round(lo*2)/2), f(Math.round(hi*2)/2)];
 }
 function topOut(tk,pct,st){const tv=parseFloat(state[tk]);
   return (isFinite(tv)&&tv>0&&pct)?'<b>'+f(q(tv*pct/100,st))+' kg</b>':'<span class="wait">dopo il top</span>';}
 function carico(r,b,k,raw){
   if(raw===undefined)raw=true;
   const pc=String(r.pc||"").trim(), orig=String(r.ca||"").trim();
+  if(/^test$/i.test(pc)) return '<span class="wait">trova il peso</span>';
   // back-off su un top trovato in seduta
   if(/del top/i.test(pc)){
     const p=pcts(pc), pct=p.length?p[p.length-1]:null;
@@ -172,10 +184,12 @@ function carico(r,b,k,raw){
   const R=b.lift?ref(b.lift):null, p=pcts(pc), st=b.lift?stepOf(b.lift):2.5;
   if(R&&p.length){
     const isRange=/\d\s*[-–]\s*\d/.test(pc);
-    const vals=p.map(x=>isRange?f(Math.round(R*x/100*2)/2):f(q(R*x/100,st)));
+    const vals=isRange?rangeVals(R,p,st):p.map(x=>f(q(R*x/100,st)));
     const sep=isRange?"–":" / ";
     return vals.join(sep)+' kg'+(raw?'<span class="raw">'+pc+ancOf(b.lift)+'</span>':'');
   }
+  if(p.length&&b.lift&&!R) return '<span class="wait">dopo il test</span>'+
+    (raw?'<span class="raw">'+pc+ancOf(b.lift)+'</span>':'');
   // niente %: cella libera, precompilata con quello che c'era in scheda
   const v=state["ca_"+k]!==undefined?state["ca_"+k]:orig;
   return '<input class="free" type="text" data-k="ca_'+k+'" value="'+esc(v)+'" placeholder="scrivi il peso">';
