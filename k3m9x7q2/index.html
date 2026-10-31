@@ -51,6 +51,16 @@ border-radius:8px;margin:0 0 12px;overflow:hidden}
 .ex>h3{font:600 15.5px/1.3 Georgia,serif;margin:0;padding:11px 13px 10px;border-bottom:1px solid var(--line)}
 .ex>h3 em{display:block;font:400 12px/1.3 -apple-system,sans-serif;font-style:normal;color:var(--gold);
 font-weight:700;letter-spacing:.03em;margin-top:3px}
+.ex .tbx{display:flex;align-items:center;gap:9px;flex-wrap:wrap;padding:11px 13px;
+background:#FBF7EF;border-bottom:1px solid var(--line)}
+.ex .tbx .lb{font:700 10px/1.2 -apple-system,sans-serif;letter-spacing:.11em;
+text-transform:uppercase;color:var(--gold)}
+.ex .tbx input{width:96px;font:700 19px/1 -apple-system,sans-serif;padding:8px 10px;
+text-align:right;font-variant-numeric:tabular-nums;border:1px solid var(--gold);background:var(--card)}
+.ex .tbx .u{font:700 13px/1 -apple-system,sans-serif;color:var(--mute);margin-left:-3px}
+.ex .tbx .hint{display:none;flex-basis:100%;font:400 11.5px/1.4 -apple-system,sans-serif;
+color:var(--mute)}
+.ex .tbx input:placeholder-shown ~ .hint{display:block}
 .wk{display:grid;grid-template-columns:44px 1fr 118px;gap:3px 10px;align-items:baseline;
 padding:10px 13px;border-bottom:1px solid var(--line)}
 .wk:nth-child(even){background:var(--alt)}.wk:last-child{border-bottom:0}
@@ -115,9 +125,9 @@ function esc(s){return String(s==null?"":s).replace(/"/g,"&quot;")}
 const REFS=[{id:"sq",lab:"Squat",def:"200",tag:"stima",step:2.5,g:"Massimali del coach",anc:"del massimale"},
             {id:"bp",lab:"Panca",def:"125",tag:"testato lug 2026",step:2.5,g:"Massimali del coach",anc:"del massimale"},
             {id:"dl",lab:"Stacco",def:"210",tag:"stima",step:2.5,g:"Massimali del coach",anc:"del massimale"},
-            {id:"t1",lab:"Lat machine",def:"",tag:"test 8RM in S1",step:5,g:"Test di settimana 1",anc:"dell\'8RM"},
-            {id:"t2",lab:"Chest press",def:"",tag:"test 8RM in S1",step:5,g:"Test di settimana 1",anc:"dell\'8RM"},
-            {id:"t3",lab:"Leg press",def:"",tag:"test 8RM in S1",step:5,g:"Test di settimana 1",anc:"dell\'8RM"}];
+            {id:"t1",test:"8RM",lab:"Lat machine",def:"",tag:"test 8RM in S1",step:5,g:"Test di settimana 1",anc:"dell\'8RM"},
+            {id:"t2",test:"8RM",lab:"Chest press",def:"",tag:"test 8RM in S1",step:5,g:"Test di settimana 1",anc:"dell\'8RM"},
+            {id:"t3",test:"8RM",lab:"Leg press",def:"",tag:"test 8RM in S1",step:5,g:"Test di settimana 1",anc:"dell\'8RM"}];
 function stepOf(id){const r=REFS.find(x=>x.id===id);return r?r.step:2.5}
 function ancOf(id){const r=REFS.find(x=>x.id===id);return r&&r.anc?' '+r.anc:''}
 function num(v){v=String(v==null?"":v).replace(",",".").trim();
@@ -204,16 +214,29 @@ function carico(r,b,k,raw){
   const v=state["ca_"+k]!==undefined?state["ca_"+k]:orig;
   return '<input class="free" type="text" data-k="ca_'+k+'" value="'+esc(v)+'" placeholder="scrivi il peso">';
 }
+function refOf(id){return REFS.find(function(x){return x.id===id})||null}
+function testBox(b){
+  const R0=b.lift?refOf(b.lift):null;
+  if(!R0||!R0.test) return "";
+  const k="ref_"+R0.id, v=state[k]===undefined?"":state[k];
+  return '<div class="tbx"><span class="lb">Il tuo '+R0.test+'</span>'+
+    '<input type="text" inputmode="decimal" data-k="'+k+'" value="'+esc(v)+'" placeholder="—">'+
+    '<span class="u">kg</span>'+
+    '<span class="hint">scrivi qui il peso del test: da questo escono tutti i carichi di '+
+    b.nome.toLowerCase()+' delle 5 settimane</span></div>';
+}
 function bind(){
   document.querySelectorAll("[data-k]").forEach(i=>{
     if(i.dataset.bound)return; i.dataset.bound=1;
     i.addEventListener("input",e=>{const k=e.target.dataset.k;
       state[k]=e.target.value;save();
-      if(/^top_/.test(k)) repaintTops();});
+      if(/^top_/.test(k)) repaintTops();
+      else if(/^ref_/.test(k)) (typeof paint==="function"?paint:draw)();});
   });
 }
 (function(){const rw=document.getElementById("refs");let lastg="";
  REFS.forEach(x=>{
+  if(x.test) return;
   if(x.g&&x.g!==lastg){lastg=x.g;const t=document.createElement("div");
    t.style.cssText="font:700 10.5px/1 -apple-system,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin:12px 0 4px";
    t.textContent=x.g;rw.appendChild(t);}
@@ -239,7 +262,9 @@ function paint(){
   repaintTops();
   REFS.forEach(function(x){const v=state["ref_"+x.id]===undefined?"":state["ref_"+x.id];
     const e=document.getElementById("r_"+x.id);
-    if(e&&e!==document.activeElement&&e.value!==v)e.value=v});
+    if(e&&e!==document.activeElement&&e.value!==v)e.value=v;
+    document.querySelectorAll('[data-k="ref_'+x.id+'"]').forEach(function(n){
+      if(n!==document.activeElement&&n.value!==v)n.value=v})});
   bind();
 }
 const chips=document.getElementById("chips");
@@ -264,7 +289,7 @@ function draw(){
     const ne=d.blocks.length, ns=d.blocks.reduce((a,b)=>a+(sel?nserie(b.rows[sel-1]):0),0);
     h+='<div class="daybar">'+d.head+'<span>'+ne+' esercizi'+(sel?' · '+ns+' serie':'')+'</span></div>';
     d.blocks.forEach((b,bi)=>{
-      h+='<div class="ex"><h3>'+b.nome+(b.ruolo?'<em>'+b.ruolo+'</em>':'')+'</h3>';
+      h+='<div class="ex"><h3>'+b.nome+(b.ruolo?'<em>'+b.ruolo+'</em>':'')+'</h3>'+testBox(b);
       b.rows.forEach((r,i)=>{
         if(sel && i+1!==sel) return;
         const k=d.id+bi+"_"+i;
