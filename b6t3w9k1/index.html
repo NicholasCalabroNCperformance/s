@@ -326,7 +326,8 @@ function segnaManda(){
   const n=segnato().length, b=document.getElementById("manda");
   if(!b) return;
   b.className="manda"+(n?"":" vuoto");
-  b.textContent=n? ("Manda al coach ("+n+" cose segnate)") : "Non hai ancora segnato niente";
+  b.textContent=n? ("Manda al coach ("+(n===1?"1 cosa segnata":n+" cose segnate")+")")
+                 : "Non hai ancora segnato niente";
 }
 function testo(){
   const r=segnato();
