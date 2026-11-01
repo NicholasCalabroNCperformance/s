@@ -114,8 +114,9 @@ color:var(--mute);text-transform:uppercase;margin-bottom:6px}
 .wk .sc{display:grid;grid-template-columns:repeat(10,1fr);gap:3px}
 .wk .sc button{padding:10px 0;border-radius:6px;border:1px solid var(--line);background:var(--card);
 font:700 13px/1 -apple-system,sans-serif;color:var(--mute);cursor:pointer;
-font-variant-numeric:tabular-nums;-webkit-appearance:none}
-.wk .sc button.on{background:var(--gold);border-color:var(--gold);color:#fff}
+font-variant-numeric:tabular-nums;-webkit-appearance:none;transition:background .18s ease,border-color .18s ease}
+.wk .sc button.on{font-weight:700}
+.wk .sc button.sel{box-shadow:0 0 0 2px var(--paper),0 0 0 4px var(--ink)}
 .wk .ends{display:flex;justify-content:space-between;margin-top:5px;
 font:400 10px/1 -apple-system,sans-serif;color:var(--mute);letter-spacing:.04em}
 .wk .app span{display:block;font:700 9.5px/1 -apple-system,sans-serif;letter-spacing:.1em;
@@ -232,9 +233,16 @@ function carico(r,b,k,raw){
   return '<input class="free" type="text" data-k="ca_'+k+'" value="'+esc(v)+'" placeholder="scrivi il peso">';
 }
 function refOf(id){return REFS.find(function(x){return x.id===id})||null}
+function testWeek(b){
+  for(let i=0;i<b.rows.length;i++){const r=b.rows[i];
+    if(/test/i.test(String(r.f||""))||/test/i.test(String(r.n||""))) return i+1}
+  return 1;
+}
 function testBox(b){
   const R0=b.lift?refOf(b.lift):null;
   if(!R0||!R0.test) return "";
+  const gia=state["ref_"+R0.id];
+  if(sel&&sel!==testWeek(b)&&gia) return "";
   const k="ref_"+R0.id, v=state[k]===undefined?"":state[k];
   return '<div class="tbx"><span class="lb">Il tuo '+R0.test+'</span>'+
     '<input type="text" inputmode="decimal" data-k="'+k+'" value="'+esc(v)+'" placeholder="—">'+
@@ -246,26 +254,33 @@ function testBox(b){
 }
 function howTo(R0){
   const n=(String(R0.test).match(/\d+/)||[""])[0];
-  return 'Parti da un peso che fai tranquillo e fai '+n+' colpi. Se escono puliti, aggiungi peso '+
-   'e rifai '+n+' colpi. Vai avanti così, con 2-3 minuti di pausa tra una salita e l’altra, '+
-   'finché arrivi al peso dove i '+n+' colpi li chiudi tutti ma l’ultimo è davvero '+
-   'l’ultimo: quello è il tuo '+R0.test+'. Non andare a cedimento per arrivarci: se una serie '+
-   'ti si pianta, quel peso è già troppo e vale quello di prima. Di solito ci si arriva '+
-   'in 3-5 salite.';
+  const art=(n==="8"||n==="11"||n==="18")?"gli":"i";
+  return '<b>Devi trovare il massimo peso con cui riesci a fare '+n+' colpi.</b> '+
+   'Parti da un peso leggero e fai '+n+' colpi. Aumenta il peso un po’ alla volta, '+
+   'sempre serie da '+n+', fino a quando arrivi al peso che riesci ancora a completare pulito. '+
+   'Se sali e '+art+' '+n+' colpi non li chiudi, il tuo '+R0.test+' è il peso di prima.';
+}
+const FHUE=[188,166,140,104,72,48,32,18,8,0];
+const FLIG=[44,43,41,42,45,46,46,42,37,29];
+function fcol(n){return "hsl("+FHUE[n-1]+" 68% "+FLIG[n-1]+"%)"}
+function paintFp(box,v){
+  for(let i=0;i<box.children.length;i++){
+    const b=box.children[i], n=i+1;
+    if(v&&n<=v){b.style.background=fcol(n);b.style.borderColor=fcol(n);b.style.color="#fff";
+      b.className=(n===v)?"on sel":"on"}
+    else {b.style.background="";b.style.borderColor="";b.style.color="";b.className=""}
+  }
 }
 function setFp(k,n,el){
   const key="fp_"+k;
   state[key]=(String(state[key])===String(n))?"":n; save();
-  const box=el.parentNode, v=String(state[key]);
-  for(let i=0;i<box.children.length;i++) box.children[i].className=(v===String(i+1))?"on":"";
+  paintFp(el.parentNode, parseInt(state[key])||0);
 }
 function feedback(k,r){
-  const v=String(state["fp_"+k]===undefined?"":state["fp_"+k]);
   let sc='';
-  for(let n=1;n<=10;n++) sc+='<button type="button" class="'+(v===String(n)?"on":"")+
-    '" data-fp="'+k+'" data-n="'+n+'">'+n+'</button>';
+  for(let n=1;n<=10;n++) sc+='<button type="button" data-fp="'+k+'" data-n="'+n+'">'+n+'</button>';
   return '<div class="fp"><span class="lb">Fatica percepita</span>'+
-    '<div class="sc">'+sc+'</div>'+
+    '<div class="sc" data-k="sc_'+k+'">'+sc+'</div>'+
     '<div class="ends"><span>leggera</span><span>massima</span></div></div>'+
     '<div class="app"><span>Note</span><input type="text" data-k="ap_'+k+
     '" value="'+esc(state["ap_"+k]!==undefined?state["ap_"+k]:(r.ap||""))+
@@ -279,6 +294,9 @@ function bind(){
       if(/^top_/.test(k)) repaintTops();
       else if(/^ref_/.test(k)) (typeof paint==="function"?paint:draw)();});
   });
+  document.querySelectorAll(".sc").forEach(function(box){
+    const kk=box.dataset.k.slice(3);
+    paintFp(box, parseInt(state["fp_"+kk])||0)});
   document.querySelectorAll("[data-fp]").forEach(b=>{
     if(b.dataset.bound)return; b.dataset.bound=1;
     b.addEventListener("click",e=>{const t=e.currentTarget;
