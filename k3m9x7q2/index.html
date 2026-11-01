@@ -408,8 +408,32 @@ DAYS.forEach(d=>{const b=document.createElement("button");b.textContent=d.id;
 const db=document.createElement("button");db.className="all";db.textContent="TUTTI";
 db.onclick=()=>{dsel="";draw()};dchips.appendChild(db);
 /* ---------- installazione sul telefono ---------- */
-if("serviceWorker" in navigator)
-  window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})});
+if("serviceWorker" in navigator) window.addEventListener("load",function(){
+  navigator.serviceWorker.register("sw.js").then(function(reg){
+    reg.update();
+    reg.addEventListener("updatefound",function(){
+      const nuovo=reg.installing; if(!nuovo) return;
+      nuovo.addEventListener("statechange",function(){
+        if(nuovo.state==="installed"&&navigator.serviceWorker.controller) avvisaVersione();
+      });
+    });
+  }).catch(function(){});
+  let ricaricato=false;
+  navigator.serviceWorker.addEventListener("controllerchange",function(){
+    if(ricaricato)return; ricaricato=true; location.reload();
+  });
+});
+function avvisaVersione(){
+  const e=document.getElementById("inst"); if(!e) return;
+  e.className="inst"; e.style.display="block";
+  e.innerHTML='<b>C’è una versione nuova della scheda.</b>'+
+    '<div class="riga"><button onclick="location.reload()">Aggiorna adesso</button></div>';
+}
+/* se l'app resta aperta a lungo, controlla ogni tanto */
+document.addEventListener("visibilitychange",function(){
+  if(document.visibilityState==="visible"&&navigator.serviceWorker&&navigator.serviceWorker.getRegistration)
+    navigator.serviceWorker.getRegistration().then(function(r){if(r)r.update()}).catch(function(){});
+});
 let PROMPT=null;
 function giaInstallata(){
   return window.matchMedia("(display-mode: standalone)").matches || navigator.standalone===true;
