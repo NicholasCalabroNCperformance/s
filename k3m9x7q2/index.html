@@ -261,21 +261,31 @@ function howTo(R0){
    'Se sali e '+art+' '+n+' colpi non li chiudi, il tuo '+R0.test+' è il peso di prima. '+
    'Di norma ci arrivi in 3-5 serie.';
 }
-const FHUE=[188,166,140,104,72,48,32,18,8,0];
-const FLIG=[44,43,41,42,45,46,46,42,37,29];
-function fcol(n){return "hsl("+FHUE[n-1]+" 68% "+FLIG[n-1]+"%)"}
-function paintFp(box,v){
-  for(let i=0;i<box.children.length;i++){
-    const b=box.children[i], n=i+1;
-    if(v&&n<=v){b.style.background=fcol(n);b.style.borderColor=fcol(n);b.style.color="#fff";
-      b.className=(n===v)?"on sel":"on"}
-    else {b.style.background="";b.style.borderColor="";b.style.color="";b.className=""}
+const FPC=[[40,16,99],[40,20,96],[39,24,92],[39,28,87],[38,33,80],
+           [37,38,72],[36,44,62],[35,50,52],[34,54,42],[33,58,33]];
+function fcol(n){const c=FPC[n-1];return "hsl("+c[0]+" "+c[1]+"% "+c[2]+"%)"}
+function fbord(n){const c=FPC[n-1];return "hsl("+c[0]+" "+Math.min(c[1]+10,70)+"% "+Math.max(c[2]-9,14)+"%)"}
+function fink(n){return FPC[n-1][2]<58?"#fff":"#23232A"}
+let FPT={};
+function paintFp(box,v,anim){
+  const kids=box.children, key=box.dataset.k||"";
+  if(FPT[key]) FPT[key].forEach(clearTimeout);
+  FPT[key]=[];
+  function set(i){const b=kids[i], n=i+1;
+    b.style.background=fcol(n);b.style.borderColor=fbord(n);b.style.color=fink(n);
+    b.className=(n===v)?"on sel":"on"}
+  function clr(i){const b=kids[i];
+    b.style.background="";b.style.borderColor="";b.style.color="";b.className=""}
+  for(let i=v;i<10;i++) clr(i);
+  for(let i=0;i<v;i++){
+    if(anim) FPT[key].push(setTimeout(function(){set(i)}, i*55));
+    else set(i);
   }
 }
 function setFp(k,n,el){
   const key="fp_"+k;
   state[key]=(String(state[key])===String(n))?"":n; save();
-  paintFp(el.parentNode, parseInt(state[key])||0);
+  paintFp(el.parentNode, parseInt(state[key])||0, true);
 }
 function feedback(k,r){
   let sc='';
