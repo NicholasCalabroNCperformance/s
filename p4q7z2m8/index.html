@@ -1,6 +1,21 @@
 <!doctype html><html lang="it"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="NC Performance">
+<meta property="og:title" content="Programma di collaudo">
+<meta property="og:description" content="La tua scheda di allenamento · NC Performance">
+<meta property="og:image" content="https://nicholascalabroncperformance.github.io/s/p4q7z2m8/icona-512.png">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
+<meta name="twitter:card" content="summary">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#23232A">
+<link rel="apple-touch-icon" href="icona-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="NC Performance">
+<meta name="mobile-web-app-capable" content="yes">
 <title>Programma di collaudo</title><style>
 :root{--paper:#F1F1F2;--card:#FFF;--alt:#E9E9EB;--band:#DBDBDE;--line:#CFCFD4;
 --gold:#A9863B;--gold2:#C9A961;--ink:#23232A;--mute:#6E6E78}
@@ -174,14 +189,43 @@ text-transform:uppercase;color:var(--mute)}
 .wk .emom .eb{flex:0 0 auto;border:0;border-radius:8px;background:var(--gold);color:#fff;
 padding:11px 14px;font:700 12px/1 -apple-system,sans-serif;letter-spacing:.06em;cursor:pointer}
 .wk .emom .eb.on{background:var(--ink)}
+/* fascia del top dentro la riga del ramping */
+.wk .parte>.gl{flex:1}
+.wk .tbx.dentro{margin:-11px -13px 10px;border-radius:0}
+.wk:first-of-type .tbx.dentro{margin-top:-11px}
+/* EMOM: avviso volume e lampo a tutto schermo */
+.wk .emom{flex-wrap:wrap}
+.wk .emom .evol{flex-basis:100%;font:400 11px/1.4 -apple-system,sans-serif;color:var(--mute)}
+#lampo{position:fixed;inset:0;background:#C9A961;opacity:0;pointer-events:none;z-index:99;transition:opacity .08s}
+#lampo.on{opacity:.55}
 /* etichetta dei programmi di prova */
 .caso{font:700 9.5px/1 -apple-system,sans-serif;letter-spacing:.12em;text-transform:uppercase;
 color:var(--mute);margin:14px 0 6px;padding-left:2px}
 .caso::before{content:"caso \u00b7 ";color:var(--gold)}
 
+.inst{display:none;background:#23232A;color:#EDEDEE;border-radius:10px;padding:13px 15px;
+margin:0 0 16px;font:400 13px/1.5 -apple-system,sans-serif}
+.inst b{color:var(--gold2)}
+.inst .riga{display:flex;gap:9px;align-items:center;margin-top:10px;flex-wrap:wrap}
+.inst button{background:var(--gold);border:0;color:#fff;border-radius:7px;padding:10px 14px;
+font:700 12px/1 -apple-system,sans-serif;letter-spacing:.06em;cursor:pointer}
+.inst button.no{background:none;border:1px solid #5A5A66;color:#C9C9D0}
+.inst .passi{margin:12px 0 0;padding-left:20px}
+.inst .passi li{margin:7px 0;line-height:1.5}
+.inst .ic{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;
+border:1px solid #6A6A76;border-radius:5px;color:var(--gold2);vertical-align:-6px;margin:0 2px}
+.inst .pic{font-size:11.5px;color:#A8A8B4;line-height:1.45}
+.inst p.pic{margin:11px 0 0}
+.inst.mini{padding:0;background:none;margin:0 0 12px}
+.inst.mini .riapri{width:100%;background:#2A2A31;border:0;color:#C9C9D0;border-radius:9px;
+padding:11px 12px;font:700 11.5px/1 -apple-system,sans-serif;letter-spacing:.06em;cursor:pointer;
+text-align:left;display:flex;align-items:center;gap:7px}
+.inst.mini .riapri svg{color:var(--gold2)}
+
 </style></head><body><div class="wrap">
 <header><div class="mono">NC</div><h1>Programma di collaudo</h1>
 <div class="sub">Due giorni · ogni esercizio è una casistica diversa</div></header>
+<div class="inst" id="inst"></div>
 <div class="wkbar"><div class="lab">Settimana</div><div class="chips" id="chips"></div>
 <div class="lab row2">Giorno</div><div class="chips" id="dchips"></div></div>
 <div id="out"></div>
@@ -349,8 +393,8 @@ function ultimoMax(bk){
   return best;
 }
 function colpiHTML(p,k,i,bk){
-  if(isMaxTempo(p.rp)) return '<span class="n"><b>MAX</b><em>tenuta</em></span>'+
-    '<span class="mx">'+campo("MX_"+k+"_"+i,"45, 40, 38",92)+'<em>secondi</em></span>';
+  if(isMaxTempo(p.rp)) return '<span class="n"><b>MAX</b><em>secondi</em></span>'+
+    '<span class="mx">'+campo("MX_"+k+"_"+i,"45, 40, 38",92)+'<em>secondi fatti</em></span>';
   if(isMax(p.rp)) return '<span class="n"><b>MAX</b><em>colpi</em></span>'+
     '<span class="mx">'+campo("MX_"+k+"_"+i,"11, 10, 9",92)+'<em>colpi fatti</em></span>';
   if(isMezzoMax(p.rp)){const u=bk?ultimoMax(bk):null;
@@ -409,6 +453,24 @@ function riferimenti(b,bk,sett){
   return h;
 }
 
+/* ---------- il top del ramping: stessa fascia del test RM ---------- */
+function rpeDi(t){const m=String(t||"").match(/(?:RPE|@)\s*(\d+(?:[.,]5)?)/i);return m?parseFloat(m[1].replace(",",".")):null}
+function fasciaTop(p,k,r){
+  const rpe=rpeDi(p.ca), colpi=String(p.rp||"").replace(/\D/g,"")||"pochi";
+  const canna=rpe!==null?Math.max(0,Math.round(10-rpe)):null;
+  const lab=rpe!==null?'Il tuo top @'+f(rpe):'Il tuo top';
+  const kk="RK_"+k+"_0", v=state[kk]||"";
+  const how='<b>Devi trovare il peso con cui fai '+colpi+' colpi'+(canna!==null?' lasciandone '+canna+' in canna':'')+'.</b> '+
+    'Parti da un peso leggero e fai '+colpi+' colpi. Aumenta il peso un po\u2019 alla volta, sempre serie da '+colpi+'. '+
+    (canna!==null?'Quando una serie ti lascia '+(canna===1?'1 colpo':canna+' colpi')+' in canna \u2014 fatica della serie '+f(rpe)+' su 10 \u2014 quello \u00e8 il tuo top: scrivilo qui. '
+                  :'Quando arrivi al peso giusto per oggi, quello \u00e8 il tuo top: scrivilo qui. ')+
+    'Di norma ci arrivi in 3-5 serie.';
+  return '<div class="tbx dentro"><span class="lb">'+lab+'</span>'+
+    '<input type="text" inputmode="decimal" data-k="'+kk+'" value="'+esc(v)+'" placeholder="\u2014"><span class="u">kg</span>'+
+    '<span class="hint">da questo peso escono le serie dopo</span>'+
+    '<details class="how"'+(v?'':' open')+'><summary>Come si trova il top</summary><p>'+how+'</p></details></div>';
+}
+
 /* ---------- la riga ---------- */
 function notaCoach(t){return String(t||"").replace(/\b(in|negli|nella|su(?:gli)?)\s+appunti\b/gi,"nelle note").replace(/\bappunti\b/g,"note")}
 function rigaHTML(r,b,bk,k,sett){
@@ -435,17 +497,21 @@ function rigaHTML(r,b,bk,k,sett){
     if(ts.extra){const p=pz[pz.length-1];
       h+='<div class="poi">poi</div><div class="parte"><div class="sch">'+schema({se:ts.extra,rp:p.rp},k,pz.length,bk)+'</div>'+car(p,pz.length)+'</div>';}
   }
-  else if(ts.t==="ramp"||ts.t==="n"){
-    h+='<div class="recw">'+pill+'</div>';
+  else if(ts.t==="ramp"){
     const p0=pz[0];
-    h+='<div class="ramp"><div class="gt">'+(ts.t==="ramp"?'Ramping <em>sali di peso serie dopo serie</em>':'Serie <em>quante ne servono</em>')+'</div>'+
-       '<div class="gl"><div class="sch">'+colpiHTML(p0,k,0,bk)+'</div>'+car(p0,0)+'</div>'+
-       '<div class="fatte"><span>Serie fatte</span>'+campo("SF_"+k,"n.",64)+'</div></div>';
+    h+=fasciaTop(p0,k,r)+'<div class="recw">'+pill+'</div>';
     const resto=pz.slice(1);
     if(ts.extra||resto.length){
       const p=resto[0]||p0, nse=ts.extra||p.se;
-      h+='<div class="poi">poi</div><div class="parte"><div class="sch">'+schema({se:nse,rp:p.rp},k,1,bk)+'</div>'+car(p,1)+'</div>';
+      h+='<div class="parte"><div class="gl"><div class="sch">'+schema({se:nse,rp:p.rp},k,1,bk)+'</div>'+car(p,1)+'</div></div>';
     }
+  }
+  else if(ts.t==="n"){
+    h+='<div class="recw">'+pill+'</div>';
+    const p0=pz[0];
+    h+='<div class="ramp"><div class="gt">Serie <em>quante ne servono</em></div>'+
+       '<div class="gl"><div class="sch">'+colpiHTML(p0,k,0,bk)+'</div>'+car(p0,0)+'</div>'+
+       '<div class="fatte"><span>Serie fatte</span>'+campo("SF_"+k,"n.",64)+'</div></div>';
   }
   else if(pz.length>1){
     h+=(r.rec?'<div class="recw">'+pill+'</div>':'');
@@ -459,7 +525,8 @@ function rigaHTML(r,b,bk,k,sett){
   if(/EMOM/i.test(String(r.rec||"")+" "+String(b.t||"")+" "+String(r.es||""))){
     const minuti=parseInt(String(r.se).match(/\d+/)||0)||0;
     if(minuti) h+='<div class="emom" id="emom_'+k+'"><div class="ed"><b>\u2014</b><em>EMOM '+minuti+'\u2032</em></div>'+
-      '<button type="button" class="eb" data-emom="'+k+'" data-min="'+minuti+'">Avvia EMOM</button></div>';
+      '<button type="button" class="eb" data-emom="'+k+'" data-min="'+minuti+'">Avvia EMOM</button>'+
+      '<span class="evol">Volume alto e silenzioso tolto: il beep usa l\u2019audio del telefono.</span></div>';
   }
   if(r.n) h+='<div class="nota">'+notaCoach(r.n)+'</div>';
   return h+feedback(k,r)+'</div>';
@@ -468,25 +535,39 @@ function rigaHTML(r,b,bk,k,sett){
 /* ---------- EMOM: 10" per mettersi sotto, poi un beep a ogni minuto ---------- */
 let EMOMT=null, ACTX=null;
 function beep(n,freq){
+  /* onda quadra, due toni sovrapposti, compressore a valle: il massimo che un telefono tira fuori */
   try{
     if(!ACTX) ACTX=new (window.AudioContext||window.webkitAudioContext)();
     if(ACTX.state==="suspended") ACTX.resume();
+    const comp=ACTX.createDynamicsCompressor();
+    comp.threshold.value=-6; comp.knee.value=0; comp.ratio.value=20; comp.attack.value=0.001; comp.release.value=0.05;
+    const out=ACTX.createGain(); out.gain.value=1.0; comp.connect(out); out.connect(ACTX.destination);
     for(let i=0;i<n;i++){
-      const o=ACTX.createOscillator(), g=ACTX.createGain();
-      o.type="sine"; o.frequency.value=freq||880; o.connect(g); g.connect(ACTX.destination);
-      const t=ACTX.currentTime+i*0.28;
-      g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(0.6,t+0.015);
-      g.gain.exponentialRampToValueAtTime(0.0001,t+0.22); o.start(t); o.stop(t+0.25);
+      const t=ACTX.currentTime+i*0.42;
+      [freq||1760,(freq||1760)*1.5].forEach(function(fr){
+        const o=ACTX.createOscillator(), g=ACTX.createGain();
+        o.type="square"; o.frequency.value=fr; o.connect(g); g.connect(comp);
+        g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(1.0,t+0.008);
+        g.gain.setValueAtTime(1.0,t+0.28); g.gain.exponentialRampToValueAtTime(0.0001,t+0.34);
+        o.start(t); o.stop(t+0.36);
+      });
     }
   }catch(e){}
-  try{if(navigator.vibrate) navigator.vibrate(n===1?120:[120,100,120])}catch(e){}
+  try{if(navigator.vibrate) navigator.vibrate(n===1?250:[250,150,250,150,250])}catch(e){}
+  lampo(n);
+}
+function lampo(n){
+  let el=document.getElementById("lampo");
+  if(!el){el=document.createElement("div");el.id="lampo";document.body.appendChild(el)}
+  let c=0;
+  (function uno(){ el.className="on"; setTimeout(function(){el.className="";if(++c<n)setTimeout(uno,140)},260) })();
 }
 function emomToggle(k,min,btn){
   if(EMOMT&&EMOMT.k===k){emomStop();return}
   emomStop();
   const box=document.getElementById("emom_"+k); if(!box) return;
   const disp=box.querySelector(".ed");
-  beep(1,660);                                   /* sblocca l'audio col tocco */
+  beep(1,1175);                                  /* sblocca l'audio col tocco */
   let wl=null; try{if(navigator.wakeLock) navigator.wakeLock.request("screen").then(function(w){wl=w}).catch(function(){})}catch(e){}
   const t0=Date.now(), prep=10; let lastMin=-1, lastPrep=-1;
   btn.textContent="Ferma"; btn.className="eb on";
@@ -494,12 +575,12 @@ function emomToggle(k,min,btn){
     const s=(Date.now()-t0)/1000;
     if(s<prep){
       const r=Math.ceil(prep-s);
-      if(r<=3&&r!==lastPrep){lastPrep=r;beep(1,520)}
+      if(r<=3&&r!==lastPrep){lastPrep=r;beep(1,1175)}
       disp.innerHTML='<b>'+r+'</b><em>mettiti sotto</em>'; return;
     }
     const e=s-prep, m=Math.floor(e/60), sec=Math.floor(e%60);
-    if(m>=min){ disp.innerHTML='<b>FINE</b><em>'+min+' minuti fatti</em>'; beep(3,880); emomStop(true); return; }
-    if(m!==lastMin){lastMin=m;beep(m===0?2:1,880)}
+    if(m>=min){ disp.innerHTML='<b>FINE</b><em>'+min+' minuti fatti</em>'; beep(3,1760); emomStop(true); return; }
+    if(m!==lastMin){lastMin=m;beep(m===0?2:1,1760)}
     disp.innerHTML='<b>'+(m+1)+'<small>/'+min+'</small></b><em>minuto</em><span class="es">'+(sec<10?"0":"")+sec+'\u2033</span>';
   }
   EMOMT={k:k,iv:setInterval(tick,200),btn:btn,disp:disp,min:min,getWl:function(){return wl}};
@@ -611,5 +692,131 @@ function ridipingiTop(kk){
     e.innerHTML=(isFinite(tv)&&tv>0)?kg(tv*pct/100):'<span class="wait">dopo il top</span>';});
 }
 draw();
+
+/* ---------- app installabile ---------- */
+if(typeof LETTURA==="undefined") var LETTURA=false;
+if("serviceWorker" in navigator) window.addEventListener("load",function(){
+  navigator.serviceWorker.register("sw.js").then(function(reg){
+    reg.update();
+    reg.addEventListener("updatefound",function(){
+      const nuovo=reg.installing; if(!nuovo) return;
+      nuovo.addEventListener("statechange",function(){
+        if(nuovo.state==="installed"&&navigator.serviceWorker.controller) avvisaVersione();
+      });
+    });
+  }).catch(function(){});
+  let ricaricato=false;
+  navigator.serviceWorker.addEventListener("controllerchange",function(){
+    if(ricaricato)return; ricaricato=true; location.reload();
+  });
+});
+function avvisaVersione(){
+  const e=document.getElementById("inst"); if(!e) return;
+  e.className="inst"; e.style.display="block";
+  e.innerHTML='<b>C’è una versione nuova della scheda.</b>'+
+    '<div class="riga"><button onclick="location.reload()">Aggiorna adesso</button></div>';
+}
+/* se l'app resta aperta a lungo, controlla ogni tanto */
+document.addEventListener("visibilitychange",function(){
+  if(document.visibilityState==="visible"&&navigator.serviceWorker&&navigator.serviceWorker.getRegistration)
+    navigator.serviceWorker.getRegistration().then(function(r){if(r)r.update()}).catch(function(){});
+});
+let PROMPT=null;
+function giaInstallata(){
+  return window.matchMedia("(display-mode: standalone)").matches || navigator.standalone===true;
+}
+const SVGGIU='<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" '+
+  'stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px">'+
+  '<path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>';
+const SVGCOND='<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" '+
+  'stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px">'+
+  '<path d="M12 15V3"/><path d="m8 7 4-4 4 4"/>'+
+  '<path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>';
+function inAppBrowser(){
+  const u=navigator.userAgent;
+  return /FBAN|FBAV|Instagram|Line\/|MicroMessenger|GSA\/|CriOS|FxiOS/i.test(u) ||
+    (/iphone|ipad|ipod/i.test(u) && !/Safari\//.test(u));
+}
+function mostraInstalla(modo){
+  if(giaInstallata()||LETTURA) return;
+  const e=document.getElementById("inst"); if(!e) return;
+  let chiusa=false;
+  try{chiusa=!!localStorage.getItem("ncp-inst-min")}catch(x){}
+  e.dataset.modo=modo;
+  e.style.display="block";
+  if(chiusa){
+    e.className="inst mini";
+    e.innerHTML='<button class="riapri" onclick="riapriInstalla()">'+SVGGIU+
+      ' Installa l’app sul telefono</button>';
+    return;
+  }
+  e.className="inst";
+  let h='<b>Installa NC Performance.</b> Avrai l’icona sulla schermata principale: '+
+    'si apre a tutto schermo, senza barre, e funziona anche quando non c’è rete.';
+  h+='<div class="riga"><button onclick="'+(modo==="android"?"installa()":"comeInstallare()")+'">'+
+    'Installa l’app</button>'+
+    '<button class="no" onclick="minimizzaInstalla()">Per adesso no</button></div>'+
+    '<div id="passi"></div>';
+  e.innerHTML=h;
+  if(modo==="ios") comeInstallare();
+}
+function riapriInstalla(){
+  try{localStorage.removeItem("ncp-inst-min")}catch(x){}
+  mostraInstalla(document.getElementById("inst").dataset.modo||"ios");
+}
+function minimizzaInstalla(){
+  try{localStorage.setItem("ncp-inst-min","1")}catch(x){}
+  mostraInstalla(document.getElementById("inst").dataset.modo||"ios");
+}
+function comeInstallare(){
+  const p=document.getElementById("passi"); if(!p) return;
+  let h='<ol class="passi">';
+  if(inAppBrowser()){
+    h+='<li><b>Prima apri questa pagina in Safari.</b> Da WhatsApp e dalle altre app '+
+      'l’installazione non esiste: serve Safari.<br>'+
+      '<span class="pic">Cerca in basso il tasto con i tre puntini o la bussola e scegli '+
+      '«Apri in Safari». Oppure copia il link qui sotto e incollalo in Safari.</span>'+
+      '<div class="riga"><button onclick="apriSafari()">Apri in Safari</button>'+
+      '<button class="no" onclick="copiaLink(this)">Copia il link</button></div></li>';
+  }
+  h+='<li>In Safari tocca il tasto <b>Condividi</b> <span class="ic">'+SVGCOND+'</span>, '+
+    'nella barra in fondo allo schermo.<br><span class="pic">Non la vedi? Tocca una volta '+
+    'il fondo dello schermo: la barra ricompare.</span></li>'+
+    '<li>Scorri l’elenco e scegli <b>Aggiungi a Home</b> '+
+    '<span class="pic">(in inglese: Add to Home Screen)</span></li>'+
+    '<li>Conferma in alto a destra</li></ol>';
+  if(!inAppBrowser())
+    h+='<div class="riga"><button class="no" onclick="copiaLink(this)">Copia il link</button></div>';
+  p.innerHTML=h;
+}
+function copiaLink(b){
+  const u=location.origin+location.pathname;
+  function fatto(){b.textContent="Copiato ✓"; setTimeout(function(){b.textContent="Copia il link"},2500)}
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(u).then(fatto).catch(function(){prompt("Copia il link:",u)});
+  } else { prompt("Copia il link:",u) }
+}
+function apriSafari(){
+  location.href="x-safari-"+location.origin+location.pathname;
+}
+function installa(){
+  if(!PROMPT) return;
+  PROMPT.prompt();
+  PROMPT.userChoice.then(function(){PROMPT=null;
+    const e=document.getElementById("inst"); if(e) e.style.display="none"});
+}
+function nienteInstalla(){
+  try{localStorage.setItem("ncp-no-inst","1")}catch(e){}
+  const e=document.getElementById("inst"); if(e) e.style.display="none";
+}
+window.addEventListener("beforeinstallprompt",function(e){
+  e.preventDefault(); PROMPT=e; mostraInstalla("android")});
+(function(){
+  const ios=/iphone|ipad|ipod/i.test(navigator.userAgent);
+  setTimeout(function(){
+    if(!giaInstallata()&&!PROMPT) mostraInstalla(ios?"ios":"altro");
+  },900);
+})();
+
 
 </script></body></html>
