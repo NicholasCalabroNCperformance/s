@@ -1,0 +1,17 @@
+{
+  "name": "NC Performance",
+  "short_name": "NC Perf",
+  "description": "La tua scheda di allenamento",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F1F1F2",
+  "theme_color": "#23232A",
+  "lang": "it",
+  "icons": [
+    {"src": "icona-192.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "icona-512.png", "sizes": "512x512", "type": "image/png"},
+    {"src": "icona-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}
