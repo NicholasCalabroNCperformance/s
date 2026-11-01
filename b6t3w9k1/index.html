@@ -171,6 +171,9 @@ margin-bottom:8px;padding-bottom:8px;border-bottom:1px dashed var(--line)}
 .wk input.mini{font:700 15px/1 -apple-system,sans-serif;padding:7px 8px;text-align:right;width:64px;
 border:1px solid var(--gold);background:var(--card);border-radius:7px;font-variant-numeric:tabular-nums}
 .wk .mx{display:inline-flex;flex-direction:column;align-items:center;margin-left:8px;line-height:1}
+.wk .car .usato{margin-left:0;align-items:flex-start}
+.wk .gl .car .usato{align-items:flex-end}
+.wk .car .usato input::placeholder{color:var(--mute);font-weight:600}
 .wk .mx em{font:700 8.5px/1 -apple-system,sans-serif;font-style:normal;letter-spacing:.11em;text-transform:uppercase;color:var(--mute);margin-top:3px}
 .wk .at{font:700 17px/1.2 -apple-system,sans-serif;color:var(--gold)}
 .wk .lieve{font:400 13px/1 -apple-system,sans-serif;color:var(--mute)}
@@ -424,8 +427,27 @@ function risolvi(t,bk,b,k,i){
   }
   /* un numero secco: sono kg */
   if((m=t.match(/^(\d+(?:[.,]\d+)?)\s*(kg)?$/i))) return f(parseFloat(m[1].replace(",",".")))+' kg';
-  /* testo libero */
-  return '<span class="wait">'+t+'</span>';
+  /* testo libero: carico non prescritto, la casella per i kg usati davvero */
+  return usato(bk,k,i,t);
+}
+
+/* ---------- carico non prescritto: kg usati, con il peso della settimana prima come suggerimento ---------- */
+function precUsato(bk,k,i){
+  const ri=parseInt(k.slice(k.lastIndexOf("_")+1))||0, b=bloccoDi(bk);
+  for(let r=ri-1;r>=0;r--){const v=state["U_"+bk+"_"+r+"_"+i];
+    if(v!==undefined&&String(v).trim()!=="") return {v:String(v).trim(),s:b?b.rows[r].s:""};}
+  return null;
+}
+function bloccoDi(bk){const p=bk.split("_"),g=GIORNI.find(function(x){return x.id===p[0]});return g?g.blocks[+p[1]]:null}
+let RIGA_SENZA_SERIE=false;
+function usato(bk,k,i,t){
+  if(!k||RIGA_SENZA_SERIE) return t?'<span class="wait">'+t+'</span>':'';
+  const pr=precUsato(bk,k,i), zav=/zavorr|corpo libero/i.test(t||"");
+  const piu=/salire|ogni serie/i.test(t||"");                 /* pesi diversi serie per serie: tastiera completa */
+  const kk="U_"+k+"_"+i, v=state[kk]||"";
+  return '<span class="mx usato"><input type="text"'+(piu?'':' inputmode="decimal"')+' class="mini" data-k="'+kk+
+    '" value="'+esc(v)+'" placeholder="'+(pr?esc(pr.s+": "+pr.v):(piu?"60-70-80":"kg"))+'" style="width:'+(piu?104:84)+'px">'+
+    '<em>'+(zav?'kg di zavorra':'kg usati')+'</em></span>'+(t?'<span class="raw">'+t+'</span>':'');
 }
 
 /* ---------- schemi ---------- */
@@ -533,9 +555,12 @@ function fasciaTop(p,k,r){
 function notaCoach(t){return String(t||"").replace(/\b(in|negli|nella|su(?:gli)?)\s+appunti\b/gi,"nelle note").replace(/\bappunti\b/g,"note")}
 function rigaHTML(r,b,bk,k,sett){
   const ts=tipoSerie(r.se), pz=parti(r), nomi=nomiParti(b,pz.length);
+  RIGA_SENZA_SERIE=(ts.t==="nessuna");
   const recLab=(ts.t==="giri"&&!/giro|giri|onda|onde/i.test(r.rec||""))?('Rec tra '+(ts.parola==="onde"?'le onde':'i giri')):'Rec';
   const pill=r.rec?'<span class="rec"><em>'+recLab+'</em>'+r.rec+'</span>':'';
-  const car=function(p,i){return '<div class="car" data-car="'+k+'_'+i+'">'+risolvi(p.ca,bk,b,k,i)+'</div>'};
+  const car=function(p,i){let x=risolvi(p.ca,bk,b,k,i);
+    if(!x&&ts.t!=="nessuna") x=usato(bk,k,i,"");
+    return '<div class="car" data-car="'+k+'_'+i+'">'+x+'</div>'};
   let h='<div class="wk">'+(sett?'':'<div class="s">Settimana '+String(r.s).replace(/\D/g,"")+'</div>');
 
   if(ts.t==="nessuna"){
@@ -669,7 +694,8 @@ function segnato(){
       const nomi=nomiBlocco(b);
       for(let i=0;i<6;i++){const mx=state["MX_"+k+"_"+i], rk=state["RK_"+k+"_"+i], w=state["W_"+k+"_"+i];
         const chi=nomi&&nomi[i]?nomi[i].toLowerCase()+" ":"";
-        if(mx) pezzi.push(chi+"MAX: "+mx); if(rk) pezzi.push(chi+"a RPE: "+rk+" kg"); if(w) pezzi.push(chi+"peso usato "+w+" kg");}
+        if(mx) pezzi.push(chi+"MAX: "+mx); if(rk) pezzi.push(chi+"a RPE: "+rk+" kg"); if(w) pezzi.push(chi+"peso usato "+w+" kg");
+        const u=state["U_"+k+"_"+i]; if(u) pezzi.push(chi+"kg usati "+u);}
       if(fp) pezzi.push("fatica "+fp+"/10");
       if(ap&&String(ap).trim()) pezzi.push(String(ap).trim());
       if(pezzi.length) out.push({g:g.id,nome:r.s+" "+b.nome,riga:pezzi.join(" — ")});
@@ -740,6 +766,7 @@ function draw(){
 function ridipingi(){
   GIORNI.forEach(function(g){g.blocks.forEach(function(b,bi){const bk=g.id+"_"+bi;
     b.rows.forEach(function(r,ri){const k=bk+"_"+ri, pz=parti(r), ts=tipoSerie(r.se);
+      RIGA_SENZA_SERIE=(ts.t==="nessuna");
       document.querySelectorAll('[data-car^="'+k+'_"]').forEach(function(nd){
         const i=parseInt(nd.dataset.car.slice(k.length+1))||0;
         const p=pz[Math.min(i,pz.length-1)];
@@ -826,7 +853,6 @@ function mostraInstalla(modo){
     '<button class="no" onclick="minimizzaInstalla()">Per adesso no</button></div>'+
     '<div id="passi"></div>';
   e.innerHTML=h;
-  if(modo==="ios") comeInstallare();
 }
 function riapriInstalla(){
   try{localStorage.removeItem("ncp-inst-min")}catch(x){}
@@ -837,7 +863,9 @@ function minimizzaInstalla(){
   mostraInstalla(document.getElementById("inst").dataset.modo||"ios");
 }
 function comeInstallare(){
+  /* i passi si aprono solo quando tocchi «Installa l'app»; un secondo tocco li richiude */
   const p=document.getElementById("passi"); if(!p) return;
+  if(p.innerHTML){p.innerHTML="";return}
   let h='<ol class="passi">';
   if(inAppBrowser()){
     h+='<li><b>Prima apri questa pagina in Safari.</b> Da WhatsApp e dalle altre app '+
