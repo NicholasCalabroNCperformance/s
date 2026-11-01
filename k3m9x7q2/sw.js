@@ -1,5 +1,5 @@
 /* NC Performance — funziona anche senza rete */
-const CACHE = "ncp-v3";
+const CACHE = "ncp-v4";
 const BASE = [ "./", "./index.html", "./manifest.webmanifest",
                "./icona-192.png", "./icona-512.png", "./icona-maskable.png" ];
 
