@@ -1,6 +1,14 @@
 <!doctype html><html lang="it"><head><meta charset="utf-8">
-<meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="NC Performance">
+<meta property="og:title" content="Blocco tecnico S1–S10">
+<meta property="og:description" content="La tua scheda di allenamento · NC Performance">
+<meta property="og:image" content="https://nicholascalabroncperformance.github.io/s/k3m9x7q2/icona-512.png">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
+<meta name="twitter:card" content="summary">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#23232A">
 <link rel="apple-touch-icon" href="icona-192.png">
@@ -8,14 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="NC Performance">
 <meta name="mobile-web-app-capable" content="yes">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="NC Performance">
-<meta property="og:title" content="Blocco tecnico — 5 settimane">
-<meta property="og:description" content="La tua scheda di allenamento · NC Performance">
-<meta property="og:image" content="https://nicholascalabroncperformance.github.io/s/k3m9x7q2/icona-512.png">
-<meta property="og:image:width" content="512">
-<meta property="og:image:height" content="512">
-<title>Blocco tecnico S1-S5</title><style>
+<title>Blocco tecnico S1–S10</title><style>
 :root{--paper:#F1F1F2;--card:#FFF;--alt:#E9E9EB;--band:#DBDBDE;--line:#CFCFD4;
 --gold:#A9863B;--gold2:#C9A961;--ink:#23232A;--mute:#6E6E78}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
@@ -45,6 +46,7 @@ footer{margin-top:28px;padding-top:16px;border-top:1px solid var(--line);font-si
 border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
 @media print{.btns,nav,.wkbar{display:none}body{background:#fff}}
 
+
 .wkbar{position:sticky;top:0;z-index:5;background:var(--paper);padding:10px 14px 9px;margin:0 -14px;
 border-bottom:1px solid var(--line)}
 .wkbar .lab{display:block;font:700 9.5px/1 -apple-system,sans-serif;letter-spacing:.14em;
@@ -61,6 +63,15 @@ display:flex;justify-content:space-between;align-items:center;gap:10px}
 text-align:right;flex:0 0 auto}
 .daybar:first-of-type{margin-top:10px}
 .row2{margin-top:8px}
+.daybar{background:var(--gold);color:#fff;padding:11px 14px;margin:16px -14px 11px;
+font:700 13px/1.25 -apple-system,sans-serif;letter-spacing:.2em;
+display:flex;justify-content:space-between;align-items:center;gap:10px}
+.daybar span{font:400 11px/1.3 -apple-system,sans-serif;letter-spacing:.04em;opacity:.9;
+text-align:right;flex:0 0 auto}
+.daybar:first-of-type{margin-top:10px}
+.wsep{font:700 10px/1 -apple-system,sans-serif;letter-spacing:.16em;color:var(--mute);
+text-transform:uppercase;margin:16px 0 7px}
+
 .ex{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--gold);
 border-radius:8px;margin:0 0 12px;overflow:hidden}
 .ex>h3{font:600 15.5px/1.3 Georgia,serif;margin:0;padding:11px 13px 10px;border-bottom:1px solid var(--line)}
@@ -68,13 +79,14 @@ border-radius:8px;margin:0 0 12px;overflow:hidden}
 font-weight:700;letter-spacing:.03em;margin-top:3px}
 .ex .tbx{display:flex;align-items:center;gap:9px;flex-wrap:wrap;padding:11px 13px;
 background:#FBF7EF;border-bottom:1px solid var(--line)}
+.ex .tbx+.tbx{border-top:0}
 .ex .tbx .lb{font:700 10px/1.2 -apple-system,sans-serif;letter-spacing:.11em;
 text-transform:uppercase;color:var(--gold)}
 .ex .tbx input{width:96px;font:700 19px/1 -apple-system,sans-serif;padding:8px 10px;
 text-align:right;font-variant-numeric:tabular-nums;border:1px solid var(--gold);background:var(--card)}
 .ex .tbx .u{font:700 13px/1 -apple-system,sans-serif;color:var(--mute);margin-left:-3px}
-.ex .tbx .hint{display:none;flex-basis:100%;font:400 11.5px/1.4 -apple-system,sans-serif;
-color:var(--mute)}
+.ex .tbx .hint{display:none;flex-basis:100%;font:400 11.5px/1.4 -apple-system,sans-serif;color:var(--mute)}
+.ex .tbx input:placeholder-shown ~ .hint{display:block}
 .ex .tbx .how{flex-basis:100%;margin-top:2px}
 .ex .tbx .how summary{font:700 9.5px/1 -apple-system,sans-serif;letter-spacing:.1em;
 text-transform:uppercase;color:var(--gold);cursor:pointer;padding:4px 0;list-style:none}
@@ -82,47 +94,130 @@ text-transform:uppercase;color:var(--gold);cursor:pointer;padding:4px 0;list-sty
 .ex .tbx .how summary::after{content:" ▾"}
 .ex .tbx .how[open] summary::after{content:" ▴"}
 .ex .tbx .how p{margin:4px 0 2px;font:400 12.5px/1.5 Georgia,serif;color:#4A4A55}
-.ex .tbx input:placeholder-shown ~ .hint{display:block}
-.wk{display:grid;grid-template-columns:44px 1fr 118px;gap:3px 10px;align-items:baseline;
-padding:10px 13px;border-bottom:1px solid var(--line)}
-.wk:nth-child(even){background:var(--alt)}.wk:last-child{border-bottom:0}
-.wk.solo{grid-template-columns:1fr 128px}
-.wk .s{font:700 12.5px/1.4 -apple-system,sans-serif;color:var(--mute)}
+
+.wk{padding:11px 13px;border-bottom:1px solid var(--line)}
+.wk:last-child{border-bottom:0}
+.wk:nth-child(even){background:var(--alt)}
+.wk .s{font:700 11px/1 -apple-system,sans-serif;letter-spacing:.12em;color:var(--mute);
+text-transform:uppercase;margin-bottom:7px}
 .wk .sch{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
-.wk .rec{margin-left:auto;display:inline-flex;align-items:baseline;gap:6px;max-width:64%;
-text-align:right;line-height:1.35;
-background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 10px;
-font:700 13.5px/1 -apple-system,sans-serif;color:var(--ink);font-variant-numeric:tabular-nums}
-.wk .rec em{font:700 8.5px/1 -apple-system,sans-serif;font-style:normal;letter-spacing:.11em;
-text-transform:uppercase;color:var(--mute)}
-.wk .recw{grid-column:1/-1;display:flex;justify-content:flex-end;margin-bottom:2px}
-.wk .recw .rec{margin-left:0}
 .wk .sch .n{display:inline-flex;flex-direction:column;align-items:center;line-height:1}
 .wk .sch .n b{font:600 17px/1.15 -apple-system,sans-serif;font-variant-numeric:tabular-nums}
 .wk .sch .n em{font:700 8.5px/1 -apple-system,sans-serif;font-style:normal;letter-spacing:.11em;
 text-transform:uppercase;color:var(--mute);margin-top:3px}
 .wk .sch .x{font:400 14px/1 -apple-system,sans-serif;color:var(--mute);padding-bottom:12px}
-.wk .car{text-align:right;font:700 17px/1.2 -apple-system,sans-serif;color:var(--gold);
+.wk .rec{margin-left:auto;display:inline-flex;align-items:baseline;gap:6px;max-width:62%;
+text-align:right;line-height:1.35;background:var(--card);border:1px solid var(--line);
+border-radius:8px;padding:6px 10px;font:700 13.5px/1 -apple-system,sans-serif;color:var(--ink);
 font-variant-numeric:tabular-nums}
-.wk .car .raw{display:block;font:400 11px/1.3 -apple-system,sans-serif;color:var(--mute)}
-.wk .car .wait{font:600 12px/1.3 -apple-system,sans-serif;color:var(--mute)}
-.wk .car input{width:100%;min-width:92px;font-size:14px;padding:6px 8px;text-align:right}
-.wk .car input.free{text-align:left;font-size:14.5px;padding:8px 10px}
-.wk .multi{grid-column:1/-1}
+.wk .rec em{font:700 8.5px/1 -apple-system,sans-serif;font-style:normal;letter-spacing:.11em;
+text-transform:uppercase;color:var(--mute)}
+.wk .recw{display:flex;justify-content:flex-end;margin-bottom:3px}
+.wk .recw .rec{margin-left:0}
+.wk .car{font:700 19px/1.2 -apple-system,sans-serif;color:var(--gold);margin-top:7px;
+font-variant-numeric:tabular-nums}
+.wk .car .raw{display:block;font:400 11.5px/1.35 -apple-system,sans-serif;color:var(--mute);margin-top:3px}
+.wk .car .wait{font:600 14px/1.3 -apple-system,sans-serif;color:var(--mute)}
+.wk .car input.free{width:100%;max-width:190px;font:400 14.5px/1.3 -apple-system,sans-serif;
+padding:8px 10px;text-align:left}
 .wk .parte{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:9px 0 10px}
 .wk .parte:first-child{padding-top:2px}
 .wk .parte .sch{flex:0 0 auto}
-.wk .parte .car{text-align:right;font:700 17px/1.2 -apple-system,sans-serif;color:var(--gold);
-font-variant-numeric:tabular-nums;min-width:0}
-.wk .poi{font:400 11px/1 -apple-system,sans-serif;color:var(--mute);margin:0;
-letter-spacing:.1em;text-transform:uppercase;border-top:1px dashed var(--line);
-padding-top:9px;padding-left:1px}
-.wk .rec2{font:400 12.5px/1 -apple-system,sans-serif;color:var(--mute);margin-top:5px}
+.wk .parte .car{margin-top:0;text-align:right;font-size:17px}
+.wk .parte .car .raw{text-align:right}
+.wk .poi{font:400 11px/1 -apple-system,sans-serif;color:var(--mute);letter-spacing:.1em;
+text-transform:uppercase;border-top:1px dashed var(--line);padding-top:9px}
+.wk .esec{font:400 12.5px/1.35 -apple-system,sans-serif;color:var(--ink);margin-top:7px;
+background:var(--card);border:1px solid var(--line);border-radius:7px;padding:6px 9px;display:inline-block}
+.wk .nota{font:400 13.5px/1.45 Georgia,serif;color:#4A4A55;margin-top:8px}
+.fp{margin-top:12px}
+.fp .lb{display:block;font:700 9.5px/1 -apple-system,sans-serif;letter-spacing:.1em;
+color:var(--mute);text-transform:uppercase;margin-bottom:7px}
+.sc{display:grid;grid-template-columns:repeat(10,1fr);gap:3px}
+.sc button{padding:11px 0;border-radius:6px;border:1px solid var(--line);background:var(--card);
+font:700 13px/1 -apple-system,sans-serif;color:var(--mute);cursor:pointer;
+font-variant-numeric:tabular-nums;-webkit-appearance:none;
+transition:background .3s ease,border-color .3s ease,color .3s ease,box-shadow .2s ease}
+.sc button.sel{box-shadow:0 0 0 2px var(--alt),0 0 0 3.5px var(--ink)}
+.ends{display:flex;justify-content:space-between;margin-top:6px;
+font:400 10px/1 -apple-system,sans-serif;color:var(--mute);letter-spacing:.04em}
+.app{margin-top:10px}
+.app span{display:block;font:700 9.5px/1 -apple-system,sans-serif;letter-spacing:.1em;
+color:var(--mute);text-transform:uppercase;margin-bottom:4px}
+.app input{width:100%;font-size:14px;padding:8px 9px}
+.manda{display:block;width:100%;margin:22px 0 4px;padding:15px 0;border-radius:10px;
+border:0;background:var(--gold);color:#fff;cursor:pointer;
+font:700 14px/1 -apple-system,sans-serif;letter-spacing:.06em}
+.manda.vuoto{background:var(--line);color:#8A8A92}
+.mandanota{font:400 11.5px/1.45 -apple-system,sans-serif;color:var(--mute);margin:8px 0 0;text-align:center}
+
+
+/* onde, giri, ramping, MAX */
+.wk .gl{display:flex;justify-content:space-between;align-items:center;gap:14px}
+.wk .gl .car{margin-top:0;text-align:right;font-size:17px}
+.wk .gl .car .raw{text-align:right}
+.wk .gn{display:block;font:700 10px/1.2 -apple-system,sans-serif;letter-spacing:.1em;text-transform:uppercase;
+color:var(--gold);margin:0 0 4px}
+.wk .giro,.wk .ramp{border:1px solid var(--line);border-radius:9px;background:var(--card);padding:10px 12px 4px;margin-top:4px}
+.wk .gt{font:700 11px/1.2 -apple-system,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);
+margin-bottom:8px;padding-bottom:8px;border-bottom:1px dashed var(--line)}
+.wk .gt b{font-size:15px;color:var(--gold)}
+.wk .gt em{font:400 11px/1.2 -apple-system,sans-serif;font-style:normal;letter-spacing:0;text-transform:none;color:var(--mute);margin-left:6px}
+.wk .gp{padding:7px 0 9px}
+.wk .gp+.gp{border-top:1px dashed var(--line)}
+.wk .parte .gn{margin-top:2px}
+.wk .fatte{display:flex;align-items:center;gap:9px;padding:9px 0 8px;border-top:1px dashed var(--line);margin-top:4px}
+.wk .fatte span{font:700 9.5px/1 -apple-system,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+.wk input.mini{font:700 15px/1 -apple-system,sans-serif;padding:7px 8px;text-align:right;width:64px;
+border:1px solid var(--gold);background:var(--card);border-radius:7px;font-variant-numeric:tabular-nums}
+.wk .mx{display:inline-flex;flex-direction:column;align-items:center;margin-left:8px;line-height:1}
+.wk .mx em{font:700 8.5px/1 -apple-system,sans-serif;font-style:normal;letter-spacing:.11em;text-transform:uppercase;color:var(--mute);margin-top:3px}
 .wk .at{font:700 17px/1.2 -apple-system,sans-serif;color:var(--gold)}
-.wk .parte .car input{width:88px;font-size:14px;padding:6px 8px;text-align:right}
-.wk .nota{grid-column:1/-1;font-size:13.5px;color:var(--mute);margin-top:3px}
-.wk .app{grid-column:1/-1;margin-top:7px}
-.wk .app input{width:100%;font-size:14px;padding:7px 9px}
+.wk .lieve{font:400 13px/1 -apple-system,sans-serif;color:var(--mute)}
+.wk .libera{font:400 13px/1.3 -apple-system,sans-serif;color:var(--mute)}
+.wk .car .raw{display:block}
+.wk .freccia{font:400 15px/1 -apple-system,sans-serif;color:var(--mute)}
+.wk .tst{font:700 13px/1 -apple-system,sans-serif;letter-spacing:.08em;color:var(--gold)}
+/* EMOM */
+.wk .emom{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:10px;
+padding:10px 12px;border:1px solid var(--line);border-radius:9px;background:var(--card)}
+.wk .emom .ed{display:flex;align-items:baseline;gap:8px;font-variant-numeric:tabular-nums}
+.wk .emom .ed b{font:700 26px/1 -apple-system,sans-serif;color:var(--ink)}
+.wk .emom .ed b small{font-size:14px;color:var(--mute);font-weight:600}
+.wk .emom .ed em{font:700 9px/1.2 -apple-system,sans-serif;font-style:normal;letter-spacing:.11em;
+text-transform:uppercase;color:var(--mute)}
+.wk .emom .ed .es{font:700 20px/1 -apple-system,sans-serif;color:var(--gold);margin-left:4px}
+.wk .emom .eb{flex:0 0 auto;border:0;border-radius:8px;background:var(--gold);color:#fff;
+padding:11px 14px;font:700 12px/1 -apple-system,sans-serif;letter-spacing:.06em;cursor:pointer}
+.wk .emom .eb.on{background:var(--ink)}
+/* fascia del top dentro la riga del ramping */
+.wk .parte>.gl{flex:1}
+.wk .tbx.dentro{margin:-11px -13px 10px;border-radius:0}
+.wk:first-of-type .tbx.dentro{margin-top:-11px}
+/* EMOM: avviso volume e lampo a tutto schermo */
+.wk .emom{flex-wrap:wrap}
+.wk .emom .evol{flex-basis:100%;font:400 11px/1.4 -apple-system,sans-serif;color:var(--mute)}
+#lampo{position:fixed;inset:0;background:#C9A961;opacity:0;pointer-events:none;z-index:99;transition:opacity .08s}
+#lampo.on{opacity:.55}
+/* settimane: una riga sola che scorre di lato, anche con 10-16 settimane */
+#chips{flex-wrap:nowrap;overflow-x:auto;position:relative;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+#chips::-webkit-scrollbar{display:none}
+#chips button{flex:0 0 auto}
+/* massimali del coach (programmi in % del 1RM) */
+#rif .mass{margin:12px 0 4px;padding:11px 13px 10px;border:1px solid var(--line);border-radius:10px;background:var(--card)}
+#rif .mt{font:700 10px/1 -apple-system,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:9px}
+#rif .mr{display:flex;gap:10px}
+#rif label{flex:1;display:flex;flex-direction:column;gap:4px;min-width:0}
+#rif label span{font:700 10px/1 -apple-system,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--ink)}
+#rif label input{font:700 17px/1 -apple-system,sans-serif;padding:8px 9px;border:1px solid var(--gold);border-radius:8px;
+background:var(--paper);color:var(--ink);width:100%;font-variant-numeric:tabular-nums}
+#rif label em{font:400 10.5px/1.2 -apple-system,sans-serif;font-style:normal;color:var(--mute)}
+#rif .mh{font:400 11.5px/1.4 -apple-system,sans-serif;color:var(--mute);margin-top:9px}
+/* etichetta dei programmi di prova */
+.caso{font:700 9.5px/1 -apple-system,sans-serif;letter-spacing:.12em;text-transform:uppercase;
+color:var(--mute);margin:14px 0 6px;padding-left:2px}
+.caso::before{content:"caso \u00b7 ";color:var(--gold)}
+
 .inst{display:none;background:#23232A;color:#EDEDEE;border-radius:10px;padding:13px 15px;
 margin:0 0 16px;font:400 13px/1.5 -apple-system,sans-serif}
 .inst b{color:var(--gold2)}
@@ -141,286 +236,533 @@ border:1px solid #6A6A76;border-radius:5px;color:var(--gold2);vertical-align:-6p
 padding:11px 12px;font:700 11.5px/1 -apple-system,sans-serif;letter-spacing:.06em;cursor:pointer;
 text-align:left;display:flex;align-items:center;gap:7px}
 .inst.mini .riapri svg{color:var(--gold2)}
-.fine{margin:26px 0 6px;padding:16px 15px;background:var(--card);border:1px solid var(--line);
-border-radius:11px}
-.fine .lab{font:700 9.5px/1 -apple-system,sans-serif;letter-spacing:.14em;color:var(--mute);
-text-transform:uppercase;margin-bottom:11px}
-.inv{display:block;width:100%;padding:15px 0;border-radius:9px;border:0;cursor:pointer;
-font:700 14px/1.25 -apple-system,sans-serif;letter-spacing:.02em}
-.inv.wa{background:var(--gold);color:#fff}
-.inv.lk{background:var(--card);color:var(--ink);border:1px solid var(--ink);margin-top:9px}
-.inv:disabled{background:var(--band);color:#8A8A92;border-color:var(--band);cursor:default}
-.fine .hint{font:400 11.5px/1.45 -apple-system,sans-serif;color:var(--mute);margin:11px 0 0}
-.letto{display:none;background:#2A2A31;color:#EDEDEE;border-radius:10px;padding:13px 15px;
-margin:0 0 16px;font:400 13px/1.5 -apple-system,sans-serif}
-.letto b{color:var(--gold2)}
-.letto button{margin-top:10px;background:none;border:1px solid #5A5A66;color:#EDEDEE;
-border-radius:7px;padding:8px 12px;font:700 11px/1 -apple-system,sans-serif;
-letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
-body.sololettura .fine,body.sololettura .btns button:last-child{display:none}
-.wk .fp{grid-column:1/-1;margin-top:11px}
-.wk .fp .lb{display:block;font:700 9.5px/1 -apple-system,sans-serif;letter-spacing:.1em;
-color:var(--mute);text-transform:uppercase;margin-bottom:6px}
-.wk .sc{display:grid;grid-template-columns:repeat(10,1fr);gap:3px}
-.wk .sc button{padding:10px 0;border-radius:6px;border:1px solid var(--line);background:var(--card);
-font:700 13px/1 -apple-system,sans-serif;color:var(--mute);cursor:pointer;
-font-variant-numeric:tabular-nums;-webkit-appearance:none;transition:background .18s ease,border-color .18s ease}
-.wk .sc button.on{font-weight:700}
-.wk .sc button.sel{box-shadow:0 0 0 2px var(--paper),0 0 0 4px var(--ink)}
-.wk .ends{display:flex;justify-content:space-between;margin-top:5px;
-font:400 10px/1 -apple-system,sans-serif;color:var(--mute);letter-spacing:.04em}
-.wk .app span{display:block;font:700 9.5px/1 -apple-system,sans-serif;letter-spacing:.1em;
-color:var(--mute);text-transform:uppercase;margin-bottom:4px}
-@media(max-width:560px){.wk{grid-template-columns:44px 1fr}.wk.solo{grid-template-columns:1fr}
-.wk .car{grid-column:1/-1;text-align:left;margin-top:3px}.wk .car .raw{display:inline;margin-left:8px}}
+
 </style></head><body><div class="wrap">
-<header><div class="mono">NC</div><h1>Blocco tecnico — 5 settimane</h1>
+<header><div class="mono">NC</div><h1>Blocco tecnico S1–S10</h1>
 <div class="sub">mesociclo 5 · Giorni A–E</div></header>
 <div class="inst" id="inst"></div>
-<div class="rif"><h2>Riferimenti — le % sono su questi numeri</h2><div id="refs"></div>
-<p class="note">Cambia un riferimento e tutti i carichi di quell'alzata si ricalcolano, arrotondati al 2,5 kg.
-Le % non sono riscalate sulla variante.</p></div>
+<div id="rif"></div>
 <div class="wkbar"><div class="lab">Settimana</div><div class="chips" id="chips"></div>
 <div class="lab row2">Giorno</div><div class="chips" id="dchips"></div></div>
-<div class="letto" id="letto"></div>
 <div id="out"></div>
-<div class="fine" id="fine">
-<div class="lab">Fine allenamento</div>
-<button class="inv wa" id="inv1" onclick="mandaTesto()">Manda al coach su WhatsApp</button>
-<button class="inv lk" id="inv2" onclick="mandaLink()">Manda il link con dentro i dati</button>
-<p class="hint" id="invhint">Quando hai finito di segnare, schiaccia. Fino ad allora resta tutto qui sul telefono.</p>
-</div>
-<div class="btns" id="btns"><button onclick="window.print()">Stampa / salva in PDF</button>
-<button onclick="if(confirm('Cancellare tutto quello che hai scritto?')){try{localStorage.clear()}catch(e){};location.reload()}">Azzera</button></div>
-<footer>Quello che scrivi resta su questo telefono.</footer></div>
-<script>const DAYS=[{"id": "A", "head": "GIORNO A", "rif": "Riferimenti del coach:  SQ 200 (stima)  •  BP 125 (testato lug 2026)  •  DL 210 (stima)  —  le % sono su questi numeri, NON riscalate sulla variante   |   Blocco tecnico S1–S5 · 5 sedute · programma del coach esterno, impaginazione COAHC", "blocks": [{"t": "SQUAT HIGH BAR — fondamentale (onda di carico)", "rows": [{"s": "S1", "f": "Est", "se": "5", "rp": "6-4-4-4-6", "pc": "60%", "ca": "120 kg", "rpe": "", "vel": "", "ok": "", "n": "Scaletta 6-4-4-4-6 tutta a 120 kg. Prima settimana: prendi il ritmo, nessuna serie al limite.", "ap": "", "rec": "2'-3'"}, {"s": "S2", "f": "Est", "se": "5", "rp": "5-3-3-3-5", "pc": "70%", "ca": "140 kg", "rpe": "", "vel": "", "ok": "", "n": "Scaletta più corta e carico più alto: 5-3-3-3-5 a 140.", "ap": "", "rec": "2'-3'"}, {"s": "S3", "f": "Est", "se": "5", "rp": "6-3-3-3-6", "pc": "65%", "ca": "130 kg", "rpe": "", "vel": "", "ok": "", "n": "Tornano i colpi alti a carico intermedio: 6-3-3-3-6 a 130.", "ap": "", "rec": "2'-3'"}, {"s": "S4", "f": "Est", "se": "5", "rp": "5-2-2-2-5", "pc": "75%", "ca": "150 kg", "rpe": "", "vel": "", "ok": "", "n": "Settimana più pesante: 5-2-2-2-5 a 150. Le doppie centrali devono restare veloci.", "ap": "", "rec": "2'-3'"}, {"s": "S5", "f": "Est", "se": "4", "rp": "6-2-2-6", "pc": "70%", "ca": "140 kg", "rpe": "", "vel": "", "ok": "", "n": "Chiusura del blocco: 6-2-2-6 a 140.", "ap": "", "rec": "2'-3'"}], "lift": "sq", "nome": "SQUAT HIGH BAR", "ruolo": "fondamentale (onda di carico)"}, {"t": "PANCA PRESA STRETTA — variante (mignoli sull'81)", "rows": [{"s": "S1", "f": "Est", "se": "7", "rp": "2", "pc": "70%", "ca": "87,5 kg", "rpe": "", "vel": "", "ok": "", "n": "7 serie da 2 a 87,5. Mignoli sull'anello dell'81.", "ap": "", "rec": "2'-3'"}, {"s": "S2", "f": "Est", "se": "7", "rp": "3", "pc": "70%", "ca": "87,5 kg", "rpe": "X", "vel": "", "ok": "", "n": "Stesso carico, un colpo in più: 7 serie da 3.", "ap": "", "rec": "2'-3'"}, {"s": "S3", "f": "Est", "se": "7", "rp": "4", "pc": "70%", "ca": "87,5 kg", "rpe": "", "vel": "", "ok": "", "n": "Stesso carico, 7 serie da 4.", "ap": "", "rec": "2'-3'"}, {"s": "S4", "f": "Est", "se": "7", "rp": "5", "pc": "70%", "ca": "87,5 kg", "rpe": "", "vel": "", "ok": "", "n": "Stesso carico, 7 serie da 5: è la settimana più lunga.", "ap": "", "rec": "2'-3'"}, {"s": "S5", "f": "Est", "se": "6", "rp": "6", "pc": "70%", "ca": "87,5 kg", "rpe": "", "vel": "", "ok": "", "n": "6 serie da 6 a 87,5. Recuperi pieni: la presa stretta chiede tricipiti.", "ap": "", "rec": "2'-3'"}], "lift": "bp", "nome": "PANCA PRESA STRETTA", "ruolo": "variante (mignoli sull'81)"}, {"t": "STACCO — variante (fermo 3\" all'incastro)", "rows": [{"s": "S1", "f": "Est", "se": "4", "rp": "2", "pc": "60%", "ca": "125 kg", "rpe": "", "vel": "", "ok": "", "n": "4 serie da 2 a 125. Fermo pieno 3\" all'incastro, poi chiudi.", "ap": "", "rec": "2'-3'"}, {"s": "S2", "f": "Est", "se": "4", "rp": "2", "pc": "60%", "ca": "125 kg", "rpe": "", "vel": "", "ok": "", "n": "Ripetuta: 4 serie da 2 a 125.", "ap": "", "rec": "2'-3'"}, {"s": "S3", "f": "Est", "se": "4", "rp": "2", "pc": "65%", "ca": "137,5 kg", "rpe": "", "vel": "", "ok": "", "n": "Si sale di carico: 4 serie da 2 a 137,5, fermo sempre 3\".", "ap": "", "rec": "2'-3'"}, {"s": "S4", "f": "Est", "se": "4", "rp": "2", "pc": "65%", "ca": "137,5 kg", "rpe": "", "vel": "", "ok": "", "n": "Ripetuta: 4 serie da 2 a 137,5.", "ap": "", "rec": "2'-3'"}, {"s": "S5", "f": "Est", "se": "4", "rp": "3", "pc": "60%", "ca": "125 kg", "rpe": "", "vel": "", "ok": "", "n": "Scende il carico e sale un colpo: 4 serie da 3 a 125.", "ap": "", "rec": "2'-3'"}], "lift": "dl", "nome": "STACCO", "ruolo": "variante (fermo 3\" all'incastro)"}, {"t": "PLANK ZAVORRATO — core anti-estensione", "rows": [{"s": "S1", "f": "Est", "se": "4", "rp": "60s", "pc": "—", "ca": "Corpo libero", "rpe": "", "vel": "", "ok": "", "n": "1 minuto pieno × 4 serie, zavorra sulla schiena. Se non arrivi al minuto, togli peso.", "ap": "", "rec": "60\"-90\""}, {"s": "S2", "f": "Est", "se": "4", "rp": "60s", "pc": "—", "ca": "zavorra a scelta", "rpe": "", "vel": "", "ok": "", "n": "1 minuto pieno × 4 serie, zavorra sulla schiena. Se non arrivi al minuto, togli peso.", "ap": "", "rec": "60\"-90\""}, {"s": "S3", "f": "Est", "se": "4", "rp": "60s", "pc": "—", "ca": "zavorra a scelta", "rpe": "", "vel": "", "ok": "", "n": "1 minuto pieno × 4 serie, zavorra sulla schiena. Se non arrivi al minuto, togli peso.", "ap": "", "rec": "60\"-90\""}, {"s": "S4", "f": "Est", "se": "4", "rp": "60s", "pc": "—", "ca": "zavorra a scelta", "rpe": "", "vel": "", "ok": "", "n": "1 minuto pieno × 4 serie, zavorra sulla schiena. Se non arrivi al minuto, togli peso.", "ap": "", "rec": "60\"-90\""}, {"s": "S5", "f": "Est", "se": "4", "rp": "60s", "pc": "—", "ca": "zavorra a scelta", "rpe": "", "vel": "", "ok": "", "n": "1 minuto pieno × 4 serie, zavorra sulla schiena. Se non arrivi al minuto, togli peso.", "ap": "", "rec": "60\"-90\""}], "lift": "", "nome": "PLANK ZAVORRATO", "ruolo": "core anti-estensione"}, {"t": "SUPERSET BRACCIA — bicipiti + pesante", "rows": [{"s": "S1", "f": "Est", "se": "3", "rp": "12 + 12", "pc": "—", "ca": "a scelta, costante", "rpe": "", "vel": "", "ok": "", "n": "A scelta: curl + push down, oppure french da terra + curl. 12+12 di fila, 3 giri.", "ap": "", "rec": "nessuno dentro il giro · 90\"-2' tra i giri"}, {"s": "S2", "f": "Est", "se": "3", "rp": "12 + 12", "pc": "—", "ca": "a scelta, costante", "rpe": "", "vel": "", "ok": "", "n": "A scelta: curl + push down, oppure french da terra + curl. 12+12 di fila, 3 giri.", "ap": "", "rec": "nessuno dentro il giro · 90\"-2' tra i giri"}, {"s": "S3", "f": "Est", "se": "3", "rp": "12 + 12", "pc": "—", "ca": "a scelta, costante", "rpe": "", "vel": "", "ok": "", "n": "A scelta: curl + push down, oppure french da terra + curl. 12+12 di fila, 3 giri.", "ap": "", "rec": "nessuno dentro il giro · 90\"-2' tra i giri"}, {"s": "S4", "f": "Est", "se": "3", "rp": "12 + 12", "pc": "—", "ca": "a scelta, costante", "rpe": "", "vel": "", "ok": "", "n": "A scelta: curl + push down, oppure french da terra + curl. 12+12 di fila, 3 giri.", "ap": "", "rec": "nessuno dentro il giro · 90\"-2' tra i giri"}, {"s": "S5", "f": "Est", "se": "3", "rp": "12 + 12", "pc": "—", "ca": "a scelta, costante", "rpe": "", "vel": "", "ok": "", "n": "A scelta: curl + push down, oppure french da terra + curl. 12+12 di fila, 3 giri.", "ap": "", "rec": "nessuno dentro il giro · 90\"-2' tra i giri"}], "lift": "", "nome": "SUPERSET BRACCIA", "ruolo": "bicipiti + pesante"}]}, {"id": "B", "head": "GIORNO B", "rif": "Riferimenti del coach:  SQ 200 (stima)  •  BP 125 (testato lug 2026)  •  DL 210 (stima)  —  le % sono su questi numeri, NON riscalate sulla variante   |   Blocco tecnico S1–S5 · 5 sedute · programma del coach esterno, impaginazione COAHC", "blocks": [{"t": "PANCA PARALIMPICA — variante (gambe alzate dall'unrack)", "rows": [{"s": "S1", "f": "Est", "se": "5-6", "rp": "2-3", "pc": "56-64%", "ca": "70-80 kg", "rpe": "", "vel": "80kg x3", "ok": "", "n": "Gambe già sollevate PRIMA di staccare il bilanciere, non dopo. 5-6 serie da 2-3 colpi con 70-80 kg.", "ap": "", "rec": "2'-3'"}, {"s": "S2", "f": "Est", "se": "5-6", "rp": "2-3", "pc": "56-64%", "ca": "70-80 kg", "rpe": "", "vel": "", "ok": "", "n": "Gambe già sollevate PRIMA di staccare il bilanciere, non dopo. 5-6 serie da 2-3 colpi con 70-80 kg.", "ap": "", "rec": "2'-3'"}, {"s": "S3", "f": "Est", "se": "5-6", "rp": "2-3", "pc": "56-64%", "ca": "70-80 kg", "rpe": "", "vel": "", "ok": "", "n": "Gambe già sollevate PRIMA di staccare il bilanciere, non dopo. 5-6 serie da 2-3 colpi con 70-80 kg.", "ap": "", "rec": "2'-3'"}, {"s": "S4", "f": "Est", "se": "5-6", "rp": "2-3", "pc": "56-64%", "ca": "70-80 kg", "rpe": "", "vel": "", "ok": "", "n": "Gambe già sollevate PRIMA di staccare il bilanciere, non dopo. 5-6 serie da 2-3 colpi con 70-80 kg.", "ap": "", "rec": "2'-3'"}, {"s": "S5", "f": "Est", "se": "5-6", "rp": "2-3", "pc": "56-64%", "ca": "70-80 kg", "rpe": "", "vel": "", "ok": "", "n": "Gambe già sollevate PRIMA di staccare il bilanciere, non dopo. 5-6 serie da 2-3 colpi con 70-80 kg.", "ap": "", "rec": "2'-3'"}], "lift": "bp", "nome": "PANCA PARALIMPICA", "ruolo": "variante (gambe alzate dall'unrack)"}, {"t": "LEG CURL SDRAIATO — femorali", "rows": [{"s": "S1", "f": "Est", "se": "4", "rp": "12", "pc": "—", "ca": "0kg", "rpe": "", "vel": "", "ok": "", "n": "12 colpi × 4 serie.", "ap": "", "rec": "2'"}, {"s": "S2", "f": "Est", "se": "4", "rp": "12", "pc": "—", "ca": "0kg", "rpe": "", "vel": "", "ok": "", "n": "12 colpi × 4 serie.", "ap": "", "rec": "2'"}, {"s": "S3", "f": "Est", "se": "4", "rp": "12", "pc": "—", "ca": "a scelta, costante", "rpe": "", "vel": "", "ok": "", "n": "12 colpi × 4 serie.", "ap": "", "rec": "2'"}, {"s": "S4", "f": "Est", "se": "4", "rp": "12", "pc": "—", "ca": "a scelta, costante", "rpe": "", "vel": "", "ok": "", "n": "12 colpi × 4 serie.", "ap": "", "rec": "2'"}, {"s": "S5", "f": "Est", "se": "4", "rp": "12", "pc": "—", "ca": "a scelta, costante", "rpe": "", "vel": "", "ok": "", "n": "12 colpi × 4 serie.", "ap": "", "rec": "2'"}], "lift": "", "nome": "LEG CURL SDRAIATO", "ruolo": "femorali"}, {"t": "HIP THRUST — glutei", "rows": [{"s": "S1", "f": "Est", "se": "3", "rp": "10-8-6", "pc": "—", "ca": "60-70-80", "rpe": "", "vel": "", "ok": "", "n": "10-8-6 con il carico che sale a ogni serie.", "ap": "", "rec": "2'"}, {"s": "S2", "f": "Est", "se": "3", "rp": "10-8-6", "pc": "—", "ca": "60-80-100", "rpe": "", "vel": "", "ok": "", "n": "10-8-6 con il carico che sale a ogni serie.", "ap": "", "rec": "2'"}, {"s": "S3", "f": "Est", "se": "3", "rp": "10-8-6", "pc": "—", "ca": "a salire a ogni serie", "rpe": "", "vel": "", "ok": "", "n": "10-8-6 con il carico che sale a ogni serie.", "ap": "", "rec": "2'"}, {"s": "S4", "f": "Est", "se": "3", "rp": "10-8-6", "pc": "—", "ca": "a salire a ogni serie", "rpe": "", "vel": "", "ok": "", "n": "10-8-6 con il carico che sale a ogni serie.", "ap": "", "rec": "2'"}, {"s": "S5", "f": "Est", "se": "3", "rp": "10-8-6", "pc": "—", "ca": "80-100-120", "rpe": "", "vel": "", "ok": "", "n": "10-8-6 con il carico che sale a ogni serie.", "ap": "", "rec": "2'"}], "lift": "", "nome": "HIP THRUST", "ruolo": "glutei"}, {"t": "ROWING MACHINE — dorso supportato", "rows": [{"s": "S1", "f": "Est", "se": "3", "rp": "15", "pc": "—", "ca": "29", "rpe": "", "vel": "", "ok": "", "n": "15 × 3 al macchinario. Petto appoggiato: se compare dolore, scendi di carico.", "ap": "", "rec": "2'"}, {"s": "S2", "f": "Est", "se": "3", "rp": "15", "pc": "—", "ca": "a scelta, costante", "rpe": "", "vel": "", "ok": "", "n": "15 × 3 al macchinario. Petto appoggiato: se compare dolore, scendi di carico.", "ap": "", "rec": "2'"}, {"s": "S3", "f": "Est", "se": "3", "rp": "15", "pc": "—", "ca": "a scelta, costante", "rpe": "", "vel": "", "ok": "", "n": "15 × 3 al macchinario. Petto appoggiato: se compare dolore, scendi di carico.", "ap": "", "rec": "2'"}, {"s": "S4", "f": "Est", "se": "3", "rp": "15", "pc": "—", "ca": "a scelta, costante", "rpe": "", "vel": "", "ok": "", "n": "15 × 3 al macchinario. Petto appoggiato: se compare dolore, scendi di carico.", "ap": "", "rec": "2'"}, {"s": "S5", "f": "Est", "se": "3", "rp": "15", "pc": "—", "ca": "29kg", "rpe": "", "vel": "", "ok": "", "n": "15 × 3 al macchinario. Petto appoggiato: se compare dolore, scendi di carico.", "ap": "", "rec": "2'"}], "lift": "", "nome": "ROWING MACHINE", "ruolo": "dorso supportato"}, {"t": "SPINTE 30° — petto", "rows": [{"s": "S1", "f": "Est", "se": "3", "rp": "15-12-10", "pc": "—", "ca": "18-20-22kg", "rpe": "", "vel": "", "ok": "", "n": "15-12-10 con il carico che sale.", "ap": "", "rec": "2'"}, {"s": "S2", "f": "Est", "se": "3", "rp": "15-12-10", "pc": "—", "ca": "a salire a ogni serie", "rpe": "", "vel": "", "ok": "", "n": "15-12-10 con il carico che sale.", "ap": "", "rec": "2'"}, {"s": "S3", "f": "Est", "se": "3", "rp": "15-12-10", "pc": "—", "ca": "a salire a ogni serie", "rpe": "", "vel": "", "ok": "", "n": "15-12-10 con il carico che sale.", "ap": "", "rec": "2'"}, {"s": "S4", "f": "Est", "se": "3", "rp": "15-12-10", "pc": "—", "ca": "a salire a ogni serie", "rpe": "", "vel": "", "ok": "", "n": "15-12-10 con il carico che sale.", "ap": "", "rec": "2'"}, {"s": "S5", "f": "Est", "se": "3", "rp": "15-12-10", "pc": "—", "ca": "a salire a ogni serie", "rpe": "", "vel": "", "ok": "", "n": "15-12-10 con il carico che sale.", "ap": "", "rec": "2'"}], "lift": "", "nome": "SPINTE 30°", "ruolo": "petto"}, {"t": "SHOULDER PRESS — spalle", "rows": [{"s": "S1", "f": "Est", "se": "3", "rp": "15-12-10", "pc": "—", "ca": "25-27-30", "rpe": "", "vel": "", "ok": "", "n": "15-12-10 con il carico che sale.", "ap": "", "rec": "2'"}, {"s": "S2", "f": "Est", "se": "3", "rp": "15-12-10", "pc": "—", "ca": "a salire a ogni serie", "rpe": "", "vel": "", "ok": "", "n": "15-12-10 con il carico che sale.", "ap": "", "rec": "2'"}, {"s": "S3", "f": "Est", "se": "3", "rp": "15-12-10", "pc": "—", "ca": "a salire a ogni serie", "rpe": "", "vel": "", "ok": "", "n": "15-12-10 con il carico che sale.", "ap": "", "rec": "2'"}, {"s": "S4", "f": "Est", "se": "3", "rp": "15-12-10", "pc": "—", "ca": "a salire a ogni serie", "rpe": "", "vel": "", "ok": "", "n": "15-12-10 con il carico che sale.", "ap": "", "rec": "2'"}, {"s": "S5", "f": "Est", "se": "3", "rp": "15-12-10", "pc": "—", "ca": "a salire a ogni serie", "rpe": "", "vel": "", "ok": "", "n": "15-12-10 con il carico che sale.", "ap": "", "rec": "2'"}], "lift": "", "nome": "SHOULDER PRESS", "ruolo": "spalle"}]}, {"id": "C", "head": "GIORNO C", "rif": "Riferimenti del coach:  SQ 200 (stima)  •  BP 125 (testato lug 2026)  •  DL 210 (stima)  —  le % sono su questi numeri, NON riscalate sulla variante   |   Blocco tecnico S1–S5 · 5 sedute · programma del coach esterno, impaginazione COAHC", "blocks": [{"t": "SQUAT LOW BAR — variante (fermo sopra il parallelo)", "rows": [{"s": "S1", "f": "Est", "se": "5", "rp": "2", "pc": "70%", "ca": "140 kg", "rpe": "", "vel": "", "ok": "", "n": "5 serie da 2 a 140. Fermo sopra il parallelo, poi risali.", "ap": "", "rec": "2'-3'"}, {"s": "S2", "f": "Est", "se": "5", "rp": "2", "pc": "70%", "ca": "140 kg", "rpe": "", "vel": "", "ok": "", "n": "Ripetuta: 5 serie da 2 a 140.", "ap": "", "rec": "2'-3'"}, {"s": "S3", "f": "Est", "se": "5", "rp": "3", "pc": "70%", "ca": "140 kg", "rpe": "", "vel": "", "ok": "", "n": "Un colpo in più a carico fermo: 5 serie da 3.", "ap": "", "rec": "2'-3'"}, {"s": "S4", "f": "Est", "se": "5", "rp": "3", "pc": "70%", "ca": "140 kg", "rpe": "", "vel": "", "ok": "", "n": "Ripetuta: 5 serie da 3 a 140.", "ap": "", "rec": "2'-3'"}, {"s": "S5", "f": "Est", "se": "6", "rp": "3", "pc": "70%", "ca": "140 kg", "rpe": "", "vel": "", "ok": "", "n": "Una serie in più: 6 serie da 3 a 140.", "ap": "", "rec": "2'-3'"}], "lift": "sq", "nome": "SQUAT LOW BAR", "ruolo": "variante (fermo sopra il parallelo)"}, {"t": "PANCA 3\"/3\" — variante (discesa 3\" + salita 3\")", "rows": [{"s": "S1", "f": "Est", "se": "5", "rp": "2", "pc": "75%", "ca": "92,5 kg", "rpe": "", "vel": "", "ok": "", "n": "5 doppie a 92,5. Scendi contando 3\", fermo pieno 3\" al petto.", "ap": "", "rec": "2'-3'"}, {"s": "S2", "f": "Est", "se": "7", "rp": "2", "pc": "75%", "ca": "92,5 kg", "rpe": "", "vel": "", "ok": "", "n": "Stesso carico, 7 doppie.", "ap": "", "rec": "2'-3'"}, {"s": "S3", "f": "Est", "se": "3 / 3", "rp": "2 / 2", "pc": "75% / 80%", "ca": "92,5 / 100 kg", "rpe": "", "vel": "", "ok": "", "n": "3 doppie a 92,5, poi 3 doppie a 100.", "ap": "", "rec": "2'-3'"}, {"s": "S4", "f": "Est", "se": "5", "rp": "2", "pc": "80%", "ca": "100 kg", "rpe": "", "vel": "", "ok": "", "n": "5 doppie tutte a 100.", "ap": "", "rec": "2'-3'"}, {"s": "S5", "f": "Est", "se": "2 / 2 / 2", "rp": "2 / 2 / 1", "pc": "75% / 80% / 85%", "ca": "92,5 / 100 / 105 kg", "rpe": "", "vel": "", "ok": "", "n": "Due giri della scaletta: 2 a 92,5 → 2 a 100 → 1 a 105.", "ap": "", "rec": "2'-3'"}], "lift": "bp", "nome": "PANCA 3\"/3\"", "ruolo": "variante (discesa 3\" + salita 3\")"}, {"t": "STACCO RUMENO — erettori e femorali", "rows": [{"s": "S1", "f": "Est", "se": "4", "rp": "10", "pc": "—", "ca": "4x8 70kg", "rpe": "", "vel": "", "ok": "", "n": "Discesa contata 5\", fermo giù, 10 colpi × 4 serie. Carico che ti lascia controllare la discesa.", "ap": "", "rec": "2'-3'"}, {"s": "S2", "f": "Est", "se": "4", "rp": "10", "pc": "—", "ca": "Uguale, continua a spingere a terra", "rpe": "", "vel": "", "ok": "", "n": "Discesa contata 5\", fermo giù, 10 colpi × 4 serie. Carico che ti lascia controllare la discesa.", "ap": "", "rec": "2'-3'"}, {"s": "S3", "f": "Est", "se": "4", "rp": "10", "pc": "—", "ca": "a scelta, costante", "rpe": "", "vel": "", "ok": "", "n": "Discesa contata 5\", fermo giù, 10 colpi × 4 serie. Carico che ti lascia controllare la discesa.", "ap": "", "rec": "2'-3'"}, {"s": "S4", "f": "Est", "se": "4", "rp": "10", "pc": "—", "ca": "a scelta, costante", "rpe": "", "vel": "", "ok": "", "n": "Discesa contata 5\", fermo giù, 10 colpi × 4 serie. Carico che ti lascia controllare la discesa.", "ap": "", "rec": "2'-3'"}, {"s": "S5", "f": "Est", "se": "4", "rp": "10", "pc": "—", "ca": "a scelta, costante", "rpe": "", "vel": "", "ok": "", "n": "Discesa contata 5\", fermo giù, 10 colpi × 4 serie. Carico che ti lascia controllare la discesa.", "ap": "", "rec": "2'-3'"}], "lift": "", "nome": "STACCO RUMENO", "ruolo": "erettori e femorali"}, {"t": "SUPERSET BRACCIA — tricipiti + pesante", "rows": [{"s": "S1", "f": "Est", "se": "3", "rp": "12 + 12", "pc": "—", "ca": "a scelta, costante", "rpe": "", "vel": "", "ok": "", "n": "A scelta: push down + curl, oppure french da terra + curl. 12+12 di fila, 3 giri.", "ap": "", "rec": "nessuno dentro il giro · 90\"-2' tra i giri"}, {"s": "S2", "f": "Est", "se": "3", "rp": "12 + 12", "pc": "—", "ca": "a scelta, costante", "rpe": "", "vel": "", "ok": "", "n": "A scelta: push down + curl, oppure french da terra + curl. 12+12 di fila, 3 giri.", "ap": "", "rec": "nessuno dentro il giro · 90\"-2' tra i giri"}, {"s": "S3", "f": "Est", "se": "3", "rp": "12 + 12", "pc": "—", "ca": "a scelta, costante", "rpe": "", "vel": "", "ok": "", "n": "A scelta: push down + curl, oppure french da terra + curl. 12+12 di fila, 3 giri.", "ap": "", "rec": "nessuno dentro il giro · 90\"-2' tra i giri"}, {"s": "S4", "f": "Est", "se": "3", "rp": "12 + 12", "pc": "—", "ca": "a scelta, costante", "rpe": "", "vel": "", "ok": "", "n": "A scelta: push down + curl, oppure french da terra + curl. 12+12 di fila, 3 giri.", "ap": "", "rec": "nessuno dentro il giro · 90\"-2' tra i giri"}, {"s": "S5", "f": "Est", "se": "3", "rp": "12 + 12", "pc": "—", "ca": "a scelta, costante", "rpe": "", "vel": "", "ok": "", "n": "A scelta: push down + curl, oppure french da terra + curl. 12+12 di fila, 3 giri.", "ap": "", "rec": "nessuno dentro il giro · 90\"-2' tra i giri"}], "lift": "", "nome": "SUPERSET BRACCIA", "ruolo": "tricipiti + pesante"}, {"t": "BARCHETTA — core", "rows": [{"s": "S1", "f": "Est", "se": "4", "rp": "60s", "pc": "—", "ca": "1a da 1' 2a da 30\" poi crampi e stop", "rpe": "", "vel": "", "ok": "", "n": "1 minuto × 4 serie.", "ap": "", "rec": "60\"-90\""}, {"s": "S2", "f": "Est", "se": "4", "rp": "60s", "pc": "—", "ca": "corpo libero", "rpe": "", "vel": "", "ok": "", "n": "1 minuto × 4 serie.", "ap": "", "rec": "60\"-90\""}, {"s": "S3", "f": "Est", "se": "4", "rp": "60s", "pc": "—", "ca": "corpo libero", "rpe": "", "vel": "", "ok": "", "n": "1 minuto × 4 serie.", "ap": "", "rec": "60\"-90\""}, {"s": "S4", "f": "Est", "se": "4", "rp": "60s", "pc": "—", "ca": "corpo libero", "rpe": "", "vel": "", "ok": "", "n": "1 minuto × 4 serie.", "ap": "", "rec": "60\"-90\""}, {"s": "S5", "f": "Est", "se": "4", "rp": "60s", "pc": "—", "ca": "corpo libero", "rpe": "", "vel": "", "ok": "", "n": "1 minuto × 4 serie.", "ap": "", "rec": "60\"-90\""}], "lift": "", "nome": "BARCHETTA", "ruolo": "core"}]}, {"id": "D", "head": "GIORNO D", "rif": "Riferimenti del coach:  SQ 200 (stima)  •  BP 125 (testato lug 2026)  •  DL 210 (stima)  —  le % sono su questi numeri, NON riscalate sulla variante   |   Blocco tecnico S1–S5 · 5 sedute · programma del coach esterno, impaginazione COAHC", "blocks": [{"t": "CROCI PECK DECK— petto", "rows": [{"s": "S1", "f": "Est", "se": "5", "rp": "20-15-12-10-8", "pc": "—", "ca": "Partito dal 32", "rpe": "", "vel": "", "ok": "", "n": "20-15-12-10-8 con il carico che sale a ogni serie.", "ap": "", "rec": "2'"}, {"s": "S2", "f": "Est", "se": "5", "rp": "20-15-12-10-8", "pc": "—", "ca": "a salire a ogni serie", "rpe": "", "vel": "", "ok": "", "n": "20-15-12-10-8 con il carico che sale a ogni serie.", "ap": "", "rec": "2'"}, {"s": "S3", "f": "Est", "se": "5", "rp": "20-15-12-10-8", "pc": "—", "ca": "a salire a ogni serie", "rpe": "", "vel": "", "ok": "", "n": "20-15-12-10-8 con il carico che sale a ogni serie.", "ap": "", "rec": "2'"}, {"s": "S4", "f": "Est", "se": "5", "rp": "20-15-12-10-8", "pc": "—", "ca": "a salire a ogni serie", "rpe": "", "vel": "", "ok": "", "n": "20-15-12-10-8 con il carico che sale a ogni serie.", "ap": "", "rec": "2'"}, {"s": "S5", "f": "Est", "se": "5", "rp": "20-15-12-10-8", "pc": "—", "ca": "a salire a ogni serie", "rpe": "", "vel": "", "ok": "", "n": "20-15-12-10-8 con il carico che sale a ogni serie.", "ap": "", "rec": "2'"}], "lift": "", "nome": "CROCI PECK DECK— petto", "ruolo": ""}, {"t": "leg ext", "rows": [{"s": "S1", "f": "Est", "se": "3", "rp": "12", "pc": "—", "ca": "10kg", "rpe": "", "vel": "", "ok": "", "n": "12 × 3.", "ap": "", "rec": "2'"}, {"s": "S2", "f": "Est", "se": "3", "rp": "12", "pc": "—", "ca": "a scelta, costante", "rpe": "", "vel": "", "ok": "", "n": "12 × 3.", "ap": "", "rec": "2'"}, {"s": "S3", "f": "Est", "se": "3", "rp": "12", "pc": "—", "ca": "a scelta, costante", "rpe": "", "vel": "", "ok": "", "n": "12 × 3.", "ap": "", "rec": "2'"}, {"s": "S4", "f": "Est", "se": "3", "rp": "12", "pc": "—", "ca": "a scelta, costante", "rpe": "", "vel": "", "ok": "", "n": "12 × 3.", "ap": "", "rec": "2'"}, {"s": "S5", "f": "Est", "se": "3", "rp": "12", "pc": "—", "ca": "a scelta, costante", "rpe": "", "vel": "", "ok": "", "n": "12 × 3.", "ap": "", "rec": "2'"}], "lift": "", "nome": "leg ext", "ruolo": ""}, {"t": "LEG CURL SEDUTO — femorali", "rows": [{"s": "S1", "f": "Est", "se": "3", "rp": "15", "pc": "—", "ca": "36", "rpe": "", "vel": "", "ok": "", "n": "15 × 3.", "ap": "", "rec": "2'"}, {"s": "S2", "f": "Est", "se": "3", "rp": "15", "pc": "—", "ca": "a scelta, costante", "rpe": "", "vel": "", "ok": "", "n": "15 × 3.", "ap": "", "rec": "2'"}, {"s": "S3", "f": "Est", "se": "3", "rp": "15", "pc": "—", "ca": "a scelta, costante", "rpe": "", "vel": "", "ok": "", "n": "15 × 3.", "ap": "", "rec": "2'"}, {"s": "S4", "f": "Est", "se": "3", "rp": "15", "pc": "—", "ca": "a scelta, costante", "rpe": "", "vel": "", "ok": "", "n": "15 × 3.", "ap": "", "rec": "2'"}, {"s": "S5", "f": "Est", "se": "3", "rp": "15", "pc": "—", "ca": "a scelta, costante", "rpe": "", "vel": "", "ok": "", "n": "15 × 3.", "ap": "", "rec": "2'"}], "lift": "", "nome": "LEG CURL SEDUTO", "ruolo": "femorali"}, {"t": "HIGH ROW— dorso", "rows": [{"s": "S1", "f": "Est", "se": "4", "rp": "15", "pc": "—", "ca": "a scelta, costante", "rpe": "", "vel": "", "ok": "", "n": "15 per lato × 4 serie.", "ap": "", "rec": "2'"}, {"s": "S2", "f": "Est", "se": "4", "rp": "15", "pc": "—", "ca": "a scelta, costante", "rpe": "", "vel": "", "ok": "", "n": "15 per lato × 4 serie.", "ap": "", "rec": "2'"}, {"s": "S3", "f": "Est", "se": "4", "rp": "15", "pc": "—", "ca": "a scelta, costante", "rpe": "", "vel": "", "ok": "", "n": "15 per lato × 4 serie.", "ap": "", "rec": "2'"}, {"s": "S4", "f": "Est", "se": "4", "rp": "15", "pc": "—", "ca": "a scelta, costante", "rpe": "", "vel": "", "ok": "", "n": "15 per lato × 4 serie.", "ap": "", "rec": "2'"}, {"s": "S5", "f": "Est", "se": "4", "rp": "15", "pc": "—", "ca": "a scelta, costante", "rpe": "", "vel": "", "ok": "", "n": "15 per lato × 4 serie.", "ap": "", "rec": "2'"}], "lift": "", "nome": "HIGH ROW— dorso", "ruolo": ""}, {"t": "LENTO AVANTI SS FACE PULL  — spalle", "rows": [{"s": "S1", "f": "Est", "se": "3", "rp": "15", "pc": "—", "ca": "disco a scelta", "rpe": "", "vel": "", "ok": "", "n": "15 × 3 con il disco.", "ap": "", "rec": "nessuno dentro il giro · 90\"-2' tra i giri"}, {"s": "S2", "f": "Est", "se": "3", "rp": "15", "pc": "—", "ca": "disco a scelta", "rpe": "", "vel": "", "ok": "", "n": "15 × 3 con il disco.", "ap": "", "rec": "nessuno dentro il giro · 90\"-2' tra i giri"}, {"s": "S3", "f": "Est", "se": "3", "rp": "15", "pc": "—", "ca": "disco a scelta", "rpe": "", "vel": "", "ok": "", "n": "15 × 3 con il disco.", "ap": "", "rec": "nessuno dentro il giro · 90\"-2' tra i giri"}, {"s": "S4", "f": "Est", "se": "3", "rp": "15", "pc": "—", "ca": "disco a scelta", "rpe": "", "vel": "", "ok": "", "n": "15 × 3 con il disco.", "ap": "", "rec": "nessuno dentro il giro · 90\"-2' tra i giri"}, {"s": "S5", "f": "Est", "se": "3", "rp": "15", "pc": "—", "ca": "disco a scelta", "rpe": "", "vel": "", "ok": "", "n": "15 × 3 con il disco.", "ap": "", "rec": "nessuno dentro il giro · 90\"-2' tra i giri"}], "lift": "", "nome": "LENTO AVANTI SS FACE PULL", "ruolo": "spalle"}]}, {"id": "E", "head": "GIORNO E", "rif": "Riferimenti del coach:  SQ 200 (stima)  •  BP 125 (testato lug 2026)  •  DL 210 (stima)  —  le % sono su questi numeri, NON riscalate sulla variante   |   Blocco tecnico S1–S5 · 5 sedute · programma del coach esterno, impaginazione COAHC", "blocks": [{"t": "SQUAT HIGH BAR 3\"/3\" — variante (discesa 3\" + salita 3\")", "rows": [{"s": "S1", "f": "Est", "se": "3 / 2", "rp": "2 / 2", "pc": "65% / 70%", "ca": "130 / 140 kg", "rpe": "", "vel": "", "ok": "", "n": "3 doppie a 130, poi 2 doppie a 140. Discesa 3\", fermo 3\" in buca.", "ap": "", "rec": "2'-3'"}, {"s": "S2", "f": "Est", "se": "5", "rp": "2", "pc": "70%", "ca": "140 kg", "rpe": "", "vel": "", "ok": "", "n": "5 doppie a 140, tempo 3\"/3\".", "ap": "", "rec": "2'-3'"}, {"s": "S3", "f": "Est", "se": "3 / 2", "rp": "2 / 2", "pc": "70% / 75%", "ca": "140 / 150 kg", "rpe": "", "vel": "", "ok": "", "n": "3 doppie a 140, poi 2 doppie a 150.", "ap": "", "rec": "2'-3'"}, {"s": "S4", "f": "Est", "se": "1 / 3", "rp": "2 / 3", "pc": "RPE 8 / 90% del top", "ca": "doppia a RPE 8 165kg / 90% del top", "rpe": "8 / 7-8", "vel": "", "ok": "", "n": "Questa settimana SENZA tempo, squat liscio: una doppia a RPE 8, poi 3 serie da 3 al 90% di quella doppia.", "ap": "", "rec": "2'-3'"}, {"s": "S5", "f": "Est", "se": "5", "rp": "2", "pc": "75%", "ca": "150 kg", "rpe": "", "vel": "", "ok": "", "n": "5 doppie a 150, tempo 3\"/3\".", "ap": "", "rec": "2'-3'"}], "lift": "sq", "nome": "SQUAT HIGH BAR 3\"/3\"", "ruolo": "variante (discesa 3\" + salita 3\")"}, {"t": "PANCA 3 FERMI IN DISCESA — variante", "rows": [{"s": "S1", "f": "Est", "se": "5", "rp": "2", "pc": "75%", "ca": "92,5 kg", "rpe": "", "vel": "", "ok": "", "n": "5 doppie a 92,5. Tre fermi dentro la discesa.", "ap": "", "rec": "2'-3'"}, {"s": "S2", "f": "Est", "se": "1 / 4", "rp": "1 / 2", "pc": "RPE 7 / 85% del top", "ca": "singola a RPE 7 110kg / 85% del top", "rpe": "7 / 7-8", "vel": "", "ok": "", "n": "Una singola a RPE 7, poi 4 doppie all'85% di quella singola.", "ap": "", "rec": "2'-3'"}, {"s": "S3", "f": "Est", "se": "3 / 2", "rp": "2 / 2", "pc": "75% / 80%", "ca": "92,5 / 100 kg", "rpe": "", "vel": "", "ok": "", "n": "3 doppie a 92,5, poi 2 doppie a 100.", "ap": "", "rec": "2'-3'"}, {"s": "S4", "f": "Est", "se": "1 / 4", "rp": "1 / 2", "pc": "RPE 8 / 85% del top", "ca": "singola a RPE 8 120kg / 85% del top", "rpe": "8 / 7-8", "vel": "", "ok": "", "n": "Una singola a RPE 8, poi 4 doppie all'85% di quella singola.", "ap": "", "rec": "2'-3'"}, {"s": "S5", "f": "Est", "se": "5", "rp": "2", "pc": "80%", "ca": "100 kg", "rpe": "", "vel": "", "ok": "", "n": "5 doppie a 100.", "ap": "", "rec": "2'-3'"}], "lift": "bp", "nome": "PANCA 3 FERMI IN DISCESA", "ruolo": "variante"}, {"t": "STACCO — variante (salita 5\")", "rows": [{"s": "S1", "f": "Est", "se": "22", "rp": "1", "pc": "68%", "ca": "142,5 kg", "rpe": "", "vel": "", "ok": "", "n": "EMOM 22': una singola ogni minuto a 142,5. Salita contata 5\".", "ap": "", "rec": "il minuto (EMOM)"}, {"s": "S2", "f": "Est", "se": "18", "rp": "1", "pc": "72%", "ca": "150 kg", "rpe": "", "vel": "", "ok": "", "n": "EMOM 18': una singola ogni minuto a 150.", "ap": "", "rec": "il minuto (EMOM)"}, {"s": "S3", "f": "Est", "se": "14", "rp": "1", "pc": "76%", "ca": "160 kg", "rpe": "", "vel": "", "ok": "", "n": "EMOM 14': una singola ogni minuto a 160.", "ap": "", "rec": "il minuto (EMOM)"}, {"s": "S4", "f": "Est", "se": "1", "rp": "1", "pc": "RPE 7", "ca": "singola a RPE 7 170kg con variante 180kg senza variante", "rpe": "7", "vel": "", "ok": "", "n": "Una sola singola, a RPE 7.", "ap": "", "rec": "2'-3'"}, {"s": "S5", "f": "Est", "se": "10", "rp": "1", "pc": "80%", "ca": "167,5 kg", "rpe": "", "vel": "", "ok": "", "n": "EMOM 10': una singola ogni minuto a 167,5.", "ap": "", "rec": "il minuto (EMOM)"}], "lift": "dl", "nome": "STACCO", "ruolo": "variante (salita 5\")"}]}, {"id": "P", "head": "GIORNO PROVA — TEST 8RM", "rif": "", "blocks": [{"t": "LAT MACHINE — tirata verticale", "nome": "LAT MACHINE", "ruolo": "tirata verticale", "lift": "t1", "rows": [{"s": "S1", "f": "Test", "se": "1 / 2", "rp": "8 / 6", "pc": "test / 85-90%", "ca": "", "rpe": "", "vel": "", "ok": "", "n": "Sali per gradi fino al peso con cui fai 8 tirate pulite: è il tuo 8RM. Scrivilo qui sopra. Poi 2 serie da 6 dentro il range.", "ap": "", "rec": "2'"}, {"s": "S2", "f": "Accumulo", "se": "4", "rp": "6", "pc": "85-90%", "ca": "", "rpe": "", "vel": "", "ok": "", "n": "Quattro serie da 6. Metti la piastra che hai dentro il range.", "ap": "", "rec": "2'"}, {"s": "S3", "f": "Accumulo", "se": "4", "rp": "6", "pc": "90-95%", "ca": "", "rpe": "", "vel": "", "ok": "", "n": "Stesso schema, range più alto.", "ap": "", "rec": "2'"}, {"s": "S4", "f": "Accumulo", "se": "5", "rp": "6", "pc": "90-95%", "ca": "", "rpe": "", "vel": "", "ok": "", "n": "Una serie in più.", "ap": "", "rec": "2'"}, {"s": "S5", "f": "Chiusura", "se": "4", "rp": "8", "pc": "100%", "ca": "", "rpe": "", "vel": "", "ok": "", "n": "Quattro serie da 8 al peso del test: la settimana più dura, chiusura.", "ap": "", "rec": "2'"}]}, {"t": "CHEST PRESS — spinta orizzontale", "nome": "CHEST PRESS", "ruolo": "spinta orizzontale", "lift": "t2", "rows": [{"s": "S1", "f": "Test", "se": "1 / 2", "rp": "8 / 6", "pc": "test / 80-85%", "ca": "", "rpe": "", "vel": "", "ok": "", "n": "Trova il peso con cui fai 8 spinte pulite: è il tuo 8RM. Poi 2 serie da 6 dentro il range.", "ap": "", "rec": "2'"}, {"s": "S2", "f": "Accumulo", "se": "4", "rp": "6", "pc": "80-85%", "ca": "", "rpe": "", "vel": "", "ok": "", "n": "Quattro serie da 6 dentro il range.", "ap": "", "rec": "2'"}, {"s": "S3", "f": "Accumulo", "se": "4", "rp": "7", "pc": "80-85%", "ca": "", "rpe": "", "vel": "", "ok": "", "n": "Un colpo in più, stesso range.", "ap": "", "rec": "2'"}, {"s": "S4", "f": "Accumulo", "se": "4", "rp": "7", "pc": "85-90%", "ca": "", "rpe": "", "vel": "", "ok": "", "n": "Range più alto.", "ap": "", "rec": "2'"}, {"s": "S5", "f": "Chiusura", "se": "4", "rp": "8", "pc": "90-95%", "ca": "", "rpe": "", "vel": "", "ok": "", "n": "Quattro serie da 8: chiusura del ciclo.", "ap": "", "rec": "2'"}]}, {"t": "LEG PRESS — accumulo a carico fisso", "nome": "LEG PRESS", "ruolo": "accumulo a carico fisso", "lift": "t3", "rows": [{"s": "S1", "f": "Test", "se": "1 / 2", "rp": "8 / 5", "pc": "test / 100%", "ca": "", "rpe": "", "vel": "", "ok": "", "n": "Trova il peso con cui fai 8 colpi puliti: è il tuo 8RM. Poi 2 serie da 5 a quel peso.", "ap": "", "rec": "2'"}, {"s": "S2", "f": "Accumulo", "se": "4", "rp": "5", "pc": "100%", "ca": "", "rpe": "", "vel": "", "ok": "", "n": "Quattro serie da 5. Il peso resta questo per tutto il ciclo.", "ap": "", "rec": "2'"}, {"s": "S3", "f": "Accumulo", "se": "4", "rp": "6", "pc": "100%", "ca": "", "rpe": "", "vel": "", "ok": "", "n": "Un colpo in più.", "ap": "", "rec": "2'"}, {"s": "S4", "f": "Accumulo", "se": "5", "rp": "6", "pc": "100%", "ca": "", "rpe": "", "vel": "", "ok": "", "n": "Una serie in più.", "ap": "", "rec": "2'"}, {"s": "S5", "f": "Chiusura", "se": "4", "rp": "8", "pc": "100%", "ca": "", "rpe": "", "vel": "", "ok": "", "n": "Quattro serie da 8 all'8RM: se ne chiudi anche solo una, sei già oltre il tuo RM di cinque settimane fa.", "ap": "", "rec": "2'"}]}]}];const LS="nicho-m5-sett";
+<div class="btns"><button onclick="window.print()">Stampa / salva in PDF</button></div>
+<footer>Quello che scrivi resta salvato su questo telefono.</footer></div>
+<script>const GIORNI=[{"id": "A", "head": "GIORNO A", "blocks": [{"t": "SQUAT HIGH BAR — fondamentale (onda di carico)", "nome": "SQUAT HIGH BAR", "ruolo": "fondamentale (onda di carico)", "lift": "sq", "rows": [{"s": "S1", "f": "Est", "se": "5", "rp": "6-4-4-4-6", "rec": "2'-3'", "ca": "60%", "es": "", "n": "Scaletta 6-4-4-4-6 tutta a 120 kg. Prima settimana: prendi il ritmo, nessuna serie al limite.", "ap": ""}, {"s": "S2", "f": "Est", "se": "5", "rp": "5-3-3-3-5", "rec": "2'-3'", "ca": "70%", "es": "", "n": "Scaletta più corta e carico più alto: 5-3-3-3-5 a 140.", "ap": ""}, {"s": "S3", "f": "Est", "se": "5", "rp": "6-3-3-3-6", "rec": "2'-3'", "ca": "65%", "es": "", "n": "Tornano i colpi alti a carico intermedio: 6-3-3-3-6 a 130.", "ap": ""}, {"s": "S4", "f": "Est", "se": "5", "rp": "5-2-2-2-5", "rec": "2'-3'", "ca": "75%", "es": "", "n": "Settimana più pesante: 5-2-2-2-5 a 150. Le doppie centrali devono restare veloci.", "ap": ""}, {"s": "S5", "f": "Est", "se": "4", "rp": "6-2-2-6", "rec": "2'-3'", "ca": "70%", "es": "", "n": "Chiusura del blocco: 6-2-2-6 a 140.", "ap": ""}, {"s": "S6", "f": "Est", "se": "5", "rp": "6-4-4-4-6", "rec": "2'-3'", "ca": "65%", "es": "", "n": "Riparte l'onda, 5 punti sopra la settimana 1: scaletta 6-4-4-4-6 tutta a 130 kg.", "ap": ""}, {"s": "S7", "f": "Est", "se": "5", "rp": "5-3-3-3-5", "rec": "2'-3'", "ca": "75%", "es": "", "n": "Scaletta più corta e carico più alto: 5-3-3-3-5 a 150.", "ap": ""}, {"s": "S8", "f": "Est", "se": "5", "rp": "6-3-3-3-6", "rec": "2'-3'", "ca": "70%", "es": "", "n": "Tornano i colpi alti a carico intermedio: 6-3-3-3-6 a 140.", "ap": ""}, {"s": "S9", "f": "Est", "se": "5", "rp": "4-2-2-2-4", "rec": "2'-3'", "ca": "80%", "es": "", "n": "La settimana più pesante dell'onda: 4-2-2-2-4 a 160. Le serie esterne scendono a 4 colpi.", "ap": ""}, {"s": "S10", "f": "Est", "se": "4", "rp": "6-2-2-6", "rec": "2'-3'", "ca": "75%", "es": "", "n": "Chiusura: 6-2-2-6 a 150.", "ap": ""}]}, {"t": "PANCA PRESA STRETTA — variante (mignoli sull'81)", "nome": "PANCA PRESA STRETTA", "ruolo": "variante (mignoli sull'81)", "lift": "bp", "rows": [{"s": "S1", "f": "Est", "se": "7", "rp": "2", "rec": "2'-3'", "ca": "70%", "es": "", "n": "7 serie da 2 a 87,5. Mignoli sull'anello dell'81.", "ap": ""}, {"s": "S2", "f": "Est", "se": "7", "rp": "3", "rec": "2'-3'", "ca": "70%", "es": "", "n": "Stesso carico, un colpo in più: 7 serie da 3.", "ap": ""}, {"s": "S3", "f": "Est", "se": "7", "rp": "4", "rec": "2'-3'", "ca": "70%", "es": "", "n": "Stesso carico, 7 serie da 4.", "ap": ""}, {"s": "S4", "f": "Est", "se": "7", "rp": "5", "rec": "2'-3'", "ca": "70%", "es": "", "n": "Stesso carico, 7 serie da 5: è la settimana più lunga.", "ap": ""}, {"s": "S5", "f": "Est", "se": "6", "rp": "6", "rec": "2'-3'", "ca": "70%", "es": "", "n": "6 serie da 6 a 87,5. Recuperi pieni: la presa stretta chiede tricipiti.", "ap": ""}, {"s": "S6", "f": "Est", "se": "6", "rp": "2", "rec": "2'-3'", "ca": "75%", "es": "", "n": "Il carico sale al 75% e riparte l'accumulo: 6 serie da 2 a 93,75.", "ap": ""}, {"s": "S7", "f": "Est", "se": "6", "rp": "2-3-2-3-2-3", "rec": "2'-3'", "ca": "75%", "es": "", "n": "6 serie alternando 2 e 3 colpi, sempre a 93,75.", "ap": ""}, {"s": "S8", "f": "Est", "se": "6", "rp": "3", "rec": "2'-3'", "ca": "75%", "es": "", "n": "Stesso carico, 6 serie da 3.", "ap": ""}, {"s": "S9", "f": "Est", "se": "6", "rp": "2-4-2-4-2-4", "rec": "2'-3'", "ca": "75%", "es": "", "n": "6 serie alternando 2 e 4 colpi.", "ap": ""}, {"s": "S10", "f": "Est", "se": "5", "rp": "4", "rec": "2'-3'", "ca": "75%", "es": "", "n": "5 serie da 4: chiusura dell'accumulo.", "ap": ""}]}, {"t": "STACCO — variante (fermo 3\" all'incastro)", "nome": "STACCO", "ruolo": "variante (fermo 3\" all'incastro)", "lift": "dl", "rows": [{"s": "S1", "f": "Est", "se": "4", "rp": "2", "rec": "2'-3'", "ca": "60%", "es": "", "n": "4 serie da 2 a 125. Fermo pieno 3\" all'incastro, poi chiudi.", "ap": ""}, {"s": "S2", "f": "Est", "se": "4", "rp": "2", "rec": "2'-3'", "ca": "60%", "es": "", "n": "Ripetuta: 4 serie da 2 a 125.", "ap": ""}, {"s": "S3", "f": "Est", "se": "4", "rp": "2", "rec": "2'-3'", "ca": "65%", "es": "", "n": "Si sale di carico: 4 serie da 2 a 137,5, fermo sempre 3\".", "ap": ""}, {"s": "S4", "f": "Est", "se": "4", "rp": "2", "rec": "2'-3'", "ca": "65%", "es": "", "n": "Ripetuta: 4 serie da 2 a 137,5.", "ap": ""}, {"s": "S5", "f": "Est", "se": "4", "rp": "3", "rec": "2'-3'", "ca": "60%", "es": "", "n": "Scende il carico e sale un colpo: 4 serie da 3 a 125.", "ap": ""}, {"s": "S6", "f": "Est", "se": "4", "rp": "2", "rec": "2'-3'", "ca": "65%", "es": "", "n": "4 serie da 2 a 136,5. Fermo pieno 3\" all'incastro, poi chiudi.", "ap": ""}, {"s": "S7", "f": "Est", "se": "4", "rp": "2", "rec": "2'-3'", "ca": "65%", "es": "", "n": "Ripetuta: 4 serie da 2 a 136,5.", "ap": ""}, {"s": "S8", "f": "Est", "se": "4", "rp": "2", "rec": "2'-3'", "ca": "70%", "es": "", "n": "Si sale di carico: 4 serie da 2 a 147, fermo sempre 3\".", "ap": ""}, {"s": "S9", "f": "Est", "se": "4", "rp": "2", "rec": "2'-3'", "ca": "70%", "es": "", "n": "Ripetuta: 4 serie da 2 a 147.", "ap": ""}, {"s": "S10", "f": "Est", "se": "4", "rp": "3", "rec": "2'-3'", "ca": "65%", "es": "", "n": "Scende il carico e sale un colpo: 4 serie da 3 a 136,5.", "ap": ""}]}, {"t": "PLANK ZAVORRATO — core anti-estensione", "nome": "PLANK ZAVORRATO", "ruolo": "core anti-estensione", "lift": "", "rows": [{"s": "S1", "f": "Est", "se": "4", "rp": "60s", "rec": "60\"-90\"", "ca": "Corpo libero", "es": "", "n": "1 minuto pieno × 4 serie, zavorra sulla schiena. Se non arrivi al minuto, togli peso.", "ap": ""}, {"s": "S2", "f": "Est", "se": "4", "rp": "60s", "rec": "60\"-90\"", "ca": "zavorra a scelta", "es": "", "n": "1 minuto pieno × 4 serie, zavorra sulla schiena. Se non arrivi al minuto, togli peso.", "ap": ""}, {"s": "S3", "f": "Est", "se": "4", "rp": "60s", "rec": "60\"-90\"", "ca": "zavorra a scelta", "es": "", "n": "1 minuto pieno × 4 serie, zavorra sulla schiena. Se non arrivi al minuto, togli peso.", "ap": ""}, {"s": "S4", "f": "Est", "se": "4", "rp": "60s", "rec": "60\"-90\"", "ca": "zavorra a scelta", "es": "", "n": "1 minuto pieno × 4 serie, zavorra sulla schiena. Se non arrivi al minuto, togli peso.", "ap": ""}, {"s": "S5", "f": "Est", "se": "4", "rp": "60s", "rec": "60\"-90\"", "ca": "zavorra a scelta", "es": "", "n": "1 minuto pieno × 4 serie, zavorra sulla schiena. Se non arrivi al minuto, togli peso.", "ap": ""}, {"s": "S6", "f": "Est", "se": "4", "rp": "60s", "rec": "60\"-90\"", "ca": "zavorra a scelta", "es": "", "n": "1 minuto pieno × 4 serie, zavorra sulla schiena. Se non arrivi al minuto, togli peso.", "ap": ""}, {"s": "S7", "f": "Est", "se": "4", "rp": "60s", "rec": "60\"-90\"", "ca": "zavorra a scelta", "es": "", "n": "1 minuto pieno × 4 serie, zavorra sulla schiena. Se non arrivi al minuto, togli peso.", "ap": ""}, {"s": "S8", "f": "Est", "se": "4", "rp": "60s", "rec": "60\"-90\"", "ca": "zavorra a scelta", "es": "", "n": "1 minuto pieno × 4 serie, zavorra sulla schiena. Se non arrivi al minuto, togli peso.", "ap": ""}, {"s": "S9", "f": "Est", "se": "4", "rp": "60s", "rec": "60\"-90\"", "ca": "zavorra a scelta", "es": "", "n": "1 minuto pieno × 4 serie, zavorra sulla schiena. Se non arrivi al minuto, togli peso.", "ap": ""}, {"s": "S10", "f": "Est", "se": "4", "rp": "60s", "rec": "60\"-90\"", "ca": "zavorra a scelta", "es": "", "n": "1 minuto pieno × 4 serie, zavorra sulla schiena. Se non arrivi al minuto, togli peso.", "ap": ""}]}, {"t": "SUPERSET BRACCIA — bicipiti + pesante", "nome": "SUPERSET BRACCIA", "ruolo": "bicipiti + pesante", "lift": "", "rows": [{"s": "S1", "f": "Est", "se": "3", "rp": "12 + 12", "rec": "nessuno dentro il giro · 90\"-2' tra i giri", "ca": "a scelta, costante", "es": "", "n": "A scelta: curl + push down, oppure french da terra + curl. 12+12 di fila, 3 giri.", "ap": ""}, {"s": "S2", "f": "Est", "se": "3", "rp": "12 + 12", "rec": "nessuno dentro il giro · 90\"-2' tra i giri", "ca": "a scelta, costante", "es": "", "n": "A scelta: curl + push down, oppure french da terra + curl. 12+12 di fila, 3 giri.", "ap": ""}, {"s": "S3", "f": "Est", "se": "3", "rp": "12 + 12", "rec": "nessuno dentro il giro · 90\"-2' tra i giri", "ca": "a scelta, costante", "es": "", "n": "A scelta: curl + push down, oppure french da terra + curl. 12+12 di fila, 3 giri.", "ap": ""}, {"s": "S4", "f": "Est", "se": "3", "rp": "12 + 12", "rec": "nessuno dentro il giro · 90\"-2' tra i giri", "ca": "a scelta, costante", "es": "", "n": "A scelta: curl + push down, oppure french da terra + curl. 12+12 di fila, 3 giri.", "ap": ""}, {"s": "S5", "f": "Est", "se": "3", "rp": "12 + 12", "rec": "nessuno dentro il giro · 90\"-2' tra i giri", "ca": "a scelta, costante", "es": "", "n": "A scelta: curl + push down, oppure french da terra + curl. 12+12 di fila, 3 giri.", "ap": ""}, {"s": "S6", "f": "Est", "se": "3", "rp": "10 + 10", "rec": "nessuno dentro il giro · 90\"-2' tra i giri", "ca": "a scelta, costante", "es": "", "n": "A scelta: curl + push down, oppure french da terra + curl. 10+10 di fila, 3 giri.", "ap": ""}, {"s": "S7", "f": "Est", "se": "3", "rp": "10 + 10", "rec": "nessuno dentro il giro · 90\"-2' tra i giri", "ca": "a scelta, costante", "es": "", "n": "A scelta: curl + push down, oppure french da terra + curl. 10+10 di fila, 3 giri.", "ap": ""}, {"s": "S8", "f": "Est", "se": "3", "rp": "10 + 10", "rec": "nessuno dentro il giro · 90\"-2' tra i giri", "ca": "a scelta, costante", "es": "", "n": "A scelta: curl + push down, oppure french da terra + curl. 10+10 di fila, 3 giri.", "ap": ""}, {"s": "S9", "f": "Est", "se": "3", "rp": "10 + 10", "rec": "nessuno dentro il giro · 90\"-2' tra i giri", "ca": "a scelta, costante", "es": "", "n": "A scelta: curl + push down, oppure french da terra + curl. 10+10 di fila, 3 giri.", "ap": ""}, {"s": "S10", "f": "Est", "se": "3", "rp": "10 + 10", "rec": "nessuno dentro il giro · 90\"-2' tra i giri", "ca": "a scelta, costante", "es": "", "n": "A scelta: curl + push down, oppure french da terra + curl. 10+10 di fila, 3 giri.", "ap": ""}]}]}, {"id": "B", "head": "GIORNO B", "blocks": [{"t": "PANCA PARALIMPICA — variante (S1–S5 gambe alzate dall'unrack · S6–S10 presa stretta)", "nome": "PANCA PARALIMPICA", "ruolo": "variante (S1–S5 gambe alzate dall'unrack · S6–S10 presa stretta)", "lift": "bp", "rows": [{"s": "S1", "f": "Est", "se": "5-6", "rp": "2-3", "rec": "2'-3'", "ca": "56-64%", "es": "", "n": "Gambe già sollevate PRIMA di staccare il bilanciere, non dopo. 5-6 serie da 2-3 colpi con 70-80 kg.", "ap": "80kg x3"}, {"s": "S2", "f": "Est", "se": "5-6", "rp": "2-3", "rec": "2'-3'", "ca": "56-64%", "es": "", "n": "Gambe già sollevate PRIMA di staccare il bilanciere, non dopo. 5-6 serie da 2-3 colpi con 70-80 kg.", "ap": ""}, {"s": "S3", "f": "Est", "se": "5-6", "rp": "2-3", "rec": "2'-3'", "ca": "56-64%", "es": "", "n": "Gambe già sollevate PRIMA di staccare il bilanciere, non dopo. 5-6 serie da 2-3 colpi con 70-80 kg.", "ap": ""}, {"s": "S4", "f": "Est", "se": "5-6", "rp": "2-3", "rec": "2'-3'", "ca": "56-64%", "es": "", "n": "Gambe già sollevate PRIMA di staccare il bilanciere, non dopo. 5-6 serie da 2-3 colpi con 70-80 kg.", "ap": ""}, {"s": "S5", "f": "Est", "se": "5-6", "rp": "2-3", "rec": "2'-3'", "ca": "56-64%", "es": "", "n": "Gambe già sollevate PRIMA di staccare il bilanciere, non dopo. 5-6 serie da 2-3 colpi con 70-80 kg.", "ap": ""}, {"s": "S6", "f": "Est", "se": "5", "rp": "3", "rec": "2'-3'", "ca": "65%", "es": "", "n": "Da questa settimana presa stretta. 5 serie da 3 a 81,25.", "ap": ""}, {"s": "S7", "f": "Est", "se": "3 / 1", "rp": "3 / 1", "rec": "2'-3'", "ca": "65% / MAV", "es": "", "n": "3 serie da 3 a 81,25, poi 1 MAV: sali fino alla singola più pesante che sale ancora veloce, senza punti di stallo visibili. Scrivi il peso nella casella MAV.", "ap": ""}, {"s": "S8", "f": "Est", "se": "5", "rp": "4", "rec": "2'-3'", "ca": "65%", "es": "", "n": "5 serie da 4 a 81,25.", "ap": ""}, {"s": "S9", "f": "Est", "se": "3 / 1", "rp": "4 / 1", "rec": "2'-3'", "ca": "65% / MAV", "es": "", "n": "3 serie da 4 a 81,25, poi 1 MAV: sali fino alla singola più pesante che sale ancora veloce, senza punti di stallo visibili. Scrivi il peso nella casella MAV.", "ap": ""}, {"s": "S10", "f": "Est", "se": "5", "rp": "5", "rec": "2'-3'", "ca": "65%", "es": "", "n": "5 serie da 5 a 81,25.", "ap": ""}]}, {"t": "LEG CURL SDRAIATO — femorali", "nome": "LEG CURL SDRAIATO", "ruolo": "femorali", "lift": "", "rows": [{"s": "S1", "f": "Est", "se": "4", "rp": "12", "rec": "2'", "ca": "0kg", "es": "", "n": "12 colpi × 4 serie.", "ap": ""}, {"s": "S2", "f": "Est", "se": "4", "rp": "12", "rec": "2'", "ca": "0kg", "es": "", "n": "12 colpi × 4 serie.", "ap": ""}, {"s": "S3", "f": "Est", "se": "4", "rp": "12", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "12 colpi × 4 serie.", "ap": ""}, {"s": "S4", "f": "Est", "se": "4", "rp": "12", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "12 colpi × 4 serie.", "ap": ""}, {"s": "S5", "f": "Est", "se": "4", "rp": "12", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "12 colpi × 4 serie.", "ap": ""}, {"s": "S6", "f": "Est", "se": "4", "rp": "10", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "10 colpi × 4 serie.", "ap": ""}, {"s": "S7", "f": "Est", "se": "4", "rp": "10", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "10 colpi × 4 serie.", "ap": ""}, {"s": "S8", "f": "Est", "se": "4", "rp": "10", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "10 colpi × 4 serie.", "ap": ""}, {"s": "S9", "f": "Est", "se": "4", "rp": "10", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "10 colpi × 4 serie.", "ap": ""}, {"s": "S10", "f": "Est", "se": "4", "rp": "10", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "10 colpi × 4 serie.", "ap": ""}]}, {"t": "HIP THRUST — glutei", "nome": "HIP THRUST", "ruolo": "glutei", "lift": "", "rows": [{"s": "S1", "f": "Est", "se": "3", "rp": "10-8-6", "rec": "2'", "ca": "60-70-80", "es": "", "n": "10-8-6 con il carico che sale a ogni serie.", "ap": ""}, {"s": "S2", "f": "Est", "se": "3", "rp": "10-8-6", "rec": "2'", "ca": "60-80-100", "es": "", "n": "10-8-6 con il carico che sale a ogni serie.", "ap": ""}, {"s": "S3", "f": "Est", "se": "3", "rp": "10-8-6", "rec": "2'", "ca": "a salire a ogni serie", "es": "", "n": "10-8-6 con il carico che sale a ogni serie.", "ap": ""}, {"s": "S4", "f": "Est", "se": "3", "rp": "10-8-6", "rec": "2'", "ca": "a salire a ogni serie", "es": "", "n": "10-8-6 con il carico che sale a ogni serie.", "ap": ""}, {"s": "S5", "f": "Est", "se": "3", "rp": "10-8-6", "rec": "2'", "ca": "80-100-120", "es": "", "n": "10-8-6 con il carico che sale a ogni serie.", "ap": ""}, {"s": "S6", "f": "Est", "se": "3", "rp": "8-6-4", "rec": "2'", "ca": "a salire a ogni serie", "es": "", "n": "8-6-4 con il carico che sale a ogni serie.", "ap": ""}, {"s": "S7", "f": "Est", "se": "3", "rp": "8-6-4", "rec": "2'", "ca": "a salire a ogni serie", "es": "", "n": "8-6-4 con il carico che sale a ogni serie.", "ap": ""}, {"s": "S8", "f": "Est", "se": "3", "rp": "8-6-4", "rec": "2'", "ca": "a salire a ogni serie", "es": "", "n": "8-6-4 con il carico che sale a ogni serie.", "ap": ""}, {"s": "S9", "f": "Est", "se": "3", "rp": "8-6-4", "rec": "2'", "ca": "a salire a ogni serie", "es": "", "n": "8-6-4 con il carico che sale a ogni serie.", "ap": ""}, {"s": "S10", "f": "Est", "se": "3", "rp": "8-6-4", "rec": "2'", "ca": "a salire a ogni serie", "es": "", "n": "8-6-4 con il carico che sale a ogni serie.", "ap": ""}]}, {"t": "ROWING MACHINE — dorso supportato", "nome": "ROWING MACHINE", "ruolo": "dorso supportato", "lift": "", "rows": [{"s": "S1", "f": "Est", "se": "3", "rp": "15", "rec": "2'", "ca": "29", "es": "", "n": "15 × 3 al macchinario. Petto appoggiato: se compare dolore, scendi di carico.", "ap": ""}, {"s": "S2", "f": "Est", "se": "3", "rp": "15", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "15 × 3 al macchinario. Petto appoggiato: se compare dolore, scendi di carico.", "ap": ""}, {"s": "S3", "f": "Est", "se": "3", "rp": "15", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "15 × 3 al macchinario. Petto appoggiato: se compare dolore, scendi di carico.", "ap": ""}, {"s": "S4", "f": "Est", "se": "3", "rp": "15", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "15 × 3 al macchinario. Petto appoggiato: se compare dolore, scendi di carico.", "ap": ""}, {"s": "S5", "f": "Est", "se": "3", "rp": "15", "rec": "2'", "ca": "29kg", "es": "", "n": "15 × 3 al macchinario. Petto appoggiato: se compare dolore, scendi di carico.", "ap": ""}, {"s": "S6", "f": "Est", "se": "3", "rp": "12", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "12 × 3 al macchinario. Petto appoggiato: se compare dolore, scendi di carico.", "ap": ""}, {"s": "S7", "f": "Est", "se": "3", "rp": "12", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "12 × 3 al macchinario. Petto appoggiato: se compare dolore, scendi di carico.", "ap": ""}, {"s": "S8", "f": "Est", "se": "3", "rp": "12", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "12 × 3 al macchinario. Petto appoggiato: se compare dolore, scendi di carico.", "ap": ""}, {"s": "S9", "f": "Est", "se": "3", "rp": "12", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "12 × 3 al macchinario. Petto appoggiato: se compare dolore, scendi di carico.", "ap": ""}, {"s": "S10", "f": "Est", "se": "3", "rp": "12", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "12 × 3 al macchinario. Petto appoggiato: se compare dolore, scendi di carico.", "ap": ""}]}, {"t": "SPINTE 30° — petto", "nome": "SPINTE 30°", "ruolo": "petto", "lift": "", "rows": [{"s": "S1", "f": "Est", "se": "3", "rp": "15-12-10", "rec": "2'", "ca": "18-20-22kg", "es": "", "n": "15-12-10 con il carico che sale.", "ap": ""}, {"s": "S2", "f": "Est", "se": "3", "rp": "15-12-10", "rec": "2'", "ca": "a salire a ogni serie", "es": "", "n": "15-12-10 con il carico che sale.", "ap": ""}, {"s": "S3", "f": "Est", "se": "3", "rp": "15-12-10", "rec": "2'", "ca": "a salire a ogni serie", "es": "", "n": "15-12-10 con il carico che sale.", "ap": ""}, {"s": "S4", "f": "Est", "se": "3", "rp": "15-12-10", "rec": "2'", "ca": "a salire a ogni serie", "es": "", "n": "15-12-10 con il carico che sale.", "ap": ""}, {"s": "S5", "f": "Est", "se": "3", "rp": "15-12-10", "rec": "2'", "ca": "a salire a ogni serie", "es": "", "n": "15-12-10 con il carico che sale.", "ap": ""}, {"s": "S6", "f": "Est", "se": "3", "rp": "12-10-8", "rec": "2'", "ca": "a salire a ogni serie", "es": "", "n": "12-10-8 con il carico che sale.", "ap": ""}, {"s": "S7", "f": "Est", "se": "3", "rp": "12-10-8", "rec": "2'", "ca": "a salire a ogni serie", "es": "", "n": "12-10-8 con il carico che sale.", "ap": ""}, {"s": "S8", "f": "Est", "se": "3", "rp": "12-10-8", "rec": "2'", "ca": "a salire a ogni serie", "es": "", "n": "12-10-8 con il carico che sale.", "ap": ""}, {"s": "S9", "f": "Est", "se": "3", "rp": "12-10-8", "rec": "2'", "ca": "a salire a ogni serie", "es": "", "n": "12-10-8 con il carico che sale.", "ap": ""}, {"s": "S10", "f": "Est", "se": "3", "rp": "12-10-8", "rec": "2'", "ca": "a salire a ogni serie", "es": "", "n": "12-10-8 con il carico che sale.", "ap": ""}]}, {"t": "SHOULDER PRESS — spalle", "nome": "SHOULDER PRESS", "ruolo": "spalle", "lift": "", "rows": [{"s": "S1", "f": "Est", "se": "3", "rp": "15-12-10", "rec": "2'", "ca": "25-27-30", "es": "", "n": "15-12-10 con il carico che sale.", "ap": ""}, {"s": "S2", "f": "Est", "se": "3", "rp": "15-12-10", "rec": "2'", "ca": "a salire a ogni serie", "es": "", "n": "15-12-10 con il carico che sale.", "ap": ""}, {"s": "S3", "f": "Est", "se": "3", "rp": "15-12-10", "rec": "2'", "ca": "a salire a ogni serie", "es": "", "n": "15-12-10 con il carico che sale.", "ap": ""}, {"s": "S4", "f": "Est", "se": "3", "rp": "15-12-10", "rec": "2'", "ca": "a salire a ogni serie", "es": "", "n": "15-12-10 con il carico che sale.", "ap": ""}, {"s": "S5", "f": "Est", "se": "3", "rp": "15-12-10", "rec": "2'", "ca": "a salire a ogni serie", "es": "", "n": "15-12-10 con il carico che sale.", "ap": ""}, {"s": "S6", "f": "Est", "se": "3", "rp": "12-10-8", "rec": "2'", "ca": "a salire a ogni serie", "es": "", "n": "12-10-8 con il carico che sale.", "ap": ""}, {"s": "S7", "f": "Est", "se": "3", "rp": "12-10-8", "rec": "2'", "ca": "a salire a ogni serie", "es": "", "n": "12-10-8 con il carico che sale.", "ap": ""}, {"s": "S8", "f": "Est", "se": "3", "rp": "12-10-8", "rec": "2'", "ca": "a salire a ogni serie", "es": "", "n": "12-10-8 con il carico che sale.", "ap": ""}, {"s": "S9", "f": "Est", "se": "3", "rp": "12-10-8", "rec": "2'", "ca": "a salire a ogni serie", "es": "", "n": "12-10-8 con il carico che sale.", "ap": ""}, {"s": "S10", "f": "Est", "se": "3", "rp": "12-10-8", "rec": "2'", "ca": "a salire a ogni serie", "es": "", "n": "12-10-8 con il carico che sale.", "ap": ""}]}]}, {"id": "C", "head": "GIORNO C", "blocks": [{"t": "SQUAT LOW BAR — variante (fermo sopra il parallelo)", "nome": "SQUAT LOW BAR", "ruolo": "variante (fermo sopra il parallelo)", "lift": "sq", "rows": [{"s": "S1", "f": "Est", "se": "5", "rp": "2", "rec": "2'-3'", "ca": "70%", "es": "", "n": "5 serie da 2 a 140. Fermo sopra il parallelo, poi risali.", "ap": ""}, {"s": "S2", "f": "Est", "se": "5", "rp": "2", "rec": "2'-3'", "ca": "70%", "es": "", "n": "Ripetuta: 5 serie da 2 a 140.", "ap": ""}, {"s": "S3", "f": "Est", "se": "5", "rp": "3", "rec": "2'-3'", "ca": "70%", "es": "", "n": "Un colpo in più a carico fermo: 5 serie da 3.", "ap": ""}, {"s": "S4", "f": "Est", "se": "5", "rp": "3", "rec": "2'-3'", "ca": "70%", "es": "", "n": "Ripetuta: 5 serie da 3 a 140.", "ap": ""}, {"s": "S5", "f": "Est", "se": "6", "rp": "3", "rec": "2'-3'", "ca": "70%", "es": "", "n": "Una serie in più: 6 serie da 3 a 140.", "ap": ""}, {"s": "S6", "f": "Est", "se": "5", "rp": "2", "rec": "2'-3'", "ca": "75%", "es": "", "n": "Il carico sale al 75%: 5 serie da 2 a 150. Fermo sopra il parallelo, poi risali.", "ap": ""}, {"s": "S7", "f": "Est", "se": "5", "rp": "2", "rec": "2'-3'", "ca": "75%", "es": "", "n": "Ripetuta: 5 serie da 2 a 150.", "ap": ""}, {"s": "S8", "f": "Est", "se": "5", "rp": "3", "rec": "2'-3'", "ca": "75%", "es": "", "n": "Un colpo in più a carico fermo: 5 serie da 3.", "ap": ""}, {"s": "S9", "f": "Est", "se": "5", "rp": "3", "rec": "2'-3'", "ca": "75%", "es": "", "n": "Ripetuta: 5 serie da 3 a 150.", "ap": ""}, {"s": "S10", "f": "Est", "se": "6", "rp": "3", "rec": "2'-3'", "ca": "75%", "es": "", "n": "Una serie in più: 6 serie da 3 a 150.", "ap": ""}]}, {"t": "PANCA 3\"/3\" — variante (discesa 3\" + salita 3\")", "nome": "PANCA 3\"/3\"", "ruolo": "variante (discesa 3\" + salita 3\")", "lift": "bp", "rows": [{"s": "S1", "f": "Est", "se": "5", "rp": "2", "rec": "2'-3'", "ca": "75%", "es": "", "n": "5 doppie a 92,5. Scendi contando 3\", fermo pieno 3\" al petto.", "ap": ""}, {"s": "S2", "f": "Est", "se": "7", "rp": "2", "rec": "2'-3'", "ca": "75%", "es": "", "n": "Stesso carico, 7 doppie.", "ap": ""}, {"s": "S3", "f": "Est", "se": "3 / 3", "rp": "2 / 2", "rec": "2'-3'", "ca": "75% / 80%", "es": "", "n": "3 doppie a 92,5, poi 3 doppie a 100.", "ap": ""}, {"s": "S4", "f": "Est", "se": "5", "rp": "2", "rec": "2'-3'", "ca": "80%", "es": "", "n": "5 doppie tutte a 100.", "ap": ""}, {"s": "S5", "f": "Est", "se": "2 / 2 / 2", "rp": "2 / 2 / 1", "rec": "2'-3'", "ca": "75% / 80% / 85%", "es": "", "n": "Due giri della scaletta: 2 a 92,5 → 2 a 100 → 1 a 105.", "ap": ""}, {"s": "S6", "f": "Est", "se": "5", "rp": "2", "rec": "2'-3'", "ca": "80%", "es": "", "n": "5 doppie a 100. Scendi contando 3\", fermo pieno 3\" al petto.", "ap": ""}, {"s": "S7", "f": "Est", "se": "7", "rp": "2", "rec": "2'-3'", "ca": "80%", "es": "", "n": "Stesso carico, 7 doppie.", "ap": ""}, {"s": "S8", "f": "Est", "se": "3 / 3", "rp": "2 / 1", "rec": "2'-3'", "ca": "80% / 85%", "es": "", "n": "3 doppie a 100, poi 3 singole a 106,25.", "ap": ""}, {"s": "S9", "f": "Est", "se": "5", "rp": "2-1-1-1-2", "rec": "2'-3'", "ca": "85%", "es": "", "n": "Scaletta 2-1-1-1-2 tutta a 106,25.", "ap": ""}, {"s": "S10", "f": "Est", "se": "2 / 2 / 2", "rp": "2 / 2 / 1", "rec": "2'-3'", "ca": "80% / 85% / 90%", "es": "", "n": "Due giri della scaletta: 2 a 100 → 2 a 106,25 → 1 a 112,5.", "ap": ""}]}, {"t": "STACCO RUMENO — erettori e femorali", "nome": "STACCO RUMENO", "ruolo": "erettori e femorali", "lift": "", "rows": [{"s": "S1", "f": "Est", "se": "4", "rp": "10", "rec": "2'-3'", "ca": "4x8 70kg", "es": "", "n": "Discesa contata 5\", fermo giù, 10 colpi × 4 serie. Carico che ti lascia controllare la discesa.", "ap": ""}, {"s": "S2", "f": "Est", "se": "4", "rp": "10", "rec": "2'-3'", "ca": "Uguale, continua a spingere a terra", "es": "", "n": "Discesa contata 5\", fermo giù, 10 colpi × 4 serie. Carico che ti lascia controllare la discesa.", "ap": ""}, {"s": "S3", "f": "Est", "se": "4", "rp": "10", "rec": "2'-3'", "ca": "a scelta, costante", "es": "", "n": "Discesa contata 5\", fermo giù, 10 colpi × 4 serie. Carico che ti lascia controllare la discesa.", "ap": ""}, {"s": "S4", "f": "Est", "se": "4", "rp": "10", "rec": "2'-3'", "ca": "a scelta, costante", "es": "", "n": "Discesa contata 5\", fermo giù, 10 colpi × 4 serie. Carico che ti lascia controllare la discesa.", "ap": ""}, {"s": "S5", "f": "Est", "se": "4", "rp": "10", "rec": "2'-3'", "ca": "a scelta, costante", "es": "", "n": "Discesa contata 5\", fermo giù, 10 colpi × 4 serie. Carico che ti lascia controllare la discesa.", "ap": ""}, {"s": "S6", "f": "Est", "se": "4", "rp": "8", "rec": "2'-3'", "ca": "a scelta, costante", "es": "", "n": "Discesa contata 5\", fermo giù, 8 colpi × 4 serie. Carico che ti lascia controllare la discesa.", "ap": ""}, {"s": "S7", "f": "Est", "se": "4", "rp": "8", "rec": "2'-3'", "ca": "a scelta, costante", "es": "", "n": "Discesa contata 5\", fermo giù, 8 colpi × 4 serie. Carico che ti lascia controllare la discesa.", "ap": ""}, {"s": "S8", "f": "Est", "se": "4", "rp": "8", "rec": "2'-3'", "ca": "a scelta, costante", "es": "", "n": "Discesa contata 5\", fermo giù, 8 colpi × 4 serie. Carico che ti lascia controllare la discesa.", "ap": ""}, {"s": "S9", "f": "Est", "se": "4", "rp": "8", "rec": "2'-3'", "ca": "a scelta, costante", "es": "", "n": "Discesa contata 5\", fermo giù, 8 colpi × 4 serie. Carico che ti lascia controllare la discesa.", "ap": ""}, {"s": "S10", "f": "Est", "se": "4", "rp": "8", "rec": "2'-3'", "ca": "a scelta, costante", "es": "", "n": "Discesa contata 5\", fermo giù, 8 colpi × 4 serie. Carico che ti lascia controllare la discesa.", "ap": ""}]}, {"t": "SUPERSET BRACCIA — tricipiti + pesante", "nome": "SUPERSET BRACCIA", "ruolo": "tricipiti + pesante", "lift": "", "rows": [{"s": "S1", "f": "Est", "se": "3", "rp": "12 + 12", "rec": "nessuno dentro il giro · 90\"-2' tra i giri", "ca": "a scelta, costante", "es": "", "n": "A scelta: push down + curl, oppure french da terra + curl. 12+12 di fila, 3 giri.", "ap": ""}, {"s": "S2", "f": "Est", "se": "3", "rp": "12 + 12", "rec": "nessuno dentro il giro · 90\"-2' tra i giri", "ca": "a scelta, costante", "es": "", "n": "A scelta: push down + curl, oppure french da terra + curl. 12+12 di fila, 3 giri.", "ap": ""}, {"s": "S3", "f": "Est", "se": "3", "rp": "12 + 12", "rec": "nessuno dentro il giro · 90\"-2' tra i giri", "ca": "a scelta, costante", "es": "", "n": "A scelta: push down + curl, oppure french da terra + curl. 12+12 di fila, 3 giri.", "ap": ""}, {"s": "S4", "f": "Est", "se": "3", "rp": "12 + 12", "rec": "nessuno dentro il giro · 90\"-2' tra i giri", "ca": "a scelta, costante", "es": "", "n": "A scelta: push down + curl, oppure french da terra + curl. 12+12 di fila, 3 giri.", "ap": ""}, {"s": "S5", "f": "Est", "se": "3", "rp": "12 + 12", "rec": "nessuno dentro il giro · 90\"-2' tra i giri", "ca": "a scelta, costante", "es": "", "n": "A scelta: push down + curl, oppure french da terra + curl. 12+12 di fila, 3 giri.", "ap": ""}, {"s": "S6", "f": "Est", "se": "3", "rp": "10 + 10", "rec": "nessuno dentro il giro · 90\"-2' tra i giri", "ca": "a scelta, costante", "es": "", "n": "A scelta: push down + curl, oppure french da terra + curl. 10+10 di fila, 3 giri.", "ap": ""}, {"s": "S7", "f": "Est", "se": "3", "rp": "10 + 10", "rec": "nessuno dentro il giro · 90\"-2' tra i giri", "ca": "a scelta, costante", "es": "", "n": "A scelta: push down + curl, oppure french da terra + curl. 10+10 di fila, 3 giri.", "ap": ""}, {"s": "S8", "f": "Est", "se": "3", "rp": "10 + 10", "rec": "nessuno dentro il giro · 90\"-2' tra i giri", "ca": "a scelta, costante", "es": "", "n": "A scelta: push down + curl, oppure french da terra + curl. 10+10 di fila, 3 giri.", "ap": ""}, {"s": "S9", "f": "Est", "se": "3", "rp": "10 + 10", "rec": "nessuno dentro il giro · 90\"-2' tra i giri", "ca": "a scelta, costante", "es": "", "n": "A scelta: push down + curl, oppure french da terra + curl. 10+10 di fila, 3 giri.", "ap": ""}, {"s": "S10", "f": "Est", "se": "3", "rp": "10 + 10", "rec": "nessuno dentro il giro · 90\"-2' tra i giri", "ca": "a scelta, costante", "es": "", "n": "A scelta: push down + curl, oppure french da terra + curl. 10+10 di fila, 3 giri.", "ap": ""}]}, {"t": "BARCHETTA — core", "nome": "BARCHETTA", "ruolo": "core", "lift": "", "rows": [{"s": "S1", "f": "Est", "se": "4", "rp": "60s", "rec": "60\"-90\"", "ca": "1a da 1' 2a da 30\" poi crampi e stop", "es": "", "n": "1 minuto × 4 serie.", "ap": ""}, {"s": "S2", "f": "Est", "se": "4", "rp": "60s", "rec": "60\"-90\"", "ca": "corpo libero", "es": "", "n": "1 minuto × 4 serie.", "ap": ""}, {"s": "S3", "f": "Est", "se": "4", "rp": "60s", "rec": "60\"-90\"", "ca": "corpo libero", "es": "", "n": "1 minuto × 4 serie.", "ap": ""}, {"s": "S4", "f": "Est", "se": "4", "rp": "60s", "rec": "60\"-90\"", "ca": "corpo libero", "es": "", "n": "1 minuto × 4 serie.", "ap": ""}, {"s": "S5", "f": "Est", "se": "4", "rp": "60s", "rec": "60\"-90\"", "ca": "corpo libero", "es": "", "n": "1 minuto × 4 serie.", "ap": ""}, {"s": "S6", "f": "Est", "se": "4", "rp": "60s", "rec": "60\"-90\"", "ca": "corpo libero", "es": "", "n": "1 minuto × 4 serie.", "ap": ""}, {"s": "S7", "f": "Est", "se": "4", "rp": "60s", "rec": "60\"-90\"", "ca": "corpo libero", "es": "", "n": "1 minuto × 4 serie.", "ap": ""}, {"s": "S8", "f": "Est", "se": "4", "rp": "60s", "rec": "60\"-90\"", "ca": "corpo libero", "es": "", "n": "1 minuto × 4 serie.", "ap": ""}, {"s": "S9", "f": "Est", "se": "4", "rp": "60s", "rec": "60\"-90\"", "ca": "corpo libero", "es": "", "n": "1 minuto × 4 serie.", "ap": ""}, {"s": "S10", "f": "Est", "se": "4", "rp": "60s", "rec": "60\"-90\"", "ca": "corpo libero", "es": "", "n": "1 minuto × 4 serie.", "ap": ""}]}]}, {"id": "D", "head": "GIORNO D", "blocks": [{"t": "CROCI PECK DECK— petto", "nome": "CROCI PECK DECK— petto", "ruolo": "", "lift": "", "rows": [{"s": "S1", "f": "Est", "se": "5", "rp": "20-15-12-10-8", "rec": "2'", "ca": "Partito dal 32", "es": "", "n": "20-15-12-10-8 con il carico che sale a ogni serie.", "ap": ""}, {"s": "S2", "f": "Est", "se": "5", "rp": "20-15-12-10-8", "rec": "2'", "ca": "a salire a ogni serie", "es": "", "n": "20-15-12-10-8 con il carico che sale a ogni serie.", "ap": ""}, {"s": "S3", "f": "Est", "se": "5", "rp": "20-15-12-10-8", "rec": "2'", "ca": "a salire a ogni serie", "es": "", "n": "20-15-12-10-8 con il carico che sale a ogni serie.", "ap": ""}, {"s": "S4", "f": "Est", "se": "5", "rp": "20-15-12-10-8", "rec": "2'", "ca": "a salire a ogni serie", "es": "", "n": "20-15-12-10-8 con il carico che sale a ogni serie.", "ap": ""}, {"s": "S5", "f": "Est", "se": "5", "rp": "20-15-12-10-8", "rec": "2'", "ca": "a salire a ogni serie", "es": "", "n": "20-15-12-10-8 con il carico che sale a ogni serie.", "ap": ""}, {"s": "S6", "f": "Est", "se": "4", "rp": "12", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "12 × 4.", "ap": ""}, {"s": "S7", "f": "Est", "se": "4", "rp": "12", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "12 × 4.", "ap": ""}, {"s": "S8", "f": "Est", "se": "4", "rp": "12", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "12 × 4.", "ap": ""}, {"s": "S9", "f": "Est", "se": "4", "rp": "12", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "12 × 4.", "ap": ""}, {"s": "S10", "f": "Est", "se": "4", "rp": "12", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "12 × 4.", "ap": ""}]}, {"t": "leg ext", "nome": "leg ext", "ruolo": "", "lift": "", "rows": [{"s": "S1", "f": "Est", "se": "3", "rp": "12", "rec": "2'", "ca": "10kg", "es": "", "n": "12 × 3.", "ap": ""}, {"s": "S2", "f": "Est", "se": "3", "rp": "12", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "12 × 3.", "ap": ""}, {"s": "S3", "f": "Est", "se": "3", "rp": "12", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "12 × 3.", "ap": ""}, {"s": "S4", "f": "Est", "se": "3", "rp": "12", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "12 × 3.", "ap": ""}, {"s": "S5", "f": "Est", "se": "3", "rp": "12", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "12 × 3.", "ap": ""}, {"s": "S6", "f": "Est", "se": "3", "rp": "10", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "10 × 3.", "ap": ""}, {"s": "S7", "f": "Est", "se": "3", "rp": "10", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "10 × 3.", "ap": ""}, {"s": "S8", "f": "Est", "se": "3", "rp": "10", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "10 × 3.", "ap": ""}, {"s": "S9", "f": "Est", "se": "3", "rp": "10", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "10 × 3.", "ap": ""}, {"s": "S10", "f": "Est", "se": "3", "rp": "10", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "10 × 3.", "ap": ""}]}, {"t": "LEG CURL SEDUTO — femorali", "nome": "LEG CURL SEDUTO", "ruolo": "femorali", "lift": "", "rows": [{"s": "S1", "f": "Est", "se": "3", "rp": "15", "rec": "2'", "ca": "36", "es": "", "n": "15 × 3.", "ap": ""}, {"s": "S2", "f": "Est", "se": "3", "rp": "15", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "15 × 3.", "ap": ""}, {"s": "S3", "f": "Est", "se": "3", "rp": "15", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "15 × 3.", "ap": ""}, {"s": "S4", "f": "Est", "se": "3", "rp": "15", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "15 × 3.", "ap": ""}, {"s": "S5", "f": "Est", "se": "3", "rp": "15", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "15 × 3.", "ap": ""}, {"s": "S6", "f": "Est", "se": "3", "rp": "12", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "12 × 3.", "ap": ""}, {"s": "S7", "f": "Est", "se": "3", "rp": "12", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "12 × 3.", "ap": ""}, {"s": "S8", "f": "Est", "se": "3", "rp": "12", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "12 × 3.", "ap": ""}, {"s": "S9", "f": "Est", "se": "3", "rp": "12", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "12 × 3.", "ap": ""}, {"s": "S10", "f": "Est", "se": "3", "rp": "12", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "12 × 3.", "ap": ""}]}, {"t": "HIGH ROW— dorso", "nome": "HIGH ROW— dorso", "ruolo": "", "lift": "", "rows": [{"s": "S1", "f": "Est", "se": "4", "rp": "15", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "15 per lato × 4 serie.", "ap": ""}, {"s": "S2", "f": "Est", "se": "4", "rp": "15", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "15 per lato × 4 serie.", "ap": ""}, {"s": "S3", "f": "Est", "se": "4", "rp": "15", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "15 per lato × 4 serie.", "ap": ""}, {"s": "S4", "f": "Est", "se": "4", "rp": "15", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "15 per lato × 4 serie.", "ap": ""}, {"s": "S5", "f": "Est", "se": "4", "rp": "15", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "15 per lato × 4 serie.", "ap": ""}, {"s": "S6", "f": "Est", "se": "4", "rp": "12", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "12 per lato × 4 serie.", "ap": ""}, {"s": "S7", "f": "Est", "se": "4", "rp": "12", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "12 per lato × 4 serie.", "ap": ""}, {"s": "S8", "f": "Est", "se": "4", "rp": "12", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "12 per lato × 4 serie.", "ap": ""}, {"s": "S9", "f": "Est", "se": "4", "rp": "12", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "12 per lato × 4 serie.", "ap": ""}, {"s": "S10", "f": "Est", "se": "4", "rp": "12", "rec": "2'", "ca": "a scelta, costante", "es": "", "n": "12 per lato × 4 serie.", "ap": ""}]}, {"t": "LENTO AVANTI SS FACE PULL  — spalle", "nome": "LENTO AVANTI SS FACE PULL", "ruolo": "spalle", "lift": "", "rows": [{"s": "S1", "f": "Est", "se": "3", "rp": "15", "rec": "nessuno dentro il giro · 90\"-2' tra i giri", "ca": "disco a scelta", "es": "", "n": "15 × 3 con il disco.", "ap": ""}, {"s": "S2", "f": "Est", "se": "3", "rp": "15", "rec": "nessuno dentro il giro · 90\"-2' tra i giri", "ca": "disco a scelta", "es": "", "n": "15 × 3 con il disco.", "ap": ""}, {"s": "S3", "f": "Est", "se": "3", "rp": "15", "rec": "nessuno dentro il giro · 90\"-2' tra i giri", "ca": "disco a scelta", "es": "", "n": "15 × 3 con il disco.", "ap": ""}, {"s": "S4", "f": "Est", "se": "3", "rp": "15", "rec": "nessuno dentro il giro · 90\"-2' tra i giri", "ca": "disco a scelta", "es": "", "n": "15 × 3 con il disco.", "ap": ""}, {"s": "S5", "f": "Est", "se": "3", "rp": "15", "rec": "nessuno dentro il giro · 90\"-2' tra i giri", "ca": "disco a scelta", "es": "", "n": "15 × 3 con il disco.", "ap": ""}, {"s": "S6", "f": "Est", "se": "3", "rp": "12", "rec": "nessuno dentro il giro · 90\"-2' tra i giri", "ca": "a scelta, costante", "es": "", "n": "12 × 3.", "ap": ""}, {"s": "S7", "f": "Est", "se": "3", "rp": "12", "rec": "nessuno dentro il giro · 90\"-2' tra i giri", "ca": "a scelta, costante", "es": "", "n": "12 × 3.", "ap": ""}, {"s": "S8", "f": "Est", "se": "3", "rp": "12", "rec": "nessuno dentro il giro · 90\"-2' tra i giri", "ca": "a scelta, costante", "es": "", "n": "12 × 3.", "ap": ""}, {"s": "S9", "f": "Est", "se": "3", "rp": "12", "rec": "nessuno dentro il giro · 90\"-2' tra i giri", "ca": "a scelta, costante", "es": "", "n": "12 × 3.", "ap": ""}, {"s": "S10", "f": "Est", "se": "3", "rp": "12", "rec": "nessuno dentro il giro · 90\"-2' tra i giri", "ca": "a scelta, costante", "es": "", "n": "12 × 3.", "ap": ""}]}]}, {"id": "E", "head": "GIORNO E", "blocks": [{"t": "SQUAT 3\"/3\" — variante (discesa 3\" + salita 3\") · high bar S1–S5, low bar S6–S10", "nome": "SQUAT 3\"/3\"", "ruolo": "variante (discesa 3\" + salita 3\") · high bar S1–S5, low bar S6–S10", "lift": "sq", "rows": [{"s": "S1", "f": "Est", "se": "3 / 2", "rp": "2 / 2", "rec": "2'-3'", "ca": "65% / 70%", "es": "", "n": "3 doppie a 130, poi 2 doppie a 140. Discesa 3\", fermo 3\" in buca.", "ap": ""}, {"s": "S2", "f": "Est", "se": "5", "rp": "2", "rec": "2'-3'", "ca": "70%", "es": "", "n": "5 doppie a 140, tempo 3\"/3\".", "ap": ""}, {"s": "S3", "f": "Est", "se": "3 / 2", "rp": "2 / 2", "rec": "2'-3'", "ca": "70% / 75%", "es": "", "n": "3 doppie a 140, poi 2 doppie a 150.", "ap": ""}, {"s": "S4", "f": "Est", "se": "RAMP / 3", "rp": "2 / 3", "rec": "2'-3'", "ca": "RPE 8 / 90% del top", "es": "", "n": "Questa settimana SENZA tempo, squat liscio: una doppia a RPE 8, poi 3 serie da 3 al 90% di quella doppia.", "ap": "doppia a RPE 8 165kg / 90% del top"}, {"s": "S5", "f": "Est", "se": "5", "rp": "2", "rec": "2'-3'", "ca": "75%", "es": "", "n": "5 doppie a 150, tempo 3\"/3\".", "ap": ""}, {"s": "S6", "f": "Est", "se": "3 / 2", "rp": "2 / 2", "rec": "2'-3'", "ca": "70% / 75%", "es": "", "n": "Da questa settimana low bar. 3 doppie a 140, poi 2 doppie a 150, tempo 3\"/3\".", "ap": ""}, {"s": "S7", "f": "Est", "se": "5", "rp": "2", "rec": "2'-3'", "ca": "75%", "es": "", "n": "5 doppie a 150, tempo 3\"/3\".", "ap": ""}, {"s": "S8", "f": "Est", "se": "3 / 2", "rp": "2 / 2", "rec": "2'-3'", "ca": "75% / 80%", "es": "", "n": "3 doppie a 150, poi 2 doppie a 160.", "ap": ""}, {"s": "S9", "f": "Est", "se": "RAMP / 3", "rp": "1 / 3", "rec": "2'-3'", "ca": "RPE 8 / 90% del top", "es": "", "n": "Questa settimana SENZA tempo, squat liscio: una singola a RPE 8, poi 3 serie da 3 al 90% di quella singola.", "ap": ""}, {"s": "S10", "f": "Est", "se": "5", "rp": "2", "rec": "2'-3'", "ca": "80%", "es": "", "n": "5 doppie a 160, tempo 3\"/3\".", "ap": ""}]}, {"t": "PANCA 3 FERMI IN DISCESA — variante", "nome": "PANCA 3 FERMI IN DISCESA", "ruolo": "variante", "lift": "bp", "rows": [{"s": "S1", "f": "Est", "se": "5", "rp": "2", "rec": "2'-3'", "ca": "75%", "es": "", "n": "5 doppie a 92,5. Tre fermi dentro la discesa.", "ap": ""}, {"s": "S2", "f": "Est", "se": "RAMP / 4", "rp": "1 / 2", "rec": "2'-3'", "ca": "RPE 7 / 85% del top", "es": "", "n": "Una singola a RPE 7, poi 4 doppie all'85% di quella singola.", "ap": "singola a RPE 7 110kg / 85% del top"}, {"s": "S3", "f": "Est", "se": "3 / 2", "rp": "2 / 2", "rec": "2'-3'", "ca": "75% / 80%", "es": "", "n": "3 doppie a 92,5, poi 2 doppie a 100.", "ap": ""}, {"s": "S4", "f": "Est", "se": "RAMP / 4", "rp": "1 / 2", "rec": "2'-3'", "ca": "RPE 8 / 85% del top", "es": "", "n": "Una singola a RPE 8, poi 4 doppie all'85% di quella singola.", "ap": "singola a RPE 8 120kg / 85% del top"}, {"s": "S5", "f": "Est", "se": "5", "rp": "2", "rec": "2'-3'", "ca": "80%", "es": "", "n": "5 doppie a 100.", "ap": ""}, {"s": "S6", "f": "Est", "se": "5", "rp": "2", "rec": "2'-3'", "ca": "80%", "es": "", "n": "5 doppie a 100. Tre fermi dentro la discesa.", "ap": ""}, {"s": "S7", "f": "Est", "se": "RAMP / 3 / 1", "rp": "1 / 2 / 1", "rec": "2'-3'", "ca": "RPE 7 / 85% del top / peso del top", "es": "", "n": "Una singola a RPE 7, poi 3 doppie all'85% di quella singola. Chiudi con una singola allo stesso peso della prima, senza fermi.", "ap": ""}, {"s": "S8", "f": "Est", "se": "3 / 2", "rp": "2 / 2", "rec": "2'-3'", "ca": "75% / 80%", "es": "", "n": "3 doppie a 93,75, poi 2 doppie a 100.", "ap": ""}, {"s": "S9", "f": "Est", "se": "RAMP / 3 / 1", "rp": "1 / 2 / 1", "rec": "2'-3'", "ca": "RPE 8 / 85% del top / peso del top", "es": "", "n": "Una singola a RPE 8, poi 3 doppie all'85% di quella singola. Chiudi con una singola allo stesso peso della prima, senza fermi.", "ap": ""}, {"s": "S10", "f": "Est", "se": "5", "rp": "2", "rec": "2'-3'", "ca": "80%", "es": "", "n": "5 doppie a 100.", "ap": ""}]}, {"t": "STACCO — variante (salita 5\")", "nome": "STACCO", "ruolo": "variante (salita 5\")", "lift": "dl", "rows": [{"s": "S1", "f": "Est", "se": "22", "rp": "1", "rec": "il minuto (EMOM)", "ca": "68%", "es": "", "n": "EMOM 22': una singola ogni minuto a 142,5. Salita contata 5\".", "ap": ""}, {"s": "S2", "f": "Est", "se": "18", "rp": "1", "rec": "il minuto (EMOM)", "ca": "72%", "es": "", "n": "EMOM 18': una singola ogni minuto a 150.", "ap": ""}, {"s": "S3", "f": "Est", "se": "14", "rp": "1", "rec": "il minuto (EMOM)", "ca": "76%", "es": "", "n": "EMOM 14': una singola ogni minuto a 160.", "ap": ""}, {"s": "S4", "f": "Est", "se": "RAMP", "rp": "1", "rec": "2'-3'", "ca": "RPE 7", "es": "", "n": "Una sola singola, a RPE 7.", "ap": "singola a RPE 7 170kg con variante 180kg senza variante"}, {"s": "S5", "f": "Est", "se": "10", "rp": "1", "rec": "il minuto (EMOM)", "ca": "80%", "es": "", "n": "EMOM 10': una singola ogni minuto a 167,5.", "ap": ""}, {"s": "S6", "f": "Est", "se": "20", "rp": "1", "rec": "il minuto (EMOM)", "ca": "70%", "es": "", "n": "EMOM 20': una singola ogni minuto a 147. Salita contata 5\".", "ap": ""}, {"s": "S7", "f": "Est", "se": "16", "rp": "1", "rec": "il minuto (EMOM)", "ca": "74%", "es": "", "n": "EMOM 16': una singola ogni minuto a 155,4.", "ap": ""}, {"s": "S8", "f": "Est", "se": "12", "rp": "1", "rec": "il minuto (EMOM)", "ca": "80%", "es": "", "n": "EMOM 12': una singola ogni minuto a 168.", "ap": ""}, {"s": "S9", "f": "Est", "se": "RAMP", "rp": "1", "rec": "2'-3'", "ca": "RPE 8", "es": "", "n": "Una sola singola, a RPE 8.", "ap": ""}, {"s": "S10", "f": "Est", "se": "7", "rp": "1", "rec": "2'-3'", "ca": "84%", "es": "", "n": "7 singole all'84%: 176,4. Salita contata 5\".", "ap": ""}]}]}];const LS="nicho-m5-sett";const TITOLO="Blocco tecnico S1–S10";const MASSIMALI=[{"id": "sq", "lab": "Squat", "nota": "stima", "def": 200}, {"id": "bp", "lab": "Panca", "nota": "testato lug 2026", "def": 125}, {"id": "dl", "lab": "Stacco", "nota": "stima", "def": 210}];const MIGRA_VECCHIO=true;
+const SETT=(function(){const s={};GIORNI.forEach(function(g){g.blocks.forEach(function(b){
+  b.rows.forEach(function(r){const n=parseInt(String(r.s).replace(/\D/g,""));if(n)s[n]=1})})});
+  return Object.keys(s).map(Number).sort(function(a,b){return a-b})})();
+/* =====================================================================
+   MOTORE DELLA SCHEDA — legge le righe del template NC EDITORIALE v3
+   e le mette in pagina. Casistiche gestite:
+     - serie numeriche, anche composite (1 / 3)
+     - onde e giri ("4 onde", "3 giri", "3 onde + 2")
+     - ramping e serie a numero aperto ("RAMP + 2", "ramping", "N")
+     - TEST xRM scritto nel Carico o nelle Reps
+     - MAX / AMRAP con il campo dei colpi fatti
+     - RPE come carico, con il campo del peso trovato
+     - % del top, con il campo del top
+     - righe senza serie (cardio, mobilita')
+     - carichi scritti in kg, % del test, peso del test, peso di lavoro, sconti
+   ===================================================================== */
 let state={};try{state=JSON.parse(localStorage.getItem(LS)||"{}")}catch(e){}
-let LETTURA=false;
-(function(){const m=location.hash.match(/[#&]d=([^&]+)/); if(!m) return;
-  try{const b=m[1].replace(/-/g,"+").replace(/_/g,"/");
-    state=JSON.parse(decodeURIComponent(escape(atob(b)))); LETTURA=true;}catch(e){}})();
-function nserie(r){if(!r)return 0;const m=String(r.se).match(/\d+/g);return m?parseInt(m[m.length-1]):0}
-function save(){if(LETTURA)return;try{localStorage.setItem(LS,JSON.stringify(state))}catch(e){}}
+function save(){try{localStorage.setItem(LS,JSON.stringify(state))}catch(e){}}
+/* pagine nate col motore vecchio: le chiavi "A0_3" diventano "A_0_3" (fatica, note, top), una volta sola */
+if(typeof MIGRA_VECCHIO!=="undefined"&&MIGRA_VECCHIO&&!state.__migrato){
+  Object.keys(state).forEach(function(k){
+    const m=k.match(/^(fp_|ap_|top_)([A-Z])(\d+)_(\d+)$/); if(!m) return;
+    const nk=(m[1]==="top_"?"RK_":m[1])+m[2]+"_"+m[3]+"_"+m[4]+(m[1]==="top_"?"_0":"");
+    if(state[nk]===undefined) state[nk]=state[k];
+  });
+  state.__migrato=1; save();
+}
 function esc(s){return String(s==null?"":s).replace(/"/g,"&quot;")}
-const REFS=[{id:"sq",lab:"Squat",def:"200",tag:"stima",step:2.5,g:"Massimali del coach",anc:"del massimale"},
-            {id:"bp",lab:"Panca",def:"125",tag:"testato lug 2026",step:2.5,g:"Massimali del coach",anc:"del massimale"},
-            {id:"dl",lab:"Stacco",def:"210",tag:"stima",step:2.5,g:"Massimali del coach",anc:"del massimale"},
-            {id:"t1",test:"8RM",lab:"Lat machine",def:"",tag:"test 8RM in S1",step:5,g:"Test di settimana 1",anc:"dell\'8RM"},
-            {id:"t2",test:"8RM",lab:"Chest press",def:"",tag:"test 8RM in S1",step:5,g:"Test di settimana 1",anc:"dell\'8RM"},
-            {id:"t3",test:"8RM",lab:"Leg press",def:"",tag:"test 8RM in S1",step:5,g:"Test di settimana 1",anc:"dell\'8RM"}];
-function stepOf(id){const r=REFS.find(x=>x.id===id);return r?r.step:2.5}
-function ancOf(id){const r=REFS.find(x=>x.id===id);return r&&r.anc?' '+r.anc:''}
-function num(v){v=String(v==null?"":v).replace(",",".").trim();
-  const x=parseFloat(v);return isFinite(x)?x:NaN}
-function ref(id){const v=num(state["ref_"+id]);return isFinite(v)&&v>0?v:null}
-function q(x,st){st=st||2.5;return Math.ceil(x/st-0.5)*st}
+function num(v){v=String(v==null?"":v).replace(",",".").trim();const x=parseFloat(v);return isFinite(x)?x:NaN}
 function f(x){return (Math.round(x*100)/100).toString().replace(".",",")}
-function pcts(s){ // estrae i numeri % da una cella
-  const m=String(s).match(/\d+(?:[.,]\d+)?(?=\s*[-–]\s*\d|\s*%)/g);
-  return m?m.map(x=>parseFloat(x.replace(",","."))):[];
+function kg(x){return f(Math.round(x*10)/10)+" kg"}   /* nessun arrotondamento al gradino */
+function kgx(x){return f(x)+" kg"}                       /* % del massimale: kg esatti (93,75) */
+function campo(k,segn,largo){
+  return '<input type="text" inputmode="decimal" class="mini" data-k="'+k+'" value="'+esc(state[k]||"")+
+    '" placeholder="'+(segn||"")+'"'+(largo?' style="width:'+largo+'px"':'')+'>';
 }
-function partsOf(r){
-  const se=String(r.se||"").split("/").map(x=>x.trim());
-  if(se.length<2) return null;
-  const rp=String(r.rp||"").split("/").map(x=>x.trim());
-  const pc=String(r.pc||"").split("/").map(x=>x.trim());
-  return se.map((x,i)=>({se:x, rp:(rp[i]!==undefined?rp[i]:rp[0]), pc:(pc[i]!==undefined?pc[i]:"")}));
+
+/* ---------- massimali: programmi scritti in % del massimale ---------- */
+const MASS=(typeof MASSIMALI!=="undefined"&&MASSIMALI)||[];
+function massimale(id){const m=MASS.find(function(x){return x.id===id});if(!m)return NaN;
+  const v=state["ref_"+id];return num(v===undefined?m.def:v)}
+function rifBox(){
+  const el=document.getElementById("rif"); if(!el||!MASS.length) return;
+  el.innerHTML='<div class="mass"><div class="mt">Massimali del coach</div><div class="mr">'+
+    MASS.map(function(m){const v=state["ref_"+m.id]===undefined?m.def:state["ref_"+m.id];
+      return '<label><span>'+m.lab+'</span><input type="text" inputmode="decimal" data-k="ref_'+m.id+'" value="'+esc(v)+'"><em>'+(m.nota||"")+'</em></label>'}).join("")+
+    '</div><div class="mh">Le percentuali del programma sono su questi numeri: se ne cambi uno, cambiano tutti i kg di quell\u2019alzata.</div></div>';
 }
-function schema(r){
-  const rp=String(r.rp||"").trim();
-  const lab=/^\d+\s*s$/i.test(rp)?"tenuta":(rp==="—"?"":"colpi");
-  return '<span class="n"><b>'+r.se+'</b><em>serie</em></span>'+
-         (lab?'<span class="x">×</span><span class="n"><b>'+rp+'</b><em>'+lab+'</em></span>':'');
-}
-function caricoParte(p,b,k,i){
-  const pc=String(p.pc||"").trim(), st=b.lift?stepOf(b.lift):2.5, tk="top_"+k;
-  if(/^test$/i.test(pc)) return '<span class="wait">trova il peso</span>';
-  if(/^RPE/i.test(pc)&&!/%/.test(pc)){
-    return '<span class="at">'+pc.replace(/^RPE\s*/i,"@")+'</span>'+
-      ' <input type="text" inputmode="decimal" data-k="'+tk+'" data-pct="" data-st="'+st+
-      '" value="'+esc(state[tk]||"")+'" placeholder="kg">';
+
+/* ---------- riferimenti di un esercizio ---------- */
+const RE_TEST=/TEST\s*([\d–\-]+\s*RM)/i;
+function testDi(b){
+  for(const r of b.rows){
+    const m=(String(r.ca||"")+" "+String(r.rp||"")).match(RE_TEST);
+    if(m) return m[1].replace(/\s+/g,"").toUpperCase();
   }
-  if(/del top/i.test(pc)){
-    const a=pcts(pc), pct=a.length?a[a.length-1]:null;
-    return topSpan(tk,pct,st)+'<span class="raw">'+pc+'</span>';
-  }
-  const R=b.lift?ref(b.lift):null, a=pcts(pc);
-  if(R&&a.length){
-    const isRange=/\d\s*[-–]\s*\d/.test(pc);
-    const vals=isRange?rangeVals(R,a,st):[f(q(R*a[0]/100,st))];
-    return vals.join("–")+' kg<span class="raw">'+pc+ancOf(b.lift)+'</span>';
-  }
-  if(a.length&&b.lift) return '<span class="wait">dopo il test</span><span class="raw">'+pc+ancOf(b.lift)+'</span>';
-  if(pc) return '<span class="wait">'+pc+'</span>';
-  return '';
+  return null;
 }
-function rangeVals(R,a,st){
-  const lo=R*a[0]/100, hi=R*a[a.length-1]/100;
-  if(st>=5 && Math.ceil(lo/st)*st > hi) return [f(Math.floor(lo/st)*st), f(Math.ceil(hi/st)*st)];
-  return [f(Math.round(lo*2)/2), f(Math.round(hi*2)/2)];
-}
-function topSpan(tk,pct,st){
-  return '<span class="topout" data-tk="'+tk+'" data-pct="'+(pct||"")+'" data-st="'+st+'">'+
-         topOut(tk,pct,st)+'</span>';
-}
-function repaintTops(){
-  document.querySelectorAll(".topout").forEach(function(e){
-    e.innerHTML=topOut(e.dataset.tk,parseFloat(e.dataset.pct)||null,parseFloat(e.dataset.st)||2.5)});
-}
-function topOut(tk,pct,st){const tv=num(state[tk]);
-  return (isFinite(tv)&&tv>0&&pct)?'<b>'+f(q(tv*pct/100,st))+' kg</b>':'<span class="wait">dopo il top</span>';}
-function carico(r,b,k,raw){
-  if(raw===undefined)raw=true;
-  const pc=String(r.pc||"").trim(), orig=String(r.ca||"").trim();
-  if(/^test$/i.test(pc)) return '<span class="wait">trova il peso</span>';
-  // back-off su un top trovato in seduta
-  if(/del top/i.test(pc)){
-    const p=pcts(pc), pct=p.length?p[p.length-1]:null;
-    const tk="top_"+k, st=b.lift?stepOf(b.lift):2.5;
-    return '<input type="text" inputmode="decimal" data-k="'+tk+'" data-pct="'+(pct||"")+
-           '" data-st="'+st+'" value="'+esc(state[tk]||"")+'" placeholder="top"> '+
-           '<span class="raw">'+topSpan(tk,pct,st)+' &middot; '+pc+'</span>';
-  }
-  const R=b.lift?ref(b.lift):null, p=pcts(pc), st=b.lift?stepOf(b.lift):2.5;
-  if(R&&p.length){
-    const isRange=/\d\s*[-–]\s*\d/.test(pc);
-    const vals=isRange?rangeVals(R,p,st):p.map(x=>f(q(R*x/100,st)));
-    const sep=isRange?"–":" / ";
-    return vals.join(sep)+' kg'+(raw?'<span class="raw">'+pc+ancOf(b.lift)+'</span>':'');
-  }
-  if(p.length&&b.lift&&!R) return '<span class="wait">dopo il test</span>'+
-    (raw?'<span class="raw">'+pc+ancOf(b.lift)+'</span>':'');
-  // niente %: cella libera, precompilata con quello che c'era in scheda
-  const v=state["ca_"+k]!==undefined?state["ca_"+k]:orig;
-  return '<input class="free" type="text" data-k="ca_'+k+'" value="'+esc(v)+'" placeholder="scrivi il peso">';
-}
-function refOf(id){return REFS.find(function(x){return x.id===id})||null}
-function testWeek(b){
-  for(let i=0;i<b.rows.length;i++){const r=b.rows[i];
-    if(/test/i.test(String(r.f||""))||/test/i.test(String(r.n||""))) return i+1}
+function settDelTest(b){
+  for(let i=0;i<b.rows.length;i++)
+    if(RE_TEST.test(String(b.rows[i].ca||"")+" "+String(b.rows[i].rp||"")))
+      return parseInt(String(b.rows[i].s).replace(/\D/g,""))||1;
   return 1;
 }
-function testBox(b){
-  const R0=b.lift?refOf(b.lift):null;
-  if(!R0||!R0.test) return "";
-  const gia=state["ref_"+R0.id];
-  if(sel&&sel!==testWeek(b)&&gia) return "";
-  const k="ref_"+R0.id, v=state[k]===undefined?"":state[k];
-  return '<div class="tbx"><span class="lb">Il tuo '+R0.test+'</span>'+
-    '<input type="text" inputmode="decimal" data-k="'+k+'" value="'+esc(v)+'" placeholder="—">'+
-    '<span class="u">kg</span>'+
-    '<span class="hint">da questo numero escono tutti i carichi di '+b.nome.toLowerCase()+
-      ' delle 5 settimane</span>'+
-    '<details class="how"'+(v?'':' open')+'><summary>Come si trova il '+R0.test+'</summary><p>'+
-    howTo(R0)+'</p></details></div>';
+function vuoleLavoro(b){return b.rows.some(r=>/peso di lavoro/i.test(String(r.ca||"")))}
+function rifT(bk){return num(state["T_"+bk])}
+function pesoLavoro(bk,k,i){
+  /* il peso scritto in questa riga per questo pezzo; se manca, l'ultimo scritto nelle righe prima */
+  const v=state["W_"+k+"_"+i]; if(v!==undefined&&String(v).trim()!=="") return num(v);
+  const ri=parseInt(k.slice(k.lastIndexOf("_")+1))||0;
+  for(let r=ri-1;r>=0;r--){const w=state["W_"+bk+"_"+r+"_"+i]; if(w!==undefined&&String(w).trim()!=="") return num(w);}
+  return NaN;
 }
-function howTo(R0){
-  const n=(String(R0.test).match(/\d+/)||[""])[0];
-  const art=(n==="8"||n==="11"||n==="18")?"gli":"i";
-  return '<b>Devi trovare il massimo peso con cui riesci a fare '+n+' colpi.</b> '+
-   'Parti da un peso leggero e fai '+n+' colpi. Aumenta il peso un po’ alla volta, '+
-   'sempre serie da '+n+', fino a quando arrivi al peso che riesci ancora a completare pulito. '+
-   'Se sali e '+art+' '+n+' colpi non li chiudi, il tuo '+R0.test+' è il peso di prima. '+
-   'Di norma ci arrivi in 3-5 serie.';
+function nomiBlocco(b){
+  for(const r of b.rows){const n=nomiParti(b,parti(r).length); if(n) return n}
+  return null;
 }
-const FPC=[[40,16,99],[40,20,96],[39,24,92],[39,28,87],[38,33,80],
-           [37,38,72],[36,44,62],[35,50,52],[34,54,42],[33,58,33]];
+
+/* ---------- tipo di riga, dalla colonna Serie ---------- */
+function tipoSerie(se){
+  const s=String(se||"").trim(); let m;
+  if(!s||s==="—"||s==="-") return {t:"nessuna"};
+  if((m=s.match(/^(\d+)\s*(onde|onda|giri|giro|round|rounds)(?:\s*\+\s*(\d+))?$/i)))
+    return {t:"giri",n:+m[1],extra:m[3]?+m[3]:0,parola:/ond/i.test(m[2])?"onde":"giri"};
+  if((m=s.match(/^(ramp(?:ing)?)(?:\s*\+\s*(\d+))?(?:\s*\/.*)?$/i))) return {t:"ramp",extra:m[2]?+m[2]:0};
+  if(/^N(\s*\/.*)?$/i.test(s)) return {t:"n"};
+  if(/^[\d\s\/\-–]+$/.test(s)) return {t:"num"};
+  return {t:"testo",se:s};
+}
+
+/* ---------- i pezzi di una riga (reps e carichi allineati sulla barra) ---------- */
+function parti(r){
+  const se=String(r.se||"").split("/").map(x=>x.trim());
+  const rp=String(r.rp||"").replace(/MAX\s*\/\s*2/gi,"MAX\u00bd").split("/").map(x=>x.trim());
+  const ca=String(r.ca||"").trim();
+  const mt=ca.match(/^TEST\s*[\d–\-]+\s*RM\s*,\s*poi\s+(.+)$/i);
+  const cav=mt?null:ca.split("/").map(x=>x.trim());
+  const n=Math.max(se.length,rp.length,cav?cav.length:1);
+  const out=[];
+  for(let i=0;i<n;i++){
+    const p={se:(se[i]!==undefined?se[i]:se[0]), rp:(rp[i]!==undefined?rp[i]:rp[0]),
+             ca:(mt?(i===0?"__TEST__":mt[1]):(cav[i]!==undefined?cav[i]:cav[0]))};
+    const tm=String(p.rp).match(RE_TEST);
+    if(tm){p.test=tm[1].replace(/\s+/g,"").toUpperCase();p.rp=tm[1].split(/[–\-]/)[0].replace(/\D/g,"");p.ca="__TEST__";}
+    if(/^TEST\b/i.test(p.ca)) p.ca="__TEST__";
+    out.push(p);
+  }
+  return out;
+}
+function nomiParti(b,n){
+  /* "CURL + FRENCH PRESS — superserie": i nomi dei pezzi vengono dal titolo */
+  const t=String(b.nome||"");
+  const pz=t.split(/\s+(?:\+|\/)\s+/).map(x=>x.trim()).filter(Boolean);
+  return pz.length===n&&n>1?pz:null;
+}
+
+/* ---------- carico ---------- */
+function sconto(t){const m=t.match(/[−\-]\s*(\d+(?:[.,]\d+)?)\s*%/);return m?(1-parseFloat(m[1].replace(",","."))/100):1}
+function daTest(t,T){
+  if(!isFinite(T)||T<=0) return '<span class="wait">dopo il test</span><span class="raw">'+t+'</span>';
+  if(/\+\s*1\s*gradino/i.test(t)) return f(T)+' kg <span class="lieve">+ 1 gradino</span><span class="raw">'+t+'</span>';
+  return kg(T*sconto(t))+'<span class="raw">'+t+'</span>';
+}
+function risolvi(t,bk,b,k,i){
+  t=String(t||"").trim(); k=k||""; i=i||0;
+  if(!t||t==="—") return "";
+  const T=rifT(bk); let m;
+  if(t==="__TEST__"){
+    /* la serie del test: scritto TEST 10RM, e appena il test e' compilato anche il peso */
+    const rm=testDi(b)||"";
+    return '<span class="tst">TEST '+rm+'</span>'+((isFinite(T)&&T>0)?' <span class="freccia">=</span> '+kg(T):'');
+  }
+  /* peso del test, 5RM -15%, -20% da solo */
+  if(/peso del test/i.test(t)) return daTest(t,T);
+  if(/^\d+\s*RM\s*[−\-]\s*\d+\s*%/i.test(t)) return daTest(t,T);
+  if(/^[−\-]\s*\d+\s*%$/.test(t)) return daTest(t,T);
+  /* peso di lavoro: lo scrive lui accanto ai colpi; se c'e' uno sconto, il risultato esce di fianco */
+  if(/peso di lavoro/i.test(t)){
+    const ha=/[\u2212\-]\s*\d+\s*%/.test(t), base=pesoLavoro(bk,k,i);
+    let h=campo("W_"+k+"_"+i,"kg",78);
+    if(ha) h+=' <span class="freccia">\u2192</span> <b>'+((isFinite(base)&&base>0)?kg(base*sconto(t)):'\u2014')+'</b>';
+    return h+'<span class="raw">'+t+'</span>';
+  }
+  /* % del test, anche a range */
+  if((m=t.match(/(\d+(?:[.,]\d+)?)(?:\s*[-–]\s*(\d+(?:[.,]\d+)?))?\s*%\s*del test/i))){
+    if(!isFinite(T)||T<=0) return '<span class="wait">dopo il test</span><span class="raw">'+t+'</span>';
+    const a=parseFloat(m[1].replace(",",".")), bb=m[2]?parseFloat(m[2].replace(",",".")):null;
+    return (bb?(f(Math.round(T*a/100*10)/10)+'–'+kg(T*bb/100)):kg(T*a/100))+'<span class="raw">'+t+'</span>';
+  }
+  /* % del top: il top lo scrive lui */
+  if((m=t.match(/(\d+(?:[.,]\d+)?)\s*%\s*del\s*(top|mav)/i))){
+    const tk="RK_"+k+"_0", tv=num(state[tk]), pct=parseFloat(m[1].replace(",","."));
+    const out=(isFinite(tv)&&tv>0)?kg(tv*pct/100):'<span class="wait">dopo il top</span>';
+    return '<span class="topout" data-k="'+tk+'" data-pct="'+pct+'">'+out+'</span><span class="raw">'+t+'</span>';
+  }
+  /* stesso peso del top */
+  if(/^peso del top$/i.test(t)){
+    const tk="RK_"+k+"_0", tv=num(state[tk]);
+    return '<span class="topout" data-k="'+tk+'" data-pct="100">'+((isFinite(tv)&&tv>0)?kg(tv):'<span class="wait">dopo il top</span>')+'</span><span class="raw">stesso peso del top</span>';
+  }
+  /* MAV: massima alzata veloce, il peso lo scrive lui */
+  if(/^MAV$/i.test(t)) return '<span class="at">MAV</span> '+campo("RK_"+k+"_"+i,"kg",72)+'<span class="raw">massima alzata veloce</span>';
+  /* % del massimale (programmi in % del 1RM) */
+  if((m=t.match(/^(\d+(?:[.,]\d+)?)(?:\s*[-\u2013]\s*(\d+(?:[.,]\d+)?))?\s*%$/))&&b&&b.lift&&MASS.length){
+    const M=massimale(b.lift), raw='<span class="raw">'+t+' del massimale</span>';
+    if(!isFinite(M)||M<=0) return '<span class="wait">dopo il massimale</span>'+raw;
+    const a=parseFloat(m[1].replace(",",".")), bb=m[2]?parseFloat(m[2].replace(",",".")):null;
+    return (bb?f(M*a/100)+'\u2013'+kgx(M*bb/100):kgx(M*a/100))+raw;
+  }
+  /* RPE: scrive lui il peso che ha trovato */
+  if(/^RPE\s*\d/i.test(t)||/^@\s*\d/.test(t)){
+    const kk="RK_"+k+"_"+i;
+    return '<span class="at">'+t.replace(/^RPE\s*/i,"@")+'</span> '+campo(kk,"kg",72)+'<span class="raw">peso trovato a '+t+'</span>';
+  }
+  /* un numero secco: sono kg */
+  if((m=t.match(/^(\d+(?:[.,]\d+)?)\s*(kg)?$/i))) return f(parseFloat(m[1].replace(",",".")))+' kg';
+  /* testo libero */
+  return '<span class="wait">'+t+'</span>';
+}
+
+/* ---------- schemi ---------- */
+function etich(rp){rp=String(rp||"").trim().toUpperCase();
+  if(!rp||rp==="—") return "";
+  if(/^\d+\s*S$/.test(rp)||/^\d+\s*"$/.test(rp)) return "tenuta";
+  if(/^\d+\s*'$/.test(rp)||/^\d+\s*MIN/.test(rp)) return "minuti";
+  if(rp==="MAX"||rp==="AMRAP") return "";
+  return rp==="1"?"colpo":"colpi"}
+function isMax(rp){rp=String(rp||"").trim().toUpperCase();return /^(MAX|AMRAP)(\s*(S|"|''|SEC|TEMPO))?$/.test(rp)}
+function isMaxTempo(rp){rp=String(rp||"").trim().toUpperCase();return /^(MAX|AMRAP)\s*(S|"|''|SEC|TEMPO)$/.test(rp)}
+function isMezzoMax(rp){rp=String(rp||"").trim().toUpperCase();return /^MAX\s*(\/\s*2|\u00bd)$/.test(rp)||/^MET[AÀ]\s*(DEL)?\s*MAX$/.test(rp)}
+function ultimoMax(bk){
+  /* l'ultimo MAX segnato in questo esercizio, in qualunque settimana */
+  let best=null;
+  Object.keys(state).forEach(function(k){
+    if(k.indexOf("MX_"+bk+"_")!==0) return;
+    const v=String(state[k]||"").match(/\d+(?:[.,]\d+)?/); if(!v) return;
+    const n=parseFloat(v[0].replace(",",".")); if(isFinite(n)) best=(best===null?n:Math.max(best,n));
+  });
+  return best;
+}
+function colpiHTML(p,k,i,bk){
+  if(isMaxTempo(p.rp)) return '<span class="n"><b>MAX</b><em>secondi</em></span>'+
+    '<span class="mx">'+campo("MX_"+k+"_"+i,"45, 40, 38",92)+'<em>secondi fatti</em></span>';
+  if(isMax(p.rp)) return '<span class="n"><b>MAX</b><em>colpi</em></span>'+
+    '<span class="mx">'+campo("MX_"+k+"_"+i,"11, 10, 9",92)+'<em>colpi fatti</em></span>';
+  if(isMezzoMax(p.rp)){const u=bk?ultimoMax(bk):null;
+    return '<span class="n"><b>'+(u!==null?f(Math.round(u/2)):'\u00bd')+'</b><em>'+(u!==null?'met\u00e0 del MAX':'met\u00e0 del tuo MAX')+'</em></span>';}
+  const l=etich(p.rp);
+  return l?'<span class="n"><b>'+p.rp+'</b><em>'+l+'</em></span>':'';
+}
+function schema(p,k,i,bk){
+  const col=colpiHTML(p,k,i,bk);
+  return '<span class="n"><b>'+p.se+'</b><em>serie</em></span>'+(col?'<span class="x">×</span>'+col:'');
+}
+
+/* ---------- fatica percepita ---------- */
+const FPC=[[40,16,99],[40,20,96],[39,24,92],[39,28,87],[38,33,80],[37,38,72],[36,44,62],[35,50,52],[34,54,42],[33,58,33]];
 function fcol(n){const c=FPC[n-1];return "hsl("+c[0]+" "+c[1]+"% "+c[2]+"%)"}
 function fbord(n){const c=FPC[n-1];return "hsl("+c[0]+" "+Math.min(c[1]+10,70)+"% "+Math.max(c[2]-9,14)+"%)"}
 function fink(n){return FPC[n-1][2]<58?"#fff":"#23232A"}
 let FPT={};
 function paintFp(box,v,anim){
   const kids=box.children, key=box.dataset.k||"";
-  if(FPT[key]) FPT[key].forEach(clearTimeout);
-  FPT[key]=[];
-  function set(i){const b=kids[i], n=i+1;
-    b.style.background=fcol(n);b.style.borderColor=fbord(n);b.style.color=fink(n);
-    b.className=(n===v)?"on sel":"on"}
-  function clr(i){const b=kids[i];
-    b.style.background="";b.style.borderColor="";b.style.color="";b.className=""}
+  if(FPT[key]) FPT[key].forEach(clearTimeout); FPT[key]=[];
+  function set(i){const b=kids[i],n=i+1;b.style.background=fcol(n);b.style.borderColor=fbord(n);b.style.color=fink(n);b.className=(n===v)?"on sel":"on"}
+  function clr(i){const b=kids[i];b.style.background="";b.style.borderColor="";b.style.color="";b.className=""}
   for(let i=v;i<10;i++) clr(i);
-  for(let i=0;i<v;i++){
-    if(anim) FPT[key].push(setTimeout(function(){set(i)}, i*55));
-    else set(i);
-  }
+  for(let i=0;i<v;i++){ if(anim) FPT[key].push(setTimeout(function(){set(i)},i*55)); else set(i); }
 }
-function setFp(k,n,el){
-  const key="fp_"+k;
-  state[key]=(String(state[key])===String(n))?"":n; save();
-  paintFp(el.parentNode, parseInt(state[key])||0, true);
-}
+function setFp(k,n,el){const key="fp_"+k;state[key]=(String(state[key])===String(n))?"":n;save();
+  paintFp(el.parentNode,parseInt(state[key])||0,true);segnaManda();}
 function feedback(k,r){
-  let sc='';
-  for(let n=1;n<=10;n++) sc+='<button type="button" data-fp="'+k+'" data-n="'+n+'">'+n+'</button>';
-  return '<div class="fp"><span class="lb">Fatica percepita</span>'+
-    '<div class="sc" data-k="sc_'+k+'">'+sc+'</div>'+
+  let sc='';for(let n=1;n<=10;n++) sc+='<button type="button" data-fp="'+k+'" data-n="'+n+'">'+n+'</button>';
+  return '<div class="fp"><span class="lb">Fatica percepita</span><div class="sc" data-k="'+k+'">'+sc+'</div>'+
     '<div class="ends"><span>leggera</span><span>massima</span></div></div>'+
-    '<div class="app"><span>Note</span><input type="text" data-k="ap_'+k+
-    '" value="'+esc(state["ap_"+k]!==undefined?state["ap_"+k]:(r.ap||""))+
-    '" placeholder="se non le hai chiuse, come ti sei sentito"></div>';
+    '<div class="app"><span>Note</span><input type="text" data-k="ap_'+k+'" value="'+
+    esc(state["ap_"+k]!==undefined?state["ap_"+k]:(r.ap||""))+'"></div>';
 }
-function bind(){
-  document.querySelectorAll("[data-k]").forEach(i=>{
-    if(i.dataset.bound)return; i.dataset.bound=1;
-    i.addEventListener("input",e=>{const k=e.target.dataset.k;
-      state[k]=e.target.value;save();
-      if(/^top_/.test(k)) repaintTops();
-      else if(/^ref_/.test(k)) (typeof paint==="function"?paint:draw)();
-      aggiornaFine();});
-  });
-  document.querySelectorAll(".sc").forEach(function(box){
-    const kk=box.dataset.k.slice(3);
-    paintFp(box, parseInt(state["fp_"+kk])||0)});
-  document.querySelectorAll("[data-fp]").forEach(b=>{
-    if(b.dataset.bound)return; b.dataset.bound=1;
-    b.addEventListener("click",e=>{const t=e.currentTarget;
-      setFp(t.dataset.fp,parseInt(t.dataset.n),t)});
-  });
-}
-(function(){const rw=document.getElementById("refs");let lastg="";
- REFS.forEach(x=>{
-  if(x.test) return;
-  if(x.g&&x.g!==lastg){lastg=x.g;const t=document.createElement("div");
-   t.style.cssText="font:700 10.5px/1 -apple-system,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin:12px 0 4px";
-   t.textContent=x.g;rw.appendChild(t);}
-  const d=document.createElement("div");d.className="r";
-  if(state["ref_"+x.id]===undefined)state["ref_"+x.id]=x.def;
-  d.innerHTML='<label for="r_'+x.id+'">'+x.lab+'</label>'+
-    '<input type="text" inputmode="decimal" id="r_'+x.id+'" value="'+esc(state["ref_"+x.id])+'">'+
-    '<span class="tag">'+x.tag+'</span>';
-  rw.appendChild(d);
-  d.querySelector("input").addEventListener("input",e=>{state["ref_"+x.id]=e.target.value;save();
-    (typeof paint==="function"?paint:draw)()});});
-})();
 
-let sel=1, dsel="", CELLS=[];
-function cel(fn){const id="c"+CELLS.length;CELLS.push({id:id,fn:fn});return '<span id="'+id+'"></span>'}
-function isTopPc(pc){pc=String(pc||"");return /del top/i.test(pc)||(/^RPE/i.test(pc)&&!/%/.test(pc))}
-function carCell(r,b,k){return isTopPc(r.pc)?carico(r,b,k)
-  :cel(function(){return carico(r,b,k)})}
-function parteCell(p,b,k,i){return isTopPc(p.pc)?caricoParte(p,b,k,i)
-  :cel(function(){return caricoParte(p,b,k,i)})}
-function paint(){
-  CELLS.forEach(function(c){const e=document.getElementById(c.id);if(e)e.innerHTML=c.fn()});
-  repaintTops();
-  REFS.forEach(function(x){const v=state["ref_"+x.id]===undefined?"":state["ref_"+x.id];
-    const e=document.getElementById("r_"+x.id);
-    if(e&&e!==document.activeElement&&e.value!==v)e.value=v;
-    document.querySelectorAll('[data-k="ref_'+x.id+'"]').forEach(function(n){
-      if(n!==document.activeElement&&n.value!==v)n.value=v})});
-  bind();
+/* ---------- riferimenti dentro l'esercizio ---------- */
+function howTo(rm){
+  const n=(String(rm).match(/[\d–\-]+/)||[""])[0].replace("–","-");
+  const uno=n.indexOf("-")<0, art=(n==="8"||n==="11"||n==="18")?"gli":"i";
+  return '<b>Devi trovare il massimo peso con cui riesci a fare '+n+' colpi.</b> Parti da un peso leggero e fai '+n+
+   ' colpi. Aumenta il peso un po’ alla volta, sempre serie da '+n+', fino a quando arrivi al peso che riesci ancora '+
+   'a completare pulito. Se sali e '+(uno?art:"i")+' '+n+' colpi non li chiudi, il tuo '+rm+' è il peso di prima. Di norma ci arrivi in 3-5 serie.';
 }
-const chips=document.getElementById("chips");
-[1,2,3,4,5].forEach(w=>{const b=document.createElement("button");b.textContent="S"+w;
-  b.onclick=()=>{sel=w;draw()};chips.appendChild(b)});
-const ab=document.createElement("button");ab.className="all";ab.textContent="TUTTE";
-ab.onclick=()=>{sel=0;draw()};chips.appendChild(ab);
-const dchips=document.getElementById("dchips");
-DAYS.forEach(d=>{const b=document.createElement("button");b.textContent=d.id;
-  b.onclick=()=>{dsel=(dsel===d.id?"":d.id);draw()};dchips.appendChild(b)});
-const db=document.createElement("button");db.className="all";db.textContent="TUTTI";
-db.onclick=()=>{dsel="";draw()};dchips.appendChild(db);
-/* ---------- installazione sul telefono ---------- */
+function riferimenti(b,bk,sett){
+  let h=''; const rm=testDi(b), tw=settDelTest(b);
+  if(rm){
+    const v=state["T_"+bk]===undefined?"":state["T_"+bk];
+    if(!sett||sett===tw||!v){
+      h+='<div class="tbx"><span class="lb">Il tuo '+rm+'</span><input type="text" inputmode="decimal" data-k="T_'+bk+
+        '" value="'+esc(v)+'" placeholder="—"><span class="u">kg</span>'+
+        '<span class="hint">da questo numero escono tutti i carichi di '+b.nome.toLowerCase()+' del blocco</span>'+
+        '<details class="how"'+(v?'':' open')+'><summary>Come si trova il '+rm+'</summary><p>'+howTo(rm)+'</p></details></div>';
+    }
+  }
+  return h;
+}
+
+/* ---------- il top del ramping: stessa fascia del test RM ---------- */
+function rpeDi(t){const m=String(t||"").match(/(?:RPE|@)\s*(\d+(?:[.,]5)?)/i);return m?parseFloat(m[1].replace(",",".")):null}
+function fasciaTop(p,k,r){
+  const rpe=rpeDi(p.ca), colpi=String(p.rp||"").replace(/\D/g,"")||"pochi";
+  const canna=rpe!==null?Math.max(0,Math.round(10-rpe)):null;
+  const nc=colpi==="pochi"?"":(colpi==="1"?" 1 colpo":" "+colpi+" colpi");
+  const lab='Il tuo top'+nc+(rpe!==null?' @'+f(rpe):'');
+  const kk="RK_"+k+"_0", v=state[kk]||"";
+  const uno=colpi==="1";
+  const how='<b>Devi trovare il peso con cui fai '+(uno?'una singola':colpi+' colpi')+(canna!==null?' lasciandone '+canna+' in canna':'')+'.</b> '+
+    'Parti da un peso leggero e fai '+(uno?'singole':colpi+' colpi')+'. Aumenta il peso un po\u2019 alla volta, sempre '+(uno?'singole':'serie da '+colpi)+'. '+
+    (canna!==null?'Quando '+(uno?'una singola':'una serie')+' ti lascia '+(canna===1?'1 colpo':canna+' colpi')+' in canna \u2014 fatica della serie '+f(rpe)+' su 10 \u2014 quello \u00e8 il tuo top: scrivilo qui. '
+                  :'Quando arrivi al peso giusto per oggi, quello \u00e8 il tuo top: scrivilo qui. ')+
+    'Di norma ci arrivi in 3-5 serie.';
+  return '<div class="tbx dentro"><span class="lb">'+lab+'</span>'+
+    '<input type="text" inputmode="decimal" data-k="'+kk+'" value="'+esc(v)+'" placeholder="\u2014"><span class="u">kg</span>'+
+    '<span class="hint">da questo peso escono le serie dopo</span>'+
+    '<details class="how"'+(v?'':' open')+'><summary>Come si trova il top</summary><p>'+how+'</p></details></div>';
+}
+
+/* ---------- la riga ---------- */
+function notaCoach(t){return String(t||"").replace(/\b(in|negli|nella|su(?:gli)?)\s+appunti\b/gi,"nelle note").replace(/\bappunti\b/g,"note")}
+function rigaHTML(r,b,bk,k,sett){
+  const ts=tipoSerie(r.se), pz=parti(r), nomi=nomiParti(b,pz.length);
+  const recLab=(ts.t==="giri"&&!/giro|giri|onda|onde/i.test(r.rec||""))?('Rec tra '+(ts.parola==="onde"?'le onde':'i giri')):'Rec';
+  const pill=r.rec?'<span class="rec"><em>'+recLab+'</em>'+r.rec+'</span>':'';
+  const car=function(p,i){return '<div class="car" data-car="'+k+'_'+i+'">'+risolvi(p.ca,bk,b,k,i)+'</div>'};
+  let h='<div class="wk">'+(sett?'':'<div class="s">Settimana '+String(r.s).replace(/\D/g,"")+'</div>');
+
+  if(ts.t==="nessuna"){
+    /* cardio, mobilita', lavori a tempo: una riga di testo */
+    const rp=String(r.rp||"").trim(), ca=String(r.ca||"").trim();
+    h+='<div class="sch">'+(rp&&rp!=="—"?'<span class="n"><b>'+rp+'</b><em>'+etich(rp)+'</em></span>':'<span class="libera">senza serie</span>')+pill+'</div>';
+    if(ca&&ca!=="—") h+=car(pz[0],0);
+  }
+  else if(ts.t==="giri"){
+    h+='<div class="recw">'+pill+'</div>';
+    h+='<div class="giro"><div class="gt">Ripeti <b>'+ts.n+'</b> volte'+(ts.parola==="onde"?' <em>('+ts.n+' onde)</em>':'')+'</div>';
+    pz.forEach(function(p,i){
+      h+='<div class="gp">'+(nomi?'<span class="gn">'+nomi[i]+'</span>':'')+
+         '<div class="gl"><div class="sch">'+colpiHTML(p,k,i,bk)+'</div>'+car(p,i)+'</div></div>';
+    });
+    h+='</div>';
+    if(ts.extra){const p=pz[pz.length-1];
+      h+='<div class="poi">poi</div><div class="parte"><div class="sch">'+schema({se:ts.extra,rp:p.rp},k,pz.length,bk)+'</div>'+car(p,pz.length)+'</div>';}
+  }
+  else if(ts.t==="ramp"){
+    const p0=pz[0];
+    h+=fasciaTop(p0,k,r)+'<div class="recw">'+pill+'</div>';
+    const resto=pz.slice(1);
+    if(ts.extra){
+      const p=resto[0]||p0;
+      h+='<div class="parte"><div class="gl"><div class="sch">'+schema({se:ts.extra,rp:p.rp},k,1,bk)+'</div>'+car(p,1)+'</div></div>';
+    } else resto.forEach(function(p,j){
+      h+=(j?'<div class="poi">poi</div>':'')+'<div class="parte"><div class="gl"><div class="sch">'+schema(p,k,j+1,bk)+'</div>'+car(p,j+1)+'</div></div>';
+    });
+  }
+  else if(ts.t==="n"){
+    h+='<div class="recw">'+pill+'</div>';
+    const p0=pz[0];
+    h+='<div class="ramp"><div class="gt">Serie <em>quante ne servono</em></div>'+
+       '<div class="gl"><div class="sch">'+colpiHTML(p0,k,0,bk)+'</div>'+car(p0,0)+'</div>'+
+       '<div class="fatte"><span>Serie fatte</span>'+campo("SF_"+k,"n.",64)+'</div></div>';
+  }
+  else if(pz.length>1){
+    h+=(r.rec?'<div class="recw">'+pill+'</div>':'');
+    h+=pz.map(function(p,i){return '<div class="parte">'+(nomi?'<span class="gn">'+nomi[i]+'</span>':'')+
+      '<div class="gl"><div class="sch">'+schema(p,k,i,bk)+'</div>'+car(p,i)+'</div></div>'}).join('<div class="poi">poi</div>');
+  }
+  else {
+    h+='<div class="sch">'+schema(pz[0],k,0,bk)+pill+'</div>'+car(pz[0],0);
+  }
+  if(r.es) h+='<div class="esec">'+r.es+'</div>';
+  if(/EMOM/i.test(String(r.rec||"")+" "+String(b.t||"")+" "+String(r.es||""))){
+    const minuti=parseInt(String(r.se).match(/\d+/)||0)||0;
+    if(minuti) h+='<div class="emom" id="emom_'+k+'"><div class="ed"><b>\u2014</b><em>EMOM '+minuti+'\u2032</em></div>'+
+      '<button type="button" class="eb" data-emom="'+k+'" data-min="'+minuti+'">Avvia EMOM</button>'+
+      '<span class="evol">Volume alto e silenzioso tolto: il beep usa l\u2019audio del telefono.</span></div>';
+  }
+  if(r.n) h+='<div class="nota">'+notaCoach(r.n)+'</div>';
+  return h+feedback(k,r)+'</div>';
+}
+
+/* ---------- EMOM: 10" per mettersi sotto, poi un beep a ogni minuto ---------- */
+let EMOMT=null, ACTX=null;
+function beep(n,freq){
+  /* onda quadra, due toni sovrapposti, compressore a valle: il massimo che un telefono tira fuori */
+  try{
+    if(!ACTX) ACTX=new (window.AudioContext||window.webkitAudioContext)();
+    if(ACTX.state==="suspended") ACTX.resume();
+    const comp=ACTX.createDynamicsCompressor();
+    comp.threshold.value=-6; comp.knee.value=0; comp.ratio.value=20; comp.attack.value=0.001; comp.release.value=0.05;
+    const out=ACTX.createGain(); out.gain.value=1.0; comp.connect(out); out.connect(ACTX.destination);
+    for(let i=0;i<n;i++){
+      const t=ACTX.currentTime+i*0.42;
+      [freq||1760,(freq||1760)*1.5].forEach(function(fr){
+        const o=ACTX.createOscillator(), g=ACTX.createGain();
+        o.type="square"; o.frequency.value=fr; o.connect(g); g.connect(comp);
+        g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(1.0,t+0.008);
+        g.gain.setValueAtTime(1.0,t+0.28); g.gain.exponentialRampToValueAtTime(0.0001,t+0.34);
+        o.start(t); o.stop(t+0.36);
+      });
+    }
+  }catch(e){}
+  try{if(navigator.vibrate) navigator.vibrate(n===1?250:[250,150,250,150,250])}catch(e){}
+  lampo(n);
+}
+function lampo(n){
+  let el=document.getElementById("lampo");
+  if(!el){el=document.createElement("div");el.id="lampo";document.body.appendChild(el)}
+  let c=0;
+  (function uno(){ el.className="on"; setTimeout(function(){el.className="";if(++c<n)setTimeout(uno,140)},260) })();
+}
+function emomToggle(k,min,btn){
+  if(EMOMT&&EMOMT.k===k){emomStop();return}
+  emomStop();
+  const box=document.getElementById("emom_"+k); if(!box) return;
+  const disp=box.querySelector(".ed");
+  beep(1,1175);                                  /* sblocca l'audio col tocco */
+  let wl=null; try{if(navigator.wakeLock) navigator.wakeLock.request("screen").then(function(w){wl=w}).catch(function(){})}catch(e){}
+  const t0=Date.now(), prep=10; let lastMin=-1, lastPrep=-1;
+  btn.textContent="Ferma"; btn.className="eb on";
+  function tick(){
+    const s=(Date.now()-t0)/1000;
+    if(s<prep){
+      const r=Math.ceil(prep-s);
+      if(r<=3&&r!==lastPrep){lastPrep=r;beep(1,1175)}
+      disp.innerHTML='<b>'+r+'</b><em>mettiti sotto</em>'; return;
+    }
+    const e=s-prep, m=Math.floor(e/60), sec=Math.floor(e%60);
+    if(m>=min){ disp.innerHTML='<b>FINE</b><em>'+min+' minuti fatti</em>'; beep(3,1760); emomStop(true); return; }
+    if(m!==lastMin){lastMin=m;beep(m===0?2:1,1760)}
+    disp.innerHTML='<b>'+(m+1)+'<small>/'+min+'</small></b><em>minuto</em><span class="es">'+(sec<10?"0":"")+sec+'\u2033</span>';
+  }
+  EMOMT={k:k,iv:setInterval(tick,200),btn:btn,disp:disp,min:min,getWl:function(){return wl}};
+  tick();
+}
+function emomStop(fine){
+  if(!EMOMT) return;
+  clearInterval(EMOMT.iv);
+  try{const w=EMOMT.getWl(); if(w) w.release()}catch(e){}
+  EMOMT.btn.textContent="Avvia EMOM"; EMOMT.btn.className="eb";
+  if(!fine) EMOMT.disp.innerHTML='<b>\u2014</b><em>EMOM '+EMOMT.min+'\u2032</em>';
+  EMOMT=null;
+}
+
+/* ---------- riepilogo per il coach ---------- */
+function segnato(){
+  const out=[];
+  GIORNI.forEach(function(g){g.blocks.forEach(function(b,bi){
+    const bk=g.id+"_"+bi;
+    const T=state["T_"+bk];
+    if(T&&String(T).trim()) out.push({g:g.id,nome:b.nome,riga:testDi(b)+": "+T+" kg"});
+    b.rows.forEach(function(r,ri){
+      const k=bk+"_"+ri, pezzi=[];
+      const fp=state["fp_"+k], ap=state["ap_"+k], sf=state["SF_"+k];
+      if(sf) pezzi.push("serie fatte "+sf);
+      const nomi=nomiBlocco(b);
+      for(let i=0;i<6;i++){const mx=state["MX_"+k+"_"+i], rk=state["RK_"+k+"_"+i], w=state["W_"+k+"_"+i];
+        const chi=nomi&&nomi[i]?nomi[i].toLowerCase()+" ":"";
+        if(mx) pezzi.push(chi+"MAX: "+mx); if(rk) pezzi.push(chi+"a RPE: "+rk+" kg"); if(w) pezzi.push(chi+"peso usato "+w+" kg");}
+      if(fp) pezzi.push("fatica "+fp+"/10");
+      if(ap&&String(ap).trim()) pezzi.push(String(ap).trim());
+      if(pezzi.length) out.push({g:g.id,nome:r.s+" "+b.nome,riga:pezzi.join(" — ")});
+    });
+  })});
+  return out;
+}
+function segnaManda(){const n=segnato().length,b=document.getElementById("manda");if(!b)return;
+  b.className="manda"+(n?"":" vuoto");
+  b.textContent=n?("Manda al coach ("+(n===1?"1 cosa segnata":n+" cose segnate")+")"):"Non hai ancora segnato niente";}
+function testo(){
+  const r=segnato(); if(!r.length) return "";
+  let t=TITOLO+" — quello che ho segnato\n"; const per={};
+  r.forEach(function(x){(per[x.g]=per[x.g]||[]).push(x)});
+  Object.keys(per).sort().forEach(function(g){t+="\nGIORNO "+g+"\n";per[g].forEach(function(x){t+="• "+x.nome+" — "+x.riga+"\n"})});
+  return t;
+}
+function manda(){const t=testo();if(!t){alert("Non hai ancora segnato niente.");return}
+  window.open("https://wa.me/?text="+encodeURIComponent(t),"_blank");}
+
+/* ---------- selettori e disegno ---------- */
+let sel=1, dsel="";
+/* la settimana e il giorno scelti restano quelli dell'ultima volta */
+(function(){const w=parseInt(state.__sel);if(state.__sel!==undefined&&(w===0||SETT.indexOf(w)>=0))sel=w;
+  if(state.__dsel&&GIORNI.some(function(g){return g.id===state.__dsel}))dsel=state.__dsel;})();
+function scegli(w,d){if(w!==null)sel=w;if(d!==null)dsel=d;state.__sel=sel;state.__dsel=dsel;save();draw()}
+const chips=document.getElementById("chips"), dchips=document.getElementById("dchips");
+SETT.forEach(function(w){const b=document.createElement("button");b.textContent="S"+w;b.onclick=function(){scegli(w,null)};chips.appendChild(b)});
+(function(){const b=document.createElement("button");b.className="all";b.textContent="TUTTE";b.onclick=function(){scegli(0,null)};chips.appendChild(b)})();
+GIORNI.forEach(function(g){const b=document.createElement("button");b.textContent=g.id;b.onclick=function(){scegli(null,dsel===g.id?"":g.id)};dchips.appendChild(b)});
+(function(){const b=document.createElement("button");b.className="all";b.textContent="TUTTI";b.onclick=function(){scegli(null,"")};dchips.appendChild(b)})();
+function nserie(r){const ts=tipoSerie(r.se);if(ts.t!=="num")return 0;const m=String(r.se).match(/\d+/g);return m?m.reduce(function(a,x){return a+parseInt(x)},0):0}
+function settimanaDi(r){return parseInt(String(r.s).replace(/\D/g,""))||0}
+
+function draw(){
+  emomStop();
+  [].forEach.call(chips.children,function(b,i){b.setAttribute("aria-pressed",(i<SETT.length&&SETT[i]===sel)||(i===SETT.length&&sel===0)?"true":"false")});
+  [].forEach.call(dchips.children,function(b,i){b.setAttribute("aria-pressed",(i<GIORNI.length&&GIORNI[i].id===dsel)||(i===GIORNI.length&&dsel==="")?"true":"false")});
+  let h="";
+  GIORNI.forEach(function(g){
+    if(dsel&&g.id!==dsel) return;
+    const righe=g.blocks.map(function(b){return b.rows.filter(function(r){return !sel||settimanaDi(r)===sel})});
+    const ne=righe.filter(function(x){return x.length}).length; if(!ne) return;
+    const ns=righe.reduce(function(a,rr){return a+rr.reduce(function(y,r){return y+nserie(r)},0)},0);
+    h+='<div class="daybar">'+g.head+'<span>'+ne+' esercizi'+(sel&&ns?' · '+ns+' serie':'')+'</span></div>';
+    g.blocks.forEach(function(b,bi){
+      const bk=g.id+"_"+bi, rr=b.rows.filter(function(r){return !sel||settimanaDi(r)===sel}); if(!rr.length) return;
+      if(b.demo) h+='<div class="caso">'+b.demo+'</div>';
+      h+='<div class="ex"><h3>'+b.nome+(b.ruolo?'<em>'+b.ruolo+'</em>':'')+'</h3>'+riferimenti(b,bk,sel);
+      rr.forEach(function(r){h+=rigaHTML(r,b,bk,bk+"_"+b.rows.indexOf(r),sel)});
+      h+='</div>';
+    });
+  });
+  document.getElementById("out").innerHTML=h||'<p class="note">Niente da mostrare.</p>';
+  document.querySelectorAll(".sc").forEach(function(box){paintFp(box,parseInt(state["fp_"+box.dataset.k])||0,false)});
+  document.querySelectorAll("[data-emom]").forEach(function(b){if(b.dataset.bound)return;b.dataset.bound=1;
+    b.addEventListener("click",function(e){const t=e.currentTarget;emomToggle(t.dataset.emom,parseInt(t.dataset.min),t)})});
+  document.querySelectorAll("[data-fp]").forEach(function(b){if(b.dataset.bound)return;b.dataset.bound=1;
+    b.addEventListener("click",function(e){const t=e.currentTarget;setFp(t.dataset.fp,parseInt(t.dataset.n),t)})});
+  document.querySelectorAll("input[data-k]").forEach(function(i){if(i.dataset.bound)return;i.dataset.bound=1;
+    i.addEventListener("input",function(e){const kk=e.target.dataset.k;state[kk]=e.target.value;save();
+      if(/^(T_|W_|ref_)/.test(kk)) ridipingi(); if(/^RK_/.test(kk)) ridipingiTop(kk); segnaManda();})});
+  segnaManda();
+  /* tante settimane: la riga scorre di lato e la settimana scelta resta in vista */
+  const act=chips.querySelector('[aria-pressed="true"]');
+  if(act&&chips.scrollWidth>chips.clientWidth) chips.scrollLeft=Math.max(0,act.offsetLeft-chips.clientWidth/2+act.offsetWidth/2);
+}
+function ridipingi(){
+  GIORNI.forEach(function(g){g.blocks.forEach(function(b,bi){const bk=g.id+"_"+bi;
+    b.rows.forEach(function(r,ri){const k=bk+"_"+ri, pz=parti(r), ts=tipoSerie(r.se);
+      document.querySelectorAll('[data-car^="'+k+'_"]').forEach(function(nd){
+        const i=parseInt(nd.dataset.car.slice(k.length+1))||0;
+        const p=pz[Math.min(i,pz.length-1)];
+        if(nd.querySelector("input")){
+          const bb=nd.querySelector("b"), base=pesoLavoro(bk,k,i), c=String(p.ca||"");
+          if(bb&&/peso di lavoro/i.test(c)) bb.textContent=(isFinite(base)&&base>0)?kg(base*sconto(c)):"\u2014";
+          return;
+        }
+        nd.innerHTML=risolvi(p.ca,bk,b,k,i);
+      });
+    });
+  })});
+}
+function ridipingiTop(kk){
+  document.querySelectorAll('.topout[data-k="'+kk+'"]').forEach(function(e){
+    const tv=num(state[kk]), pct=parseFloat(e.dataset.pct);
+    e.innerHTML=(isFinite(tv)&&tv>0)?kg(tv*pct/100):'<span class="wait">dopo il top</span>';});
+}
+rifBox();
+draw();
+
+/* ---------- app installabile ---------- */
+if(typeof LETTURA==="undefined") var LETTURA=false;
 if("serviceWorker" in navigator) window.addEventListener("load",function(){
   navigator.serviceWorker.register("sw.js").then(function(reg){
     reg.update();
@@ -544,118 +886,5 @@ window.addEventListener("beforeinstallprompt",function(e){
   },900);
 })();
 
-/* ---------- fine seduta: cosa ha segnato l'atleta ---------- */
-function raccolto(){
-  const o={};
-  Object.keys(state).forEach(function(k){
-    if(!/^(fp_|ap_|ca_|top_|ref_)/.test(k)) return;
-    const v=state[k];
-    if(v===""||v===undefined||v===null) return;
-    o[k]=v});
-  return o;
-}
-function haSegnato(){
-  return Object.keys(raccolto()).some(function(k){return /^(fp_|ap_|ca_|top_)/.test(k)});
-}
-function quante(){
-  return Object.keys(raccolto()).filter(function(k){return /^(fp_|ap_|ca_|top_)/.test(k)}).length;
-}
-function pacchetto(){
-  const s=JSON.stringify(raccolto());
-  return btoa(unescape(encodeURIComponent(s))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");
-}
-function linkDati(){
-  return location.origin+location.pathname+"#d="+pacchetto();
-}
-function riepilogo(){
-  let t="Blocco tecnico — quello che ho segnato\n";
-  const rif=REFS.filter(function(x){return state["ref_"+x.id]}).map(function(x){
-    return x.lab+" "+state["ref_"+x.id]+" kg"});
-  if(rif.length) t+="Riferimenti: "+rif.join(" · ")+"\n";
-  DAYS.forEach(function(d){
-    let righe=[];
-    d.blocks.forEach(function(b,bi){
-      b.rows.forEach(function(r,i){
-        const k=d.id+bi+"_"+i;
-        const fp=state["fp_"+k], ap=state["ap_"+k], ca=state["ca_"+k], tp=state["top_"+k];
-        if(!fp&&!ap&&!ca&&!tp) return;
-        let s="• "+r.s+" "+b.nome;
-        if(tp) s+=" — top "+tp+" kg";
-        if(ca) s+=" — "+ca;
-        if(fp) s+=" — fatica "+fp+"/10";
-        if(ap&&String(ap).trim()) s+=" — "+ap;
-        righe.push(s)});
-    });
-    if(righe.length) t+="\n"+d.head+"\n"+righe.join("\n")+"\n";
-  });
-  return t;
-}
-function mandaTesto(){
-  if(!haSegnato()){alert("Non hai ancora segnato niente.");return}
-  window.open("https://wa.me/?text="+encodeURIComponent(riepilogo()),"_blank");
-}
-function mandaLink(){
-  if(!haSegnato()){alert("Non hai ancora segnato niente.");return}
-  const u=linkDati();
-  const msg="Allenamento finito. Qui c'è la scheda come l'ho compilata:\n"+u;
-  if(navigator.share){navigator.share({title:"Scheda compilata",text:msg}).catch(function(){});return}
-  window.open("https://wa.me/?text="+encodeURIComponent(msg),"_blank");
-}
-function aggiornaFine(){
-  const n=quante(), b1=document.getElementById("inv1"), b2=document.getElementById("inv2"),
-        h=document.getElementById("invhint");
-  if(!b1) return;
-  b1.disabled=b2.disabled=(n===0);
-  b1.textContent=n? "Manda al coach su WhatsApp" : "Non hai ancora segnato niente";
-  b2.textContent="Manda il link con dentro i dati";
-  b2.style.display=n?"block":"none";
-  h.textContent=n? ("Stai per mandare "+(n===1?"1 cosa segnata":n+" cose segnate")+".")
-    : "Quando hai finito di segnare, schiaccia. Fino ad allora resta tutto qui sul telefono.";
-}
-(function(){
-  if(!LETTURA) return;
-  document.body.className="sololettura";
-  const e=document.getElementById("letto");
-  e.style.display="block";
-  e.innerHTML='<b>Scheda ricevuta.</b> Stai guardando la scheda come l’ha compilata '+
-    'il tuo atleta: carichi, fatica percepita e note sono i suoi. Non stai modificando la tua.'+
-    '<button onclick="location.href=location.pathname">Torna alla mia scheda</button>';
-})();
 
-function draw(){
-  CELLS=[];
-  [...chips.children].forEach((b,i)=>b.setAttribute("aria-pressed",(i+1===sel)||(i===5&&sel===0)?"true":"false"));
-  [...dchips.children].forEach((b,i)=>b.setAttribute("aria-pressed",
-    (i<DAYS.length&&DAYS[i].id===dsel)||(i===DAYS.length&&dsel==="")?"true":"false"));
-  let h="", vis=0;
-  DAYS.forEach(d=>{
-    if(dsel && d.id!==dsel) return;
-    vis++;
-    const ne=d.blocks.length, ns=d.blocks.reduce((a,b)=>a+(sel?nserie(b.rows[sel-1]):0),0);
-    h+='<div class="daybar">'+d.head+'<span>'+ne+' esercizi'+(sel?' · '+ns+' serie':'')+'</span></div>';
-    d.blocks.forEach((b,bi)=>{
-      h+='<div class="ex"><h3>'+b.nome+(b.ruolo?'<em>'+b.ruolo+'</em>':'')+'</h3>'+testBox(b);
-      b.rows.forEach((r,i)=>{
-        if(sel && i+1!==sel) return;
-        const k=d.id+bi+"_"+i;
-        const pz=partsOf(r);
-        const pill=r.rec?'<span class="rec"><em>Rec</em>'+r.rec+'</span>':'';
-        h+='<div class="wk'+(sel?' solo':'')+'">'+(sel?'':'<div class="s">'+r.s+'</div>')+
-          (pz? '<div class="multi">'+(r.rec?'<div class="recw">'+pill+'</div>':'')+
-               pz.map((p,i)=>'<div class="parte">'+
-               '<div class="sch">'+schema({se:p.se,rp:p.rp})+'</div>'+
-               '<div class="car">'+parteCell(p,b,k,i)+'</div></div>').join('<div class="poi">poi</div>')+
-               '</div>'
-             : '<div class="sch">'+schema(r)+pill+'</div>'+
-               '<div class="car">'+carCell(r,b,k)+'</div>')+
-          (r.n?'<div class="nota">'+r.n+'</div>':'')+
-          feedback(k,r)+'</div>';
-      });
-      h+='</div>';
-    });
-  });
-  document.getElementById("out").innerHTML=h||'<p class="note">Nessun giorno selezionato.</p>';
-  bind(); paint(); aggiornaFine();
-}
-draw();
 </script></body></html>
