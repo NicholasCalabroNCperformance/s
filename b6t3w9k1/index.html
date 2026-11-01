@@ -1,0 +1,444 @@
+<!doctype html><html lang="it"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Mesociclo 3 — intensificazione</title><style>
+:root{--paper:#F1F1F2;--card:#FFF;--alt:#E9E9EB;--band:#DBDBDE;--line:#CFCFD4;
+--gold:#A9863B;--gold2:#C9A961;--ink:#23232A;--mute:#6E6E78}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+--paper:#17171A;--card:#1F1F23;--alt:#232328;--band:#2A2A31;--line:#35353D;
+--gold:#C9A961;--gold2:#A9863B;--ink:#EDEDEF;--mute:#9A9AA4}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);-webkit-text-size-adjust:100%;
+font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.wrap{max-width:980px;margin:0 auto;padding:0 14px 60px}
+header{padding:22px 0 14px;border-bottom:2px solid var(--gold)}
+.mono{font:700 12px/1 Georgia,serif;letter-spacing:.34em;color:var(--gold)}
+h1{font:400 23px/1.25 Georgia,serif;margin:9px 0 3px}
+.sub{color:var(--mute);font-size:13.5px}
+.rif{background:var(--card);border:1px solid var(--line);border-radius:10px;margin:16px 0;padding:13px 15px}
+.rif h2{font:700 11px/1 -apple-system,sans-serif;letter-spacing:.14em;text-transform:uppercase;margin:0 0 10px;color:var(--mute)}
+.rif .r{display:flex;align-items:center;gap:9px;padding:6px 0}
+.rif .r label{flex:1;font-size:14.5px}
+.rif .r .tag{font-size:11.5px;color:var(--mute)}
+input{font:inherit;color:var(--ink);background:var(--paper);border:1px solid var(--line);
+border-radius:7px;padding:7px 9px}
+input[type=number]{width:88px;text-align:right;font-variant-numeric:tabular-nums}
+input:focus{outline:2px solid var(--gold2);outline-offset:1px}
+.note{font-size:13px;color:var(--mute);margin:10px 0 0}
+footer{margin-top:28px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--mute)}
+.btns{display:flex;gap:9px;flex-wrap:wrap;margin:16px 0 0}
+.btns button{font:600 14px/1 -apple-system,sans-serif;padding:10px 15px;border-radius:8px;
+border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+@media print{.btns,nav,.wkbar{display:none}body{background:#fff}}
+
+
+.wkbar{position:sticky;top:0;z-index:5;background:var(--paper);padding:12px 0 10px;margin:0 -14px;
+padding-left:14px;padding-right:14px;border-bottom:1px solid var(--line)}
+.wkbar .lab{font:700 10.5px/1 -apple-system,sans-serif;letter-spacing:.14em;color:var(--mute);
+text-transform:uppercase;margin-bottom:8px}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chips button{font:700 14px/1 -apple-system,sans-serif;padding:11px 0;width:50px;border-radius:9px;
+border:1px solid var(--line);background:var(--card);color:var(--mute);cursor:pointer}
+.chips button.all{width:auto;padding:11px 14px;font-size:12.5px;letter-spacing:.06em}
+.chips button[aria-pressed=true]{background:var(--gold);border-color:var(--gold);color:#fff}
+.row2{margin-top:10px}
+.daybar{background:var(--gold);color:#fff;padding:13px 14px;margin:24px -14px 12px;
+font:700 13px/1.25 -apple-system,sans-serif;letter-spacing:.2em;
+display:flex;justify-content:space-between;align-items:center;gap:10px}
+.daybar span{font:400 11px/1.3 -apple-system,sans-serif;letter-spacing:.04em;opacity:.9;
+text-align:right;flex:0 0 auto}
+.daybar:first-of-type{margin-top:10px}
+.wsep{font:700 10px/1 -apple-system,sans-serif;letter-spacing:.16em;color:var(--mute);
+text-transform:uppercase;margin:16px 0 7px}
+
+.ex{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--gold);
+border-radius:8px;margin:0 0 12px;overflow:hidden}
+.ex>h3{font:600 15.5px/1.3 Georgia,serif;margin:0;padding:11px 13px 10px;border-bottom:1px solid var(--line)}
+.ex>h3 em{display:block;font:400 12px/1.3 -apple-system,sans-serif;font-style:normal;color:var(--gold);
+font-weight:700;letter-spacing:.03em;margin-top:3px}
+.ex .tbx{display:flex;align-items:center;gap:9px;flex-wrap:wrap;padding:11px 13px;
+background:#FBF7EF;border-bottom:1px solid var(--line)}
+.ex .tbx+.tbx{border-top:0}
+.ex .tbx .lb{font:700 10px/1.2 -apple-system,sans-serif;letter-spacing:.11em;
+text-transform:uppercase;color:var(--gold)}
+.ex .tbx input{width:96px;font:700 19px/1 -apple-system,sans-serif;padding:8px 10px;
+text-align:right;font-variant-numeric:tabular-nums;border:1px solid var(--gold);background:var(--card)}
+.ex .tbx .u{font:700 13px/1 -apple-system,sans-serif;color:var(--mute);margin-left:-3px}
+.ex .tbx .hint{display:none;flex-basis:100%;font:400 11.5px/1.4 -apple-system,sans-serif;color:var(--mute)}
+.ex .tbx input:placeholder-shown ~ .hint{display:block}
+.ex .tbx .how{flex-basis:100%;margin-top:2px}
+.ex .tbx .how summary{font:700 9.5px/1 -apple-system,sans-serif;letter-spacing:.1em;
+text-transform:uppercase;color:var(--gold);cursor:pointer;padding:4px 0;list-style:none}
+.ex .tbx .how summary::-webkit-details-marker{display:none}
+.ex .tbx .how summary::after{content:" ▾"}
+.ex .tbx .how[open] summary::after{content:" ▴"}
+.ex .tbx .how p{margin:4px 0 2px;font:400 12.5px/1.5 Georgia,serif;color:#4A4A55}
+
+.wk{padding:11px 13px;border-bottom:1px solid var(--line)}
+.wk:last-child{border-bottom:0}
+.wk:nth-child(even){background:var(--alt)}
+.wk .s{font:700 11px/1 -apple-system,sans-serif;letter-spacing:.12em;color:var(--mute);
+text-transform:uppercase;margin-bottom:7px}
+.wk .sch{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.wk .sch .n{display:inline-flex;flex-direction:column;align-items:center;line-height:1}
+.wk .sch .n b{font:600 17px/1.15 -apple-system,sans-serif;font-variant-numeric:tabular-nums}
+.wk .sch .n em{font:700 8.5px/1 -apple-system,sans-serif;font-style:normal;letter-spacing:.11em;
+text-transform:uppercase;color:var(--mute);margin-top:3px}
+.wk .sch .x{font:400 14px/1 -apple-system,sans-serif;color:var(--mute);padding-bottom:12px}
+.wk .rec{margin-left:auto;display:inline-flex;align-items:baseline;gap:6px;max-width:62%;
+text-align:right;line-height:1.35;background:var(--card);border:1px solid var(--line);
+border-radius:8px;padding:6px 10px;font:700 13.5px/1 -apple-system,sans-serif;color:var(--ink);
+font-variant-numeric:tabular-nums}
+.wk .rec em{font:700 8.5px/1 -apple-system,sans-serif;font-style:normal;letter-spacing:.11em;
+text-transform:uppercase;color:var(--mute)}
+.wk .recw{display:flex;justify-content:flex-end;margin-bottom:3px}
+.wk .recw .rec{margin-left:0}
+.wk .car{font:700 19px/1.2 -apple-system,sans-serif;color:var(--gold);margin-top:7px;
+font-variant-numeric:tabular-nums}
+.wk .car .raw{display:block;font:400 11.5px/1.35 -apple-system,sans-serif;color:var(--mute);margin-top:3px}
+.wk .car .wait{font:600 14px/1.3 -apple-system,sans-serif;color:var(--mute)}
+.wk .car input.free{width:100%;max-width:190px;font:400 14.5px/1.3 -apple-system,sans-serif;
+padding:8px 10px;text-align:left}
+.wk .parte{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:9px 0 10px}
+.wk .parte:first-child{padding-top:2px}
+.wk .parte .sch{flex:0 0 auto}
+.wk .parte .car{margin-top:0;text-align:right;font-size:17px}
+.wk .parte .car .raw{text-align:right}
+.wk .poi{font:400 11px/1 -apple-system,sans-serif;color:var(--mute);letter-spacing:.1em;
+text-transform:uppercase;border-top:1px dashed var(--line);padding-top:9px}
+.wk .esec{font:400 12.5px/1.35 -apple-system,sans-serif;color:var(--ink);margin-top:7px;
+background:var(--card);border:1px solid var(--line);border-radius:7px;padding:6px 9px;display:inline-block}
+.wk .nota{font:400 13.5px/1.45 Georgia,serif;color:#4A4A55;margin-top:8px}
+.fp{margin-top:12px}
+.fp .lb{display:block;font:700 9.5px/1 -apple-system,sans-serif;letter-spacing:.1em;
+color:var(--mute);text-transform:uppercase;margin-bottom:7px}
+.sc{display:grid;grid-template-columns:repeat(10,1fr);gap:3px}
+.sc button{padding:11px 0;border-radius:6px;border:1px solid var(--line);background:var(--card);
+font:700 13px/1 -apple-system,sans-serif;color:var(--mute);cursor:pointer;
+font-variant-numeric:tabular-nums;-webkit-appearance:none;
+transition:background .3s ease,border-color .3s ease,color .3s ease,box-shadow .2s ease}
+.sc button.sel{box-shadow:0 0 0 2px var(--alt),0 0 0 3.5px var(--ink)}
+.ends{display:flex;justify-content:space-between;margin-top:6px;
+font:400 10px/1 -apple-system,sans-serif;color:var(--mute);letter-spacing:.04em}
+.app{margin-top:10px}
+.app span{display:block;font:700 9.5px/1 -apple-system,sans-serif;letter-spacing:.1em;
+color:var(--mute);text-transform:uppercase;margin-bottom:4px}
+.app input{width:100%;font-size:14px;padding:8px 9px}
+.manda{display:block;width:100%;margin:22px 0 4px;padding:15px 0;border-radius:10px;
+border:0;background:var(--gold);color:#fff;cursor:pointer;
+font:700 14px/1 -apple-system,sans-serif;letter-spacing:.06em}
+.manda.vuoto{background:var(--line);color:#8A8A92}
+.mandanota{font:400 11.5px/1.45 -apple-system,sans-serif;color:var(--mute);margin:8px 0 0;text-align:center}
+
+</style></head><body><div class="wrap">
+<header><div class="mono">NC</div><h1>Mesociclo 3 — intensificazione</h1>
+<div class="sub">8 settimane · Giorni A–E</div></header>
+<div class="wkbar"><div class="lab">Settimana</div><div class="chips" id="chips"></div>
+<div class="lab row2">Giorno</div><div class="chips" id="dchips"></div></div>
+<div id="out"></div>
+<button class="manda vuoto" id="manda" onclick="manda()">Non hai ancora segnato niente</button>
+<p class="mandanota">Il bottone apre WhatsApp con gi&agrave; scritto tutto quello che hai segnato.
+Quello che scrivi resta su questo telefono finch&eacute; non lo mandi.</p>
+<div class="btns"><button onclick="window.print()">Stampa / salva in PDF</button>
+<button onclick="if(confirm('Cancellare tutto quello che hai scritto?')){try{localStorage.clear()}catch(e){};location.reload()}">Azzera</button></div>
+<footer>Versione di prova della scheda &middot; la scheda ufficiale resta l'Excel</footer></div>
+<script>const GIORNI=[{"id": "A", "head": "GIORNO A", "blocks": [{"t": "Y E T DA PRONO SU PANCA INCLINATA — attivazione scapole", "nome": "Y E T DA PRONO SU PANCA INCLINATA", "ruolo": "attivazione scapole", "rows": [{"s": "S1", "f": "Test", "se": "2 / 2", "rp": "10-12 / 10-12", "rec": "30\"", "ca": "senza peso o manubri leggeri", "es": "Y, poi T", "n": "Dopo l'attivazione della fisioterapista, prima del primo esercizio. A pancia in giù sulla panca inclinata: Y con le braccia in alto, T con le braccia aperte. Scapole giù e indietro prima di salire. Se senti la spalla, sali meno.", "ap": ""}, {"s": "S2", "f": "Intensità", "se": "2 / 2", "rp": "10-12 / 10-12", "rec": "30\"", "ca": "senza peso o manubri leggeri", "es": "Y, poi T", "n": "Scapole giù e indietro prima di salire.", "ap": ""}, {"s": "S3", "f": "Intensità", "se": "2 / 2", "rp": "10-12 / 10-12", "rec": "30\"", "ca": "senza peso o manubri leggeri", "es": "Y, poi T", "n": "Come sempre: scapole giù prima di salire.", "ap": ""}, {"s": "S4", "f": "Intensità", "se": "2 / 2", "rp": "10-12 / 10-12", "rec": "30\"", "ca": "senza peso o manubri leggeri", "es": "Y, poi T", "n": "Se senti la spalla, sali meno e segnalalo.", "ap": ""}, {"s": "S5", "f": "Intensità", "se": "2 / 2", "rp": "10-12 / 10-12", "rec": "30\"", "ca": "senza peso o manubri leggeri", "es": "Y, poi T", "n": "Il peso lo decide la fisioterapista: senza peso finché non te lo dice lei.", "ap": ""}, {"s": "S6", "f": "Intensità", "se": "2 / 2", "rp": "10-12 / 10-12", "rec": "30\"", "ca": "senza peso o manubri leggeri", "es": "Y, poi T", "n": "Scapole giù e indietro prima di salire.", "ap": ""}, {"s": "S7", "f": "Intensità", "se": "2 / 2", "rp": "10-12 / 10-12", "rec": "30\"", "ca": "senza peso o manubri leggeri", "es": "Y, poi T", "n": "Come sempre: scapole giù prima di salire.", "ap": ""}, {"s": "S8", "f": "Chiusura", "se": "2 / 2", "rp": "10-12 / 10-12", "rec": "30\"", "ca": "senza peso o manubri leggeri", "es": "Y, poi T", "n": "Se senti la spalla, sali meno e segnalalo.", "ap": ""}]}, {"t": "HACK SQUAT", "nome": "HACK SQUAT", "ruolo": "", "rows": [{"s": "S1", "f": "Test", "se": "1 / 3", "rp": "3-4 / 8", "rec": "3'", "ca": "TEST 3-4RM, poi 60% del test", "es": "", "n": "Sali per gradi fino al peso con cui fai 3-4 colpi puliti: è il tuo peso del test. Poi 3 serie da 8 al 60% del test. Scrivi il peso del test in Appunti: da lì escono tutte le percentuali. Se i paraspalle ti premono sul trapezio, dimmelo.", "ap": ""}, {"s": "S2", "f": "Intensità", "se": "5", "rp": "10", "rec": "3'", "ca": "60% del test", "es": "", "n": "Cinque serie da 10 al 60% del test. Arrotonda al peso montabile più vicino.", "ap": ""}, {"s": "S3", "f": "Intensità", "se": "5", "rp": "7", "rec": "3'", "ca": "67,5% del test", "es": "", "n": "Colpi a 7, peso più alto. Arrotonda al peso montabile più vicino.", "ap": ""}, {"s": "S4", "f": "Intensità", "se": "5", "rp": "5", "rec": "3'", "ca": "75% del test", "es": "", "n": "Colpi a 5, peso più alto. Arrotonda al peso montabile più vicino.", "ap": ""}, {"s": "S5", "f": "Intensità", "se": "5", "rp": "3", "rec": "3'", "ca": "82,5% del test", "es": "", "n": "Le serie più pesanti della prima onda. Arrotonda al peso montabile più vicino.", "ap": ""}, {"s": "S6", "f": "Intensità", "se": "5", "rp": "7", "rec": "3'", "ca": "72,5% del test", "es": "", "n": "Seconda onda: si riparte da 7 colpi, più pesante di tre settimane fa. Arrotonda al peso montabile più vicino.", "ap": ""}, {"s": "S7", "f": "Intensità", "se": "5", "rp": "5", "rec": "3'", "ca": "80% del test", "es": "", "n": "Colpi a 5, peso più alto. Arrotonda al peso montabile più vicino.", "ap": ""}, {"s": "S8", "f": "Chiusura", "se": "5", "rp": "3", "rec": "3'", "ca": "87,5% del test", "es": "", "n": "Le serie più pesanti del ciclo. Nessun test: il test apre il prossimo programma. Arrotonda al peso montabile più vicino.", "ap": ""}]}, {"t": "LAT MACHINE PRESA LARGA", "nome": "LAT MACHINE PRESA LARGA", "ruolo": "", "rows": [{"s": "S1", "f": "Test", "se": "1 / 1", "rp": "10 / 8", "rec": "2'", "ca": "TEST 10RM, poi peso del test", "es": "", "n": "Trova il peso con cui fai 10 colpi puliti, senza arrivare al limite: è il tuo peso del test. Poi una serie da 8. Scrivilo in Appunti. Se a braccia in alto senti la spalla, fermati poco prima di quel punto.", "ap": ""}, {"s": "S2", "f": "Intensità", "se": "2", "rp": "8", "rec": "2'", "ca": "peso del test", "es": "", "n": "Due serie da 8. Il peso resta questo per tutto il ciclo: crescono le serie.", "ap": ""}, {"s": "S3", "f": "Intensità", "se": "3", "rp": "8", "rec": "2'", "ca": "peso del test", "es": "", "n": "Una serie in più.", "ap": ""}, {"s": "S4", "f": "Intensità", "se": "4", "rp": "8", "rec": "2'", "ca": "peso del test", "es": "", "n": "Una serie in più.", "ap": ""}, {"s": "S5", "f": "Intensità", "se": "5", "rp": "8", "rec": "2'", "ca": "peso del test", "es": "", "n": "Una serie in più: la settimana più carica.", "ap": ""}, {"s": "S6", "f": "Intensità", "se": "2", "rp": "9", "rec": "2'", "ca": "peso del test", "es": "", "n": "Si torna a due serie, con un colpo in più.", "ap": ""}, {"s": "S7", "f": "Intensità", "se": "3", "rp": "9", "rec": "2'", "ca": "peso del test", "es": "", "n": "Una serie in più.", "ap": ""}, {"s": "S8", "f": "Chiusura", "se": "4", "rp": "9", "rec": "2'", "ca": "peso del test", "es": "", "n": "Una serie in più: chiusura del ciclo.", "ap": ""}]}, {"t": "LEG CURL", "nome": "LEG CURL", "ruolo": "", "rows": [{"s": "S1", "f": "Test", "se": "1 / 2", "rp": "8 / 8", "rec": "2'", "ca": "TEST 8RM, poi peso del test −20%", "es": "", "n": "Trova il peso con cui fai 8 colpi puliti: è il tuo peso del test. Poi 2 serie da 8 togliendo il 20%. Scrivi il peso del test in Appunti.", "ap": ""}, {"s": "S2", "f": "Intensità", "se": "1 / 2", "rp": "7 / 8", "rec": "2'", "ca": "peso del test / peso del test −20%", "es": "", "n": "Una serie da 7 al peso del test, poi 2 da 8 al −20%. Arrotonda al peso montabile più vicino.", "ap": ""}, {"s": "S3", "f": "Intensità", "se": "1 / 1 / 1", "rp": "8 / 8 / MAX", "rec": "2'", "ca": "peso del test / peso del test −20% / peso del test −20%", "es": "", "n": "Una da 8 al peso del test, poi una da 8 col peso del test −20%. L'ultima con lo stesso peso della seconda (non si toglie altro), a più colpi possibile. Segna i colpi in Appunti.", "ap": ""}, {"s": "S4", "f": "Intensità", "se": "1 / 2", "rp": "7 / 7", "rec": "2'", "ca": "peso del test / peso del test −20%", "es": "", "n": "Settimana più leggera: 7 colpi al peso del test e 2 serie da 7 al −20%.", "ap": ""}, {"s": "S5", "f": "Intensità", "se": "1 / 1 / 1", "rp": "9 / 10 / MAX", "rec": "2'", "ca": "peso del test / peso del test −20% / peso del test −20%", "es": "", "n": "Prova 9 colpi al peso del test, poi 10 col peso del test −20% e l'ultima, con lo stesso peso della seconda, a più colpi possibile.", "ap": ""}, {"s": "S6", "f": "Intensità", "se": "1 / 1 / 1", "rp": "9 / 10 / MAX", "rec": "2'", "ca": "peso del test / peso del test −20% / peso del test −20%", "es": "", "n": "Come la settimana scorsa: prova a migliorare i colpi dell'ultima serie.", "ap": ""}, {"s": "S7", "f": "Intensità", "se": "1 / 1 / 1", "rp": "8 / 8 / MAX", "rec": "2'", "ca": "peso del test / peso del test −20% / peso del test −20%", "es": "", "n": "Una da 8 al peso del test, una da 8 col peso del test −20% e l'ultima, con lo stesso peso della seconda, a più colpi possibile.", "ap": ""}, {"s": "S8", "f": "Chiusura", "se": "1 / 1 / 1", "rp": "MAX / 8 / MAX", "rec": "2'", "ca": "peso del test / peso del test −20% / peso del test −20%", "es": "", "n": "Chiusura: più colpi possibile al peso del test, poi una da 8 col peso del test −20% e l'ultima, con lo stesso peso, a più colpi possibile. Segna i colpi: sono il riferimento del prossimo programma.", "ap": ""}]}, {"t": "CHEST PRESS", "nome": "CHEST PRESS", "ruolo": "", "rows": [{"s": "S1", "f": "Test", "se": "1 / 2", "rp": "8 / 8", "rec": "2'", "ca": "TEST 8RM, poi peso del test −20%", "es": "", "n": "Trova il peso con cui fai 8 colpi puliti: è il tuo peso del test. Poi 2 serie da 8 togliendo il 20%. Scrivi il peso del test in Appunti. Se senti la spalla, fermati e segnalalo.", "ap": ""}, {"s": "S2", "f": "Intensità", "se": "1 / 2", "rp": "7 / 8", "rec": "2'", "ca": "peso del test / peso del test −20%", "es": "", "n": "Una serie da 7 al peso del test, poi 2 da 8 al −20%. Arrotonda al peso montabile più vicino.", "ap": ""}, {"s": "S3", "f": "Intensità", "se": "1 / 1 / 1", "rp": "8 / 8 / MAX", "rec": "2'", "ca": "peso del test / peso del test −20% / peso del test −20%", "es": "", "n": "Una da 8 al peso del test, poi una da 8 col peso del test −20%. L'ultima con lo stesso peso della seconda (non si toglie altro), a più colpi possibile. Segna i colpi in Appunti.", "ap": ""}, {"s": "S4", "f": "Intensità", "se": "1 / 2", "rp": "7 / 7", "rec": "2'", "ca": "peso del test / peso del test −20%", "es": "", "n": "Settimana più leggera: 7 colpi al peso del test e 2 serie da 7 al −20%.", "ap": ""}, {"s": "S5", "f": "Intensità", "se": "1 / 1 / 1", "rp": "9 / 10 / MAX", "rec": "2'", "ca": "peso del test / peso del test −20% / peso del test −20%", "es": "", "n": "Prova 9 colpi al peso del test, poi 10 col peso del test −20% e l'ultima, con lo stesso peso della seconda, a più colpi possibile.", "ap": ""}, {"s": "S6", "f": "Intensità", "se": "1 / 1 / 1", "rp": "9 / 10 / MAX", "rec": "2'", "ca": "peso del test / peso del test −20% / peso del test −20%", "es": "", "n": "Come la settimana scorsa: prova a migliorare i colpi dell'ultima serie.", "ap": ""}, {"s": "S7", "f": "Intensità", "se": "1 / 1 / 1", "rp": "8 / 8 / MAX", "rec": "2'", "ca": "peso del test / peso del test −20% / peso del test −20%", "es": "", "n": "Una da 8 al peso del test, una da 8 col peso del test −20% e l'ultima, con lo stesso peso della seconda, a più colpi possibile.", "ap": ""}, {"s": "S8", "f": "Chiusura", "se": "1 / 1 / 1", "rp": "MAX / 8 / MAX", "rec": "2'", "ca": "peso del test / peso del test −20% / peso del test −20%", "es": "", "n": "Chiusura: più colpi possibile al peso del test, poi una da 8 col peso del test −20% e l'ultima, con lo stesso peso, a più colpi possibile. Segna i colpi: sono il riferimento del prossimo programma.", "ap": ""}]}, {"t": "CURL BILANCIERE Z / PUSH DOWN CORDA — superserie", "nome": "CURL BILANCIERE Z / PUSH DOWN CORDA", "ruolo": "superserie", "rows": [{"s": "S1", "f": "Test", "se": "1 / 2", "rp": "12 / 10", "rec": "90\"", "ca": "TEST 12RM, poi peso del test", "es": "Curl, poi push down", "n": "Trova per il curl e per il push down il peso con cui fai 12 colpi puliti: è il tuo peso del test. Poi 2 giri da 10: curl e subito push down, il recupero è dopo il push down. Scrivi i due pesi in Appunti.", "ap": ""}, {"s": "S2", "f": "Intensità", "se": "3 / 1", "rp": "8-10 / 15", "rec": "90\"", "ca": "peso di lavoro / peso di lavoro −30%", "es": "Curl, poi push down", "n": "Tre giri da 8-10 al peso del test, poi un giro da 15 togliendo il 30% su curl e push down. Quando chiudi 10 colpi in tutti e tre i giri, la volta dopo sali del gradino più piccolo.", "ap": ""}, {"s": "S3", "f": "Intensità", "se": "3 / 1", "rp": "8-10 / 15", "rec": "90\"", "ca": "peso di lavoro / peso di lavoro −30%", "es": "Curl, poi push down", "n": "Quando chiudi 10 colpi in tutti e tre i giri, la volta dopo sali del gradino più piccolo.", "ap": ""}, {"s": "S4", "f": "Intensità", "se": "3 / 1", "rp": "8-10 / 15", "rec": "90\"", "ca": "peso di lavoro / peso di lavoro −30%", "es": "Curl, poi push down", "n": "Stesso schema, curl e poi push down. Quando chiudi 10 colpi in tutti e tre i giri, la volta dopo sali del gradino più piccolo.", "ap": ""}, {"s": "S5", "f": "Intensità", "se": "3 / 1", "rp": "8-10 / 15", "rec": "90\"", "ca": "peso di lavoro / peso di lavoro −30%", "es": "Curl, poi push down", "n": "Quando chiudi 10 colpi in tutti e tre i giri, la volta dopo sali del gradino più piccolo.", "ap": ""}, {"s": "S6", "f": "Intensità", "se": "3 / 1", "rp": "8-10 / 15", "rec": "90\"", "ca": "peso di lavoro / peso di lavoro −30%", "es": "Curl, poi push down", "n": "Stesso schema, curl e poi push down. Quando chiudi 10 colpi in tutti e tre i giri, la volta dopo sali del gradino più piccolo.", "ap": ""}, {"s": "S7", "f": "Intensità", "se": "3 / 1", "rp": "8-10 / 15", "rec": "90\"", "ca": "peso di lavoro / peso di lavoro −30%", "es": "Curl, poi push down", "n": "Quando chiudi 10 colpi in tutti e tre i giri, la volta dopo sali del gradino più piccolo.", "ap": ""}, {"s": "S8", "f": "Chiusura", "se": "3 / 1", "rp": "8-10 / 15", "rec": "90\"", "ca": "peso di lavoro / peso di lavoro −30%", "es": "Curl, poi push down", "n": "Chiusura: segna i pesi di curl e push down, sono il punto di partenza del prossimo programma.", "ap": ""}]}]}, {"id": "B", "head": "GIORNO B", "blocks": [{"t": "Y E T DA PRONO SU PANCA INCLINATA — attivazione scapole", "nome": "Y E T DA PRONO SU PANCA INCLINATA", "ruolo": "attivazione scapole", "rows": [{"s": "S1", "f": "Test", "se": "2 / 2", "rp": "10-12 / 10-12", "rec": "30\"", "ca": "senza peso o manubri leggeri", "es": "Y, poi T", "n": "Dopo l'attivazione della fisioterapista, prima del primo esercizio. A pancia in giù sulla panca inclinata: Y con le braccia in alto, T con le braccia aperte. Scapole giù e indietro prima di salire. Se senti la spalla, sali meno.", "ap": ""}, {"s": "S2", "f": "Intensità", "se": "2 / 2", "rp": "10-12 / 10-12", "rec": "30\"", "ca": "senza peso o manubri leggeri", "es": "Y, poi T", "n": "Scapole giù e indietro prima di salire.", "ap": ""}, {"s": "S3", "f": "Intensità", "se": "2 / 2", "rp": "10-12 / 10-12", "rec": "30\"", "ca": "senza peso o manubri leggeri", "es": "Y, poi T", "n": "Come sempre: scapole giù prima di salire.", "ap": ""}, {"s": "S4", "f": "Intensità", "se": "2 / 2", "rp": "10-12 / 10-12", "rec": "30\"", "ca": "senza peso o manubri leggeri", "es": "Y, poi T", "n": "Se senti la spalla, sali meno e segnalalo.", "ap": ""}, {"s": "S5", "f": "Intensità", "se": "2 / 2", "rp": "10-12 / 10-12", "rec": "30\"", "ca": "senza peso o manubri leggeri", "es": "Y, poi T", "n": "Il peso lo decide la fisioterapista: senza peso finché non te lo dice lei.", "ap": ""}, {"s": "S6", "f": "Intensità", "se": "2 / 2", "rp": "10-12 / 10-12", "rec": "30\"", "ca": "senza peso o manubri leggeri", "es": "Y, poi T", "n": "Scapole giù e indietro prima di salire.", "ap": ""}, {"s": "S7", "f": "Intensità", "se": "2 / 2", "rp": "10-12 / 10-12", "rec": "30\"", "ca": "senza peso o manubri leggeri", "es": "Y, poi T", "n": "Come sempre: scapole giù prima di salire.", "ap": ""}, {"s": "S8", "f": "Chiusura", "se": "2 / 2", "rp": "10-12 / 10-12", "rec": "30\"", "ca": "senza peso o manubri leggeri", "es": "Y, poi T", "n": "Se senti la spalla, sali meno e segnalalo.", "ap": ""}]}, {"t": "AFFONDI POSTERIORI", "nome": "AFFONDI POSTERIORI", "ruolo": "", "rows": [{"s": "S1", "f": "Test", "se": "1 / 2", "rp": "16 / 10", "rec": "2'", "ca": "TEST 16RM, poi peso del test", "es": "", "n": "Trova il peso con cui fai 16 affondi puliti: è il tuo peso del test. Poi 2 serie da 10. Scrivilo in Appunti.", "ap": ""}, {"s": "S2", "f": "Intensità", "se": "3", "rp": "12", "rec": "2'", "ca": "peso del test", "es": "", "n": "Tre serie da 12.", "ap": ""}, {"s": "S3", "f": "Intensità", "se": "4", "rp": "12", "rec": "2'", "ca": "peso del test", "es": "", "n": "Una serie in più.", "ap": ""}, {"s": "S4", "f": "Intensità", "se": "3", "rp": "14", "rec": "2'", "ca": "peso del test", "es": "", "n": "Tre serie da 14 al peso del test.", "ap": ""}, {"s": "S5", "f": "Intensità", "se": "1 / 2", "rp": "16 / 10", "rec": "2'", "ca": "TEST 16RM, poi peso del test", "es": "", "n": "Nuovo test: ritrova il peso da 16 colpi, dovrebbe essere più alto. Poi 2 serie da 10. Scrivilo in Appunti.", "ap": ""}, {"s": "S6", "f": "Intensità", "se": "3", "rp": "12", "rec": "2'", "ca": "peso del test", "es": "", "n": "Tre serie da 12 al nuovo peso del test.", "ap": ""}, {"s": "S7", "f": "Intensità", "se": "4", "rp": "12", "rec": "2'", "ca": "peso del test", "es": "", "n": "Una serie in più.", "ap": ""}, {"s": "S8", "f": "Chiusura", "se": "3", "rp": "14", "rec": "2'", "ca": "peso del test", "es": "", "n": "Tre serie da 14: chiusura del ciclo.", "ap": ""}]}, {"t": "HIGH ROW PRESA PRONA", "nome": "HIGH ROW PRESA PRONA", "ruolo": "", "rows": [{"s": "S1", "f": "Test", "se": "1 / 2", "rp": "8 / 8", "rec": "2'", "ca": "TEST 8RM, poi peso del test −20%", "es": "", "n": "Trova il peso con cui fai 8 colpi puliti: è il tuo peso del test. Poi 2 serie da 8 togliendo il 20%. Scrivi il peso del test in Appunti.", "ap": ""}, {"s": "S2", "f": "Intensità", "se": "1 / 2", "rp": "7 / 8", "rec": "2'", "ca": "peso del test / peso del test −20%", "es": "", "n": "Una serie da 7 al peso del test, poi 2 da 8 al −20%. Arrotonda al peso montabile più vicino.", "ap": ""}, {"s": "S3", "f": "Intensità", "se": "1 / 1 / 1", "rp": "8 / 8 / MAX", "rec": "2'", "ca": "peso del test / peso del test −20% / peso del test −20%", "es": "", "n": "Una da 8 al peso del test, poi una da 8 col peso del test −20%. L'ultima con lo stesso peso della seconda (non si toglie altro), a più colpi possibile. Segna i colpi in Appunti.", "ap": ""}, {"s": "S4", "f": "Intensità", "se": "1 / 2", "rp": "7 / 7", "rec": "2'", "ca": "peso del test / peso del test −20%", "es": "", "n": "Settimana più leggera: 7 colpi al peso del test e 2 serie da 7 al −20%.", "ap": ""}, {"s": "S5", "f": "Intensità", "se": "1 / 1 / 1", "rp": "9 / 10 / MAX", "rec": "2'", "ca": "peso del test / peso del test −20% / peso del test −20%", "es": "", "n": "Prova 9 colpi al peso del test, poi 10 col peso del test −20% e l'ultima, con lo stesso peso della seconda, a più colpi possibile.", "ap": ""}, {"s": "S6", "f": "Intensità", "se": "1 / 1 / 1", "rp": "9 / 10 / MAX", "rec": "2'", "ca": "peso del test / peso del test −20% / peso del test −20%", "es": "", "n": "Come la settimana scorsa: prova a migliorare i colpi dell'ultima serie.", "ap": ""}, {"s": "S7", "f": "Intensità", "se": "1 / 1 / 1", "rp": "8 / 8 / MAX", "rec": "2'", "ca": "peso del test / peso del test −20% / peso del test −20%", "es": "", "n": "Una da 8 al peso del test, una da 8 col peso del test −20% e l'ultima, con lo stesso peso della seconda, a più colpi possibile.", "ap": ""}, {"s": "S8", "f": "Chiusura", "se": "1 / 1 / 1", "rp": "MAX / 8 / MAX", "rec": "2'", "ca": "peso del test / peso del test −20% / peso del test −20%", "es": "", "n": "Chiusura: più colpi possibile al peso del test, poi una da 8 col peso del test −20% e l'ultima, con lo stesso peso, a più colpi possibile. Segna i colpi: sono il riferimento del prossimo programma.", "ap": ""}]}, {"t": "LEG EXTENSION / APERTURE DA PRONO ALLA PECK DECK — superserie", "nome": "LEG EXTENSION / APERTURE DA PRONO ALLA PECK DECK", "ruolo": "superserie", "rows": [{"s": "S1", "f": "Test", "se": "1 / 3", "rp": "12 / 8", "rec": "90\"", "ca": "TEST 12RM, poi peso del test", "es": "Leg extension, poi aperture", "n": "Trova per ciascuno dei due esercizi il peso con cui fai 12 colpi puliti: è il tuo peso del test. Poi 3 giri da 8, uno dopo l'altro senza pausa: il recupero è dopo il secondo. Scrivi i due pesi in Appunti.", "ap": ""}, {"s": "S2", "f": "Intensità", "se": "3", "rp": "9", "rec": "90\"", "ca": "peso del test", "es": "Leg extension, poi aperture", "n": "Un colpo in più.", "ap": ""}, {"s": "S3", "f": "Intensità", "se": "3", "rp": "9", "rec": "90\"", "ca": "peso del test", "es": "Leg extension, poi aperture", "n": "Stesso lavoro: rendilo pulito.", "ap": ""}, {"s": "S4", "f": "Intensità", "se": "3", "rp": "10", "rec": "90\"", "ca": "peso del test", "es": "Leg extension, poi aperture", "n": "Un colpo in più.", "ap": ""}, {"s": "S5", "f": "Intensità", "se": "3", "rp": "8", "rec": "90\"", "ca": "peso del test + 1 gradino", "es": "Leg extension, poi aperture", "n": "Sali del gradino più piccolo che puoi montare e i colpi tornano a 8.", "ap": ""}, {"s": "S6", "f": "Intensità", "se": "3", "rp": "9", "rec": "90\"", "ca": "peso del test + 1 gradino", "es": "Leg extension, poi aperture", "n": "Stesso peso, un colpo in più.", "ap": ""}, {"s": "S7", "f": "Intensità", "se": "3", "rp": "9", "rec": "90\"", "ca": "peso del test + 1 gradino", "es": "Leg extension, poi aperture", "n": "Stesso lavoro: rendilo pulito.", "ap": ""}, {"s": "S8", "f": "Chiusura", "se": "3", "rp": "10", "rec": "90\"", "ca": "peso del test + 1 gradino", "es": "Leg extension, poi aperture", "n": "Stesso peso, un colpo in più: chiusura del ciclo.", "ap": ""}]}, {"t": "ALZATE LATERALI CON MANUBRI O AL CROSS CABLE", "nome": "ALZATE LATERALI CON MANUBRI O AL CROSS CABLE", "ruolo": "", "rows": [{"s": "S1", "f": "Test", "se": "1 / 1", "rp": "10 / 8", "rec": "90\"", "ca": "TEST 10RM, poi peso del test", "es": "", "n": "Trova il peso con cui fai 10 colpi puliti, senza arrivare al limite: è il tuo peso del test. Poi una serie da 8. Scrivilo in Appunti. Le due braccia insieme. Sali solo fino all'altezza della spalla.", "ap": ""}, {"s": "S2", "f": "Intensità", "se": "2", "rp": "8", "rec": "90\"", "ca": "peso del test", "es": "", "n": "Due serie da 8. Il peso resta questo per tutto il ciclo: crescono le serie.", "ap": ""}, {"s": "S3", "f": "Intensità", "se": "3", "rp": "8", "rec": "90\"", "ca": "peso del test", "es": "", "n": "Una serie in più.", "ap": ""}, {"s": "S4", "f": "Intensità", "se": "4", "rp": "8", "rec": "90\"", "ca": "peso del test", "es": "", "n": "Una serie in più.", "ap": ""}, {"s": "S5", "f": "Intensità", "se": "5", "rp": "8", "rec": "90\"", "ca": "peso del test", "es": "", "n": "Una serie in più: la settimana più carica.", "ap": ""}, {"s": "S6", "f": "Intensità", "se": "2", "rp": "9", "rec": "90\"", "ca": "peso del test", "es": "", "n": "Si torna a due serie, con un colpo in più.", "ap": ""}, {"s": "S7", "f": "Intensità", "se": "3", "rp": "9", "rec": "90\"", "ca": "peso del test", "es": "", "n": "Una serie in più.", "ap": ""}, {"s": "S8", "f": "Chiusura", "se": "4", "rp": "9", "rec": "90\"", "ca": "peso del test", "es": "", "n": "Una serie in più: chiusura del ciclo.", "ap": ""}]}]}, {"id": "C", "head": "GIORNO C", "blocks": [{"t": "Y E T DA PRONO SU PANCA INCLINATA — attivazione scapole", "nome": "Y E T DA PRONO SU PANCA INCLINATA", "ruolo": "attivazione scapole", "rows": [{"s": "S1", "f": "Test", "se": "2 / 2", "rp": "10-12 / 10-12", "rec": "30\"", "ca": "senza peso o manubri leggeri", "es": "Y, poi T", "n": "Dopo l'attivazione della fisioterapista, prima del primo esercizio. A pancia in giù sulla panca inclinata: Y con le braccia in alto, T con le braccia aperte. Scapole giù e indietro prima di salire. Se senti la spalla, sali meno.", "ap": ""}, {"s": "S2", "f": "Intensità", "se": "2 / 2", "rp": "10-12 / 10-12", "rec": "30\"", "ca": "senza peso o manubri leggeri", "es": "Y, poi T", "n": "Scapole giù e indietro prima di salire.", "ap": ""}, {"s": "S3", "f": "Intensità", "se": "2 / 2", "rp": "10-12 / 10-12", "rec": "30\"", "ca": "senza peso o manubri leggeri", "es": "Y, poi T", "n": "Come sempre: scapole giù prima di salire.", "ap": ""}, {"s": "S4", "f": "Intensità", "se": "2 / 2", "rp": "10-12 / 10-12", "rec": "30\"", "ca": "senza peso o manubri leggeri", "es": "Y, poi T", "n": "Se senti la spalla, sali meno e segnalalo.", "ap": ""}, {"s": "S5", "f": "Intensità", "se": "2 / 2", "rp": "10-12 / 10-12", "rec": "30\"", "ca": "senza peso o manubri leggeri", "es": "Y, poi T", "n": "Il peso lo decide la fisioterapista: senza peso finché non te lo dice lei.", "ap": ""}, {"s": "S6", "f": "Intensità", "se": "2 / 2", "rp": "10-12 / 10-12", "rec": "30\"", "ca": "senza peso o manubri leggeri", "es": "Y, poi T", "n": "Scapole giù e indietro prima di salire.", "ap": ""}, {"s": "S7", "f": "Intensità", "se": "2 / 2", "rp": "10-12 / 10-12", "rec": "30\"", "ca": "senza peso o manubri leggeri", "es": "Y, poi T", "n": "Come sempre: scapole giù prima di salire.", "ap": ""}, {"s": "S8", "f": "Chiusura", "se": "2 / 2", "rp": "10-12 / 10-12", "rec": "30\"", "ca": "senza peso o manubri leggeri", "es": "Y, poi T", "n": "Se senti la spalla, sali meno e segnalalo.", "ap": ""}]}, {"t": "PANCA PIANA", "nome": "PANCA PIANA", "ruolo": "", "rows": [{"s": "S1", "f": "Test", "se": "1 / 3", "rp": "3-4 / 6", "rec": "2'-3'", "ca": "TEST 3-4RM, poi 65% del test", "es": "", "n": "Sali per gradi fino al peso con cui fai 3-4 colpi puliti: è il tuo peso del test. Poi 3 serie da 6 al 65% del test. Scrivilo in Appunti. Se senti la spalla, fermati e segnalalo.", "ap": ""}, {"s": "S2", "f": "Intensità", "se": "6", "rp": "6", "rec": "2'-3'", "ca": "70% del test", "es": "", "n": "Sei serie da 6 al 70% del test. Arrotonda al 2,5 kg più vicino.", "ap": ""}, {"s": "S3", "f": "Intensità", "se": "5", "rp": "5", "rec": "2'-3'", "ca": "75% del test", "es": "", "n": "Una serie e un colpo in meno, peso più alto. Arrotonda al 2,5 kg più vicino.", "ap": ""}, {"s": "S4", "f": "Intensità", "se": "4", "rp": "4", "rec": "2'-3'", "ca": "80% del test", "es": "", "n": "Una serie e un colpo in meno, peso più alto. Arrotonda al 2,5 kg più vicino.", "ap": ""}, {"s": "S5", "f": "Intensità", "se": "3", "rp": "4", "rec": "2'-3'", "ca": "85% del test", "es": "", "n": "Le serie più pesanti della prima onda. Arrotonda al 2,5 kg più vicino.", "ap": ""}, {"s": "S6", "f": "Intensità", "se": "5", "rp": "5", "rec": "2'-3'", "ca": "80% del test", "es": "", "n": "Seconda onda: di nuovo 5 serie da 5, più pesante della settimana 3. Arrotonda al 2,5 kg più vicino.", "ap": ""}, {"s": "S7", "f": "Intensità", "se": "4", "rp": "4", "rec": "2'-3'", "ca": "85% del test", "es": "", "n": "Una serie e un colpo in meno, peso più alto. Arrotonda al 2,5 kg più vicino.", "ap": ""}, {"s": "S8", "f": "Chiusura", "se": "3", "rp": "4", "rec": "2'-3'", "ca": "87,5-90% del test", "es": "", "n": "Chiusura: 87,5% se il bilanciere rallenta, 90% se sale bene. Nessun test: il test apre il prossimo programma. Arrotonda al 2,5 kg più vicino.", "ap": ""}]}, {"t": "PENDULUM SQUAT", "nome": "PENDULUM SQUAT", "ruolo": "", "rows": [{"s": "S1", "f": "Test", "se": "1 / 1", "rp": "10 / 8", "rec": "2'", "ca": "TEST 10RM, poi peso del test", "es": "", "n": "Trova il peso con cui fai 10 colpi puliti, senza arrivare al limite: è il tuo peso del test. Poi una serie da 8. Scrivilo in Appunti.", "ap": ""}, {"s": "S2", "f": "Intensità", "se": "2", "rp": "8", "rec": "2'", "ca": "peso del test", "es": "", "n": "Due serie da 8. Il peso resta questo per tutto il ciclo: crescono le serie.", "ap": ""}, {"s": "S3", "f": "Intensità", "se": "3", "rp": "8", "rec": "2'", "ca": "peso del test", "es": "", "n": "Una serie in più.", "ap": ""}, {"s": "S4", "f": "Intensità", "se": "4", "rp": "8", "rec": "2'", "ca": "peso del test", "es": "", "n": "Una serie in più.", "ap": ""}, {"s": "S5", "f": "Intensità", "se": "5", "rp": "8", "rec": "2'", "ca": "peso del test", "es": "", "n": "Una serie in più: la settimana più carica.", "ap": ""}, {"s": "S6", "f": "Intensità", "se": "2", "rp": "9", "rec": "2'", "ca": "peso del test", "es": "", "n": "Si torna a due serie, con un colpo in più.", "ap": ""}, {"s": "S7", "f": "Intensità", "se": "3", "rp": "9", "rec": "2'", "ca": "peso del test", "es": "", "n": "Una serie in più.", "ap": ""}, {"s": "S8", "f": "Chiusura", "se": "4", "rp": "9", "rec": "2'", "ca": "peso del test", "es": "", "n": "Una serie in più: chiusura del ciclo.", "ap": ""}]}, {"t": "ROWING MACHINE PRESA NEUTRA", "nome": "ROWING MACHINE PRESA NEUTRA", "ruolo": "", "rows": [{"s": "S1", "f": "Test", "se": "1 / 2", "rp": "8 / 8", "rec": "2'", "ca": "TEST 8RM, poi peso del test −20%", "es": "", "n": "Trova il peso con cui fai 8 colpi puliti: è il tuo peso del test. Poi 2 serie da 8 togliendo il 20%. Scrivi il peso del test in Appunti.", "ap": ""}, {"s": "S2", "f": "Intensità", "se": "1 / 2", "rp": "7 / 8", "rec": "2'", "ca": "peso del test / peso del test −20%", "es": "", "n": "Una serie da 7 al peso del test, poi 2 da 8 al −20%. Arrotonda al peso montabile più vicino.", "ap": ""}, {"s": "S3", "f": "Intensità", "se": "1 / 1 / 1", "rp": "8 / 8 / MAX", "rec": "2'", "ca": "peso del test / peso del test −20% / peso del test −20%", "es": "", "n": "Una da 8 al peso del test, poi una da 8 col peso del test −20%. L'ultima con lo stesso peso della seconda (non si toglie altro), a più colpi possibile. Segna i colpi in Appunti.", "ap": ""}, {"s": "S4", "f": "Intensità", "se": "1 / 2", "rp": "7 / 7", "rec": "2'", "ca": "peso del test / peso del test −20%", "es": "", "n": "Settimana più leggera: 7 colpi al peso del test e 2 serie da 7 al −20%.", "ap": ""}, {"s": "S5", "f": "Intensità", "se": "1 / 1 / 1", "rp": "9 / 10 / MAX", "rec": "2'", "ca": "peso del test / peso del test −20% / peso del test −20%", "es": "", "n": "Prova 9 colpi al peso del test, poi 10 col peso del test −20% e l'ultima, con lo stesso peso della seconda, a più colpi possibile.", "ap": ""}, {"s": "S6", "f": "Intensità", "se": "1 / 1 / 1", "rp": "9 / 10 / MAX", "rec": "2'", "ca": "peso del test / peso del test −20% / peso del test −20%", "es": "", "n": "Come la settimana scorsa: prova a migliorare i colpi dell'ultima serie.", "ap": ""}, {"s": "S7", "f": "Intensità", "se": "1 / 1 / 1", "rp": "8 / 8 / MAX", "rec": "2'", "ca": "peso del test / peso del test −20% / peso del test −20%", "es": "", "n": "Una da 8 al peso del test, una da 8 col peso del test −20% e l'ultima, con lo stesso peso della seconda, a più colpi possibile.", "ap": ""}, {"s": "S8", "f": "Chiusura", "se": "1 / 1 / 1", "rp": "MAX / 8 / MAX", "rec": "2'", "ca": "peso del test / peso del test −20% / peso del test −20%", "es": "", "n": "Chiusura: più colpi possibile al peso del test, poi una da 8 col peso del test −20% e l'ultima, con lo stesso peso, a più colpi possibile. Segna i colpi: sono il riferimento del prossimo programma.", "ap": ""}]}, {"t": "CURL SU PANCA INCLINATA / FRENCH PRESS BILANCIERE Z — superserie", "nome": "CURL SU PANCA INCLINATA / FRENCH PRESS BILANCIERE Z", "ruolo": "superserie", "rows": [{"s": "S1", "f": "Test", "se": "1 / 2", "rp": "12 / 10", "rec": "90\"", "ca": "TEST 12RM, poi peso del test", "es": "Curl, poi french", "n": "Trova per il curl e per la french press il peso con cui fai 12 colpi puliti: è il tuo peso del test. Poi 2 giri da 10, uno dopo l'altro senza pausa. Scrivi i due pesi in Appunti.", "ap": ""}, {"s": "S2", "f": "Intensità", "se": "3", "rp": "8-10", "rec": "90\"", "ca": "peso di lavoro", "es": "Curl, poi french", "n": "Tre giri da 8-10: curl e subito french press, il recupero è dopo la french. Quando chiudi 10 colpi in tutti i giri, la volta dopo sali del gradino più piccolo.", "ap": ""}, {"s": "S3", "f": "Intensità", "se": "4", "rp": "8-10", "rec": "90\"", "ca": "peso di lavoro", "es": "Curl, poi french", "n": "Un giro in più. Quando chiudi 10 colpi in tutti i giri, la volta dopo sali del gradino più piccolo.", "ap": ""}, {"s": "S4", "f": "Intensità", "se": "3", "rp": "8-10", "rec": "90\"", "ca": "peso di lavoro", "es": "Curl, poi french", "n": "Si torna a tre giri. Quando chiudi 10 colpi in tutti i giri, la volta dopo sali del gradino più piccolo.", "ap": ""}, {"s": "S5", "f": "Intensità", "se": "3", "rp": "8-10", "rec": "90\"", "ca": "peso di lavoro", "es": "Curl, poi french", "n": "Quando chiudi 10 colpi in tutti i giri, la volta dopo sali del gradino più piccolo.", "ap": ""}, {"s": "S6", "f": "Intensità", "se": "3", "rp": "8-10", "rec": "90\"", "ca": "peso di lavoro", "es": "Curl, poi french", "n": "Quando chiudi 10 colpi in tutti i giri, la volta dopo sali del gradino più piccolo.", "ap": ""}, {"s": "S7", "f": "Intensità", "se": "4", "rp": "8-10", "rec": "90\"", "ca": "peso di lavoro", "es": "Curl, poi french", "n": "Un giro in più. Quando chiudi 10 colpi in tutti i giri, la volta dopo sali del gradino più piccolo.", "ap": ""}, {"s": "S8", "f": "Chiusura", "se": "3", "rp": "8-10", "rec": "90\"", "ca": "peso di lavoro", "es": "Curl, poi french", "n": "Tre giri: chiusura del ciclo. Segna i pesi in Appunti.", "ap": ""}]}]}, {"id": "D", "head": "GIORNO D", "blocks": [{"t": "Y E T DA PRONO SU PANCA INCLINATA — attivazione scapole", "nome": "Y E T DA PRONO SU PANCA INCLINATA", "ruolo": "attivazione scapole", "rows": [{"s": "S1", "f": "Test", "se": "2 / 2", "rp": "10-12 / 10-12", "rec": "30\"", "ca": "senza peso o manubri leggeri", "es": "Y, poi T", "n": "Dopo l'attivazione della fisioterapista, prima del primo esercizio. A pancia in giù sulla panca inclinata: Y con le braccia in alto, T con le braccia aperte. Scapole giù e indietro prima di salire. Se senti la spalla, sali meno.", "ap": ""}, {"s": "S2", "f": "Intensità", "se": "2 / 2", "rp": "10-12 / 10-12", "rec": "30\"", "ca": "senza peso o manubri leggeri", "es": "Y, poi T", "n": "Scapole giù e indietro prima di salire.", "ap": ""}, {"s": "S3", "f": "Intensità", "se": "2 / 2", "rp": "10-12 / 10-12", "rec": "30\"", "ca": "senza peso o manubri leggeri", "es": "Y, poi T", "n": "Come sempre: scapole giù prima di salire.", "ap": ""}, {"s": "S4", "f": "Intensità", "se": "2 / 2", "rp": "10-12 / 10-12", "rec": "30\"", "ca": "senza peso o manubri leggeri", "es": "Y, poi T", "n": "Se senti la spalla, sali meno e segnalalo.", "ap": ""}, {"s": "S5", "f": "Intensità", "se": "2 / 2", "rp": "10-12 / 10-12", "rec": "30\"", "ca": "senza peso o manubri leggeri", "es": "Y, poi T", "n": "Il peso lo decide la fisioterapista: senza peso finché non te lo dice lei.", "ap": ""}, {"s": "S6", "f": "Intensità", "se": "2 / 2", "rp": "10-12 / 10-12", "rec": "30\"", "ca": "senza peso o manubri leggeri", "es": "Y, poi T", "n": "Scapole giù e indietro prima di salire.", "ap": ""}, {"s": "S7", "f": "Intensità", "se": "2 / 2", "rp": "10-12 / 10-12", "rec": "30\"", "ca": "senza peso o manubri leggeri", "es": "Y, poi T", "n": "Come sempre: scapole giù prima di salire.", "ap": ""}, {"s": "S8", "f": "Chiusura", "se": "2 / 2", "rp": "10-12 / 10-12", "rec": "30\"", "ca": "senza peso o manubri leggeri", "es": "Y, poi T", "n": "Se senti la spalla, sali meno e segnalalo.", "ap": ""}]}, {"t": "PULLEY PRESA NEUTRA", "nome": "PULLEY PRESA NEUTRA", "ruolo": "", "rows": [{"s": "S1", "f": "Test", "se": "1 / 2", "rp": "8 / 8", "rec": "2'", "ca": "TEST 8RM, poi peso del test −20%", "es": "", "n": "Trova il peso con cui fai 8 colpi puliti: è il tuo peso del test. Poi 2 serie da 8 togliendo il 20%. Scrivi il peso del test in Appunti.", "ap": ""}, {"s": "S2", "f": "Intensità", "se": "1 / 2", "rp": "7 / 8", "rec": "2'", "ca": "peso del test / peso del test −20%", "es": "", "n": "Una serie da 7 al peso del test, poi 2 da 8 al −20%. Arrotonda al peso montabile più vicino.", "ap": ""}, {"s": "S3", "f": "Intensità", "se": "1 / 1 / 1", "rp": "8 / 8 / MAX", "rec": "2'", "ca": "peso del test / peso del test −20% / peso del test −20%", "es": "", "n": "Una da 8 al peso del test, poi una da 8 col peso del test −20%. L'ultima con lo stesso peso della seconda (non si toglie altro), a più colpi possibile. Segna i colpi in Appunti.", "ap": ""}, {"s": "S4", "f": "Intensità", "se": "1 / 2", "rp": "7 / 7", "rec": "2'", "ca": "peso del test / peso del test −20%", "es": "", "n": "Settimana più leggera: 7 colpi al peso del test e 2 serie da 7 al −20%.", "ap": ""}, {"s": "S5", "f": "Intensità", "se": "1 / 1 / 1", "rp": "9 / 10 / MAX", "rec": "2'", "ca": "peso del test / peso del test −20% / peso del test −20%", "es": "", "n": "Prova 9 colpi al peso del test, poi 10 col peso del test −20% e l'ultima, con lo stesso peso della seconda, a più colpi possibile.", "ap": ""}, {"s": "S6", "f": "Intensità", "se": "1 / 1 / 1", "rp": "9 / 10 / MAX", "rec": "2'", "ca": "peso del test / peso del test −20% / peso del test −20%", "es": "", "n": "Come la settimana scorsa: prova a migliorare i colpi dell'ultima serie.", "ap": ""}, {"s": "S7", "f": "Intensità", "se": "1 / 1 / 1", "rp": "8 / 8 / MAX", "rec": "2'", "ca": "peso del test / peso del test −20% / peso del test −20%", "es": "", "n": "Una da 8 al peso del test, una da 8 col peso del test −20% e l'ultima, con lo stesso peso della seconda, a più colpi possibile.", "ap": ""}, {"s": "S8", "f": "Chiusura", "se": "1 / 1 / 1", "rp": "MAX / 8 / MAX", "rec": "2'", "ca": "peso del test / peso del test −20% / peso del test −20%", "es": "", "n": "Chiusura: più colpi possibile al peso del test, poi una da 8 col peso del test −20% e l'ultima, con lo stesso peso, a più colpi possibile. Segna i colpi: sono il riferimento del prossimo programma.", "ap": ""}]}, {"t": "LEG CURL", "nome": "LEG CURL", "ruolo": "", "rows": [{"s": "S1", "f": "Test", "se": "1 / 3", "rp": "12 / 8", "rec": "90\"", "ca": "TEST 12RM, poi peso del test", "es": "", "n": "Trova il peso con cui fai 12 colpi puliti: è il tuo peso del test. Poi 3 serie da 8. Scrivilo in Appunti.", "ap": ""}, {"s": "S2", "f": "Intensità", "se": "3", "rp": "9", "rec": "90\"", "ca": "peso del test", "es": "", "n": "Un colpo in più.", "ap": ""}, {"s": "S3", "f": "Intensità", "se": "3", "rp": "9", "rec": "90\"", "ca": "peso del test", "es": "", "n": "Stesso lavoro: rendilo pulito.", "ap": ""}, {"s": "S4", "f": "Intensità", "se": "3", "rp": "10", "rec": "90\"", "ca": "peso del test", "es": "", "n": "Un colpo in più.", "ap": ""}, {"s": "S5", "f": "Intensità", "se": "3", "rp": "8", "rec": "90\"", "ca": "peso del test + 1 gradino", "es": "", "n": "Sali del gradino più piccolo che puoi montare e i colpi tornano a 8.", "ap": ""}, {"s": "S6", "f": "Intensità", "se": "3", "rp": "9", "rec": "90\"", "ca": "peso del test + 1 gradino", "es": "", "n": "Stesso peso, un colpo in più.", "ap": ""}, {"s": "S7", "f": "Intensità", "se": "3", "rp": "9", "rec": "90\"", "ca": "peso del test + 1 gradino", "es": "", "n": "Stesso lavoro: rendilo pulito.", "ap": ""}, {"s": "S8", "f": "Chiusura", "se": "3", "rp": "10", "rec": "90\"", "ca": "peso del test + 1 gradino", "es": "", "n": "Stesso peso, un colpo in più: chiusura del ciclo.", "ap": ""}]}, {"t": "HIGH ROW UNILATERALE", "nome": "HIGH ROW UNILATERALE", "ruolo": "", "rows": [{"s": "S1", "f": "Test", "se": "1 / 1", "rp": "10 / 8", "rec": "2'", "ca": "TEST 10RM, poi peso del test", "es": "", "n": "Trova il peso con cui fai 10 colpi puliti, senza arrivare al limite: è il tuo peso del test. Poi una serie da 8. Scrivilo in Appunti. Un lato per volta, parti dal sinistro.", "ap": ""}, {"s": "S2", "f": "Intensità", "se": "2", "rp": "8", "rec": "2'", "ca": "peso del test", "es": "", "n": "Due serie da 8. Il peso resta questo per tutto il ciclo: crescono le serie.", "ap": ""}, {"s": "S3", "f": "Intensità", "se": "3", "rp": "8", "rec": "2'", "ca": "peso del test", "es": "", "n": "Una serie in più.", "ap": ""}, {"s": "S4", "f": "Intensità", "se": "4", "rp": "8", "rec": "2'", "ca": "peso del test", "es": "", "n": "Una serie in più.", "ap": ""}, {"s": "S5", "f": "Intensità", "se": "5", "rp": "8", "rec": "2'", "ca": "peso del test", "es": "", "n": "Una serie in più: la settimana più carica.", "ap": ""}, {"s": "S6", "f": "Intensità", "se": "2", "rp": "9", "rec": "2'", "ca": "peso del test", "es": "", "n": "Si torna a due serie, con un colpo in più.", "ap": ""}, {"s": "S7", "f": "Intensità", "se": "3", "rp": "9", "rec": "2'", "ca": "peso del test", "es": "", "n": "Una serie in più.", "ap": ""}, {"s": "S8", "f": "Chiusura", "se": "4", "rp": "9", "rec": "2'", "ca": "peso del test", "es": "", "n": "Una serie in più: chiusura del ciclo.", "ap": ""}]}, {"t": "LEG EXTENSION / FACE PULL — superserie", "nome": "LEG EXTENSION / FACE PULL", "ruolo": "superserie", "rows": [{"s": "S1", "f": "Test", "se": "1 / 3", "rp": "12 / 8", "rec": "90\"", "ca": "TEST 12RM, poi peso del test", "es": "Leg extension, poi face pull", "n": "Trova per ciascuno dei due esercizi il peso con cui fai 12 colpi puliti: è il tuo peso del test. Poi 3 giri da 8, uno dopo l'altro senza pausa: il recupero è dopo il secondo. Scrivi i due pesi in Appunti.", "ap": ""}, {"s": "S2", "f": "Intensità", "se": "3", "rp": "9", "rec": "90\"", "ca": "peso del test", "es": "Leg extension, poi face pull", "n": "Un colpo in più.", "ap": ""}, {"s": "S3", "f": "Intensità", "se": "3", "rp": "9", "rec": "90\"", "ca": "peso del test", "es": "Leg extension, poi face pull", "n": "Stesso lavoro: rendilo pulito.", "ap": ""}, {"s": "S4", "f": "Intensità", "se": "3", "rp": "10", "rec": "90\"", "ca": "peso del test", "es": "Leg extension, poi face pull", "n": "Un colpo in più.", "ap": ""}, {"s": "S5", "f": "Intensità", "se": "3", "rp": "8", "rec": "90\"", "ca": "peso del test + 1 gradino", "es": "Leg extension, poi face pull", "n": "Sali del gradino più piccolo che puoi montare e i colpi tornano a 8.", "ap": ""}, {"s": "S6", "f": "Intensità", "se": "3", "rp": "9", "rec": "90\"", "ca": "peso del test + 1 gradino", "es": "Leg extension, poi face pull", "n": "Stesso peso, un colpo in più.", "ap": ""}, {"s": "S7", "f": "Intensità", "se": "3", "rp": "9", "rec": "90\"", "ca": "peso del test + 1 gradino", "es": "Leg extension, poi face pull", "n": "Stesso lavoro: rendilo pulito.", "ap": ""}, {"s": "S8", "f": "Chiusura", "se": "3", "rp": "10", "rec": "90\"", "ca": "peso del test + 1 gradino", "es": "Leg extension, poi face pull", "n": "Stesso peso, un colpo in più: chiusura del ciclo.", "ap": ""}]}]}, {"id": "E", "head": "GIORNO E — A CASA", "blocks": [{"t": "ESTENSIONI TORACICHE SU FOAM ROLLER — tutti i giorni", "nome": "ESTENSIONI TORACICHE SU FOAM ROLLER", "ruolo": "tutti i giorni", "rows": [{"s": "S1", "f": "A casa", "se": "3", "rp": "6-8", "rec": "—", "ca": "corpo libero", "es": "Fermo qualche secondo", "n": "Tutti i giorni, a casa. 1) Parti con il rullo in appoggio sulla punta delle scapole, mani dietro la testa, gomiti chiusi. 2) Spingi la nuca verso il pavimento, mantieni qualche secondo, rilassa e ripeti: 6-8 volte. 3) Passa a metà scapola e ripeti, poi sulla parte alta delle scapole e ripeti. 4) Alla fine torna al punto centrale e resta in estensione una ventina di secondi.", "ap": ""}, {"s": "S2", "f": "A casa", "se": "3", "rp": "6-8", "rec": "—", "ca": "corpo libero", "es": "Fermo qualche secondo", "n": "Tutti i giorni: punta delle scapole, metà scapola, parte alta, 6-8 volte su ogni punto; alla fine una ventina di secondi fermo al punto centrale.", "ap": ""}, {"s": "S3", "f": "A casa", "se": "3", "rp": "6-8", "rec": "—", "ca": "corpo libero", "es": "Fermo qualche secondo", "n": "Tutti i giorni: punta delle scapole, metà scapola, parte alta, 6-8 volte su ogni punto; alla fine una ventina di secondi fermo al punto centrale.", "ap": ""}, {"s": "S4", "f": "A casa", "se": "3", "rp": "6-8", "rec": "—", "ca": "corpo libero", "es": "Fermo qualche secondo", "n": "Tutti i giorni: punta delle scapole, metà scapola, parte alta, 6-8 volte su ogni punto; alla fine una ventina di secondi fermo al punto centrale.", "ap": ""}, {"s": "S5", "f": "A casa", "se": "3", "rp": "6-8", "rec": "—", "ca": "corpo libero", "es": "Fermo qualche secondo", "n": "Tutti i giorni, a casa. 1) Parti con il rullo in appoggio sulla punta delle scapole, mani dietro la testa, gomiti chiusi. 2) Spingi la nuca verso il pavimento, mantieni qualche secondo, rilassa e ripeti: 6-8 volte. 3) Passa a metà scapola e ripeti, poi sulla parte alta delle scapole e ripeti. 4) Alla fine torna al punto centrale e resta in estensione una ventina di secondi.", "ap": ""}, {"s": "S6", "f": "A casa", "se": "3", "rp": "6-8", "rec": "—", "ca": "corpo libero", "es": "Fermo qualche secondo", "n": "Tutti i giorni: punta delle scapole, metà scapola, parte alta, 6-8 volte su ogni punto; alla fine una ventina di secondi fermo al punto centrale.", "ap": ""}, {"s": "S7", "f": "A casa", "se": "3", "rp": "6-8", "rec": "—", "ca": "corpo libero", "es": "Fermo qualche secondo", "n": "Tutti i giorni: punta delle scapole, metà scapola, parte alta, 6-8 volte su ogni punto; alla fine una ventina di secondi fermo al punto centrale.", "ap": ""}, {"s": "S8", "f": "A casa", "se": "3", "rp": "6-8", "rec": "—", "ca": "corpo libero", "es": "Fermo qualche secondo", "n": "Tutti i giorni: punta delle scapole, metà scapola, parte alta, 6-8 volte su ogni punto; alla fine una ventina di secondi fermo al punto centrale.", "ap": ""}]}, {"t": "STRETCHING DEL PETTORALE — tutti i giorni", "nome": "STRETCHING DEL PETTORALE", "ruolo": "tutti i giorni", "rows": [{"s": "S1", "f": "A casa", "se": "1", "rp": "60-120\"", "rec": "—", "ca": "corpo libero", "es": "", "n": "Tutti i giorni, dopo il foam roller. Avambraccio sullo stipite della porta, gomito all'altezza della spalla e non più su; fai un passo avanti finché senti allungare il petto. Una tenuta da 1-2 minuti per lato.", "ap": ""}, {"s": "S2", "f": "A casa", "se": "1", "rp": "60-120\"", "rec": "—", "ca": "corpo libero", "es": "", "n": "Tutti i giorni: una tenuta da 1-2 minuti per lato, gomito all'altezza della spalla e non più su.", "ap": ""}, {"s": "S3", "f": "A casa", "se": "1", "rp": "60-120\"", "rec": "—", "ca": "corpo libero", "es": "", "n": "Tutti i giorni: una tenuta da 1-2 minuti per lato, gomito all'altezza della spalla e non più su.", "ap": ""}, {"s": "S4", "f": "A casa", "se": "1", "rp": "60-120\"", "rec": "—", "ca": "corpo libero", "es": "", "n": "Tutti i giorni: una tenuta da 1-2 minuti per lato, gomito all'altezza della spalla e non più su.", "ap": ""}, {"s": "S5", "f": "A casa", "se": "1", "rp": "60-120\"", "rec": "—", "ca": "corpo libero", "es": "", "n": "Tutti i giorni, dopo il foam roller. Avambraccio sullo stipite della porta, gomito all'altezza della spalla e non più su; fai un passo avanti finché senti allungare il petto. Una tenuta da 1-2 minuti per lato.", "ap": ""}, {"s": "S6", "f": "A casa", "se": "1", "rp": "60-120\"", "rec": "—", "ca": "corpo libero", "es": "", "n": "Tutti i giorni: una tenuta da 1-2 minuti per lato, gomito all'altezza della spalla e non più su.", "ap": ""}, {"s": "S7", "f": "A casa", "se": "1", "rp": "60-120\"", "rec": "—", "ca": "corpo libero", "es": "", "n": "Tutti i giorni: una tenuta da 1-2 minuti per lato, gomito all'altezza della spalla e non più su.", "ap": ""}, {"s": "S8", "f": "A casa", "se": "1", "rp": "60-120\"", "rec": "—", "ca": "corpo libero", "es": "", "n": "Tutti i giorni: una tenuta da 1-2 minuti per lato, gomito all'altezza della spalla e non più su.", "ap": ""}]}]}];const LS="sch-scheda-beta";const TITOLO="Mesociclo 3 — intensificazione";
+const SETT=(function(){const s={};GIORNI.forEach(function(g){g.blocks.forEach(function(b){
+  b.rows.forEach(function(r){const n=parseInt(String(r.s).replace(/\D/g,""));if(n)s[n]=1})})});
+  return Object.keys(s).map(Number).sort(function(a,b){return a-b})})();
+
+let state={};try{state=JSON.parse(localStorage.getItem(LS)||"{}")}catch(e){}
+function save(){try{localStorage.setItem(LS,JSON.stringify(state))}catch(e){}}
+function esc(s){return String(s==null?"":s).replace(/"/g,"&quot;")}
+function num(v){v=String(v==null?"":v).replace(",",".").trim();
+  const x=parseFloat(v);return isFinite(x)?x:NaN}
+function f(x){return (Math.round(x*100)/100).toString().replace(".",",")}
+const STEP=2.5;
+function q(x){return Math.ceil(x/STEP-0.5)*STEP}   // a metà esatta si scende
+
+/* ---------- che riferimenti vuole un esercizio ---------- */
+function testDi(b){
+  for(const r of b.rows){const m=String(r.ca||"").match(/TEST\s*([\d–\-]+\s*RM)/i);
+    if(m) return m[1].replace(/\s+/g,"").toUpperCase()}
+  return null;
+}
+function vuoleLavoro(b){return b.rows.some(r=>/peso di lavoro/i.test(String(r.ca||"")))}
+function settDelTest(b){
+  for(let i=0;i<b.rows.length;i++) if(/TEST\s*[\d–\-]+\s*RM/i.test(String(b.rows[i].ca||"")))
+    return parseInt(String(b.rows[i].s).replace(/\D/g,""))||1;
+  return 1;
+}
+function rifT(k){return num(state["T_"+k])}
+function rifW(k){return num(state["W_"+k])}
+
+/* ---------- risoluzione di una cella Carico ---------- */
+function sconto(t){const m=t.match(/[−\-]\s*(\d+(?:[.,]\d+)?)\s*%/);
+  return m?(1-parseFloat(m[1].replace(",","."))/100):1}
+function risolvi(t,bk,b){
+  t=String(t||"").trim();
+  if(!t) return "";
+  if(t==="__TEST__") return '<span class="wait">trova il peso</span>';
+  const T=rifT(bk), W=rifW(bk);
+  if(/peso del test/i.test(t)){
+    if(!isFinite(T)||T<=0) return '<span class="wait">dopo il test</span><span class="raw">'+t+'</span>';
+    if(/\+\s*1\s*gradino/i.test(t))
+      return f(T)+' kg <span style="font-size:14px;font-weight:400">+ 1 gradino</span>'+
+             '<span class="raw">'+t+'</span>';
+    const v=T*sconto(t);
+    return f(q(v))+' kg<span class="raw">'+t+'</span>';
+  }
+  if(/peso di lavoro/i.test(t)){
+    if(!isFinite(W)||W<=0) return '<span class="wait">scrivi il peso di lavoro</span><span class="raw">'+t+'</span>';
+    return f(q(W*sconto(t)))+' kg<span class="raw">'+t+'</span>';
+  }
+  const m=t.match(/(\d+(?:[.,]\d+)?)(?:\s*[-–]\s*(\d+(?:[.,]\d+)?))?\s*%\s*del test/i);
+  if(m){
+    if(!isFinite(T)||T<=0) return '<span class="wait">dopo il test</span><span class="raw">'+t+'</span>';
+    const a=parseFloat(m[1].replace(",",".")), bb=m[2]?parseFloat(m[2].replace(",",".")):null;
+    const val = bb? (f(Math.round(T*a/100*2)/2)+'–'+f(Math.round(T*bb/100*2)/2))
+                  : f(q(T*a/100));
+    return val+' kg<span class="raw">'+t+'</span>';
+  }
+  return '<span class="wait">'+t+'</span>';
+}
+
+/* ---------- una riga può avere più pezzi ---------- */
+function pezzi(r){
+  const se=String(r.se||"").split("/").map(x=>x.trim());
+  const rp=String(r.rp||"").split("/").map(x=>x.trim());
+  let ca=String(r.ca||"").trim();
+  const mt=ca.match(/^TEST\s*[\d–\-]+\s*RM\s*,\s*poi\s+(.+)$/i);
+  let cav;
+  if(mt && se.length>1){ cav=[ "__TEST__" ]; for(let i=1;i<se.length;i++) cav.push(mt[1]); }
+  else { cav=ca.split("/").map(x=>x.trim()); }
+  const n=Math.max(se.length, cav.length);
+  const out=[];
+  for(let i=0;i<n;i++) out.push({
+    se:(se[i]!==undefined?se[i]:se[0]),
+    rp:(rp[i]!==undefined?rp[i]:rp[0]),
+    ca:(cav[i]!==undefined?cav[i]:cav[0])});
+  return out;
+}
+function etich(rp){rp=String(rp||"").trim();
+  if(/^\d+\s*s$/i.test(rp)) return "tenuta";
+  if(!rp||rp==="—") return "";
+  return rp==="1"?"colpo":"colpi"}
+function schema(p){
+  const l=etich(p.rp);
+  return '<span class="n"><b>'+p.se+'</b><em>serie</em></span>'+
+    (l?'<span class="x">×</span><span class="n"><b>'+p.rp+'</b><em>'+l+'</em></span>':'');
+}
+
+/* ---------- fatica percepita ---------- */
+const FPC=[[40,16,99],[40,20,96],[39,24,92],[39,28,87],[38,33,80],
+           [37,38,72],[36,44,62],[35,50,52],[34,54,42],[33,58,33]];
+function fcol(n){const c=FPC[n-1];return "hsl("+c[0]+" "+c[1]+"% "+c[2]+"%)"}
+function fbord(n){const c=FPC[n-1];return "hsl("+c[0]+" "+Math.min(c[1]+10,70)+"% "+Math.max(c[2]-9,14)+"%)"}
+function fink(n){return FPC[n-1][2]<58?"#fff":"#23232A"}
+let FPT={};
+function paintFp(box,v,anim){
+  const kids=box.children, key=box.dataset.k||"";
+  if(FPT[key]) FPT[key].forEach(clearTimeout);
+  FPT[key]=[];
+  function set(i){const b=kids[i], n=i+1;
+    b.style.background=fcol(n);b.style.borderColor=fbord(n);b.style.color=fink(n);
+    b.className=(n===v)?"on sel":"on"}
+  function clr(i){const b=kids[i];
+    b.style.background="";b.style.borderColor="";b.style.color="";b.className=""}
+  for(let i=v;i<10;i++) clr(i);
+  for(let i=0;i<v;i++){
+    if(anim) FPT[key].push(setTimeout(function(){set(i)}, i*55));
+    else set(i);
+  }
+}
+function setFp(k,n,el){
+  const key="fp_"+k;
+  state[key]=(String(state[key])===String(n))?"":n; save();
+  paintFp(el.parentNode, parseInt(state[key])||0, true);
+  segnaManda();
+}
+function feedback(k,r){
+  let sc='';
+  for(let n=1;n<=10;n++) sc+='<button type="button" data-fp="'+k+'" data-n="'+n+'">'+n+'</button>';
+  return '<div class="fp"><span class="lb">Fatica percepita</span>'+
+    '<div class="sc" data-k="'+k+'">'+sc+'</div>'+
+    '<div class="ends"><span>leggera</span><span>massima</span></div></div>'+
+    '<div class="app"><span>Note</span><input type="text" data-k="ap_'+k+
+    '" value="'+esc(state["ap_"+k]!==undefined?state["ap_"+k]:(r.ap||""))+
+    '" placeholder="se non le hai chiuse, come ti sei sentito"></div>';
+}
+
+/* ---------- riferimenti dentro l'esercizio ---------- */
+function howTo(rm){
+  const n=(String(rm).match(/[\d–\-]+/)||[""])[0].replace("–","-");
+  const uno=n.indexOf("-")<0, art=(n==="8"||n==="11"||n==="18")?"gli":"i";
+  return '<b>Devi trovare il massimo peso con cui riesci a fare '+n+' colpi.</b> '+
+   'Parti da un peso leggero e fai '+n+' colpi. Aumenta il peso un po’ alla volta, '+
+   'sempre serie da '+n+', fino a quando arrivi al peso che riesci ancora a completare pulito. '+
+   'Se sali e '+(uno?art:"i")+' '+n+' colpi non li chiudi, il tuo '+rm+' è il peso di prima. '+
+   'Di norma ci arrivi in 3-5 serie.';
+}
+function riferimenti(b,bk,sett){
+  let h='';
+  const rm=testDi(b), tw=settDelTest(b);
+  if(rm){
+    const v=state["T_"+bk]===undefined?"":state["T_"+bk];
+    if(!sett || sett===tw || !v){
+      h+='<div class="tbx"><span class="lb">Il tuo '+rm+'</span>'+
+        '<input type="text" inputmode="decimal" data-k="T_'+bk+'" value="'+esc(v)+'" placeholder="—">'+
+        '<span class="u">kg</span>'+
+        '<span class="hint">da questo numero escono tutti i carichi di '+b.nome.toLowerCase()+
+        ' del blocco</span>'+
+        '<details class="how"'+(v?'':' open')+'><summary>Come si trova il '+rm+'</summary><p>'+
+        howTo(rm)+'</p></details></div>';
+    }
+  }
+  if(vuoleLavoro(b)){
+    const w=state["W_"+bk]===undefined?"":state["W_"+bk];
+    h+='<div class="tbx"><span class="lb">Peso di lavoro</span>'+
+      '<input type="text" inputmode="decimal" data-k="W_'+bk+'" value="'+esc(w)+'" placeholder="—">'+
+      '<span class="u">kg</span>'+
+      '<span class="hint">il peso con cui lavori di solito su questo esercizio</span></div>';
+  }
+  return h;
+}
+
+/* ---------- riassunto per il coach ---------- */
+function segnato(){
+  const out=[];
+  GIORNI.forEach(function(g){
+    g.blocks.forEach(function(b,bi){
+      const bk=g.id+"_"+bi;
+      b.rows.forEach(function(r,ri){
+        const k=bk+"_"+ri;
+        const fp=state["fp_"+k], ap=state["ap_"+k];
+        if((fp&&String(fp).trim())||(ap&&String(ap).trim()))
+          out.push({g:g.id,s:r.s,nome:b.nome,fp:fp,ap:ap});
+      });
+      const T=state["T_"+bk], W=state["W_"+bk];
+      if(T&&String(T).trim()) out.push({g:g.id,s:"test",nome:b.nome,test:T,rm:testDi(b)});
+      if(W&&String(W).trim()) out.push({g:g.id,s:"lavoro",nome:b.nome,lav:W});
+    });
+  });
+  return out;
+}
+function segnaManda(){
+  const n=segnato().length, b=document.getElementById("manda");
+  if(!b) return;
+  b.className="manda"+(n?"":" vuoto");
+  b.textContent=n? ("Manda al coach ("+n+" cose segnate)") : "Non hai ancora segnato niente";
+}
+function testo(){
+  const r=segnato();
+  if(!r.length) return "";
+  let t=TITOLO+" — quello che ho segnato\n";
+  const perG={};
+  r.forEach(function(x){(perG[x.g]=perG[x.g]||[]).push(x)});
+  Object.keys(perG).sort().forEach(function(g){
+    t+="\nGIORNO "+g+"\n";
+    perG[g].forEach(function(x){
+      if(x.test!==undefined) t+="• "+x.nome+" — "+x.rm+": "+x.test+" kg\n";
+      else if(x.lav!==undefined) t+="• "+x.nome+" — peso di lavoro: "+x.lav+" kg\n";
+      else{
+        let s="• "+x.s+" "+x.nome;
+        if(x.fp) s+=" — fatica "+x.fp+"/10";
+        if(x.ap&&String(x.ap).trim()) s+=" — "+x.ap;
+        t+=s+"\n";
+      }
+    });
+  });
+  return t;
+}
+function manda(){
+  const t=testo();
+  if(!t){alert("Non hai ancora segnato niente: metti almeno una fatica percepita o una nota.");return}
+  window.open("https://wa.me/?text="+encodeURIComponent(t),"_blank");
+}
+
+/* ---------- disegno ---------- */
+let sel=1, dsel="";
+const chips=document.getElementById("chips"), dchips=document.getElementById("dchips");
+SETT.forEach(function(w){const b=document.createElement("button");b.textContent="S"+w;
+  b.onclick=function(){sel=w;draw()};chips.appendChild(b)});
+(function(){const b=document.createElement("button");b.className="all";b.textContent="TUTTE";
+  b.onclick=function(){sel=0;draw()};chips.appendChild(b)})();
+GIORNI.forEach(function(g){const b=document.createElement("button");b.textContent=g.id;
+  b.onclick=function(){dsel=(dsel===g.id?"":g.id);draw()};dchips.appendChild(b)});
+(function(){const b=document.createElement("button");b.className="all";b.textContent="TUTTI";
+  b.onclick=function(){dsel="";draw()};dchips.appendChild(b)})();
+
+function nserie(r){if(!r)return 0;const m=String(r.se).match(/\d+/g);
+  return m?m.reduce(function(a,x){return a+parseInt(x)},0):0}
+
+function draw(){
+  [].forEach.call(chips.children,function(b,i){
+    b.setAttribute("aria-pressed",(i<SETT.length&&SETT[i]===sel)||(i===SETT.length&&sel===0)?"true":"false")});
+  [].forEach.call(dchips.children,function(b,i){
+    b.setAttribute("aria-pressed",(i<GIORNI.length&&GIORNI[i].id===dsel)||(i===GIORNI.length&&dsel==="")?"true":"false")});
+  let h="";
+  GIORNI.forEach(function(g){
+    if(dsel&&g.id!==dsel) return;
+    const righe=g.blocks.map(function(b){return b.rows.filter(function(r){
+      return !sel||parseInt(String(r.s).replace(/\D/g,""))===sel})});
+    const ne=righe.filter(function(x){return x.length}).length;
+    const ns=righe.reduce(function(a,rr){return a+rr.reduce(function(y,r){return y+nserie(r)},0)},0);
+    if(!ne) return;
+    h+='<div class="daybar">'+g.head+'<span>'+ne+' esercizi'+(sel?' · '+ns+' serie':'')+'</span></div>';
+    g.blocks.forEach(function(b,bi){
+      const bk=g.id+"_"+bi;
+      const rr=b.rows.filter(function(r){return !sel||parseInt(String(r.s).replace(/\D/g,""))===sel});
+      if(!rr.length) return;
+      h+='<div class="ex"><h3>'+b.nome+(b.ruolo?'<em>'+b.ruolo+'</em>':'')+'</h3>'+riferimenti(b,bk,sel);
+      rr.forEach(function(r){
+        const ri=b.rows.indexOf(r), k=bk+"_"+ri, pz=pezzi(r);
+        const pill=r.rec?'<span class="rec"><em>Rec</em>'+r.rec+'</span>':'';
+        h+='<div class="wk">'+(sel?'':'<div class="s">Settimana '+String(r.s).replace(/\D/g,"")+'</div>');
+        if(pz.length>1){
+          h+=(r.rec?'<div class="recw">'+pill+'</div>':'');
+          h+=pz.map(function(p,i){return '<div class="parte"><div class="sch">'+schema(p)+'</div>'+
+            '<div class="car" data-car="'+bk+'_'+ri+'">'+risolvi(p.ca,bk,b)+'</div></div>'})
+            .join('<div class="poi">poi</div>');
+        }else{
+          h+='<div class="sch">'+schema(pz[0])+pill+'</div>'+
+             '<div class="car" data-car="'+bk+'_'+ri+'">'+risolvi(pz[0].ca,bk,b)+'</div>';
+        }
+        if(r.es) h+='<div class="esec">'+r.es+'</div>';
+        if(r.n) h+='<div class="nota">'+r.n+'</div>';
+        h+=feedback(k,r)+'</div>';
+      });
+      h+='</div>';
+    });
+  });
+  document.getElementById("out").innerHTML=h||'<p class="note">Niente da mostrare.</p>';
+  document.querySelectorAll(".sc").forEach(function(box){
+    paintFp(box, parseInt(state["fp_"+box.dataset.k])||0, false)});
+  document.querySelectorAll("[data-fp]").forEach(function(b){
+    if(b.dataset.bound)return; b.dataset.bound=1;
+    b.addEventListener("click",function(e){const t=e.currentTarget;
+      setFp(t.dataset.fp, parseInt(t.dataset.n), t)})});
+  document.querySelectorAll("[data-k]").forEach(function(i){
+    if(i.tagName!=="INPUT"||i.dataset.bound)return; i.dataset.bound=1;
+    i.addEventListener("input",function(e){
+      state[e.target.dataset.k]=e.target.value; save();
+      if(/^(T_|W_)/.test(e.target.dataset.k)) ridipingi();
+      segnaManda();
+    })});
+  segnaManda();
+}
+function ridipingi(){
+  /* ricalcola solo i carichi, senza ricostruire la pagina: la tastiera resta aperta */
+  GIORNI.forEach(function(g){
+    g.blocks.forEach(function(b,bi){
+      const bk=g.id+"_"+bi;
+      b.rows.forEach(function(r,ri){
+        const nodi=document.querySelectorAll('[data-car="'+bk+'_'+ri+'"]');
+        if(!nodi.length) return;
+        const pz=pezzi(r);
+        nodi.forEach(function(nd,i){nd.innerHTML=risolvi(pz[i]?pz[i].ca:pz[0].ca,bk,b)});
+      });
+    });
+  });
+}
+draw();
+
+</script></body></html>
