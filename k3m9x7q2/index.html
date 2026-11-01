@@ -129,6 +129,11 @@ font:700 12px/1 -apple-system,sans-serif;letter-spacing:.06em;cursor:pointer}
 border:1px solid #6A6A76;border-radius:5px;color:var(--gold2);vertical-align:-6px;margin:0 2px}
 .inst .pic{font-size:11.5px;color:#A8A8B4;line-height:1.45}
 .inst p.pic{margin:11px 0 0}
+.inst.mini{padding:0;background:none;margin:0 0 12px}
+.inst.mini .riapri{width:100%;background:#2A2A31;border:0;color:#C9C9D0;border-radius:9px;
+padding:11px 12px;font:700 11.5px/1 -apple-system,sans-serif;letter-spacing:.06em;cursor:pointer;
+text-align:left;display:flex;align-items:center;gap:7px}
+.inst.mini .riapri svg{color:var(--gold2)}
 .fine{margin:26px 0 6px;padding:16px 15px;background:var(--card);border:1px solid var(--line);
 border-radius:11px}
 .fine .lab{font:700 9.5px/1 -apple-system,sans-serif;letter-spacing:.14em;color:var(--mute);
@@ -164,12 +169,12 @@ color:var(--mute);text-transform:uppercase;margin-bottom:4px}
 </style></head><body><div class="wrap">
 <header><div class="mono">NC</div><h1>Blocco tecnico — 5 settimane</h1>
 <div class="sub">Mesociclo 5 · Giorni A–E</div></header>
+<div class="inst" id="inst"></div>
 <div class="rif"><h2>Riferimenti — le % sono su questi numeri</h2><div id="refs"></div>
 <p class="note">Cambia un riferimento e tutti i carichi di quell'alzata si ricalcolano, arrotondati al 2,5 kg.
 Le % non sono riscalate sulla variante.</p></div>
 <div class="wkbar"><div class="lab">Settimana</div><div class="chips" id="chips"></div>
 <div class="lab row2">Giorno</div><div class="chips" id="dchips"></div></div>
-<div class="inst" id="inst"></div>
 <div class="letto" id="letto"></div>
 <div id="out"></div>
 <div class="fine" id="fine">
@@ -415,40 +420,69 @@ let PROMPT=null;
 function giaInstallata(){
   return window.matchMedia("(display-mode: standalone)").matches || navigator.standalone===true;
 }
+const SVGGIU='<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" '+
+  'stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px">'+
+  '<path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>';
 const SVGCOND='<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" '+
   'stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px">'+
   '<path d="M12 15V3"/><path d="m8 7 4-4 4 4"/>'+
   '<path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>';
+function inAppBrowser(){
+  const u=navigator.userAgent;
+  return /FBAN|FBAV|Instagram|Line\/|MicroMessenger|GSA\/|CriOS|FxiOS/i.test(u) ||
+    (/iphone|ipad|ipod/i.test(u) && !/Safari\//.test(u));
+}
 function mostraInstalla(modo){
   if(giaInstallata()||LETTURA) return;
-  try{if(localStorage.getItem("ncp-no-inst")) return}catch(e){}
   const e=document.getElementById("inst"); if(!e) return;
-  let h='<b>Tienila sul telefono.</b> Avrai l’icona NC Performance sulla schermata '+
-    'principale, si apre a tutto schermo e funziona anche senza rete.';
-  if(modo==="ios"){
-    h+='<div class="riga"><button onclick="comeInstallare()">Installa l’app</button>'+
-      '<button class="no" onclick="nienteInstalla()">No grazie</button></div>'+
-      '<div id="passi"></div>';
-  }else{
-    h+='<div class="riga"><button onclick="installa()">Installa</button>'+
-      '<button class="no" onclick="nienteInstalla()">No grazie</button></div>';
+  let chiusa=false;
+  try{chiusa=!!localStorage.getItem("ncp-inst-min")}catch(x){}
+  e.dataset.modo=modo;
+  e.style.display="block";
+  if(chiusa){
+    e.className="inst mini";
+    e.innerHTML='<button class="riapri" onclick="riapriInstalla()">'+SVGGIU+
+      ' Installa l’app sul telefono</button>';
+    return;
   }
-  e.innerHTML=h; e.style.display="block";
+  e.className="inst";
+  let h='<b>Installa NC Performance.</b> Avrai l’icona sulla schermata principale: '+
+    'si apre a tutto schermo, senza barre, e funziona anche quando non c’è rete.';
+  h+='<div class="riga"><button onclick="'+(modo==="android"?"installa()":"comeInstallare()")+'">'+
+    'Installa l’app</button>'+
+    '<button class="no" onclick="minimizzaInstalla()">Per adesso no</button></div>'+
+    '<div id="passi"></div>';
+  e.innerHTML=h;
+  if(modo==="ios") comeInstallare();
+}
+function riapriInstalla(){
+  try{localStorage.removeItem("ncp-inst-min")}catch(x){}
+  mostraInstalla(document.getElementById("inst").dataset.modo||"ios");
+}
+function minimizzaInstalla(){
+  try{localStorage.setItem("ncp-inst-min","1")}catch(x){}
+  mostraInstalla(document.getElementById("inst").dataset.modo||"ios");
 }
 function comeInstallare(){
   const p=document.getElementById("passi"); if(!p) return;
-  p.innerHTML='<ol class="passi">'+
-    '<li>Tocca il tasto <b>Condividi</b> di Safari <span class="ic">'+SVGCOND+'</span>, '+
-      'nella barra in fondo allo schermo.<br><span class="pic">Non la vedi? Tocca una volta '+
-      'il fondo dello schermo: la barra ricompare.</span></li>'+
+  let h='<ol class="passi">';
+  if(inAppBrowser()){
+    h+='<li><b>Prima apri questa pagina in Safari.</b> Da WhatsApp e dalle altre app '+
+      'l’installazione non esiste: serve Safari.<br>'+
+      '<span class="pic">Cerca in basso il tasto con i tre puntini o la bussola e scegli '+
+      '«Apri in Safari». Oppure copia il link qui sotto e incollalo in Safari.</span>'+
+      '<div class="riga"><button onclick="apriSafari()">Apri in Safari</button>'+
+      '<button class="no" onclick="copiaLink(this)">Copia il link</button></div></li>';
+  }
+  h+='<li>In Safari tocca il tasto <b>Condividi</b> <span class="ic">'+SVGCOND+'</span>, '+
+    'nella barra in fondo allo schermo.<br><span class="pic">Non la vedi? Tocca una volta '+
+    'il fondo dello schermo: la barra ricompare.</span></li>'+
     '<li>Scorri l’elenco e scegli <b>Aggiungi a Home</b> '+
-      '<span class="pic">(in inglese: Add to Home Screen)</span></li>'+
-    '<li>Conferma in alto a destra</li></ol>'+
-    '<p class="pic">Quel tasto non c’è? Allora non sei dentro Safari: succede quando apri '+
-      'il link da WhatsApp o da un’altra app. Copia il link e incollalo in Safari.</p>'+
-    '<div class="riga"><button onclick="copiaLink(this)">Copia il link</button>'+
-      '<button class="no" onclick="apriSafari()">Apri in Safari</button>'+
-      '<button class="no" onclick="nienteInstalla()">Chiudi</button></div>';
+    '<span class="pic">(in inglese: Add to Home Screen)</span></li>'+
+    '<li>Conferma in alto a destra</li></ol>';
+  if(!inAppBrowser())
+    h+='<div class="riga"><button class="no" onclick="copiaLink(this)">Copia il link</button></div>';
+  p.innerHTML=h;
 }
 function copiaLink(b){
   const u=location.origin+location.pathname;
@@ -474,7 +508,9 @@ window.addEventListener("beforeinstallprompt",function(e){
   e.preventDefault(); PROMPT=e; mostraInstalla("android")});
 (function(){
   const ios=/iphone|ipad|ipod/i.test(navigator.userAgent);
-  if(ios) setTimeout(function(){mostraInstalla("ios")},1200);
+  setTimeout(function(){
+    if(!giaInstallata()&&!PROMPT) mostraInstalla(ios?"ios":"altro");
+  },900);
 })();
 
 /* ---------- fine seduta: cosa ha segnato l'atleta ---------- */
