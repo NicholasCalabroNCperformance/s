@@ -1,6 +1,13 @@
 <!doctype html><html lang="it"><head><meta charset="utf-8">
 <meta name="robots" content="noindex,nofollow">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#23232A">
+<link rel="apple-touch-icon" href="icona-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="NC Performance">
+<meta name="mobile-web-app-capable" content="yes">
 <title>Blocco tecnico S1-S5</title><style>
 :root{--paper:#F1F1F2;--card:#FFF;--alt:#E9E9EB;--band:#DBDBDE;--line:#CFCFD4;
 --gold:#A9863B;--gold2:#C9A961;--ink:#23232A;--mute:#6E6E78}
@@ -108,6 +115,15 @@ padding-top:9px;padding-left:1px}
 .wk .nota{grid-column:1/-1;font-size:13.5px;color:var(--mute);margin-top:3px}
 .wk .app{grid-column:1/-1;margin-top:7px}
 .wk .app input{width:100%;font-size:14px;padding:7px 9px}
+.inst{display:none;background:#23232A;color:#EDEDEE;border-radius:10px;padding:13px 15px;
+margin:0 0 16px;font:400 13px/1.5 -apple-system,sans-serif}
+.inst b{color:var(--gold2)}
+.inst .riga{display:flex;gap:9px;align-items:center;margin-top:10px;flex-wrap:wrap}
+.inst button{background:var(--gold);border:0;color:#fff;border-radius:7px;padding:10px 14px;
+font:700 12px/1 -apple-system,sans-serif;letter-spacing:.06em;cursor:pointer}
+.inst button.no{background:none;border:1px solid #5A5A66;color:#C9C9D0}
+.inst .passi{margin:9px 0 0;padding-left:18px}
+.inst .passi li{margin:3px 0}
 .fine{margin:26px 0 6px;padding:16px 15px;background:var(--card);border:1px solid var(--line);
 border-radius:11px}
 .fine .lab{font:700 9.5px/1 -apple-system,sans-serif;letter-spacing:.14em;color:var(--mute);
@@ -148,6 +164,7 @@ color:var(--mute);text-transform:uppercase;margin-bottom:4px}
 Le % non sono riscalate sulla variante.</p></div>
 <div class="wkbar"><div class="lab">Settimana</div><div class="chips" id="chips"></div>
 <div class="lab row2">Giorno</div><div class="chips" id="dchips"></div></div>
+<div class="inst" id="inst"></div>
 <div class="letto" id="letto"></div>
 <div id="out"></div>
 <div class="fine" id="fine">
@@ -386,6 +403,46 @@ DAYS.forEach(d=>{const b=document.createElement("button");b.textContent=d.id;
   b.onclick=()=>{dsel=(dsel===d.id?"":d.id);draw()};dchips.appendChild(b)});
 const db=document.createElement("button");db.className="all";db.textContent="TUTTI";
 db.onclick=()=>{dsel="";draw()};dchips.appendChild(db);
+/* ---------- installazione sul telefono ---------- */
+if("serviceWorker" in navigator)
+  window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})});
+let PROMPT=null;
+function giaInstallata(){
+  return window.matchMedia("(display-mode: standalone)").matches || navigator.standalone===true;
+}
+function mostraInstalla(modo){
+  if(giaInstallata()||LETTURA) return;
+  try{if(localStorage.getItem("ncp-no-inst")) return}catch(e){}
+  const e=document.getElementById("inst"); if(!e) return;
+  let h='<b>Tienila sul telefono.</b> Installa NC Performance: avrai l’icona sulla schermata '+
+    'principale, si apre a tutto schermo e funziona anche senza rete.';
+  if(modo==="ios"){
+    h+='<ol class="passi"><li>Schiaccia il tasto <b>Condividi</b> in basso</li>'+
+      '<li>Scorri e scegli <b>Aggiungi a Home</b></li><li>Conferma</li></ol>'+
+      '<div class="riga"><button class="no" onclick="nienteInstalla()">Ho capito</button></div>';
+  }else{
+    h+='<div class="riga"><button onclick="installa()">Installa</button>'+
+      '<button class="no" onclick="nienteInstalla()">No grazie</button></div>';
+  }
+  e.innerHTML=h; e.style.display="block";
+}
+function installa(){
+  if(!PROMPT) return;
+  PROMPT.prompt();
+  PROMPT.userChoice.then(function(){PROMPT=null;
+    const e=document.getElementById("inst"); if(e) e.style.display="none"});
+}
+function nienteInstalla(){
+  try{localStorage.setItem("ncp-no-inst","1")}catch(e){}
+  const e=document.getElementById("inst"); if(e) e.style.display="none";
+}
+window.addEventListener("beforeinstallprompt",function(e){
+  e.preventDefault(); PROMPT=e; mostraInstalla("android")});
+(function(){
+  const ios=/iphone|ipad|ipod/i.test(navigator.userAgent);
+  if(ios) setTimeout(function(){mostraInstalla("ios")},1200);
+})();
+
 /* ---------- fine seduta: cosa ha segnato l'atleta ---------- */
 function raccolto(){
   const o={};
