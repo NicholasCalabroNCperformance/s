@@ -122,8 +122,12 @@ margin:0 0 16px;font:400 13px/1.5 -apple-system,sans-serif}
 .inst button{background:var(--gold);border:0;color:#fff;border-radius:7px;padding:10px 14px;
 font:700 12px/1 -apple-system,sans-serif;letter-spacing:.06em;cursor:pointer}
 .inst button.no{background:none;border:1px solid #5A5A66;color:#C9C9D0}
-.inst .passi{margin:9px 0 0;padding-left:18px}
-.inst .passi li{margin:3px 0}
+.inst .passi{margin:12px 0 0;padding-left:20px}
+.inst .passi li{margin:7px 0;line-height:1.5}
+.inst .ic{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;
+border:1px solid #6A6A76;border-radius:5px;color:var(--gold2);vertical-align:-6px;margin:0 2px}
+.inst .pic{font-size:11.5px;color:#A8A8B4;line-height:1.45}
+.inst p.pic{margin:11px 0 0}
 .fine{margin:26px 0 6px;padding:16px 15px;background:var(--card);border:1px solid var(--line);
 border-radius:11px}
 .fine .lab{font:700 9.5px/1 -apple-system,sans-serif;letter-spacing:.14em;color:var(--mute);
@@ -410,21 +414,50 @@ let PROMPT=null;
 function giaInstallata(){
   return window.matchMedia("(display-mode: standalone)").matches || navigator.standalone===true;
 }
+const SVGCOND='<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" '+
+  'stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px">'+
+  '<path d="M12 15V3"/><path d="m8 7 4-4 4 4"/>'+
+  '<path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>';
 function mostraInstalla(modo){
   if(giaInstallata()||LETTURA) return;
   try{if(localStorage.getItem("ncp-no-inst")) return}catch(e){}
   const e=document.getElementById("inst"); if(!e) return;
-  let h='<b>Tienila sul telefono.</b> Installa NC Performance: avrai l’icona sulla schermata '+
+  let h='<b>Tienila sul telefono.</b> Avrai l’icona NC Performance sulla schermata '+
     'principale, si apre a tutto schermo e funziona anche senza rete.';
   if(modo==="ios"){
-    h+='<ol class="passi"><li>Schiaccia il tasto <b>Condividi</b> in basso</li>'+
-      '<li>Scorri e scegli <b>Aggiungi a Home</b></li><li>Conferma</li></ol>'+
-      '<div class="riga"><button class="no" onclick="nienteInstalla()">Ho capito</button></div>';
+    h+='<div class="riga"><button onclick="comeInstallare()">Installa l’app</button>'+
+      '<button class="no" onclick="nienteInstalla()">No grazie</button></div>'+
+      '<div id="passi"></div>';
   }else{
     h+='<div class="riga"><button onclick="installa()">Installa</button>'+
       '<button class="no" onclick="nienteInstalla()">No grazie</button></div>';
   }
   e.innerHTML=h; e.style.display="block";
+}
+function comeInstallare(){
+  const p=document.getElementById("passi"); if(!p) return;
+  p.innerHTML='<ol class="passi">'+
+    '<li>Tocca il tasto <b>Condividi</b> di Safari <span class="ic">'+SVGCOND+'</span>, '+
+      'nella barra in fondo allo schermo.<br><span class="pic">Non la vedi? Tocca una volta '+
+      'il fondo dello schermo: la barra ricompare.</span></li>'+
+    '<li>Scorri l’elenco e scegli <b>Aggiungi a Home</b> '+
+      '<span class="pic">(in inglese: Add to Home Screen)</span></li>'+
+    '<li>Conferma in alto a destra</li></ol>'+
+    '<p class="pic">Quel tasto non c’è? Allora non sei dentro Safari: succede quando apri '+
+      'il link da WhatsApp o da un’altra app. Copia il link e incollalo in Safari.</p>'+
+    '<div class="riga"><button onclick="copiaLink(this)">Copia il link</button>'+
+      '<button class="no" onclick="apriSafari()">Apri in Safari</button>'+
+      '<button class="no" onclick="nienteInstalla()">Chiudi</button></div>';
+}
+function copiaLink(b){
+  const u=location.origin+location.pathname;
+  function fatto(){b.textContent="Copiato ✓"; setTimeout(function(){b.textContent="Copia il link"},2500)}
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(u).then(fatto).catch(function(){prompt("Copia il link:",u)});
+  } else { prompt("Copia il link:",u) }
+}
+function apriSafari(){
+  location.href="x-safari-"+location.origin+location.pathname;
 }
 function installa(){
   if(!PROMPT) return;
