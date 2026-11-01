@@ -32,16 +32,16 @@ border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:poin
 @media print{.btns,nav,.wkbar{display:none}body{background:#fff}}
 
 
-.wkbar{position:sticky;top:0;z-index:5;background:var(--paper);padding:9px 14px 10px;margin:0 -14px;
+.wkbar{position:sticky;top:0;z-index:5;background:var(--paper);padding:9px 14px 9px;margin:0 -14px;
 border-bottom:1px solid var(--line)}
-.wkbar .lab{display:block;font:700 9.5px/1 -apple-system,sans-serif;letter-spacing:.15em;
+.wkbar .lab{display:block;font:700 10px/1 -apple-system,sans-serif;letter-spacing:.14em;
 color:var(--mute);text-transform:uppercase;margin-bottom:5px}
-.chips{display:flex;gap:4px;flex-wrap:nowrap}
-.chips button{flex:1 1 0;min-width:0;font:700 13.5px/1 -apple-system,sans-serif;padding:9px 0 10px;
-border-radius:6px;border:1px solid var(--line);background:var(--card);color:var(--mute);cursor:pointer}
-.chips button.all{flex:1.35 1 0;font-size:9.5px;letter-spacing:.1em}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chips button{font:700 15px/1 -apple-system,sans-serif;padding:11px 0;width:44px;flex:0 0 auto;border-radius:9px;
+border:1px solid var(--line);background:var(--card);color:var(--mute);cursor:pointer}
+.chips button.all{width:auto;padding:11px 9px;font-size:10.5px;letter-spacing:.06em}
 .chips button[aria-pressed=true]{background:var(--gold);border-color:var(--gold);color:#fff}
-.row2{margin-top:8px}
+.row2{margin-top:7px}
 .daybar{background:var(--gold);color:#fff;padding:11px 14px;margin:16px -14px 11px;
 font:700 13px/1.25 -apple-system,sans-serif;letter-spacing:.2em;
 display:flex;justify-content:space-between;align-items:center;gap:10px}
