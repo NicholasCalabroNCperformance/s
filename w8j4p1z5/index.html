@@ -1,0 +1,359 @@
+<!doctype html><html lang="it"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Tacche di fatica</title><style>
+:root{--paper:#F1F1F2;--card:#FFF;--alt:#E9E9EB;--band:#DBDBDE;--line:#CFCFD4;
+--gold:#A9863B;--gold2:#C9A961;--ink:#23232A;--mute:#6E6E78}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+--paper:#17171A;--card:#1F1F23;--alt:#232328;--band:#2A2A31;--line:#35353D;
+--gold:#C9A961;--gold2:#A9863B;--ink:#EDEDEF;--mute:#9A9AA4}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);-webkit-text-size-adjust:100%;
+font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.wrap{max-width:980px;margin:0 auto;padding:0 14px 60px}
+header{padding:22px 0 14px;border-bottom:2px solid var(--gold)}
+.mono{font:700 12px/1 Georgia,serif;letter-spacing:.34em;color:var(--gold)}
+h1{font:400 23px/1.25 Georgia,serif;margin:9px 0 3px}
+.sub{color:var(--mute);font-size:13.5px}
+.rif{background:var(--card);border:1px solid var(--line);border-radius:10px;margin:16px 0;padding:13px 15px}
+.rif h2{font:700 11px/1 -apple-system,sans-serif;letter-spacing:.14em;text-transform:uppercase;margin:0 0 10px;color:var(--mute)}
+.rif .r{display:flex;align-items:center;gap:9px;padding:6px 0}
+.rif .r label{flex:1;font-size:14.5px}
+.rif .r .tag{font-size:11.5px;color:var(--mute)}
+input{font:inherit;color:var(--ink);background:var(--paper);border:1px solid var(--line);
+border-radius:7px;padding:7px 9px}
+input[type=number]{width:88px;text-align:right;font-variant-numeric:tabular-nums}
+input:focus{outline:2px solid var(--gold2);outline-offset:1px}
+.note{font-size:13px;color:var(--mute);margin:10px 0 0}
+footer{margin-top:28px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--mute)}
+.btns{display:flex;gap:9px;flex-wrap:wrap;margin:16px 0 0}
+.btns button{font:600 14px/1 -apple-system,sans-serif;padding:10px 15px;border-radius:8px;
+border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+@media print{.btns,nav,.wkbar{display:none}body{background:#fff}}
+
+
+.intro{background:#2A2A31;color:#EDEDEE;border-radius:10px;padding:14px 15px;margin:0 0 20px;
+font:400 13.5px/1.55 -apple-system,sans-serif}
+.intro b{color:var(--gold2)}
+.tag{display:flex;align-items:baseline;gap:9px;margin:26px 0 9px}
+.tag .n{font:700 10px/1 -apple-system,sans-serif;letter-spacing:.16em;color:#fff;
+background:var(--gold);padding:7px 9px;border-radius:5px}
+.tag .t{font:700 12.5px/1.3 -apple-system,sans-serif;letter-spacing:.04em;color:var(--ink)}
+.tag .d{font:400 12px/1.4 -apple-system,sans-serif;color:var(--mute);flex-basis:100%;margin-top:-4px}
+.ex{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--gold);
+border-radius:8px;margin:0 0 12px;overflow:hidden}
+.ex>h3{font:600 15.5px/1.3 Georgia,serif;margin:0;padding:11px 13px 10px;border-bottom:1px solid var(--line)}
+.ex>h3 em{display:block;font:400 12px/1.3 -apple-system,sans-serif;font-style:normal;color:var(--gold);
+font-weight:700;letter-spacing:.03em;margin-top:3px}
+.wk{display:grid;grid-template-columns:1fr;gap:3px 10px;padding:12px 13px}
+.wk .rec{margin-left:auto;display:inline-flex;align-items:baseline;gap:6px;max-width:64%;
+text-align:right;line-height:1.35;background:var(--card);border:1px solid var(--line);
+border-radius:8px;padding:6px 10px;font:700 13.5px/1 -apple-system,sans-serif;color:var(--ink);
+font-variant-numeric:tabular-nums}
+.wk .rec em{font:700 8.5px/1 -apple-system,sans-serif;font-style:normal;letter-spacing:.11em;
+text-transform:uppercase;color:var(--mute)}
+.wk .sch{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.wk .sch .n{display:inline-flex;flex-direction:column;align-items:center;line-height:1}
+.wk .sch .n b{font:600 17px/1.15 -apple-system,sans-serif;font-variant-numeric:tabular-nums}
+.wk .sch .n em{font:700 8.5px/1 -apple-system,sans-serif;font-style:normal;letter-spacing:.11em;
+text-transform:uppercase;color:var(--mute);margin-top:3px}
+.wk .sch .x{font:400 14px/1 -apple-system,sans-serif;color:var(--mute);padding-bottom:12px}
+.wk .car{font:700 17px/1.2 -apple-system,sans-serif;color:var(--gold);margin-top:6px;
+font-variant-numeric:tabular-nums}
+.wk .car .raw{font:400 11px/1.3 -apple-system,sans-serif;color:var(--mute);margin-left:8px}
+.wk .car input{font-size:14.5px;padding:8px 10px;width:100%;max-width:190px;text-align:left}
+.wk .nota{font:400 13.5px/1.45 Georgia,serif;color:#4A4A55;margin-top:7px}
+.fp{margin-top:12px}
+.fp .lb{display:block;font:700 9.5px/1 -apple-system,sans-serif;letter-spacing:.1em;
+color:var(--mute);text-transform:uppercase;margin-bottom:7px}
+.sc{display:grid;grid-template-columns:repeat(10,1fr);gap:3px}
+.sc button{padding:11px 0;border-radius:6px;border:1px solid var(--line);background:var(--card);
+font:700 13px/1 -apple-system,sans-serif;color:var(--mute);cursor:pointer;
+font-variant-numeric:tabular-nums;-webkit-appearance:none;
+transition:background .28s ease,border-color .28s ease,color .28s ease,box-shadow .2s ease}
+.sc button.sel{box-shadow:0 0 0 2px var(--paper),0 0 0 3.5px var(--ink)}
+/* tacca 7: la barra sotto il numero invece del riempimento */
+.sc.barra button{background:var(--card);border-color:var(--line);color:var(--ink);
+position:relative;overflow:hidden;padding-bottom:14px}
+.sc.barra button::after{content:"";position:absolute;left:0;right:0;bottom:0;height:0;
+background:var(--bar,transparent);transition:height .28s ease}
+.sc.barra button.on::after{height:5px}
+.sc.barra button.sel{box-shadow:0 0 0 2px var(--paper),0 0 0 3.5px var(--ink)}
+.ends{display:flex;justify-content:space-between;margin-top:6px;
+font:400 10px/1 -apple-system,sans-serif;color:var(--mute);letter-spacing:.04em}
+.btns{margin-top:28px}
+
+</style></head><body><div class="wrap">
+<header><div class="mono">NC</div><h1>Sette tacche a confronto</h1>
+<div class="sub">Un giorno vero &middot; ogni esercizio ha una scala diversa</div></header>
+<div class="intro">Schiaccia un numero su ogni scala e guarda come si accende: si colora una casella
+alla volta, dall'1 fino a quello che hai scelto. Le prime <b>cinque</b> seguono quello che mi hai detto,
+le ultime <b>due</b> sono mie. Dimmi il numero della tacca che ti convince.</div>
+<div id="out"></div>
+<div class="btns">
+<button onclick="if(confirm('Azzerare tutte le tacche?')){try{localStorage.clear()}catch(e){};location.reload()}">Azzera</button></div>
+<footer>Pagina di prova &middot; non &egrave; una scheda</footer></div>
+<script>const BLOCCHI=[{"id": "A", "b": {"t": "SQUAT HIGH BAR — fondamentale (onda di carico)", "rows": [{"s": "S1", "f": "Est", "se": "5", "rp": "6-4-4-4-6", "pc": "60%", "ca": "120 kg", "rpe": "", "vel": "", "ok": "", "n": "Scaletta 6-4-4-4-6 tutta a 120 kg. Prima settimana: prendi il ritmo, nessuna serie al limite.", "ap": "", "rec": "2'-3'"}, {"s": "S2", "f": "Est", "se": "5", "rp": "5-3-3-3-5", "pc": "70%", "ca": "140 kg", "rpe": "", "vel": "", "ok": "", "n": "Scaletta più corta e carico più alto: 5-3-3-3-5 a 140.", "ap": "", "rec": "2'-3'"}, {"s": "S3", "f": "Est", "se": "5", "rp": "6-3-3-3-6", "pc": "65%", "ca": "130 kg", "rpe": "", "vel": "", "ok": "", "n": "Tornano i colpi alti a carico intermedio: 6-3-3-3-6 a 130.", "ap": "", "rec": "2'-3'"}, {"s": "S4", "f": "Est", "se": "5", "rp": "5-2-2-2-5", "pc": "75%", "ca": "150 kg", "rpe": "", "vel": "", "ok": "", "n": "Settimana più pesante: 5-2-2-2-5 a 150. Le doppie centrali devono restare veloci.", "ap": "", "rec": "2'-3'"}, {"s": "S5", "f": "Est", "se": "4", "rp": "6-2-2-6", "pc": "70%", "ca": "140 kg", "rpe": "", "vel": "", "ok": "", "n": "Chiusura del blocco: 6-2-2-6 a 140.", "ap": "", "rec": "2'-3'"}], "lift": "sq", "nome": "SQUAT HIGH BAR", "ruolo": "fondamentale (onda di carico)"}}, {"id": "A", "b": {"t": "PANCA PRESA STRETTA — variante (mignoli sull'81)", "rows": [{"s": "S1", "f": "Est", "se": "7", "rp": "2", "pc": "70%", "ca": "87,5 kg", "rpe": "", "vel": "", "ok": "", "n": "7 serie da 2 a 87,5. Mignoli sull'anello dell'81.", "ap": "", "rec": "2'-3'"}, {"s": "S2", "f": "Est", "se": "7", "rp": "3", "pc": "70%", "ca": "87,5 kg", "rpe": "X", "vel": "", "ok": "", "n": "Stesso carico, un colpo in più: 7 serie da 3.", "ap": "", "rec": "2'-3'"}, {"s": "S3", "f": "Est", "se": "7", "rp": "4", "pc": "70%", "ca": "87,5 kg", "rpe": "", "vel": "", "ok": "", "n": "Stesso carico, 7 serie da 4.", "ap": "", "rec": "2'-3'"}, {"s": "S4", "f": "Est", "se": "7", "rp": "5", "pc": "70%", "ca": "87,5 kg", "rpe": "", "vel": "", "ok": "", "n": "Stesso carico, 7 serie da 5: è la settimana più lunga.", "ap": "", "rec": "2'-3'"}, {"s": "S5", "f": "Est", "se": "6", "rp": "6", "pc": "70%", "ca": "87,5 kg", "rpe": "", "vel": "", "ok": "", "n": "6 serie da 6 a 87,5. Recuperi pieni: la presa stretta chiede tricipiti.", "ap": "", "rec": "2'-3'"}], "lift": "bp", "nome": "PANCA PRESA STRETTA", "ruolo": "variante (mignoli sull'81)"}}, {"id": "A", "b": {"t": "STACCO — variante (fermo 3\" all'incastro)", "rows": [{"s": "S1", "f": "Est", "se": "4", "rp": "2", "pc": "60%", "ca": "125 kg", "rpe": "", "vel": "", "ok": "", "n": "4 serie da 2 a 125. Fermo pieno 3\" all'incastro, poi chiudi.", "ap": "", "rec": "2'-3'"}, {"s": "S2", "f": "Est", "se": "4", "rp": "2", "pc": "60%", "ca": "125 kg", "rpe": "", "vel": "", "ok": "", "n": "Ripetuta: 4 serie da 2 a 125.", "ap": "", "rec": "2'-3'"}, {"s": "S3", "f": "Est", "se": "4", "rp": "2", "pc": "65%", "ca": "137,5 kg", "rpe": "", "vel": "", "ok": "", "n": "Si sale di carico: 4 serie da 2 a 137,5, fermo sempre 3\".", "ap": "", "rec": "2'-3'"}, {"s": "S4", "f": "Est", "se": "4", "rp": "2", "pc": "65%", "ca": "137,5 kg", "rpe": "", "vel": "", "ok": "", "n": "Ripetuta: 4 serie da 2 a 137,5.", "ap": "", "rec": "2'-3'"}, {"s": "S5", "f": "Est", "se": "4", "rp": "3", "pc": "60%", "ca": "125 kg", "rpe": "", "vel": "", "ok": "", "n": "Scende il carico e sale un colpo: 4 serie da 3 a 125.", "ap": "", "rec": "2'-3'"}], "lift": "dl", "nome": "STACCO", "ruolo": "variante (fermo 3\" all'incastro)"}}, {"id": "A", "b": {"t": "PLANK ZAVORRATO — core anti-estensione", "rows": [{"s": "S1", "f": "Est", "se": "4", "rp": "60s", "pc": "—", "ca": "Corpo libero", "rpe": "", "vel": "", "ok": "", "n": "1 minuto pieno × 4 serie, zavorra sulla schiena. Se non arrivi al minuto, togli peso.", "ap": "", "rec": "60\"-90\""}, {"s": "S2", "f": "Est", "se": "4", "rp": "60s", "pc": "—", "ca": "zavorra a scelta", "rpe": "", "vel": "", "ok": "", "n": "1 minuto pieno × 4 serie, zavorra sulla schiena. Se non arrivi al minuto, togli peso.", "ap": "", "rec": "60\"-90\""}, {"s": "S3", "f": "Est", "se": "4", "rp": "60s", "pc": "—", "ca": "zavorra a scelta", "rpe": "", "vel": "", "ok": "", "n": "1 minuto pieno × 4 serie, zavorra sulla schiena. Se non arrivi al minuto, togli peso.", "ap": "", "rec": "60\"-90\""}, {"s": "S4", "f": "Est", "se": "4", "rp": "60s", "pc": "—", "ca": "zavorra a scelta", "rpe": "", "vel": "", "ok": "", "n": "1 minuto pieno × 4 serie, zavorra sulla schiena. Se non arrivi al minuto, togli peso.", "ap": "", "rec": "60\"-90\""}, {"s": "S5", "f": "Est", "se": "4", "rp": "60s", "pc": "—", "ca": "zavorra a scelta", "rpe": "", "vel": "", "ok": "", "n": "1 minuto pieno × 4 serie, zavorra sulla schiena. Se non arrivi al minuto, togli peso.", "ap": "", "rec": "60\"-90\""}], "lift": "", "nome": "PLANK ZAVORRATO", "ruolo": "core anti-estensione"}}, {"id": "A", "b": {"t": "SUPERSET BRACCIA — bicipiti + pesante", "rows": [{"s": "S1", "f": "Est", "se": "3", "rp": "12 + 12", "pc": "—", "ca": "a scelta, costante", "rpe": "", "vel": "", "ok": "", "n": "A scelta: curl + push down, oppure french da terra + curl. 12+12 di fila, 3 giri.", "ap": "", "rec": "nessuno dentro il giro · 90\"-2' tra i giri"}, {"s": "S2", "f": "Est", "se": "3", "rp": "12 + 12", "pc": "—", "ca": "a scelta, costante", "rpe": "", "vel": "", "ok": "", "n": "A scelta: curl + push down, oppure french da terra + curl. 12+12 di fila, 3 giri.", "ap": "", "rec": "nessuno dentro il giro · 90\"-2' tra i giri"}, {"s": "S3", "f": "Est", "se": "3", "rp": "12 + 12", "pc": "—", "ca": "a scelta, costante", "rpe": "", "vel": "", "ok": "", "n": "A scelta: curl + push down, oppure french da terra + curl. 12+12 di fila, 3 giri.", "ap": "", "rec": "nessuno dentro il giro · 90\"-2' tra i giri"}, {"s": "S4", "f": "Est", "se": "3", "rp": "12 + 12", "pc": "—", "ca": "a scelta, costante", "rpe": "", "vel": "", "ok": "", "n": "A scelta: curl + push down, oppure french da terra + curl. 12+12 di fila, 3 giri.", "ap": "", "rec": "nessuno dentro il giro · 90\"-2' tra i giri"}, {"s": "S5", "f": "Est", "se": "3", "rp": "12 + 12", "pc": "—", "ca": "a scelta, costante", "rpe": "", "vel": "", "ok": "", "n": "A scelta: curl + push down, oppure french da terra + curl. 12+12 di fila, 3 giri.", "ap": "", "rec": "nessuno dentro il giro · 90\"-2' tra i giri"}], "lift": "", "nome": "SUPERSET BRACCIA", "ruolo": "bicipiti + pesante"}}, {"id": "B", "b": {"t": "PANCA PARALIMPICA — variante (gambe alzate dall'unrack)", "rows": [{"s": "S1", "f": "Est", "se": "5-6", "rp": "2-3", "pc": "56-64%", "ca": "70-80 kg", "rpe": "", "vel": "80kg x3", "ok": "", "n": "Gambe già sollevate PRIMA di staccare il bilanciere, non dopo. 5-6 serie da 2-3 colpi con 70-80 kg.", "ap": "", "rec": "2'-3'"}, {"s": "S2", "f": "Est", "se": "5-6", "rp": "2-3", "pc": "56-64%", "ca": "70-80 kg", "rpe": "", "vel": "", "ok": "", "n": "Gambe già sollevate PRIMA di staccare il bilanciere, non dopo. 5-6 serie da 2-3 colpi con 70-80 kg.", "ap": "", "rec": "2'-3'"}, {"s": "S3", "f": "Est", "se": "5-6", "rp": "2-3", "pc": "56-64%", "ca": "70-80 kg", "rpe": "", "vel": "", "ok": "", "n": "Gambe già sollevate PRIMA di staccare il bilanciere, non dopo. 5-6 serie da 2-3 colpi con 70-80 kg.", "ap": "", "rec": "2'-3'"}, {"s": "S4", "f": "Est", "se": "5-6", "rp": "2-3", "pc": "56-64%", "ca": "70-80 kg", "rpe": "", "vel": "", "ok": "", "n": "Gambe già sollevate PRIMA di staccare il bilanciere, non dopo. 5-6 serie da 2-3 colpi con 70-80 kg.", "ap": "", "rec": "2'-3'"}, {"s": "S5", "f": "Est", "se": "5-6", "rp": "2-3", "pc": "56-64%", "ca": "70-80 kg", "rpe": "", "vel": "", "ok": "", "n": "Gambe già sollevate PRIMA di staccare il bilanciere, non dopo. 5-6 serie da 2-3 colpi con 70-80 kg.", "ap": "", "rec": "2'-3'"}], "lift": "bp", "nome": "PANCA PARALIMPICA", "ruolo": "variante (gambe alzate dall'unrack)"}}, {"id": "B", "b": {"t": "LEG CURL SDRAIATO — femorali", "rows": [{"s": "S1", "f": "Est", "se": "4", "rp": "12", "pc": "—", "ca": "0kg", "rpe": "", "vel": "", "ok": "", "n": "12 colpi × 4 serie.", "ap": "", "rec": "2'"}, {"s": "S2", "f": "Est", "se": "4", "rp": "12", "pc": "—", "ca": "0kg", "rpe": "", "vel": "", "ok": "", "n": "12 colpi × 4 serie.", "ap": "", "rec": "2'"}, {"s": "S3", "f": "Est", "se": "4", "rp": "12", "pc": "—", "ca": "a scelta, costante", "rpe": "", "vel": "", "ok": "", "n": "12 colpi × 4 serie.", "ap": "", "rec": "2'"}, {"s": "S4", "f": "Est", "se": "4", "rp": "12", "pc": "—", "ca": "a scelta, costante", "rpe": "", "vel": "", "ok": "", "n": "12 colpi × 4 serie.", "ap": "", "rec": "2'"}, {"s": "S5", "f": "Est", "se": "4", "rp": "12", "pc": "—", "ca": "a scelta, costante", "rpe": "", "vel": "", "ok": "", "n": "12 colpi × 4 serie.", "ap": "", "rec": "2'"}], "lift": "", "nome": "LEG CURL SDRAIATO", "ruolo": "femorali"}}];const LS="nicho-tacche";
+
+let state={};try{state=JSON.parse(localStorage.getItem(LS)||"{}")}catch(e){}
+function nserie(r){if(!r)return 0;const m=String(r.se).match(/\d+/g);return m?parseInt(m[m.length-1]):0}
+function save(){try{localStorage.setItem(LS,JSON.stringify(state))}catch(e){}}
+function esc(s){return String(s==null?"":s).replace(/"/g,"&quot;")}
+const REFS=[{id:"sq",lab:"Squat",def:"200",tag:"stima",step:2.5,g:"Massimali del coach",anc:"del massimale"},
+            {id:"bp",lab:"Panca",def:"125",tag:"testato lug 2026",step:2.5,g:"Massimali del coach",anc:"del massimale"},
+            {id:"dl",lab:"Stacco",def:"210",tag:"stima",step:2.5,g:"Massimali del coach",anc:"del massimale"},
+            {id:"t1",test:"8RM",lab:"Lat machine",def:"",tag:"test 8RM in S1",step:5,g:"Test di settimana 1",anc:"dell\'8RM"},
+            {id:"t2",test:"8RM",lab:"Chest press",def:"",tag:"test 8RM in S1",step:5,g:"Test di settimana 1",anc:"dell\'8RM"},
+            {id:"t3",test:"8RM",lab:"Leg press",def:"",tag:"test 8RM in S1",step:5,g:"Test di settimana 1",anc:"dell\'8RM"}];
+function stepOf(id){const r=REFS.find(x=>x.id===id);return r?r.step:2.5}
+function ancOf(id){const r=REFS.find(x=>x.id===id);return r&&r.anc?' '+r.anc:''}
+function num(v){v=String(v==null?"":v).replace(",",".").trim();
+  const x=parseFloat(v);return isFinite(x)?x:NaN}
+function ref(id){const v=num(state["ref_"+id]);return isFinite(v)&&v>0?v:null}
+function q(x,st){st=st||2.5;return Math.ceil(x/st-0.5)*st}
+function f(x){return (Math.round(x*100)/100).toString().replace(".",",")}
+function pcts(s){ // estrae i numeri % da una cella
+  const m=String(s).match(/\d+(?:[.,]\d+)?(?=\s*[-–]\s*\d|\s*%)/g);
+  return m?m.map(x=>parseFloat(x.replace(",","."))):[];
+}
+function partsOf(r){
+  const se=String(r.se||"").split("/").map(x=>x.trim());
+  if(se.length<2) return null;
+  const rp=String(r.rp||"").split("/").map(x=>x.trim());
+  const pc=String(r.pc||"").split("/").map(x=>x.trim());
+  return se.map((x,i)=>({se:x, rp:(rp[i]!==undefined?rp[i]:rp[0]), pc:(pc[i]!==undefined?pc[i]:"")}));
+}
+function schema(r){
+  const rp=String(r.rp||"").trim();
+  const lab=/^\d+\s*s$/i.test(rp)?"tenuta":(rp==="—"?"":"colpi");
+  return '<span class="n"><b>'+r.se+'</b><em>serie</em></span>'+
+         (lab?'<span class="x">×</span><span class="n"><b>'+rp+'</b><em>'+lab+'</em></span>':'');
+}
+function caricoParte(p,b,k,i){
+  const pc=String(p.pc||"").trim(), st=b.lift?stepOf(b.lift):2.5, tk="top_"+k;
+  if(/^test$/i.test(pc)) return '<span class="wait">trova il peso</span>';
+  if(/^RPE/i.test(pc)&&!/%/.test(pc)){
+    return '<span class="at">'+pc.replace(/^RPE\s*/i,"@")+'</span>'+
+      ' <input type="text" inputmode="decimal" data-k="'+tk+'" data-pct="" data-st="'+st+
+      '" value="'+esc(state[tk]||"")+'" placeholder="kg">';
+  }
+  if(/del top/i.test(pc)){
+    const a=pcts(pc), pct=a.length?a[a.length-1]:null;
+    return topSpan(tk,pct,st)+'<span class="raw">'+pc+'</span>';
+  }
+  const R=b.lift?ref(b.lift):null, a=pcts(pc);
+  if(R&&a.length){
+    const isRange=/\d\s*[-–]\s*\d/.test(pc);
+    const vals=isRange?rangeVals(R,a,st):[f(q(R*a[0]/100,st))];
+    return vals.join("–")+' kg<span class="raw">'+pc+ancOf(b.lift)+'</span>';
+  }
+  if(a.length&&b.lift) return '<span class="wait">dopo il test</span><span class="raw">'+pc+ancOf(b.lift)+'</span>';
+  if(pc) return '<span class="wait">'+pc+'</span>';
+  return '';
+}
+function rangeVals(R,a,st){
+  const lo=R*a[0]/100, hi=R*a[a.length-1]/100;
+  if(st>=5 && Math.ceil(lo/st)*st > hi) return [f(Math.floor(lo/st)*st), f(Math.ceil(hi/st)*st)];
+  return [f(Math.round(lo*2)/2), f(Math.round(hi*2)/2)];
+}
+function topSpan(tk,pct,st){
+  return '<span class="topout" data-tk="'+tk+'" data-pct="'+(pct||"")+'" data-st="'+st+'">'+
+         topOut(tk,pct,st)+'</span>';
+}
+function repaintTops(){
+  document.querySelectorAll(".topout").forEach(function(e){
+    e.innerHTML=topOut(e.dataset.tk,parseFloat(e.dataset.pct)||null,parseFloat(e.dataset.st)||2.5)});
+}
+function topOut(tk,pct,st){const tv=num(state[tk]);
+  return (isFinite(tv)&&tv>0&&pct)?'<b>'+f(q(tv*pct/100,st))+' kg</b>':'<span class="wait">dopo il top</span>';}
+function carico(r,b,k,raw){
+  if(raw===undefined)raw=true;
+  const pc=String(r.pc||"").trim(), orig=String(r.ca||"").trim();
+  if(/^test$/i.test(pc)) return '<span class="wait">trova il peso</span>';
+  // back-off su un top trovato in seduta
+  if(/del top/i.test(pc)){
+    const p=pcts(pc), pct=p.length?p[p.length-1]:null;
+    const tk="top_"+k, st=b.lift?stepOf(b.lift):2.5;
+    return '<input type="text" inputmode="decimal" data-k="'+tk+'" data-pct="'+(pct||"")+
+           '" data-st="'+st+'" value="'+esc(state[tk]||"")+'" placeholder="top"> '+
+           '<span class="raw">'+topSpan(tk,pct,st)+' &middot; '+pc+'</span>';
+  }
+  const R=b.lift?ref(b.lift):null, p=pcts(pc), st=b.lift?stepOf(b.lift):2.5;
+  if(R&&p.length){
+    const isRange=/\d\s*[-–]\s*\d/.test(pc);
+    const vals=isRange?rangeVals(R,p,st):p.map(x=>f(q(R*x/100,st)));
+    const sep=isRange?"–":" / ";
+    return vals.join(sep)+' kg'+(raw?'<span class="raw">'+pc+ancOf(b.lift)+'</span>':'');
+  }
+  if(p.length&&b.lift&&!R) return '<span class="wait">dopo il test</span>'+
+    (raw?'<span class="raw">'+pc+ancOf(b.lift)+'</span>':'');
+  // niente %: cella libera, precompilata con quello che c'era in scheda
+  const v=state["ca_"+k]!==undefined?state["ca_"+k]:orig;
+  return '<input class="free" type="text" data-k="ca_'+k+'" value="'+esc(v)+'" placeholder="scrivi il peso">';
+}
+function refOf(id){return REFS.find(function(x){return x.id===id})||null}
+function testWeek(b){
+  for(let i=0;i<b.rows.length;i++){const r=b.rows[i];
+    if(/test/i.test(String(r.f||""))||/test/i.test(String(r.n||""))) return i+1}
+  return 1;
+}
+function testBox(b){
+  const R0=b.lift?refOf(b.lift):null;
+  if(!R0||!R0.test) return "";
+  const gia=state["ref_"+R0.id];
+  if(sel&&sel!==testWeek(b)&&gia) return "";
+  const k="ref_"+R0.id, v=state[k]===undefined?"":state[k];
+  return '<div class="tbx"><span class="lb">Il tuo '+R0.test+'</span>'+
+    '<input type="text" inputmode="decimal" data-k="'+k+'" value="'+esc(v)+'" placeholder="—">'+
+    '<span class="u">kg</span>'+
+    '<span class="hint">da questo numero escono tutti i carichi di '+b.nome.toLowerCase()+
+      ' delle 5 settimane</span>'+
+    '<details class="how"'+(v?'':' open')+'><summary>Come si trova il '+R0.test+'</summary><p>'+
+    howTo(R0)+'</p></details></div>';
+}
+function howTo(R0){
+  const n=(String(R0.test).match(/\d+/)||[""])[0];
+  const art=(n==="8"||n==="11"||n==="18")?"gli":"i";
+  return '<b>Devi trovare il massimo peso con cui riesci a fare '+n+' colpi.</b> '+
+   'Parti da un peso leggero e fai '+n+' colpi. Aumenta il peso un po’ alla volta, '+
+   'sempre serie da '+n+', fino a quando arrivi al peso che riesci ancora a completare pulito. '+
+   'Se sali e '+art+' '+n+' colpi non li chiudi, il tuo '+R0.test+' è il peso di prima. '+
+   'Di norma ci arrivi in 3-5 serie.';
+}
+const FHUE=[188,166,140,104,72,48,32,18,8,0];
+const FLIG=[44,43,41,42,45,46,46,42,37,29];
+function fcol(n){return "hsl("+FHUE[n-1]+" 68% "+FLIG[n-1]+"%)"}
+function paintFp(box,v){
+  for(let i=0;i<box.children.length;i++){
+    const b=box.children[i], n=i+1;
+    if(v&&n<=v){b.style.background=fcol(n);b.style.borderColor=fcol(n);b.style.color="#fff";
+      b.className=(n===v)?"on sel":"on"}
+    else {b.style.background="";b.style.borderColor="";b.style.color="";b.className=""}
+  }
+}
+function setFp(k,n,el){
+  const key="fp_"+k;
+  state[key]=(String(state[key])===String(n))?"":n; save();
+  paintFp(el.parentNode, parseInt(state[key])||0);
+}
+function feedback(k,r){
+  let sc='';
+  for(let n=1;n<=10;n++) sc+='<button type="button" data-fp="'+k+'" data-n="'+n+'">'+n+'</button>';
+  return '<div class="fp"><span class="lb">Fatica percepita</span>'+
+    '<div class="sc" data-k="sc_'+k+'">'+sc+'</div>'+
+    '<div class="ends"><span>leggera</span><span>massima</span></div></div>'+
+    '<div class="app"><span>Note</span><input type="text" data-k="ap_'+k+
+    '" value="'+esc(state["ap_"+k]!==undefined?state["ap_"+k]:(r.ap||""))+
+    '" placeholder="se non le hai chiuse, come ti sei sentito"></div>';
+}
+function bind(){
+  document.querySelectorAll("[data-k]").forEach(i=>{
+    if(i.dataset.bound)return; i.dataset.bound=1;
+    i.addEventListener("input",e=>{const k=e.target.dataset.k;
+      state[k]=e.target.value;save();
+      if(/^top_/.test(k)) repaintTops();
+      else if(/^ref_/.test(k)) (typeof paint==="function"?paint:draw)();});
+  });
+  document.querySelectorAll(".sc").forEach(function(box){
+    const kk=box.dataset.k.slice(3);
+    paintFp(box, parseInt(state["fp_"+kk])||0)});
+  document.querySelectorAll("[data-fp]").forEach(b=>{
+    if(b.dataset.bound)return; b.dataset.bound=1;
+    b.addEventListener("click",e=>{const t=e.currentTarget;
+      setFp(t.dataset.fp,parseInt(t.dataset.n),t)});
+  });
+}
+
+
+/* ---------- le sette tacche ---------- */
+function hsl(h,s,l){h=((Math.round(h)%360)+360)%360;return "hsl("+h+" "+Math.round(s)+"% "+Math.round(l)+"%)"}
+function ramp(a,b){const o=[];for(let i=0;i<10;i++){const t=i/9;
+  o.push([a[0]+(b[0]-a[0])*t, a[1]+(b[1]-a[1])*t, a[2]+(b[2]-a[2])*t])}return o}
+function mix(a,b,c){ // tre tappe
+  const o=[];for(let i=0;i<10;i++){const t=i/9;
+    o.push(t<.5 ? [a[0]+(b[0]-a[0])*t*2, a[1]+(b[1]-a[1])*t*2, a[2]+(b[2]-a[2])*t*2]
+                : [b[0]+(c[0]-b[0])*(t-.5)*2, b[1]+(c[1]-b[1])*(t-.5)*2, b[2]+(c[2]-b[2])*(t-.5)*2])}
+  return o}
+
+const TACCHE=[
+ {id:"oro",   nome:"Oro in scala",        desc:"un colore solo, quello della scheda, che si scurisce",
+  hsl:ramp([44,20,74],[26,54,27])},
+ {id:"terre", nome:"Terre",               desc:"salvia, ocra, terracotta, vino — tinte spente",
+  hsl:mix([148,14,56],[40,30,56],[6,38,36])},
+ {id:"smorz", nome:"Verde-rosso smorzato",desc:"gli stessi colori di ieri, metà saturazione",
+  hsl:mix([165,24,52],[44,30,53],[2,38,40])},
+ {id:"brace", nome:"Grigio e brace",      desc:"dall'1 al 5 solo grigio: il colore arriva quando conta",
+  hsl:mix([35,4,76],[32,8,56],[6,40,36])},
+ {id:"inch",  nome:"Inchiostro",          desc:"nessun colore, solo buio che cresce",
+  hsl:ramp([228,5,78],[228,16,22])},
+ {id:"bord",  nome:"Oro e bordeaux",      desc:"libera — parte dall'oro del marchio e finisce nel vino",
+  hsl:ramp([44,38,62],[-12,34,30])},
+ {id:"barra", nome:"Carta e brace",       desc:"libera — la casella resta carta, si accende la barra sotto",
+  hsl:ramp([44,46,50],[6,48,40]), barra:true},
+];
+function colOf(T,n){const c=T.hsl[n-1];return hsl(c[0],c[1],c[2])}
+function inkOf(T,n){return T.hsl[n-1][2]<56?"#fff":"#23232A"}
+
+let TMRS={};
+function paintFp(box,v,anim){
+  const T=TACCHE.find(x=>x.id===box.dataset.t), kids=box.children;
+  if(TMRS[box.dataset.k]) TMRS[box.dataset.k].forEach(clearTimeout);
+  TMRS[box.dataset.k]=[];
+  function set(i){
+    const b=kids[i], n=i+1;
+    if(T.barra){b.style.setProperty("--bar",colOf(T,n));b.className=(n===v)?"on sel":"on"}
+    else{b.style.background=colOf(T,n);b.style.borderColor=colOf(T,n);b.style.color=inkOf(T,n);
+         b.className=(n===v)?"sel":""}
+  }
+  function clr(i){const b=kids[i];
+    b.style.background="";b.style.borderColor="";b.style.color="";
+    b.style.removeProperty("--bar");b.className=""}
+  for(let i=v;i<10;i++) clr(i);
+  for(let i=0;i<v;i++){
+    if(anim) TMRS[box.dataset.k].push(setTimeout(function(){set(i)}, i*55));
+    else set(i);
+  }
+}
+function setFp(k,n,el){
+  const key="fp_"+k, box=el.parentNode;
+  state[key]=(String(state[key])===String(n))?"":n; save();
+  paintFp(box, parseInt(state[key])||0, true);
+}
+function scala(k,T){
+  let sc='';
+  for(let n=1;n<=10;n++) sc+='<button type="button" data-fp="'+k+'" data-n="'+n+'">'+n+'</button>';
+  return '<div class="fp"><span class="lb">Fatica percepita</span>'+
+    '<div class="sc'+(T.barra?' barra':'')+'" data-k="'+k+'" data-t="'+T.id+'">'+sc+'</div>'+
+    '<div class="ends"><span>leggera</span><span>massima</span></div></div>';
+}
+
+REFS.forEach(function(x){if(state["ref_"+x.id]===undefined&&x.def)state["ref_"+x.id]=x.def});
+save();
+
+/* ---------- disegno ---------- */
+function draw(){
+  let h='';
+  BLOCCHI.forEach(function(x,i){
+    const b=x.b, T=TACCHE[i], r=b.rows[0], k="t"+i;
+    h+='<div class="tag"><span class="n">TACCA '+(i+1)+'</span><span class="t">'+T.nome+'</span>'+
+       '<span class="d">'+T.desc+'</span></div>';
+    h+='<div class="ex"><h3>'+b.nome+(b.ruolo?'<em>'+b.ruolo+'</em>':'')+'</h3>';
+    const pz=partsOf(r);
+    const pill=r.rec?'<span class="rec"><em>Rec</em>'+r.rec+'</span>':'';
+    h+='<div class="wk"><div class="sch">'+schema(r)+pill+'</div>'+
+       '<div class="car">'+carico(r,b,k)+'</div>'+
+       (r.n?'<div class="nota">'+r.n+'</div>':'')+
+       scala(k,T)+'</div></div>';
+  });
+  document.getElementById("out").innerHTML=h;
+  document.querySelectorAll(".sc").forEach(function(box){
+    paintFp(box, parseInt(state["fp_"+box.dataset.k])||0, false)});
+  document.querySelectorAll("[data-fp]").forEach(function(b){
+    if(b.dataset.bound)return; b.dataset.bound=1;
+    b.addEventListener("click",function(e){const t=e.currentTarget;
+      setFp(t.dataset.fp, parseInt(t.dataset.n), t)})});
+  bind();
+}
+draw();
+
+</script></body></html>
