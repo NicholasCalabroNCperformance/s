@@ -153,8 +153,8 @@ function esc(s){return String(s==null?"":s).replace(/"/g,"&quot;")}
 function num(v){v=String(v==null?"":v).replace(",",".").trim();
   const x=parseFloat(v);return isFinite(x)?x:NaN}
 function f(x){return (Math.round(x*100)/100).toString().replace(".",",")}
-const STEP=2.5;
-function q(x){return Math.ceil(x/STEP-0.5)*STEP}   // a metà esatta si scende
+function kg(x){ /* nessun arrotondamento: il peso e' quello che esce dalla percentuale */
+  return f(Math.round(x*10)/10)+' kg'}
 
 /* ---------- che riferimenti vuole un esercizio ---------- */
 function testDi(b){
@@ -185,19 +185,19 @@ function risolvi(t,bk,b){
       return f(T)+' kg <span style="font-size:14px;font-weight:400">+ 1 gradino</span>'+
              '<span class="raw">'+t+'</span>';
     const v=T*sconto(t);
-    return f(q(v))+' kg<span class="raw">'+t+'</span>';
+    return kg(v)+'<span class="raw">'+t+'</span>';
   }
   if(/peso di lavoro/i.test(t)){
     if(!isFinite(W)||W<=0) return '<span class="wait">scrivi il peso di lavoro</span><span class="raw">'+t+'</span>';
-    return f(q(W*sconto(t)))+' kg<span class="raw">'+t+'</span>';
+    return kg(W*sconto(t))+'<span class="raw">'+t+'</span>';
   }
   const m=t.match(/(\d+(?:[.,]\d+)?)(?:\s*[-–]\s*(\d+(?:[.,]\d+)?))?\s*%\s*del test/i);
   if(m){
     if(!isFinite(T)||T<=0) return '<span class="wait">dopo il test</span><span class="raw">'+t+'</span>';
     const a=parseFloat(m[1].replace(",",".")), bb=m[2]?parseFloat(m[2].replace(",",".")):null;
-    const val = bb? (f(Math.round(T*a/100*2)/2)+'–'+f(Math.round(T*bb/100*2)/2))
-                  : f(q(T*a/100));
-    return val+' kg<span class="raw">'+t+'</span>';
+    const val = bb? (f(Math.round(T*a/100*10)/10)+'\u2013'+kg(T*bb/100))
+                  : kg(T*a/100);
+    return val+'<span class="raw">'+t+'</span>';
   }
   return '<span class="wait">'+t+'</span>';
 }
@@ -218,6 +218,12 @@ function pezzi(r){
     rp:(rp[i]!==undefined?rp[i]:rp[0]),
     ca:(cav[i]!==undefined?cav[i]:cav[0])});
   return out;
+}
+function notaCoach(t){
+  return String(t||"")
+    .replace(/\b(in|negli|nella|su(?:gli)?)\s+appunti\b/gi,"nelle note")
+    .replace(/\bcolonna\s+appunti\b/gi,"note")
+    .replace(/\bappunti\b/g,"note");
 }
 function etich(rp){rp=String(rp||"").trim();
   if(/^\d+\s*s$/i.test(rp)) return "tenuta";
@@ -404,7 +410,7 @@ function draw(){
              '<div class="car" data-car="'+bk+'_'+ri+'">'+risolvi(pz[0].ca,bk,b)+'</div>';
         }
         if(r.es) h+='<div class="esec">'+r.es+'</div>';
-        if(r.n) h+='<div class="nota">'+r.n+'</div>';
+        if(r.n) h+='<div class="nota">'+notaCoach(r.n)+'</div>';
         h+=feedback(k,r)+'</div>';
       });
       h+='</div>';
