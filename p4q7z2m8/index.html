@@ -177,6 +177,7 @@ border:1px solid var(--gold);background:var(--card);border-radius:7px;font-varia
 .wk .libera{font:400 13px/1.3 -apple-system,sans-serif;color:var(--mute)}
 .wk .car .raw{display:block}
 .wk .freccia{font:400 15px/1 -apple-system,sans-serif;color:var(--mute)}
+.wk .tst{font:700 13px/1 -apple-system,sans-serif;letter-spacing:.08em;color:var(--gold)}
 /* EMOM */
 .wk .emom{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:10px;
 padding:10px 12px;border:1px solid var(--line);border-radius:9px;background:var(--card)}
@@ -336,8 +337,12 @@ function daTest(t,T){
 function risolvi(t,bk,b,k,i){
   t=String(t||"").trim(); k=k||""; i=i||0;
   if(!t||t==="—") return "";
-  if(t==="__TEST__") return '<span class="wait">trova il peso</span>';
   const T=rifT(bk); let m;
+  if(t==="__TEST__"){
+    /* la serie del test: scritto TEST 10RM, e appena il test e' compilato anche il peso */
+    const rm=testDi(b)||"";
+    return '<span class="tst">TEST '+rm+'</span>'+((isFinite(T)&&T>0)?' <span class="freccia">=</span> '+kg(T):'');
+  }
   /* peso del test, 5RM -15%, -20% da solo */
   if(/peso del test/i.test(t)) return daTest(t,T);
   if(/^\d+\s*RM\s*[−\-]\s*\d+\s*%/i.test(t)) return daTest(t,T);
@@ -458,7 +463,8 @@ function rpeDi(t){const m=String(t||"").match(/(?:RPE|@)\s*(\d+(?:[.,]5)?)/i);re
 function fasciaTop(p,k,r){
   const rpe=rpeDi(p.ca), colpi=String(p.rp||"").replace(/\D/g,"")||"pochi";
   const canna=rpe!==null?Math.max(0,Math.round(10-rpe)):null;
-  const lab=rpe!==null?'Il tuo top @'+f(rpe):'Il tuo top';
+  const nc=colpi==="pochi"?"":(colpi==="1"?" 1 colpo":" "+colpi+" colpi");
+  const lab='Il tuo top'+nc+(rpe!==null?' @'+f(rpe):'');
   const kk="RK_"+k+"_0", v=state[kk]||"";
   const how='<b>Devi trovare il peso con cui fai '+colpi+' colpi'+(canna!==null?' lasciandone '+canna+' in canna':'')+'.</b> '+
     'Parti da un peso leggero e fai '+colpi+' colpi. Aumenta il peso un po\u2019 alla volta, sempre serie da '+colpi+'. '+
