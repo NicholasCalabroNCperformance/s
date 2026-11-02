@@ -1187,8 +1187,10 @@ const SVGCOND='<svg viewBox="0 0 24 24" width="15" height="15" fill="none" strok
   'stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px">'+
   '<path d="M12 15V3"/><path d="m8 7 4-4 4 4"/>'+
   '<path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>';
+function isAndroid(){return /android/i.test(navigator.userAgent)}
 function inAppBrowser(){
   const u=navigator.userAgent;
+  if(isAndroid()) return /; wv\)|FB_IAB|FBAN|FBAV|Instagram|Line\//i.test(u);
   return /FBAN|FBAV|Instagram|Line\/|MicroMessenger|GSA\/|CriOS|FxiOS/i.test(u) ||
     (/iphone|ipad|ipod/i.test(u) && !/Safari\//.test(u));
 }
@@ -1227,6 +1229,15 @@ function comeInstallare(){
   const p=document.getElementById("passi"); if(!p) return;
   if(p.innerHTML){p.innerHTML="";return}
   let h='<ol class="passi">';
+  if(isAndroid()){
+    h+='<li><b>Apri questa pagina in Chrome.</b> Da WhatsApp o da un\u2019altra app l\u2019installazione non c\u2019\u00e8.'+
+      '<div class="riga"><button onclick="apriChrome()">Apri in Chrome</button>'+
+      '<button class="no" onclick="copiaLink(this)">Copia il link</button></div></li>'+
+      '<li>In Chrome tocca i <b>tre puntini</b> in alto a destra</li>'+
+      '<li>Scegli <b>Installa app</b> <span class="pic">(oppure \u00abAggiungi a schermata Home\u00bb)</span></li>'+
+      '<li>Conferma</li></ol>';
+    p.innerHTML=h; return;
+  }
   if(inAppBrowser()){
     h+='<li><b>Prima apri questa pagina in Safari.</b> Da WhatsApp e dalle altre app '+
       'l’installazione non esiste: serve Safari.<br>'+
@@ -1251,6 +1262,9 @@ function copiaLink(b){
   if(navigator.clipboard&&navigator.clipboard.writeText){
     navigator.clipboard.writeText(u).then(fatto).catch(function(){prompt("Copia il link:",u)});
   } else { prompt("Copia il link:",u) }
+}
+function apriChrome(){
+  location.href="intent://"+location.host+location.pathname+"#Intent;scheme=https;package=com.android.chrome;end";
 }
 function apriSafari(){
   location.href="x-safari-"+location.origin+location.pathname;
