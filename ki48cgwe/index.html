@@ -1,0 +1,1278 @@
+<!doctype html><html lang="it"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="NC Performance">
+<meta property="og:title" content="Mesociclo 2 — ricomposizione">
+<meta property="og:description" content="La tua scheda di allenamento · NC Performance">
+<meta property="og:image" content="https://nicholascalabroncperformance.github.io/s/ki48cgwe/icona-512.png">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
+<meta name="twitter:card" content="summary">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#23232A">
+<link rel="apple-touch-icon" href="icona-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="NC Performance">
+<meta name="mobile-web-app-capable" content="yes">
+<title>Mesociclo 2 — ricomposizione</title><style>
+:root{--paper:#F1F1F2;--card:#FFF;--alt:#E9E9EB;--band:#DBDBDE;--line:#CFCFD4;
+--gold:#A9863B;--gold2:#C9A961;--ink:#23232A;--mute:#6E6E78}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+--paper:#17171A;--card:#1F1F23;--alt:#232328;--band:#2A2A31;--line:#35353D;
+--gold:#C9A961;--gold2:#A9863B;--ink:#EDEDEF;--mute:#9A9AA4}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);-webkit-text-size-adjust:100%;
+font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.wrap{max-width:980px;margin:0 auto;padding:0 14px 60px}
+header{padding:22px 0 14px;border-bottom:2px solid var(--gold)}
+.mono{font:700 12px/1 Georgia,serif;letter-spacing:.34em;color:var(--gold)}
+h1{font:400 23px/1.25 Georgia,serif;margin:9px 0 3px}
+.sub{color:var(--mute);font-size:13.5px}
+.rif{background:var(--card);border:1px solid var(--line);border-radius:10px;margin:16px 0;padding:13px 15px}
+.rif h2{font:700 11px/1 -apple-system,sans-serif;letter-spacing:.14em;text-transform:uppercase;margin:0 0 10px;color:var(--mute)}
+.rif .r{display:flex;align-items:center;gap:9px;padding:6px 0}
+.rif .r label{flex:1;font-size:14.5px}
+.rif .r .tag{font-size:11.5px;color:var(--mute)}
+input{font:inherit;color:var(--ink);background:var(--paper);border:1px solid var(--line);
+border-radius:7px;padding:7px 9px}
+input[type=number]{width:88px;text-align:right;font-variant-numeric:tabular-nums}
+input:focus{outline:2px solid var(--gold2);outline-offset:1px}
+.note{font-size:13px;color:var(--mute);margin:10px 0 0}
+footer{margin-top:28px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--mute)}
+.btns{display:flex;gap:9px;flex-wrap:wrap;margin:16px 0 0}
+.btns button{font:600 14px/1 -apple-system,sans-serif;padding:10px 15px;border-radius:8px;
+border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+@media print{.btns,nav,.wkbar{display:none}body{background:#fff}}
+
+.wkbar{position:sticky;top:0;z-index:5;background:var(--paper);padding:10px 14px 9px;margin:0 -14px;
+border-bottom:1px solid var(--line)}
+.wkbar .lab{display:block;font:700 9.5px/1 -apple-system,sans-serif;letter-spacing:.14em;
+color:var(--mute);text-transform:uppercase;margin-bottom:7px}
+.chips{display:flex;gap:5px;flex-wrap:wrap}
+.chips button{font:700 13.5px/1 -apple-system,sans-serif;padding:10px 0;width:45px;border-radius:8px;
+border:1px solid var(--line);background:var(--card);color:var(--mute);cursor:pointer}
+.chips button.all{width:auto;padding:10px 9px;font-size:10.5px;letter-spacing:.06em}
+.chips button[aria-pressed=true]{background:var(--gold);border-color:var(--gold);color:#fff}
+.daybar{background:var(--gold);color:#fff;padding:11px 14px;margin:16px -14px 11px;
+font:700 13px/1.25 -apple-system,sans-serif;letter-spacing:.2em;
+display:flex;justify-content:space-between;align-items:center;gap:10px}
+.daybar span{font:400 11px/1.3 -apple-system,sans-serif;letter-spacing:.04em;opacity:.9;
+text-align:right;flex:0 0 auto}
+.daybar:first-of-type{margin-top:10px}
+.row2{margin-top:8px}
+.daybar{background:var(--gold);color:#fff;padding:11px 14px;margin:16px -14px 11px;
+font:700 13px/1.25 -apple-system,sans-serif;letter-spacing:.2em;
+display:flex;justify-content:space-between;align-items:center;gap:10px}
+.daybar span{font:400 11px/1.3 -apple-system,sans-serif;letter-spacing:.04em;opacity:.9;
+text-align:right;flex:0 0 auto}
+.daybar:first-of-type{margin-top:10px}
+.wsep{font:700 10px/1 -apple-system,sans-serif;letter-spacing:.16em;color:var(--mute);
+text-transform:uppercase;margin:16px 0 7px}
+
+.ex{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--gold);
+border-radius:8px;margin:0 0 12px;overflow:hidden}
+.ex>h3{font:600 15.5px/1.3 Georgia,serif;margin:0;padding:11px 13px 10px;border-bottom:1px solid var(--line)}
+.ex>h3 em{display:block;font:400 12px/1.3 -apple-system,sans-serif;font-style:normal;color:var(--gold);
+font-weight:700;letter-spacing:.03em;margin-top:3px}
+.ex .tbx{display:flex;align-items:center;gap:9px;flex-wrap:wrap;padding:11px 13px;
+background:#FBF7EF;border-bottom:1px solid var(--line)}
+.ex .tbx+.tbx{border-top:0}
+.ex .tbx .lb{font:700 10px/1.2 -apple-system,sans-serif;letter-spacing:.11em;
+text-transform:uppercase;color:var(--gold)}
+.ex .tbx input{width:96px;font:700 19px/1 -apple-system,sans-serif;padding:8px 10px;
+text-align:right;font-variant-numeric:tabular-nums;border:1px solid var(--gold);background:var(--card)}
+.ex .tbx .u{font:700 13px/1 -apple-system,sans-serif;color:var(--mute);margin-left:-3px}
+.ex .tbx .hint{display:none;flex-basis:100%;font:400 11.5px/1.4 -apple-system,sans-serif;color:var(--mute)}
+.ex .tbx input:placeholder-shown ~ .hint{display:block}
+.ex .tbx .how{flex-basis:100%;margin-top:2px}
+.ex .tbx .how summary{font:700 9.5px/1 -apple-system,sans-serif;letter-spacing:.1em;
+text-transform:uppercase;color:var(--gold);cursor:pointer;padding:4px 0;list-style:none}
+.ex .tbx .how summary::-webkit-details-marker{display:none}
+.ex .tbx .how summary::after{content:" ▾"}
+.ex .tbx .how[open] summary::after{content:" ▴"}
+.ex .tbx .how p{margin:4px 0 2px;font:400 12.5px/1.5 Georgia,serif;color:#4A4A55}
+
+.wk{padding:11px 13px;border-bottom:1px solid var(--line)}
+.wk:last-child{border-bottom:0}
+.wk:nth-child(even){background:var(--alt)}
+.wk .s{font:700 11px/1 -apple-system,sans-serif;letter-spacing:.12em;color:var(--mute);
+text-transform:uppercase;margin-bottom:7px}
+.wk .sch{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.wk .sch .n{display:inline-flex;flex-direction:column;align-items:center;line-height:1}
+.wk .sch .n b{font:600 17px/1.15 -apple-system,sans-serif;font-variant-numeric:tabular-nums}
+.wk .sch .n em{font:700 8.5px/1 -apple-system,sans-serif;font-style:normal;letter-spacing:.11em;
+text-transform:uppercase;color:var(--mute);margin-top:3px}
+.wk .sch .x{font:400 14px/1 -apple-system,sans-serif;color:var(--mute);padding-bottom:12px}
+.wk .rec{margin-left:auto;display:inline-flex;align-items:baseline;gap:6px;max-width:62%;
+text-align:right;line-height:1.35;background:var(--card);border:1px solid var(--line);
+border-radius:8px;padding:6px 10px;font:700 13.5px/1 -apple-system,sans-serif;color:var(--ink);
+font-variant-numeric:tabular-nums}
+.wk .rec em{font:700 8.5px/1 -apple-system,sans-serif;font-style:normal;letter-spacing:.11em;
+text-transform:uppercase;color:var(--mute)}
+.wk .recw{display:flex;justify-content:flex-end;margin-bottom:3px}
+.wk .recw .rec{margin-left:0}
+.wk .car{font:700 19px/1.2 -apple-system,sans-serif;color:var(--gold);margin-top:7px;
+font-variant-numeric:tabular-nums}
+.wk .car .raw{display:block;font:400 11.5px/1.35 -apple-system,sans-serif;color:var(--mute);margin-top:3px}
+.wk .car .wait{font:600 14px/1.3 -apple-system,sans-serif;color:var(--mute)}
+.wk .car input.free{width:100%;max-width:190px;font:400 14.5px/1.3 -apple-system,sans-serif;
+padding:8px 10px;text-align:left}
+.wk .parte{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:9px 0 10px}
+.wk .parte:first-child{padding-top:2px}
+.wk .parte .sch{flex:0 0 auto}
+.wk .parte .car{margin-top:0;text-align:right;font-size:17px}
+.wk .parte .car .raw{text-align:right}
+.wk .poi{font:400 11px/1 -apple-system,sans-serif;color:var(--mute);letter-spacing:.1em;
+text-transform:uppercase;border-top:1px dashed var(--line);padding-top:9px}
+.wk .esec{font:400 12.5px/1.35 -apple-system,sans-serif;color:var(--ink);margin-top:7px;
+background:var(--card);border:1px solid var(--line);border-radius:7px;padding:6px 9px;display:inline-block}
+.wk .nota{font:400 13.5px/1.45 Georgia,serif;color:#4A4A55;margin-top:8px}
+.fp{margin-top:12px}
+.fp .lb{display:block;font:700 9.5px/1 -apple-system,sans-serif;letter-spacing:.1em;
+color:var(--mute);text-transform:uppercase;margin-bottom:7px}
+.sc{display:grid;grid-template-columns:repeat(10,1fr);gap:3px}
+.sc button{padding:11px 0;border-radius:6px;border:1px solid var(--line);background:var(--card);
+font:700 13px/1 -apple-system,sans-serif;color:var(--mute);cursor:pointer;
+font-variant-numeric:tabular-nums;-webkit-appearance:none;
+transition:background .3s ease,border-color .3s ease,color .3s ease,box-shadow .2s ease}
+.sc button.sel{box-shadow:0 0 0 2px var(--alt),0 0 0 3.5px var(--ink)}
+.ends{display:flex;justify-content:space-between;margin-top:6px;
+font:400 10px/1 -apple-system,sans-serif;color:var(--mute);letter-spacing:.04em}
+.app{margin-top:10px}
+.app span{display:block;font:700 9.5px/1 -apple-system,sans-serif;letter-spacing:.1em;
+color:var(--mute);text-transform:uppercase;margin-bottom:4px}
+.app input{width:100%;font-size:14px;padding:8px 9px}
+.manda{display:block;width:100%;margin:22px 0 4px;padding:15px 0;border-radius:10px;
+border:0;background:var(--gold);color:#fff;cursor:pointer;
+font:700 14px/1 -apple-system,sans-serif;letter-spacing:.06em}
+.manda.vuoto{background:var(--line);color:#8A8A92}
+.mandanota{font:400 11.5px/1.45 -apple-system,sans-serif;color:var(--mute);margin:8px 0 0;text-align:center}
+
+/* onde, giri, ramping, MAX */
+.wk .gl{display:flex;justify-content:space-between;align-items:center;gap:14px}
+.wk .gl .car{margin-top:0;text-align:right;font-size:17px}
+.wk .gl .car .raw{text-align:right}
+.wk .gn{display:block;font:700 10px/1.2 -apple-system,sans-serif;letter-spacing:.1em;text-transform:uppercase;
+color:var(--gold);margin:0 0 4px}
+.wk .giro,.wk .ramp{border:1px solid var(--line);border-radius:9px;background:var(--card);padding:10px 12px 4px;margin-top:4px}
+.wk .gt{font:700 11px/1.2 -apple-system,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);
+margin-bottom:8px;padding-bottom:8px;border-bottom:1px dashed var(--line)}
+.wk .gt b{font-size:15px;color:var(--gold)}
+.wk .gt em{font:400 11px/1.2 -apple-system,sans-serif;font-style:normal;letter-spacing:0;text-transform:none;color:var(--mute);margin-left:6px}
+.wk .gp{padding:7px 0 9px}
+.wk .gp+.gp{border-top:1px dashed var(--line)}
+.wk .parte .gn{margin-top:2px}
+.wk .fatte{display:flex;align-items:center;gap:9px;padding:9px 0 8px;border-top:1px dashed var(--line);margin-top:4px}
+.wk .fatte span{font:700 9.5px/1 -apple-system,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+.wk input.mini{font:700 15px/1 -apple-system,sans-serif;padding:7px 8px;text-align:right;width:64px;
+border:1px solid var(--gold);background:var(--card);border-radius:7px;font-variant-numeric:tabular-nums}
+.wk .mx{display:inline-flex;flex-direction:column;align-items:center;margin-left:8px;line-height:1}
+.wk .car .usato{margin-left:0;align-items:flex-start}
+.wk .gl .car .usato{align-items:flex-end}
+.wk .car .usato input::placeholder{color:var(--mute);font-weight:600}
+.wk .mx em{font:700 8.5px/1 -apple-system,sans-serif;font-style:normal;letter-spacing:.11em;text-transform:uppercase;color:var(--mute);margin-top:3px}
+.wk .at{font:700 17px/1.2 -apple-system,sans-serif;color:var(--gold)}
+.wk .lieve{font:400 13px/1 -apple-system,sans-serif;color:var(--mute)}
+.wk .libera{font:400 13px/1.3 -apple-system,sans-serif;color:var(--mute)}
+.wk .car .raw{display:block}
+.wk .freccia{font:400 15px/1 -apple-system,sans-serif;color:var(--mute)}
+.wk .tst{font:700 13px/1 -apple-system,sans-serif;letter-spacing:.08em;color:var(--gold)}
+/* EMOM */
+.wk .emom{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:10px;
+padding:10px 12px;border:1px solid var(--line);border-radius:9px;background:var(--card)}
+.wk .emom .ed{display:flex;align-items:baseline;gap:8px;font-variant-numeric:tabular-nums}
+.wk .emom .ed b{font:700 26px/1 -apple-system,sans-serif;color:var(--ink)}
+.wk .emom .ed b small{font-size:14px;color:var(--mute);font-weight:600}
+.wk .emom .ed em{font:700 9px/1.2 -apple-system,sans-serif;font-style:normal;letter-spacing:.11em;
+text-transform:uppercase;color:var(--mute)}
+.wk .emom .ed .es{font:700 20px/1 -apple-system,sans-serif;color:var(--gold);margin-left:4px}
+.wk .emom .eb{flex:0 0 auto;border:0;border-radius:8px;background:var(--gold);color:#fff;
+padding:11px 14px;font:700 12px/1 -apple-system,sans-serif;letter-spacing:.06em;cursor:pointer}
+.wk .emom .eb.on{background:var(--ink)}
+/* fascia del top dentro la riga del ramping */
+.wk .parte>.gl{flex:1}
+.wk .tbx.dentro{margin:-11px -13px 10px;border-radius:0}
+.wk:first-of-type .tbx.dentro{margin-top:-11px}
+/* EMOM: avviso volume e lampo a tutto schermo */
+.wk .emom{flex-wrap:wrap}
+.wk .emom .evol{flex-basis:100%;font:400 11px/1.4 -apple-system,sans-serif;color:var(--mute)}
+#lampo{position:fixed;inset:0;background:#C9A961;opacity:0;pointer-events:none;z-index:99;transition:opacity .08s}
+#lampo.on{opacity:.55}
+/* settimane: una riga sola che scorre di lato, anche con 10-16 settimane */
+#chips{flex-wrap:nowrap;overflow-x:auto;position:relative;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+#chips::-webkit-scrollbar{display:none}
+#chips button{flex:0 0 auto}
+/* la settimana scorsa, peso del giorno, code contate dal top (2026-11-01) */
+.wk .scorsa{margin:2px 0 10px;padding:8px 11px;border-left:3px solid var(--gold);background:var(--card);border-radius:0 8px 8px 0;
+font:400 13px/1.45 -apple-system,sans-serif;color:var(--ink)}
+.wk .scorsa .sl{display:block;font:700 9.5px/1.2 -apple-system,sans-serif;letter-spacing:.11em;text-transform:uppercase;color:var(--gold);margin-bottom:3px}
+.wk .oggi{font:700 17px/1.2 -apple-system,sans-serif;color:var(--ink)}
+.wk .pdiv{display:block;margin-top:6px;font:400 11.5px/1.3 -apple-system,sans-serif;color:var(--mute)}
+.wk .pdiv input.mini{width:58px;font-size:13px;padding:4px 6px;border-color:var(--line)}
+/* contaserie */
+.wk .cs{margin-top:12px}
+.wk .cs .csh{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
+.wk .cs .lb{font:700 9.5px/1 -apple-system,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.wk .cs.fin .lb{color:var(--gold)}
+.wk .csr{display:inline-flex;align-items:baseline;gap:7px;border:1px solid var(--line);border-radius:999px;
+background:var(--card);padding:6px 11px 5px}
+.wk .csr em{font:700 9px/1 -apple-system,sans-serif;font-style:normal;letter-spacing:.11em;text-transform:uppercase;color:var(--mute)}
+.wk .csr b{font:700 16px/1 -apple-system,sans-serif;color:var(--gold);font-variant-numeric:tabular-nums;min-width:38px;text-align:right}
+.wk .csr.vuoto b{color:var(--line)}
+/* metodo 1: pallini */
+.wk .cs-pallini .dots{display:flex;gap:8px;flex-wrap:wrap}
+.wk .cs-pallini .dots button{width:38px;min-height:38px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);
+color:var(--mute);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:4px 0;cursor:pointer}
+.wk .cs-pallini .dots button b{font:700 13px/1 -apple-system,sans-serif}
+.wk .cs-pallini .dots button em{font:600 9.5px/1 -apple-system,sans-serif;font-style:normal;opacity:.8}
+.wk .cs-pallini .dots button.next{border-color:var(--gold);color:var(--gold)}
+.wk .cs-pallini .dots button.on{background:var(--gold);border-color:var(--gold);color:#fff}
+/* metodo 2: tasto unico */
+.wk .cs-tasto .big{width:100%;display:flex;align-items:center;justify-content:space-between;padding:13px 16px;
+border:1.5px solid var(--gold);border-radius:10px;background:var(--card);cursor:pointer}
+.wk .cs-tasto .big .t{font:700 12px/1 -apple-system,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.wk .cs-tasto .big .c{font:600 15px/1 -apple-system,sans-serif;color:var(--mute);font-variant-numeric:tabular-nums}
+.wk .cs-tasto .big .c b{font-size:24px;color:var(--ink)}
+.wk .cs-tasto .big:active{transform:scale(.985)}
+.wk .cs-tasto .big.batti{animation:batti .6s ease-out}
+.wk .cs-tasto .big.batti .c b{display:inline-block;animation:salta .45s ease-out}
+@keyframes batti{0%{background:var(--gold)}100%{background:var(--card)}}
+@keyframes salta{0%{transform:scale(1.35)}100%{transform:scale(1)}}
+.wk .cs-tasto.fin .big.batti{animation:none}
+@media (prefers-reduced-motion:reduce){.wk .cs-tasto .big.batti,.wk .cs-tasto .big.batti .c b{animation:none}}
+.wk .cs-tasto.fin .big{background:var(--gold);cursor:default}
+.wk .cs-tasto.fin .big .t,.wk .cs-tasto.fin .big .c,.wk .cs-tasto.fin .big .c b{color:#fff}
+.wk .cs-tasto .csb{display:flex;align-items:center;justify-content:space-between;margin-top:9px}
+.wk .cs-tasto .und{border:0;background:none;font:400 12px/1 -apple-system,sans-serif;color:var(--mute);text-decoration:underline;
+text-underline-offset:3px;cursor:pointer;padding:6px 0}
+/* metodo 3: righe */
+.wk .cs-righe .sr{width:100%;display:flex;align-items:center;gap:12px;padding:10px 2px;border:0;border-top:1px dashed var(--line);
+background:none;cursor:pointer;text-align:left}
+.wk .cs-righe .sr:last-child{border-bottom:1px dashed var(--line)}
+.wk .cs-righe .o{font:700 11px/1 -apple-system,sans-serif;color:var(--mute);width:24px}
+.wk .cs-righe .rp{font:700 15px/1 -apple-system,sans-serif;color:var(--ink);flex:1}
+.wk .cs-righe .rt{display:flex;justify-content:flex-end}
+.wk .cs-righe .rt .csr{padding:4px 9px 3px}.wk .cs-righe .rt .csr b{font-size:14px}
+.wk .cs-righe .ck{width:24px;height:24px;border-radius:999px;border:1.5px solid var(--line);flex:0 0 auto;position:relative}
+.wk .cs-righe .sr.next .ck{border-color:var(--gold)}
+.wk .cs-righe .sr.on .ck{background:var(--gold);border-color:var(--gold)}
+.wk .cs-righe .sr.on .ck::after{content:"";position:absolute;left:7px;top:3px;width:6px;height:11px;border:solid #fff;
+border-width:0 2px 2px 0;transform:rotate(45deg)}
+.wk .cs-righe .sr.on .rp{color:var(--mute);font-weight:600}
+/* record: complimenti e coriandoli */
+#festa{position:fixed;left:50%;top:calc(env(safe-area-inset-top,0px) + 12px);transform:translate(-50%,-140%);z-index:100;
+width:min(92vw,420px);background:#23232A;color:#EDEDEE;border:1px solid #C9A961;border-radius:12px;padding:13px 16px 12px;
+box-shadow:0 10px 30px rgba(0,0,0,.25);display:flex;flex-direction:column;gap:4px;transition:transform .35s cubic-bezier(.2,.9,.3,1.2)}
+#festa.on{transform:translate(-50%,0)}
+#festa b{font:700 11px/1 -apple-system,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#C9A961}
+#festa span{font:400 15px/1.35 Georgia,serif}
+#coriandoli{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:99}
+/* massimali del coach (programmi in % del 1RM) */
+#rif .mass{margin:12px 0 4px;padding:11px 13px 10px;border:1px solid var(--line);border-radius:10px;background:var(--card)}
+#rif .mt{font:700 10px/1 -apple-system,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:9px}
+#rif .mr{display:flex;gap:10px}
+#rif label{flex:1;display:flex;flex-direction:column;gap:4px;min-width:0}
+#rif label span{font:700 10px/1 -apple-system,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--ink)}
+#rif label input{font:700 17px/1 -apple-system,sans-serif;padding:8px 9px;border:1px solid var(--gold);border-radius:8px;
+background:var(--paper);color:var(--ink);width:100%;font-variant-numeric:tabular-nums}
+#rif label em{font:400 10.5px/1.2 -apple-system,sans-serif;font-style:normal;color:var(--mute)}
+#rif .mh{font:400 11.5px/1.4 -apple-system,sans-serif;color:var(--mute);margin-top:9px}
+/* etichetta dei programmi di prova */
+.caso{font:700 9.5px/1 -apple-system,sans-serif;letter-spacing:.12em;text-transform:uppercase;
+color:var(--mute);margin:14px 0 6px;padding-left:2px}
+.caso::before{content:"caso \00b7  ";color:var(--gold)}
+
+.inst{display:none;background:#23232A;color:#EDEDEE;border-radius:10px;padding:13px 15px;
+margin:0 0 16px;font:400 13px/1.5 -apple-system,sans-serif}
+.inst b{color:var(--gold2)}
+.inst .riga{display:flex;gap:9px;align-items:center;margin-top:10px;flex-wrap:wrap}
+.inst button{background:var(--gold);border:0;color:#fff;border-radius:7px;padding:10px 14px;
+font:700 12px/1 -apple-system,sans-serif;letter-spacing:.06em;cursor:pointer}
+.inst button.no{background:none;border:1px solid #5A5A66;color:#C9C9D0}
+.inst .passi{margin:12px 0 0;padding-left:20px}
+.inst .passi li{margin:7px 0;line-height:1.5}
+.inst .ic{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;
+border:1px solid #6A6A76;border-radius:5px;color:var(--gold2);vertical-align:-6px;margin:0 2px}
+.inst .pic{font-size:11.5px;color:#A8A8B4;line-height:1.45}
+.inst p.pic{margin:11px 0 0}
+.inst.mini{padding:0;background:none;margin:0 0 12px}
+.inst.mini .riapri{width:100%;background:#2A2A31;border:0;color:#C9C9D0;border-radius:9px;
+padding:11px 12px;font:700 11.5px/1 -apple-system,sans-serif;letter-spacing:.06em;cursor:pointer;
+text-align:left;display:flex;align-items:center;gap:7px}
+.inst.mini .riapri svg{color:var(--gold2)}
+
+</style></head><body><div class="wrap">
+<header><div class="mono">NC</div><h1>Mesociclo 2 — ricomposizione</h1>
+<div class="sub">10 settimane · Giorno A e Giorno B</div></header>
+<div class="inst" id="inst"></div>
+<div id="rif"></div>
+<div class="wkbar"><div class="lab">Settimana</div><div class="chips" id="chips"></div>
+<div class="lab row2">Giorno</div><div class="chips" id="dchips"></div></div>
+<div id="out"></div>
+<div class="btns"><button onclick="window.print()">Stampa / salva in PDF</button></div>
+<footer>Quello che scrivi resta salvato su questo telefono.</footer></div>
+<script>const GIORNI=[{"id": "A", "head": "GIORNO A", "blocks": [{"t": "AFFONDO POSTERIORE CON MANUBRI — accosciata, il giorno del peso · colpi totali, alternati", "nome": "AFFONDO POSTERIORE CON MANUBRI", "ruolo": "accosciata, il giorno del peso · colpi totali, alternati", "lift": "", "rows": [{"s": "S1", "f": "Test", "se": "4", "rp": "8", "rec": "2'", "ca": "14 kg per manubrio", "es": "", "n": "Otto colpi totali, gambe alternate (4 per gamba), con 14 kg e ginocchiera. Recupero pieno. Da qui si aggiungono due colpi alla volta, uno per gamba: il peso sale solo quando arrivi a 12.", "ap": ""}, {"s": "S2", "f": "Accumulo", "se": "4", "rp": "10", "rec": "2'", "ca": "14 kg per manubrio", "es": "", "n": "Due colpi in più, uno per gamba.", "ap": ""}, {"s": "S3", "f": "Accumulo", "se": "4", "rp": "10", "rec": "2'", "ca": "14 kg per manubrio", "es": "", "n": "Stesso lavoro: rendilo pulito.", "ap": ""}, {"s": "S4", "f": "Accumulo", "se": "4", "rp": "12", "rec": "2'", "ca": "14 kg per manubrio", "es": "", "n": "Due colpi in più. Chiuse tutte e quattro da 12? La prossima il manubrio sale.", "ap": ""}, {"s": "S5", "f": "Accumulo", "se": "4", "rp": "8", "rec": "2'", "ca": "16 kg per manubrio", "es": "", "n": "Sali di un gradino (16 kg) e i colpi tornano a 8 totali.", "ap": ""}, {"s": "S6", "f": "Accumulo", "se": "4", "rp": "10", "rec": "2'", "ca": "16 kg per manubrio", "es": "", "n": "Due colpi in più, uno per gamba.", "ap": ""}, {"s": "S7", "f": "Accumulo", "se": "4", "rp": "10", "rec": "2'", "ca": "16 kg per manubrio", "es": "", "n": "Stesso lavoro: rendilo pulito.", "ap": ""}, {"s": "S8", "f": "Accumulo", "se": "4", "rp": "12", "rec": "2'", "ca": "16 kg per manubrio", "es": "", "n": "Due colpi in più: la settimana più carica del ciclo.", "ap": ""}, {"s": "S9", "f": "Richiamo", "se": "2", "rp": "8", "rec": "2'", "ca": "16 kg per manubrio", "es": "", "n": "Richiamo: due serie da 8 colpi totali.", "ap": ""}, {"s": "S10", "f": "Misura", "se": "1 / 2", "rp": "MAX / 8", "rec": "2'", "ca": "16 kg per manubrio", "es": "", "n": "Prima serie: quanti colpi totali puliti fai con 16 kg, gambe alternate; ti fermi quando il colpo rallenta. Segnali nella casella: è la misura del ciclo. Poi 2 serie da 8 colpi totali.", "ap": ""}], "colpilab": "colpi totali"}, {"t": "PUSH UP SU RIALZO — spinta orizzontale", "nome": "PUSH UP SU RIALZO", "ruolo": "spinta orizzontale", "lift": "", "rows": [{"s": "S1", "f": "Test", "se": "1 / 2", "rp": "8 / 5", "rec": "2'", "ca": "TEST 8RM, poi altezza del test", "es": "Discesa 3\" sulle 2 serie", "n": "Scendi di un gradino alla volta fino all'altezza con cui fai 8 colpi puliti: è la tua altezza del test. Scrivila nella casella del test: vale fino alla settimana 9. Poi 2 serie da 5 con la discesa in 3 secondi. Se il gomito dà fastidio, risali di un'altezza per quel giorno e dimmelo.", "ap": ""}, {"s": "S2", "f": "Accumulo", "se": "3", "rp": "5", "rec": "2'", "ca": "altezza del test", "es": "Discesa 3\"", "n": "Tre serie da 5, discesa in 3 secondi. L'altezza resta questa: cresce il lavoro.", "ap": ""}, {"s": "S3", "f": "Accumulo", "se": "4", "rp": "5", "rec": "2'", "ca": "altezza del test", "es": "Discesa 3\"", "n": "Una serie in più.", "ap": ""}, {"s": "S4", "f": "Accumulo", "se": "3", "rp": "6", "rec": "2'", "ca": "altezza del test", "es": "Discesa 3\"", "n": "Una serie in meno, un colpo in più.", "ap": ""}, {"s": "S5", "f": "Accumulo", "se": "4", "rp": "6", "rec": "2'", "ca": "altezza del test", "es": "Discesa 3\"", "n": "Una serie in più.", "ap": ""}, {"s": "S6", "f": "Accumulo", "se": "3", "rp": "7", "rec": "2'", "ca": "altezza del test", "es": "Discesa 3\"", "n": "Una serie in meno, un colpo in più.", "ap": ""}, {"s": "S7", "f": "Accumulo", "se": "4", "rp": "7", "rec": "2'", "ca": "altezza del test", "es": "Discesa 3\"", "n": "Una serie in più.", "ap": ""}, {"s": "S8", "f": "Accumulo", "se": "4", "rp": "8", "rec": "2'", "ca": "altezza del test", "es": "Discesa 3\"", "n": "Quattro serie da 8 all'altezza del test, discesa in 3 secondi: la settimana più dura del ciclo.", "ap": ""}, {"s": "S9", "f": "Richiamo", "se": "3", "rp": "5", "rec": "2'", "ca": "altezza del test", "es": "Ritmo normale", "n": "Settimana di richiamo: tre serie da 5 senza discesa lenta.", "ap": ""}, {"s": "S10", "f": "Misura", "se": "1 / 2", "rp": "8 / 5", "rec": "2'", "ca": "NUOVO TEST 8RM, poi altezza del nuovo", "es": "Discesa 3\" sulle 2 serie", "n": "Come in settimana 1: trova l'altezza con cui fai 8 colpi puliti. Scrivila nella casella del test: è il punto di partenza del prossimo programma. Poi 2 serie da 5 con la discesa in 3 secondi.", "ap": ""}], "unita": "altezza", "rifSempre": true, "testlab": "La tua altezza del test", "hint": "l'altezza dell'appoggio con cui fai 8 colpi: resta questa per tutto il programma. Se ti serve abbassarla, cambiala qui.", "howlab": "Come si trova l'altezza", "how": "<b>Devi trovare l'appoggio più basso con cui fai 8 colpi puliti.</b> Parti da un'altezza comoda e fai 8 colpi. Scendi di un gradino alla volta, sempre serie da 8, finché trovi l'altezza più bassa che chiudi ancora pulita. Scrivi qui il numero dell'altezza."}, {"t": "STACCO RUMENO SU CHIAPPA CON MANUBRI — estensione d'anca, il giorno del volume", "nome": "STACCO RUMENO SU CHIAPPA CON MANUBRI", "ruolo": "estensione d'anca, il giorno del volume", "lift": "", "rows": [{"s": "S1", "f": "Test", "se": "4", "rp": "10", "rec": "90\"", "ca": "12 kg per manubrio", "es": "Discesa 3\"", "n": "[FELPA] Felpa addosso prima di iniziare, sempre. Quattro serie da 10 con la discesa in 3 secondi: il peso è quello basso che tieni per la schiena, qui conta quanto lavoro fai. Ti fermi dove la schiena resta piatta.", "ap": ""}, {"s": "S2", "f": "Accumulo", "se": "5", "rp": "10", "rec": "90\"", "ca": "12 kg per manubrio", "es": "Discesa 3\"", "n": "[FELPA] Una serie in più.", "ap": ""}, {"s": "S3", "f": "Accumulo", "se": "4", "rp": "12", "rec": "90\"", "ca": "12 kg per manubrio", "es": "Discesa 3\"", "n": "[FELPA] Una serie in meno, due colpi in più.", "ap": ""}, {"s": "S4", "f": "Accumulo", "se": "5", "rp": "12", "rec": "90\"", "ca": "12 kg per manubrio", "es": "Discesa 3\"", "n": "[FELPA] Una serie in più.", "ap": ""}, {"s": "S5", "f": "Accumulo", "se": "5", "rp": "12", "rec": "90\"", "ca": "12 kg per manubrio", "es": "Discesa 3\"", "n": "[FELPA] Stesso lavoro: rendilo pulito.", "ap": ""}, {"s": "S6", "f": "Accumulo", "se": "6", "rp": "12", "rec": "90\"", "ca": "12 kg per manubrio", "es": "Discesa 3\"", "n": "[FELPA] Una serie in più.", "ap": ""}, {"s": "S7", "f": "Accumulo", "se": "5", "rp": "14", "rec": "90\"", "ca": "12 kg per manubrio", "es": "Discesa 3\"", "n": "[FELPA] Una serie in meno, due colpi in più.", "ap": ""}, {"s": "S8", "f": "Accumulo", "se": "6", "rp": "14", "rec": "90\"", "ca": "12 kg per manubrio", "es": "Discesa 3\"", "n": "[FELPA] Sei serie da 14 con la discesa in 3 secondi: la settimana più lunga del ciclo.", "ap": ""}, {"s": "S9", "f": "Richiamo", "se": "3", "rp": "10", "rec": "90\"", "ca": "12 kg per manubrio", "es": "Ritmo normale", "n": "[FELPA] Richiamo: tre serie da 10 senza discesa lenta.", "ap": ""}, {"s": "S10", "f": "Misura", "se": "4", "rp": "10", "rec": "90\"", "ca": "14 kg per manubrio", "es": "Ritmo normale", "n": "[FELPA] Prova a 14 kg senza discesa lenta, solo se la schiena è a posto: è il peso con cui riparte il prossimo programma. Se non lo è, resta a 12 e dimmelo.", "ap": ""}]}, {"t": "LAT MACHINE — tirata verticale, mai più di otto colpi", "nome": "LAT MACHINE", "ruolo": "tirata verticale, mai più di otto colpi", "lift": "", "rows": [{"s": "S1", "f": "Test", "se": "1 / 2", "rp": "8 / 5", "rec": "2'", "ca": "TEST 8RM, poi peso del test", "es": "Discesa 3\" sulle 2 serie", "n": "Sali per gradi fino al peso con cui fai 8 trazioni puliti, a ritmo normale: è il tuo peso del test. Scrivilo nella casella del test: vale fino alla settimana 9. Poi 2 serie da 5 con la discesa in 3 secondi. Mai più di otto colpi per serie: se la testa gira, fermati e dimmelo.", "ap": ""}, {"s": "S2", "f": "Accumulo", "se": "3", "rp": "5", "rec": "2'", "ca": "peso del test", "es": "Discesa 3\"", "n": "Tre serie da 5, discesa in 3 secondi. Il peso resta questo: cresce il lavoro.", "ap": ""}, {"s": "S3", "f": "Accumulo", "se": "4", "rp": "5", "rec": "2'", "ca": "peso del test", "es": "Discesa 3\"", "n": "Una serie in più.", "ap": ""}, {"s": "S4", "f": "Accumulo", "se": "3", "rp": "6", "rec": "2'", "ca": "peso del test", "es": "Discesa 3\"", "n": "Una serie in meno, un colpo in più.", "ap": ""}, {"s": "S5", "f": "Accumulo", "se": "4", "rp": "6", "rec": "2'", "ca": "peso del test", "es": "Discesa 3\"", "n": "Una serie in più.", "ap": ""}, {"s": "S6", "f": "Accumulo", "se": "3", "rp": "7", "rec": "2'", "ca": "peso del test", "es": "Discesa 3\"", "n": "Una serie in meno, un colpo in più.", "ap": ""}, {"s": "S7", "f": "Accumulo", "se": "4", "rp": "7", "rec": "2'", "ca": "peso del test", "es": "Discesa 3\"", "n": "Una serie in più.", "ap": ""}, {"s": "S8", "f": "Accumulo", "se": "4", "rp": "8", "rec": "2'", "ca": "peso del test", "es": "Discesa 3\"", "n": "Quattro serie da 8 al peso del test, discesa in 3 secondi: la settimana più dura del ciclo.", "ap": ""}, {"s": "S9", "f": "Richiamo", "se": "3", "rp": "5", "rec": "2'", "ca": "peso del test", "es": "Ritmo normale", "n": "Settimana di richiamo: tre serie da 5 senza discesa lenta.", "ap": ""}, {"s": "S10", "f": "Misura", "se": "1 / 2", "rp": "8 / 5", "rec": "2'", "ca": "NUOVO TEST 8RM, poi peso del nuovo", "es": "Discesa 3\" sulle 2 serie", "n": "Come in settimana 1: sali per gradi fino al peso con cui fai 8 colpi puliti. Scrivilo nella casella del test: è il punto di partenza del prossimo programma. Poi 2 serie da 5 con la discesa in 3 secondi. Sempre entro gli otto colpi.", "ap": ""}]}, {"t": "HOLLOW HOLD — core", "nome": "HOLLOW HOLD", "ruolo": "core", "lift": "", "rows": [{"s": "S1", "f": "Test", "se": "1 / 2", "rp": "— / —", "rec": "90\"", "ca": "TEST tempo, poi 70% del tempo del test", "es": "", "n": "Schiena bassa incollata a terra, ginocchia piegate quanto serve: tieni il più a lungo possibile e segna i secondi nella casella. È il tuo tempo del test. Poi 2 tenute al 70% di quel tempo. Mai sotto i 30 secondi.", "ap": ""}, {"s": "S2", "f": "Accumulo", "se": "5", "rp": "—", "rec": "90\"", "ca": "70% del tempo del test", "es": "", "n": "Cinque tenute al 70% del tempo del test. Mai sotto i 30 secondi.", "ap": ""}, {"s": "S3", "f": "Accumulo", "se": "5", "rp": "—", "rec": "90\"", "ca": "80% del tempo del test", "es": "", "n": "Tenute più lunghe.", "ap": ""}, {"s": "S4", "f": "Accumulo", "se": "5", "rp": "—", "rec": "90\"", "ca": "90% del tempo del test", "es": "", "n": "Tenute più lunghe.", "ap": ""}, {"s": "S5", "f": "Accumulo", "se": "4", "rp": "—", "rec": "90\"", "ca": "95% del tempo del test", "es": "", "n": "Una tenuta in meno, più lunga.", "ap": ""}, {"s": "S6", "f": "Accumulo", "se": "4", "rp": "—", "rec": "90\"", "ca": "tempo del test", "es": "", "n": "Quattro tenute al tempo del test: la settimana più dura.", "ap": ""}, {"s": "S7", "f": "Accumulo", "se": "5", "rp": "—", "rec": "90\"", "ca": "90% del tempo del test", "es": "", "n": "Settimana più leggera, una tenuta in più.", "ap": ""}, {"s": "S8", "f": "Accumulo", "se": "4", "rp": "—", "rec": "90\"", "ca": "95% del tempo del test", "es": "", "n": "Chiusura del blocco.", "ap": ""}, {"s": "S9", "f": "Richiamo", "se": "3", "rp": "—", "rec": "90\"", "ca": "70% del tempo del test", "es": "", "n": "Richiamo: tre tenute corte.", "ap": ""}, {"s": "S10", "f": "Misura", "se": "1 / 2", "rp": "— / —", "rec": "90\"", "ca": "NUOVO TEST tempo, poi 70% del nuovo", "es": "", "n": "Come la settimana 1: tieni il più a lungo possibile e segna i secondi. Confrontali con la settimana 1: è la misura del ciclo. Poi 2 tenute al 70%.", "ap": ""}], "unita": "s", "test": "tempo", "testlab": "Il tuo tempo del test", "hint": "i secondi della tenuta più lunga della settimana 1: da qui escono tutte le tenute.", "howlab": "Come si fa il test", "how": "<b>Tieni la posizione il più a lungo possibile, una volta sola.</b> Schiena bassa incollata a terra, ginocchia piegate quanto serve. Quando la schiena si stacca, ti fermi: quei secondi sono il tuo tempo del test."}]}, {"id": "B", "head": "GIORNO B", "blocks": [{"t": "AFFONDI CON MANUBRI — accosciata, colpi più alti · colpi totali, alternati", "nome": "AFFONDI CON MANUBRI", "ruolo": "accosciata, colpi più alti · colpi totali, alternati", "lift": "", "rows": [{"s": "S1", "f": "Test", "se": "3", "rp": "12", "rec": "2'", "ca": "12 kg per manubrio", "es": "", "n": "Dodici colpi totali, gambe alternate (6 per gamba), con 12 kg e ginocchiera. Ritmo regolare, tutte le serie uguali, recupero pieno.", "ap": ""}, {"s": "S2", "f": "Accumulo", "se": "4", "rp": "12", "rec": "2'", "ca": "12 kg per manubrio", "es": "", "n": "Una serie in più.", "ap": ""}, {"s": "S3", "f": "Accumulo", "se": "3", "rp": "14", "rec": "2'", "ca": "12 kg per manubrio", "es": "", "n": "Una serie in meno, due colpi in più (uno per gamba).", "ap": ""}, {"s": "S4", "f": "Accumulo", "se": "4", "rp": "14", "rec": "2'", "ca": "12 kg per manubrio", "es": "", "n": "Una serie in più: la settimana più lunga del blocco.", "ap": ""}, {"s": "S5", "f": "Accumulo", "se": "2 / 1", "rp": "16 / 10", "rec": "2'", "ca": "TEST 16RM, poi peso del test", "es": "", "n": "Trova il manubrio con cui fai 16 colpi totali puliti, gambe alternate (8 per gamba): due serie con quel peso. Scrivilo nella casella del test: è il peso delle prossime quattro settimane. Poi 1 serie da 10 totali.", "ap": ""}, {"s": "S6", "f": "Accumulo", "se": "3", "rp": "12", "rec": "2'", "ca": "peso del test", "es": "", "n": "Tre serie da 12 colpi totali col peso del test.", "ap": ""}, {"s": "S7", "f": "Accumulo", "se": "4", "rp": "12", "rec": "2'", "ca": "peso del test", "es": "", "n": "Una serie in più.", "ap": ""}, {"s": "S8", "f": "Accumulo", "se": "3", "rp": "14", "rec": "2'", "ca": "peso del test", "es": "", "n": "Una serie in meno, due colpi in più (uno per gamba).", "ap": ""}, {"s": "S9", "f": "Richiamo", "se": "2", "rp": "12", "rec": "2'", "ca": "peso del test", "es": "", "n": "Richiamo: due serie da 12 colpi totali.", "ap": ""}, {"s": "S10", "f": "Misura", "se": "2 / 1", "rp": "16 / 10", "rec": "2'", "ca": "NUOVO TEST 16RM, poi peso del nuovo", "es": "", "n": "Come la settimana 5: due serie da 16 colpi totali col peso più alto che chiudi pulito. Scrivilo nella casella del test: è il punto di partenza del prossimo programma. Poi 1 serie da 10 totali.", "ap": ""}], "colpilab": "colpi totali", "testlab": "Il tuo peso da 16 colpi", "hint": "il manubrio con cui fai 16 colpi totali, gambe alternate: è il peso delle settimane dopo.", "howlab": "Come si trova", "how": "<b>Devi trovare il manubrio più pesante con cui fai 16 colpi totali, gambe alternate (8 per gamba).</b> Parti dai 12 kg e fai 16 colpi. Se vengono puliti, sali di un gradino e riprova dopo il recupero. Il peso giusto è l'ultimo con cui chiudi i 16 colpi puliti. Scrivilo qui."}, {"t": "ROWING CON APPOGGIO — tirata orizzontale", "nome": "ROWING CON APPOGGIO", "ruolo": "tirata orizzontale", "lift": "", "rows": [{"s": "S1", "f": "Test", "se": "1 / 2", "rp": "8 / 5", "rec": "2'", "ca": "TEST 8RM, poi peso del test", "es": "Discesa 3\" sulle 2 serie", "n": "Sali per gradi fino al peso con cui fai 8 tirate puliti, a ritmo normale: è il tuo peso del test. Scrivilo nella casella del test: vale fino alla settimana 9. Poi 2 serie da 5 con la discesa in 3 secondi. Il petto resta incollato all'appoggio: se per tirare devi staccarlo, il peso è troppo.", "ap": ""}, {"s": "S2", "f": "Accumulo", "se": "3", "rp": "5", "rec": "2'", "ca": "peso del test", "es": "Discesa 3\"", "n": "Tre serie da 5, discesa in 3 secondi. Il peso resta questo: cresce il lavoro.", "ap": ""}, {"s": "S3", "f": "Accumulo", "se": "4", "rp": "5", "rec": "2'", "ca": "peso del test", "es": "Discesa 3\"", "n": "Una serie in più.", "ap": ""}, {"s": "S4", "f": "Accumulo", "se": "3", "rp": "6", "rec": "2'", "ca": "peso del test", "es": "Discesa 3\"", "n": "Una serie in meno, un colpo in più.", "ap": ""}, {"s": "S5", "f": "Accumulo", "se": "4", "rp": "6", "rec": "2'", "ca": "peso del test", "es": "Discesa 3\"", "n": "Una serie in più.", "ap": ""}, {"s": "S6", "f": "Accumulo", "se": "3", "rp": "7", "rec": "2'", "ca": "peso del test", "es": "Discesa 3\"", "n": "Una serie in meno, un colpo in più.", "ap": ""}, {"s": "S7", "f": "Accumulo", "se": "4", "rp": "7", "rec": "2'", "ca": "peso del test", "es": "Discesa 3\"", "n": "Una serie in più.", "ap": ""}, {"s": "S8", "f": "Accumulo", "se": "4", "rp": "8", "rec": "2'", "ca": "peso del test", "es": "Discesa 3\"", "n": "Quattro serie da 8 al peso del test, discesa in 3 secondi: la settimana più dura del ciclo.", "ap": ""}, {"s": "S9", "f": "Richiamo", "se": "3", "rp": "5", "rec": "2'", "ca": "peso del test", "es": "Ritmo normale", "n": "Settimana di richiamo: tre serie da 5 senza discesa lenta.", "ap": ""}, {"s": "S10", "f": "Misura", "se": "1 / 2", "rp": "8 / 5", "rec": "2'", "ca": "NUOVO TEST 8RM, poi peso del nuovo", "es": "Discesa 3\" sulle 2 serie", "n": "Come in settimana 1: sali per gradi fino al peso con cui fai 8 colpi puliti. Scrivilo nella casella del test: è il punto di partenza del prossimo programma. Poi 2 serie da 5 con la discesa in 3 secondi.", "ap": ""}]}, {"t": "STACCO RUMENO A GINOCCHIA QUASI TESE CON MANUBRI — femorali, il giorno dell'intensità: top set + code", "nome": "STACCO RUMENO A GINOCCHIA QUASI TESE CON MANUBRI", "ruolo": "femorali, il giorno dell'intensità: top set + code", "lift": "", "rows": [{"s": "S1", "f": "Test", "se": "1 / 3", "rp": "MAX / −3", "rec": "2'-3'", "ca": "peso del giorno / stesso peso", "es": "Fermo 2\" sotto", "n": "[FELPA · FERMO SOTTO] Felpa addosso, sempre. Prima serie: più colpi puliti possibile, ti fermi quando il colpo rallenta, e segnali nella casella. Poi 3 serie a 3 colpi in meno della prima, stesso peso, sempre col fermo di due secondi sotto, ginocchia quasi tese. Da qui in avanti il peso sale di 2 kg la settimana dopo che il top supera i 10 colpi; a 10 esatti resta.", "ap": ""}, {"s": "S2", "f": "Accumulo", "se": "1 / 3", "rp": "MAX / −2", "rec": "2'-3'", "ca": "peso del giorno / stesso peso", "es": "Fermo 2\" sotto", "n": "[FELPA · FERMO SOTTO] Top set a più colpi puliti possibile, segnali. Poi 3 serie a 2 colpi in meno della prima.", "ap": ""}, {"s": "S3", "f": "Accumulo", "se": "1 / 1 / 2", "rp": "MAX / −1 / −2", "rec": "2'-3'", "ca": "peso del giorno / stesso peso", "es": "Fermo 2\" sotto", "n": "[FELPA · FERMO SOTTO] Top set a più colpi puliti possibile, segnali. Poi una serie a 1 colpo in meno e due serie a 2 colpi in meno.", "ap": ""}, {"s": "S4", "f": "Accumulo", "se": "1 / 2 / 1", "rp": "MAX / −1 / −2", "rec": "2'-3'", "ca": "peso del giorno / stesso peso", "es": "Fermo 2\" sotto", "n": "[FELPA · FERMO SOTTO] Top set a più colpi puliti possibile, segnali. Poi due serie a 1 colpo in meno e una a 2 colpi in meno: la settimana più intensa di questo giro.", "ap": ""}, {"s": "S5", "f": "Accumulo", "se": "1 / 3", "rp": "MAX / −3", "rec": "2'-3'", "ca": "peso del giorno / stesso peso", "es": "Fermo 2\" sotto", "n": "[FELPA · FERMO SOTTO] Top set a più colpi puliti possibile, segnali. Poi 3 serie a 3 colpi in meno: si riparte dal basso.", "ap": ""}, {"s": "S6", "f": "Accumulo", "se": "1 / 3", "rp": "MAX / −2", "rec": "2'-3'", "ca": "peso del giorno / stesso peso", "es": "Fermo 2\" sotto", "n": "[FELPA · FERMO SOTTO] Top set a più colpi puliti possibile, segnali. Poi 3 serie a 2 colpi in meno.", "ap": ""}, {"s": "S7", "f": "Accumulo", "se": "1 / 1 / 2", "rp": "MAX / −1 / −2", "rec": "2'-3'", "ca": "peso del giorno / stesso peso", "es": "Fermo 2\" sotto", "n": "[FELPA · FERMO SOTTO] Top set a più colpi puliti possibile, segnali. Poi una serie a 1 colpo in meno e due a 2 colpi in meno.", "ap": ""}, {"s": "S8", "f": "Accumulo", "se": "1 / 2 / 1", "rp": "MAX / −1 / −2", "rec": "2'-3'", "ca": "peso del giorno / stesso peso", "es": "Fermo 2\" sotto", "n": "[FELPA · FERMO SOTTO] Top set a più colpi puliti possibile, segnali. Poi due serie a 1 colpo in meno e una a 2 colpi in meno: la settimana più intensa del ciclo.", "ap": ""}, {"s": "S9", "f": "Richiamo", "se": "3", "rp": "−3", "rec": "2'-3'", "ca": "peso del giorno", "es": "Ritmo normale", "n": "[FELPA] Richiamo: niente top set e niente fermo, tre serie a 3 colpi in meno del top della settimana scorsa.", "ap": "", "inc": 0}, {"s": "S10", "f": "Misura", "se": "1 / 2", "rp": "MAX / −2", "rec": "2'-3'", "ca": "peso del giorno / stesso peso", "es": "Fermo 2\" sotto", "n": "[FELPA · FERMO SOTTO] Misura: Prima serie: più colpi puliti possibile, ti fermi quando il colpo rallenta, e segnali nella casella. Confronta i colpi e il peso con la settimana 1. Poi 2 serie a 2 colpi in meno.", "ap": "", "inc": 0}], "regola": {"start": 14, "soglia": 10, "passo": 2}}, {"t": "LENTO AVANTI CON MANUBRI — spinta verticale", "nome": "LENTO AVANTI CON MANUBRI", "ruolo": "spinta verticale", "lift": "", "rows": [{"s": "S1", "f": "Test", "se": "1 / 2", "rp": "8 / 5", "rec": "2'", "ca": "TEST 8RM, poi peso del test", "es": "Discesa 3\" sulle 2 serie", "n": "Sali per gradi fino al peso con cui fai 8 spinte puliti, a ritmo normale: è il tuo peso del test. Scrivilo nella casella del test: vale fino alla settimana 9. Poi 2 serie da 5 con la discesa in 3 secondi. Strict: niente spinta di gambe.", "ap": ""}, {"s": "S2", "f": "Accumulo", "se": "3", "rp": "5", "rec": "2'", "ca": "peso del test", "es": "Discesa 3\"", "n": "Tre serie da 5, discesa in 3 secondi. Il peso resta questo: cresce il lavoro.", "ap": ""}, {"s": "S3", "f": "Accumulo", "se": "4", "rp": "5", "rec": "2'", "ca": "peso del test", "es": "Discesa 3\"", "n": "Una serie in più.", "ap": ""}, {"s": "S4", "f": "Accumulo", "se": "3", "rp": "6", "rec": "2'", "ca": "peso del test", "es": "Discesa 3\"", "n": "Una serie in meno, un colpo in più.", "ap": ""}, {"s": "S5", "f": "Accumulo", "se": "4", "rp": "6", "rec": "2'", "ca": "peso del test", "es": "Discesa 3\"", "n": "Una serie in più.", "ap": ""}, {"s": "S6", "f": "Accumulo", "se": "3", "rp": "7", "rec": "2'", "ca": "peso del test", "es": "Discesa 3\"", "n": "Una serie in meno, un colpo in più.", "ap": ""}, {"s": "S7", "f": "Accumulo", "se": "4", "rp": "7", "rec": "2'", "ca": "peso del test", "es": "Discesa 3\"", "n": "Una serie in più.", "ap": ""}, {"s": "S8", "f": "Accumulo", "se": "4", "rp": "8", "rec": "2'", "ca": "peso del test", "es": "Discesa 3\"", "n": "Quattro serie da 8 al peso del test, discesa in 3 secondi: la settimana più dura del ciclo.", "ap": ""}, {"s": "S9", "f": "Richiamo", "se": "3", "rp": "5", "rec": "2'", "ca": "peso del test", "es": "Ritmo normale", "n": "Settimana di richiamo: tre serie da 5 senza discesa lenta.", "ap": ""}, {"s": "S10", "f": "Misura", "se": "1 / 2", "rp": "8 / 5", "rec": "2'", "ca": "NUOVO TEST 8RM, poi peso del nuovo", "es": "Discesa 3\" sulle 2 serie", "n": "Come in settimana 1: sali per gradi fino al peso con cui fai 8 colpi puliti. Scrivilo nella casella del test: è il punto di partenza del prossimo programma. Poi 2 serie da 5 con la discesa in 3 secondi.", "ap": ""}]}, {"t": "FACE PULL + PLANK — chiusura: postura e core", "nome": "FACE PULL + PLANK", "ruolo": "chiusura: postura e core", "lift": "", "rows": [{"s": "S1", "f": "Test", "se": "3 / 3", "rp": "12 / 30s", "rec": "90\"", "ca": "a scelta / senza peso", "es": "Face pull, poi plank", "n": "Face pull all'altezza 16: parti da 2,3 kg e, quando chiudi 12 colpi facili su tutte le serie, sali di una piastrina: solo l'ultima serie arriva vicino al limite. Plank subito dopo, 30 secondi fermi: fianchi in linea, niente sedere in alto.", "ap": ""}, {"s": "S2", "f": "Accumulo", "se": "3 / 3", "rp": "12 / 35s", "rec": "90\"", "ca": "a scelta / senza peso", "es": "Face pull, poi plank", "n": "Plank cinque secondi più lungo.", "ap": ""}, {"s": "S3", "f": "Accumulo", "se": "3 / 3", "rp": "12 / 40s", "rec": "90\"", "ca": "a scelta / senza peso", "es": "Face pull, poi plank", "n": "Plank cinque secondi più lungo.", "ap": ""}, {"s": "S4", "f": "Accumulo", "se": "4 / 3", "rp": "12 / 45s", "rec": "90\"", "ca": "a scelta / senza peso", "es": "Face pull, poi plank", "n": "Una serie di face pull in più; plank più lungo.", "ap": ""}, {"s": "S5", "f": "Accumulo", "se": "3 / 3", "rp": "12 / 50s", "rec": "90\"", "ca": "a scelta / senza peso", "es": "Face pull, poi plank", "n": "Plank più lungo.", "ap": ""}, {"s": "S6", "f": "Accumulo", "se": "3 / 3", "rp": "12 / 55s", "rec": "90\"", "ca": "a scelta / senza peso", "es": "Face pull, poi plank", "n": "Plank più lungo.", "ap": ""}, {"s": "S7", "f": "Accumulo", "se": "3 / 3", "rp": "12 / 60s", "rec": "90\"", "ca": "a scelta / senza peso", "es": "Face pull, poi plank", "n": "Plank a un minuto.", "ap": ""}, {"s": "S8", "f": "Accumulo", "se": "4 / 3", "rp": "12 / 60s", "rec": "90\"", "ca": "a scelta / senza peso", "es": "Face pull, poi plank", "n": "Una serie di face pull in più: chiusura del blocco.", "ap": ""}, {"s": "S9", "f": "Richiamo", "se": "3 / 3", "rp": "12 / 40s", "rec": "90\"", "ca": "a scelta / senza peso", "es": "Face pull, poi plank", "n": "Richiamo: plank corto.", "ap": ""}, {"s": "S10", "f": "Misura", "se": "3 / 3", "rp": "12 / MAX s", "rec": "90\"", "ca": "a scelta / senza peso", "es": "Face pull, poi plank", "n": "Plank: tieni il più a lungo possibile sulle tre tenute e segna i secondi nella casella. Face pull come sempre.", "ap": ""}]}]}];const LS="sab-m2";const TITOLO="Mesociclo 2 — ricomposizione";const MASSIMALI=[];const MIGRA_VECCHIO=false;const SEL0=0;const DSEL0="";
+const SETT=(function(){const s={};GIORNI.forEach(function(g){g.blocks.forEach(function(b){
+  b.rows.forEach(function(r){const n=parseInt(String(r.s).replace(/\D/g,""));if(n)s[n]=1})})});
+  return Object.keys(s).map(Number).sort(function(a,b){return a-b})})();
+/* =====================================================================
+   MOTORE DELLA SCHEDA — legge le righe del template NC EDITORIALE v3
+   e le mette in pagina. Casistiche gestite:
+     - serie numeriche, anche composite (1 / 3)
+     - onde e giri ("4 onde", "3 giri", "3 onde + 2")
+     - ramping e serie a numero aperto ("RAMP + 2", "ramping", "N")
+     - TEST xRM scritto nel Carico o nelle Reps
+     - MAX / AMRAP con il campo dei colpi fatti
+     - RPE come carico, con il campo del peso trovato
+     - % del top, con il campo del top
+     - righe senza serie (cardio, mobilita')
+     - carichi scritti in kg, % del test, peso del test, peso di lavoro, sconti
+   ===================================================================== */
+let state={};try{state=JSON.parse(localStorage.getItem(LS)||"{}")}catch(e){}
+function save(){try{localStorage.setItem(LS,JSON.stringify(state))}catch(e){}}
+/* pagine nate col motore vecchio: le chiavi "A0_3" diventano "A_0_3" (fatica, note, top), una volta sola */
+if(typeof MIGRA_VECCHIO!=="undefined"&&MIGRA_VECCHIO&&!state.__migrato){
+  Object.keys(state).forEach(function(k){
+    const m=k.match(/^(fp_|ap_|top_)([A-Z])(\d+)_(\d+)$/); if(!m) return;
+    const nk=(m[1]==="top_"?"RK_":m[1])+m[2]+"_"+m[3]+"_"+m[4]+(m[1]==="top_"?"_0":"");
+    if(state[nk]===undefined) state[nk]=state[k];
+  });
+  state.__migrato=1; save();
+}
+function esc(s){return String(s==null?"":s).replace(/"/g,"&quot;")}
+function num(v){v=String(v==null?"":v).replace(",",".").trim();const x=parseFloat(v);return isFinite(x)?x:NaN}
+function f(x){return (Math.round(x*100)/100).toString().replace(".",",")}
+function kg(x){return f(Math.round(x*10)/10)+" kg"}   /* nessun arrotondamento al gradino */
+function kgx(x){return f(x)+" kg"}                       /* % del massimale: kg esatti (93,75) */
+function campo(k,segn,largo){
+  return '<input type="text" inputmode="decimal" class="mini" data-k="'+k+'" value="'+esc(state[k]||"")+
+    '" placeholder="'+(segn||"")+'"'+(largo?' style="width:'+largo+'px"':'')+'>';
+}
+
+/* ---------- massimali: programmi scritti in % del massimale ---------- */
+const MASS=(typeof MASSIMALI!=="undefined"&&MASSIMALI)||[];
+function massimale(id){const m=MASS.find(function(x){return x.id===id});if(!m)return NaN;
+  const v=state["ref_"+id];return num(v===undefined?m.def:v)}
+function rifBox(){
+  const el=document.getElementById("rif"); if(!el||!MASS.length) return;
+  el.innerHTML='<div class="mass"><div class="mt">Massimali del coach</div><div class="mr">'+
+    MASS.map(function(m){const v=state["ref_"+m.id]===undefined?m.def:state["ref_"+m.id];
+      return '<label><span>'+m.lab+'</span><input type="text" inputmode="decimal" data-k="ref_'+m.id+'" value="'+esc(v)+'"><em>'+(m.nota||"")+'</em></label>'}).join("")+
+    '</div><div class="mh">Le percentuali del programma sono su questi numeri: se ne cambi uno, cambiano tutti i kg di quell\u2019alzata.</div></div>';
+}
+
+/* ---------- riferimenti di un esercizio ---------- */
+const RE_TEST=/TEST\s*([\d–\-]+\s*RM)/i;
+function testDi(b){
+  if(b.test) return b.test;
+  for(const r of b.rows){
+    const m=(String(r.ca||"")+" "+String(r.rp||"")).match(RE_TEST);
+    if(m) return m[1].replace(/\s+/g,"").toUpperCase();
+  }
+  return null;
+}
+function settDelTest(b){
+  for(let i=0;i<b.rows.length;i++)
+    if(RE_TEST.test(String(b.rows[i].ca||"")+" "+String(b.rows[i].rp||""))||/^TEST\b/i.test(String(b.rows[i].ca||"")))
+      return parseInt(String(b.rows[i].s).replace(/\D/g,""))||1;
+  return 1;
+}
+function vuoleLavoro(b){return b.rows.some(r=>/peso di lavoro/i.test(String(r.ca||"")))}
+function rifT(bk){return num(state["T_"+bk])}
+/* unità dell'esercizio: kg (di serie), s (tenute a tempo), altezza (push up su rialzo) */
+function unitaDi(b){return (b&&b.unita)||"kg"}
+function fmtU(b,x){const u=unitaDi(b);
+  if(u==="s") return Math.round(x)+" secondi";
+  if(u==="altezza") return "altezza "+f(x);
+  return kg(x);}
+function uLab(b){const u=unitaDi(b);return u==="s"?"secondi":(u==="altezza"?"":"kg")}
+function pesoLavoro(bk,k,i){
+  /* il peso scritto in questa riga per questo pezzo; se manca, l'ultimo scritto nelle righe prima */
+  const v=state["W_"+k+"_"+i]; if(v!==undefined&&String(v).trim()!=="") return num(v);
+  const ri=parseInt(k.slice(k.lastIndexOf("_")+1))||0;
+  for(let r=ri-1;r>=0;r--){const w=state["W_"+bk+"_"+r+"_"+i]; if(w!==undefined&&String(w).trim()!=="") return num(w);}
+  return NaN;
+}
+function nomiBlocco(b){
+  for(const r of b.rows){const n=nomiParti(b,parti(r).length); if(n) return n}
+  return null;
+}
+
+/* ---------- tipo di riga, dalla colonna Serie ---------- */
+function tipoSerie(se){
+  const s=String(se||"").trim(); let m;
+  if(!s||s==="—"||s==="-") return {t:"nessuna"};
+  if((m=s.match(/^(\d+)\s*(onde|onda|giri|giro|round|rounds)(?:\s*\+\s*(\d+))?$/i)))
+    return {t:"giri",n:+m[1],extra:m[3]?+m[3]:0,parola:/ond/i.test(m[2])?"onde":"giri"};
+  if((m=s.match(/^(ramp(?:ing)?)(?:\s*\+\s*(\d+))?(?:\s*\/.*)?$/i))) return {t:"ramp",extra:m[2]?+m[2]:0};
+  if(/^N(\s*\/.*)?$/i.test(s)) return {t:"n"};
+  if(/^[\d\s\/\-–]+$/.test(s)) return {t:"num"};
+  return {t:"testo",se:s};
+}
+
+/* ---------- i pezzi di una riga (reps e carichi allineati sulla barra) ---------- */
+function parti(r){
+  const se=String(r.se||"").split("/").map(x=>x.trim());
+  const rp=String(r.rp||"").replace(/MAX\s*\/\s*2/gi,"MAX\u00bd").split("/").map(x=>x.trim());
+  const ca=String(r.ca||"").trim();
+  const mn=ca.match(/^NUOVO\s+TEST\b[^,]*,\s*poi\s+(.+)$/i);
+  const mt=mn?null:ca.match(/^TEST\s*(?:[\d–\-]+\s*RM|tempo)\s*,\s*poi\s+(.+)$/i);
+  const cav=(mt||mn)?null:ca.split("/").map(x=>x.trim());
+  const n=Math.max(se.length,rp.length,cav?cav.length:1);
+  const out=[];
+  for(let i=0;i<n;i++){
+    const p={se:(se[i]!==undefined?se[i]:se[0]), rp:(rp[i]!==undefined?rp[i]:rp[0]),
+             ca:(mn?(i===0?"__NUOVO__":mn[1]):(mt?(i===0?"__TEST__":mt[1]):(cav[i]!==undefined?cav[i]:cav[0])))};
+    const tm=String(p.rp).match(RE_TEST);
+    if(tm){p.test=tm[1].replace(/\s+/g,"").toUpperCase();p.rp=tm[1].split(/[–\-]/)[0].replace(/\D/g,"");p.ca="__TEST__";}
+    if(/^TEST\b/i.test(p.ca)) p.ca="__TEST__";
+    if(/^NUOVO\s+TEST\b/i.test(p.ca)) p.ca="__NUOVO__";
+    out.push(p);
+  }
+  return out;
+}
+function nomiParti(b,n){
+  /* "CURL + FRENCH PRESS — superserie": i nomi dei pezzi vengono dal titolo */
+  const t=String(b.nome||"");
+  const pz=t.split(/\s+(?:\+|\/)\s+/).map(x=>x.trim()).filter(Boolean);
+  return pz.length===n&&n>1?pz:null;
+}
+
+/* ---------- carico ---------- */
+function sconto(t){const m=t.match(/[−\-]\s*(\d+(?:[.,]\d+)?)\s*%/);return m?(1-parseFloat(m[1].replace(",","."))/100):1}
+function daTest(t,T){
+  if(!isFinite(T)||T<=0) return '<span class="wait">dopo il test</span><span class="raw">'+t+'</span>';
+  if(/\+\s*1\s*gradino/i.test(t)) return f(T)+' kg <span class="lieve">+ 1 gradino</span><span class="raw">'+t+'</span>';
+  return kg(T*sconto(t))+'<span class="raw">'+t+'</span>';
+}
+function risolvi(t,bk,b,k,i){
+  t=String(t||"").trim(); k=k||""; i=i||0;
+  if(!t||t==="—") return "";
+  const T=rifT(bk); let m;
+  if(t==="__TEST__"){
+    /* la serie del test: scritto TEST 10RM, e appena il test e' compilato anche il peso */
+    const rm=testDi(b)||"";
+    return '<span class="tst">TEST '+rm+'</span>'+((isFinite(T)&&T>0)?' <span class="freccia">=</span> '+fmtU(b,T):'');
+  }
+  if(t==="__NUOVO__"){
+    const rm=testDi(b)||"";
+    return '<span class="tst">NUOVO TEST '+rm+'</span> <span class="mx usato">'+campo("NT_"+k,(unitaDi(b)==="altezza"?"alt.":uLab(b)),78)+
+      '<em>'+(unitaDi(b)==="altezza"?'altezza nuova':'nuovo '+(uLab(b)||'valore'))+'</em></span>';
+  }
+  if(/^(peso|altezza|tempo) del nuovo$/i.test(t)||/^\d+(?:[.,]\d+)?\s*%\s*del nuovo$/i.test(t)){
+    const v=num(state["NT_"+k]), pm=t.match(/^(\d+(?:[.,]\d+)?)\s*%/), pc=pm?parseFloat(pm[1].replace(",","."))/100:1;
+    if(!isFinite(v)||v<=0) return '<span class="wait">dopo il nuovo test</span>';
+    let x=v*pc; if(unitaDi(b)==="s") x=Math.max(30,Math.round(x+1e-9));
+    return fmtU(b,x)+(pm?'<span class="raw">'+pm[1]+'% del nuovo test</span>':'');
+  }
+  /* regola del peso: il peso del giorno sale da solo quando il top della settimana prima supera la soglia */
+  if(b&&b.regola&&/^peso del giorno$/i.test(t)){
+    const ri=rigaDi(k), P=pesoGiorno(bk,b,ri), sug=suggerito(bk,b,ri);
+    return '<b class="oggi">'+kg(P)+'</b> <span class="lieve">per manubrio</span>'+
+      '<span class="pdiv">peso diverso? '+campo("P_"+k,f(sug),58)+' kg</span>';
+  }
+  if(b&&b.regola&&/^stesso peso$/i.test(t)){
+    return '<span class="stp" data-bk="'+bk+'" data-ri="'+rigaDi(k)+'">'+kg(pesoGiorno(bk,b,rigaDi(k)))+'</span><span class="raw">stesso peso del top</span>';
+  }
+  /* altezza e tempo del test */
+  if(/^altezza del test$/i.test(t)){
+    return (isFinite(T)&&T>0)?'<b>altezza '+f(T)+'</b><span class="raw">l\u2019altezza del test</span>':'<span class="wait">dopo il test</span>';
+  }
+  if((m=t.match(/^(\d+(?:[.,]\d+)?)\s*%\s*del tempo del test$/i))||/^tempo del test$/i.test(t)){
+    const pc=m?parseFloat(m[1].replace(",","."))/100:1;
+    if(!isFinite(T)||T<=0) return '<span class="wait">dopo il test</span><span class="raw">'+t+'</span>';
+    return Math.max(30,Math.round(T*pc+1e-9))+' secondi<span class="raw">'+t+'</span>';
+  }
+  if((m=t.match(/^(\d+(?:[.,]\d+)?)\s*kg\s+per manubrio$/i))) return f(parseFloat(m[1].replace(",",".")))+' kg <span class="lieve">per manubrio</span>';
+  if(/^senza peso$/i.test(t)) return '<span class="lieve">senza peso</span>';
+  /* peso del test, 5RM -15%, -20% da solo */
+  if(/peso del test/i.test(t)) return daTest(t,T);
+  if(/^\d+\s*RM\s*[−\-]\s*\d+\s*%/i.test(t)) return daTest(t,T);
+  if(/^[−\-]\s*\d+\s*%$/.test(t)) return daTest(t,T);
+  /* peso di lavoro: lo scrive lui accanto ai colpi; se c'e' uno sconto, il risultato esce di fianco */
+  if(/peso di lavoro/i.test(t)){
+    const ha=/[\u2212\-]\s*\d+\s*%/.test(t), base=pesoLavoro(bk,k,i);
+    let h=campo("W_"+k+"_"+i,"kg",78);
+    if(ha) h+=' <span class="freccia">\u2192</span> <b>'+((isFinite(base)&&base>0)?kg(base*sconto(t)):'\u2014')+'</b>';
+    return h+'<span class="raw">'+t+'</span>';
+  }
+  /* % del test, anche a range */
+  if((m=t.match(/(\d+(?:[.,]\d+)?)(?:\s*[-–]\s*(\d+(?:[.,]\d+)?))?\s*%\s*del test/i))){
+    if(!isFinite(T)||T<=0) return '<span class="wait">dopo il test</span><span class="raw">'+t+'</span>';
+    const a=parseFloat(m[1].replace(",",".")), bb=m[2]?parseFloat(m[2].replace(",",".")):null;
+    return (bb?(f(Math.round(T*a/100*10)/10)+'–'+kg(T*bb/100)):kg(T*a/100))+'<span class="raw">'+t+'</span>';
+  }
+  /* % del top: il top lo scrive lui */
+  if((m=t.match(/(\d+(?:[.,]\d+)?)\s*%\s*del\s*(top|mav)/i))){
+    const tk="RK_"+k+"_0", tv=num(state[tk]), pct=parseFloat(m[1].replace(",","."));
+    const out=(isFinite(tv)&&tv>0)?kg(tv*pct/100):'<span class="wait">dopo il top</span>';
+    return '<span class="topout" data-k="'+tk+'" data-pct="'+pct+'">'+out+'</span><span class="raw">'+t+'</span>';
+  }
+  /* stesso peso del top */
+  if(/^peso del top$/i.test(t)){
+    const tk="RK_"+k+"_0", tv=num(state[tk]);
+    return '<span class="topout" data-k="'+tk+'" data-pct="100">'+((isFinite(tv)&&tv>0)?kg(tv):'<span class="wait">dopo il top</span>')+'</span><span class="raw">stesso peso del top</span>';
+  }
+  /* MAV: massima alzata veloce, il peso lo scrive lui */
+  if(/^MAV$/i.test(t)) return '<span class="at">MAV</span> '+campo("RK_"+k+"_"+i,"kg",72)+'<span class="raw">massima alzata veloce</span>';
+  /* % del massimale (programmi in % del 1RM) */
+  if((m=t.match(/^(\d+(?:[.,]\d+)?)(?:\s*[-\u2013]\s*(\d+(?:[.,]\d+)?))?\s*%$/))&&b&&b.lift&&MASS.length){
+    const M=massimale(b.lift), raw='<span class="raw">'+t+' del massimale</span>';
+    if(!isFinite(M)||M<=0) return '<span class="wait">dopo il massimale</span>'+raw;
+    const a=parseFloat(m[1].replace(",",".")), bb=m[2]?parseFloat(m[2].replace(",",".")):null;
+    return (bb?f(M*a/100)+'\u2013'+kgx(M*bb/100):kgx(M*a/100))+raw;
+  }
+  /* RPE: scrive lui il peso che ha trovato */
+  if(/^RPE\s*\d/i.test(t)||/^@\s*\d/.test(t)){
+    const kk="RK_"+k+"_"+i;
+    return '<span class="at">'+t.replace(/^RPE\s*/i,"@")+'</span> '+campo(kk,"kg",72)+'<span class="raw">peso trovato a '+t+'</span>';
+  }
+  /* un numero secco: sono kg */
+  if((m=t.match(/^(\d+(?:[.,]\d+)?)\s*(kg)?$/i))) return f(parseFloat(m[1].replace(",",".")))+' kg';
+  /* testo libero: carico non prescritto, la casella per i kg usati davvero */
+  return usato(bk,k,i,t);
+}
+
+/* ---------- regola del peso (top set + code) ---------- */
+function rigaDi(k){return parseInt(String(k).slice(String(k).lastIndexOf("_")+1))||0}
+function topDi(bk,ri){return num(state["MX_"+bk+"_"+ri+"_0"])}
+function suggerito(bk,b,ri){
+  const R=b.regola; if(ri<=0) return R.start;
+  const prev=pesoGiorno(bk,b,ri-1);
+  if(b.rows[ri]&&b.rows[ri].inc===0) return prev;
+  const tp=topDi(bk,ri-1);
+  return (isFinite(tp)&&tp>R.soglia)?prev+R.passo:prev;
+}
+function pesoGiorno(bk,b,ri){
+  const v=num(state["P_"+bk+"_"+ri]); if(isFinite(v)&&v>0) return v;
+  return suggerito(bk,b,ri);
+}
+
+/* ---------- carico non prescritto: kg usati, con il peso della settimana prima come suggerimento ---------- */
+function precUsato(bk,k,i){
+  const ri=parseInt(k.slice(k.lastIndexOf("_")+1))||0, b=bloccoDi(bk);
+  for(let r=ri-1;r>=0;r--){const v=state["U_"+bk+"_"+r+"_"+i];
+    if(v!==undefined&&String(v).trim()!=="") return {v:String(v).trim(),s:b?b.rows[r].s:""};}
+  return null;
+}
+function bloccoDi(bk){const p=bk.split("_"),g=GIORNI.find(function(x){return x.id===p[0]});return g?g.blocks[+p[1]]:null}
+let RIGA_SENZA_SERIE=false;
+function usato(bk,k,i,t){
+  if(!k||RIGA_SENZA_SERIE) return t?'<span class="wait">'+t+'</span>':'';
+  const pr=precUsato(bk,k,i), zav=/zavorr|corpo libero/i.test(t||"");
+  const piu=/salire|ogni serie/i.test(t||"");                 /* pesi diversi serie per serie: tastiera completa */
+  const kk="U_"+k+"_"+i, v=state[kk]||"";
+  return '<span class="mx usato"><input type="text"'+(piu?'':' inputmode="decimal"')+' class="mini" data-k="'+kk+
+    '" value="'+esc(v)+'" placeholder="'+(pr?esc(pr.s+": "+pr.v):(piu?"60-70-80":"kg"))+'" style="width:'+(piu?104:84)+'px">'+
+    '<em>'+(zav?'kg di zavorra':'kg usati')+'</em></span>'+(t?'<span class="raw">'+t+'</span>':'');
+}
+
+/* ---------- schemi ---------- */
+function etich(rp){rp=String(rp||"").trim().toUpperCase();
+  if(!rp||rp==="—") return "";
+  if(/^\d+\s*S$/.test(rp)||/^\d+\s*"$/.test(rp)) return "tenuta";
+  if(/^\d+\s*'$/.test(rp)||/^\d+\s*MIN/.test(rp)) return "minuti";
+  if(rp==="MAX"||rp==="AMRAP") return "";
+  return rp==="1"?"colpo":"colpi"}
+function isMax(rp){rp=String(rp||"").trim().toUpperCase();return /^(MAX|AMRAP)(\s*(S|"|''|SEC|TEMPO))?$/.test(rp)}
+function isMaxTempo(rp){rp=String(rp||"").trim().toUpperCase();return /^(MAX|AMRAP)\s*(S|"|''|SEC|TEMPO)$/.test(rp)}
+function isMezzoMax(rp){rp=String(rp||"").trim().toUpperCase();return /^MAX\s*(\/\s*2|\u00bd)$/.test(rp)||/^MET[AÀ]\s*(DEL)?\s*MAX$/.test(rp)}
+function ultimoMax(bk){
+  /* l'ultimo MAX segnato in questo esercizio, in qualunque settimana */
+  let best=null;
+  Object.keys(state).forEach(function(k){
+    if(k.indexOf("MX_"+bk+"_")!==0) return;
+    const v=String(state[k]||"").match(/\d+(?:[.,]\d+)?/); if(!v) return;
+    const n=parseFloat(v[0].replace(",",".")); if(isFinite(n)) best=(best===null?n:Math.max(best,n));
+  });
+  return best;
+}
+function relSrc(k,bk){
+  /* le code si contano dal top di questa riga; se la riga non ha top, dal top della settimana prima */
+  const ri=rigaDi(k), b=bk?bloccoDi(bk):null;
+  if(b&&b.rows[ri]&&/MAX/i.test(String(b.rows[ri].rp||""))) return "MX_"+k+"_0";
+  return ri>0?"MX_"+bk+"_"+(ri-1)+"_0":"";
+}
+function relTxt(src,d){const t=num(state[src]);
+  return (isFinite(t)&&t>0)?'<b>'+Math.max(1,t-d)+'</b><em>colpi</em>':'<b>\u2212'+d+'</b><em>colpi dal top</em>';}
+function colpiHTML(p,k,i,bk){
+  const mr=String(p.rp||"").trim().match(/^[\u2212\-](\d+)$/);
+  if(mr){const src=relSrc(k,bk);return '<span class="n rel" data-src="'+src+'" data-d="'+mr[1]+'">'+relTxt(src,parseInt(mr[1]))+'</span>';}
+  if(isMaxTempo(p.rp)) return '<span class="n"><b>MAX</b><em>secondi</em></span>'+
+    '<span class="mx">'+campo("MX_"+k+"_"+i,"45, 40, 38",92)+'<em>secondi fatti</em></span>';
+  if(isMax(p.rp)) return '<span class="n"><b>MAX</b><em>colpi</em></span>'+
+    '<span class="mx">'+campo("MX_"+k+"_"+i,"11, 10, 9",92)+'<em>colpi fatti</em></span>';
+  if(isMezzoMax(p.rp)){const u=bk?ultimoMax(bk):null;
+    return '<span class="n"><b>'+(u!==null?f(Math.round(u/2)):'\u00bd')+'</b><em>'+(u!==null?'met\u00e0 del MAX':'met\u00e0 del tuo MAX')+'</em></span>';}
+  let l=etich(p.rp); const bb=bk?bloccoDi(bk):null;
+  if(l==="colpi"&&bb&&bb.colpilab) l=bb.colpilab;
+  return l?'<span class="n"><b>'+p.rp+'</b><em>'+l+'</em></span>':'';
+}
+function schema(p,k,i,bk){
+  const col=colpiHTML(p,k,i,bk);
+  return '<span class="n"><b>'+p.se+'</b><em>serie</em></span>'+(col?'<span class="x">×</span>'+col:'');
+}
+
+/* ---------- fatica percepita ---------- */
+const FPC=[[40,16,99],[40,20,96],[39,24,92],[39,28,87],[38,33,80],[37,38,72],[36,44,62],[35,50,52],[34,54,42],[33,58,33]];
+function fcol(n){const c=FPC[n-1];return "hsl("+c[0]+" "+c[1]+"% "+c[2]+"%)"}
+function fbord(n){const c=FPC[n-1];return "hsl("+c[0]+" "+Math.min(c[1]+10,70)+"% "+Math.max(c[2]-9,14)+"%)"}
+function fink(n){return FPC[n-1][2]<58?"#fff":"#23232A"}
+let FPT={};
+function paintFp(box,v,anim){
+  const kids=box.children, key=box.dataset.k||"";
+  if(FPT[key]) FPT[key].forEach(clearTimeout); FPT[key]=[];
+  function set(i){const b=kids[i],n=i+1;b.style.background=fcol(n);b.style.borderColor=fbord(n);b.style.color=fink(n);b.className=(n===v)?"on sel":"on"}
+  function clr(i){const b=kids[i];b.style.background="";b.style.borderColor="";b.style.color="";b.className=""}
+  for(let i=v;i<10;i++) clr(i);
+  for(let i=0;i<v;i++){ if(anim) FPT[key].push(setTimeout(function(){set(i)},i*55)); else set(i); }
+}
+function setFp(k,n,el){const key="fp_"+k;state[key]=(String(state[key])===String(n))?"":n;save();
+  paintFp(el.parentNode,parseInt(state[key])||0,true);segnaManda();}
+function feedback(k,r){
+  let sc='';for(let n=1;n<=10;n++) sc+='<button type="button" data-fp="'+k+'" data-n="'+n+'">'+n+'</button>';
+  return '<div class="fp"><span class="lb">Fatica percepita</span><div class="sc" data-k="'+k+'">'+sc+'</div>'+
+    '<div class="ends"><span>leggera</span><span>massima</span></div></div>'+
+    '<div class="app"><span>Note</span><input type="text" data-k="ap_'+k+'" value="'+
+    esc(state["ap_"+k]!==undefined?state["ap_"+k]:(r.ap||""))+'"></div>';
+}
+
+/* ---------- riferimenti dentro l'esercizio ---------- */
+function howTo(rm){
+  const n=(String(rm).match(/[\d–\-]+/)||[""])[0].replace("–","-");
+  const uno=n.indexOf("-")<0, art=(n==="8"||n==="11"||n==="18")?"gli":"i";
+  return '<b>Devi trovare il massimo peso con cui riesci a fare '+n+' colpi.</b> Parti da un peso leggero e fai '+n+
+   ' colpi. Aumenta il peso un po’ alla volta, sempre serie da '+n+', fino a quando arrivi al peso che riesci ancora '+
+   'a completare pulito. Se sali e '+(uno?art:"i")+' '+n+' colpi non li chiudi, il tuo '+rm+' è il peso di prima. Di norma ci arrivi in 3-5 serie.';
+}
+function riferimenti(b,bk,sett){
+  let h=''; const rm=testDi(b), tw=settDelTest(b);
+  if(rm){
+    const v=state["T_"+bk]===undefined?"":state["T_"+bk];
+    if(!sett||sett===tw||b.rifSempre||(!v&&sett>tw)){
+      h+='<div class="tbx"><span class="lb">'+(b.testlab||('Il tuo '+rm))+'</span><input type="text" inputmode="decimal" data-k="T_'+bk+
+        '" value="'+esc(v)+'" placeholder="—"><span class="u">'+uLab(b)+'</span>'+
+        '<span class="hint">'+(b.hint||('da questo numero escono tutti i carichi di '+b.nome.toLowerCase()+' del blocco'))+'</span>'+
+        '<details class="how"'+(v?'':' open')+'><summary>'+(b.howlab||('Come si trova il '+rm))+'</summary><p>'+(b.how||howTo(rm))+'</p></details></div>';
+    }
+  }
+  return h;
+}
+
+/* ---------- il top del ramping: stessa fascia del test RM ---------- */
+function rpeDi(t){const m=String(t||"").match(/(?:RPE|@)\s*(\d+(?:[.,]5)?)/i);return m?parseFloat(m[1].replace(",",".")):null}
+function fasciaTop(p,k,r){
+  const rpe=rpeDi(p.ca), colpi=String(p.rp||"").replace(/\D/g,"")||"pochi";
+  const canna=rpe!==null?Math.max(0,Math.round(10-rpe)):null;
+  const nc=colpi==="pochi"?"":(colpi==="1"?" 1 colpo":" "+colpi+" colpi");
+  const lab='Il tuo top'+nc+(rpe!==null?' @'+f(rpe):'');
+  const kk="RK_"+k+"_0", v=state[kk]||"";
+  const uno=colpi==="1";
+  const how='<b>Devi trovare il peso con cui fai '+(uno?'una singola':colpi+' colpi')+(canna!==null?' lasciandone '+canna+' in canna':'')+'.</b> '+
+    'Parti da un peso leggero e fai '+(uno?'singole':colpi+' colpi')+'. Aumenta il peso un po\u2019 alla volta, sempre '+(uno?'singole':'serie da '+colpi)+'. '+
+    (canna!==null?'Quando '+(uno?'una singola':'una serie')+' ti lascia '+(canna===1?'1 colpo':canna+' colpi')+' in canna \u2014 fatica della serie '+f(rpe)+' su 10 \u2014 quello \u00e8 il tuo top: scrivilo qui. '
+                  :'Quando arrivi al peso giusto per oggi, quello \u00e8 il tuo top: scrivilo qui. ')+
+    'Di norma ci arrivi in 3-5 serie.';
+  return '<div class="tbx dentro"><span class="lb">'+lab+'</span>'+
+    '<input type="text" inputmode="decimal" data-k="'+kk+'" value="'+esc(v)+'" placeholder="\u2014"><span class="u">kg</span>'+
+    '<span class="hint">da questo peso escono le serie dopo</span>'+
+    '<details class="how"'+(v?'':' open')+'><summary>Come si trova il top</summary><p>'+how+'</p></details></div>';
+}
+
+/* ---------- la settimana scorsa: quello che si è segnato sullo stesso esercizio ---------- */
+function scorsaHTML(b,bk,ri,sett){
+  if(!sett) return "";
+  if(b.regola){
+    const R=b.regola, row=b.rows[ri], haTop=/MAX/i.test(String(row.rp||""));
+    if(ri===0) return '<div class="scorsa"><span class="sl">Si parte</span>Peso: <b>'+kg(R.start)+'</b>. Segna sempre i colpi del top: '+
+      'quando superi i '+R.soglia+', la settimana dopo il peso sale di '+f(R.passo)+' kg da solo.</div>';
+    const pr=b.rows[ri-1], tp=topDi(bk,ri-1), pp=pesoGiorno(bk,b,ri-1), P=pesoGiorno(bk,b,ri);
+    const ps=String(pr.s);
+    if(!/MAX/i.test(String(pr.rp||""))) return '<div class="scorsa"><span class="sl">Settimana scorsa · '+ps+'</span>'+kg(pp)+', senza top set.</div>';
+    if(!isFinite(tp)||tp<=0) return '<div class="scorsa"><span class="sl">Settimana scorsa · '+ps+'</span>'+kg(pp)+
+      ' \u2014 colpi del top <b>non segnati</b>. Segnali sempre: servono a capire quando salire.</div>';
+    let h='<div class="scorsa"><span class="sl">Settimana scorsa · '+ps+'</span><b>'+kg(pp)+' \u00d7 '+tp+' colpi</b> nel top.';
+    if(!haTop) h+=' Oggi niente top: le serie si contano da quei '+tp+' colpi.';
+    else if(row.inc===0) h+=' Oggi stesso peso: confronta i colpi.';
+    else if(P>pp) h+=' Hai superato i '+R.soglia+': <b>oggi '+kg(P)+'</b>. Con il peso nuovo i colpi ripartono più bassi, va bene così.';
+    else h+=' Oggi stesso peso: <b>confermi i '+tp+' o ne fai '+(tp+1)+'</b>.';
+    return h+'</div>';
+  }
+  if(ri<=0) return "";
+  const k0=bk+"_"+(ri-1), pz=[];
+  const nomi=nomiBlocco(b);
+  for(let i=0;i<6;i++){
+    const chi=nomi&&nomi[i]?nomi[i].toLowerCase()+": ":"";
+    const mx=state["MX_"+k0+"_"+i], u=state["U_"+k0+"_"+i], rk=state["RK_"+k0+"_"+i], w=state["W_"+k0+"_"+i];
+    if(mx&&String(mx).trim()) pz.push(chi+(isMaxTempo(String((parti(b.rows[ri-1])[i]||{}).rp||""))?String(mx).trim()+" secondi":"MAX "+String(mx).trim()+" colpi"));
+    if(u&&String(u).trim()) pz.push(chi+String(u).trim()+(/^\d+(?:[.,]\d+)?$/.test(String(u).trim())?" kg":""));
+    if(rk&&String(rk).trim()) pz.push(chi+String(rk).trim()+" kg");
+    if(w&&String(w).trim()) pz.push(chi+String(w).trim()+" kg");
+  }
+  const nt=state["NT_"+k0]; if(nt&&String(nt).trim()) pz.push("nuovo test "+String(nt).trim());
+  const fp=state["fp_"+k0]; if(fp) pz.push("fatica "+fp+"/10");
+  const ap=state["ap_"+k0]; if(ap&&String(ap).trim()) pz.push("\u00ab"+String(ap).trim()+"\u00bb");
+  if(!pz.length) return "";
+  return '<div class="scorsa"><span class="sl">Settimana scorsa · '+String(b.rows[ri-1].s)+'</span>'+pz.join(" \u00b7 ")+'</div>';
+}
+
+/* ---------- la riga ---------- */
+function notaCoach(t){return String(t||"").replace(/\b(in|negli|nella|su(?:gli)?)\s+appunti\b/gi,"nelle note").replace(/\bappunti\b/g,"note")}
+function rigaHTML(r,b,bk,k,sett){
+  const ts=tipoSerie(r.se), pz=parti(r), nomi=nomiParti(b,pz.length);
+  RIGA_SENZA_SERIE=(ts.t==="nessuna");
+  const recLab=(ts.t==="giri"&&!/giro|giri|onda|onde/i.test(r.rec||""))?('Rec tra '+(ts.parola==="onde"?'le onde':'i giri')):'Rec';
+  const pill=r.rec?'<span class="rec"><em>'+recLab+'</em>'+r.rec+'</span>':'';
+  const car=function(p,i){let x=risolvi(p.ca,bk,b,k,i);
+    if(!x&&ts.t!=="nessuna") x=usato(bk,k,i,"");
+    return '<div class="car" data-car="'+k+'_'+i+'">'+x+'</div>'};
+  let h='<div class="wk">'+(sett?'':'<div class="s">Settimana '+String(r.s).replace(/\D/g,"")+'</div>')+scorsaHTML(b,bk,rigaDi(k),sett);
+
+  if(ts.t==="nessuna"){
+    /* cardio, mobilita', lavori a tempo: una riga di testo */
+    const rp=String(r.rp||"").trim(), ca=String(r.ca||"").trim();
+    h+='<div class="sch">'+(rp&&rp!=="—"?'<span class="n"><b>'+rp+'</b><em>'+etich(rp)+'</em></span>':'<span class="libera">senza serie</span>')+pill+'</div>';
+    if(ca&&ca!=="—") h+=car(pz[0],0);
+  }
+  else if(ts.t==="giri"){
+    h+='<div class="recw">'+pill+'</div>';
+    h+='<div class="giro"><div class="gt">Ripeti <b>'+ts.n+'</b> volte'+(ts.parola==="onde"?' <em>('+ts.n+' onde)</em>':'')+'</div>';
+    pz.forEach(function(p,i){
+      h+='<div class="gp">'+(nomi?'<span class="gn">'+nomi[i]+'</span>':'')+
+         '<div class="gl"><div class="sch">'+colpiHTML(p,k,i,bk)+'</div>'+car(p,i)+'</div></div>';
+    });
+    h+='</div>';
+    if(ts.extra){const p=pz[pz.length-1];
+      h+='<div class="poi">poi</div><div class="parte"><div class="sch">'+schema({se:ts.extra,rp:p.rp},k,pz.length,bk)+'</div>'+car(p,pz.length)+'</div>';}
+  }
+  else if(ts.t==="ramp"){
+    const p0=pz[0];
+    h+=fasciaTop(p0,k,r)+'<div class="recw">'+pill+'</div>';
+    const resto=pz.slice(1);
+    if(ts.extra){
+      const p=resto[0]||p0;
+      h+='<div class="parte"><div class="gl"><div class="sch">'+schema({se:ts.extra,rp:p.rp},k,1,bk)+'</div>'+car(p,1)+'</div></div>';
+    } else resto.forEach(function(p,j){
+      h+=(j?'<div class="poi">poi</div>':'')+'<div class="parte"><div class="gl"><div class="sch">'+schema(p,k,j+1,bk)+'</div>'+car(p,j+1)+'</div></div>';
+    });
+  }
+  else if(ts.t==="n"){
+    h+='<div class="recw">'+pill+'</div>';
+    const p0=pz[0];
+    h+='<div class="ramp"><div class="gt">Serie <em>quante ne servono</em></div>'+
+       '<div class="gl"><div class="sch">'+colpiHTML(p0,k,0,bk)+'</div>'+car(p0,0)+'</div>'+
+       '<div class="fatte"><span>Serie fatte</span>'+campo("SF_"+k,"n.",64)+'</div></div>';
+  }
+  else if(pz.length>1){
+    h+=(r.rec?'<div class="recw">'+pill+'</div>':'');
+    h+=pz.map(function(p,i){return '<div class="parte">'+(nomi?'<span class="gn">'+nomi[i]+'</span>':'')+
+      '<div class="gl"><div class="sch">'+schema(p,k,i,bk)+'</div>'+car(p,i)+'</div></div>'}).join('<div class="poi">poi</div>');
+  }
+  else {
+    h+='<div class="sch">'+schema(pz[0],k,0,bk)+pill+'</div>'+car(pz[0],0);
+  }
+  if(r.es) h+='<div class="esec">'+r.es+'</div>';
+  if(/EMOM/i.test(String(r.rec||"")+" "+String(b.t||"")+" "+String(r.es||""))){
+    const minuti=parseInt(String(r.se).match(/\d+/)||0)||0;
+    if(minuti) h+='<div class="emom" id="emom_'+k+'"><div class="ed"><b>\u2014</b><em>EMOM '+minuti+'\u2032</em></div>'+
+      '<button type="button" class="eb" data-emom="'+k+'" data-min="'+minuti+'">Avvia EMOM</button>'+
+      '<span class="evol">Volume alto e silenzioso tolto: il beep usa l\u2019audio del telefono.</span></div>';
+  }
+  if(b.cs!==false&&!h.includes('class="emom"')) h+=contaserie(r,b,k);   /* EMOM: conta il timer */
+  if(r.n) h+='<div class="nota">'+notaCoach(r.n)+'</div>';
+  return h+feedback(k,r)+'</div>';
+}
+
+/* ---------- contaserie: segni la serie, parte il recupero (solo da quanto stai recuperando) ---------- */
+function serieDi(r){
+  const ts=tipoSerie(r.se); if(ts.t==="nessuna"||ts.t==="n"||ts.t==="testo") return null;
+  const pz=parti(r), out=[];
+  if(ts.t==="giri"){
+    for(let g=0;g<ts.n;g++) out.push({rp:pz.map(function(p){return p.rp}).join(" + "),lab:"giro"});
+    for(let x=0;x<ts.extra;x++) out.push({rp:pz[pz.length-1].rp,lab:"serie"});
+    return out;
+  }
+  if(ts.t==="ramp"&&ts.extra){const p=pz[1]||pz[0];for(let x=0;x<ts.extra;x++)out.push({rp:p.rp,lab:"serie"});return out}
+  (ts.t==="ramp"?pz.slice(1):pz).forEach(function(p){
+    const n=parseInt(p.se)||0, rr=String(p.rp).split("-").map(function(x){return x.trim()});
+    for(let x=0;x<n;x++) out.push({rp:(rr.length===n?rr[x]:p.rp),lab:"serie"});
+  });
+  return out.length?out:null;
+}
+function mmss(sec){sec=Math.max(0,Math.floor(sec));const m=Math.floor(sec/60),s2=sec%60;return m+":"+(s2<10?"0":"")+s2}
+function colpiDi(rp){rp=String(rp).trim();if(/^\d+$/.test(rp))return rp+(rp==="1"?" colpo":" colpi");return rp}
+function recCs(k,cl){
+  const t=parseInt(state["CT_"+k]);
+  if(state.__csLast!==k||!t) return '';
+  return '<span class="csr'+(cl?' '+cl:'')+'" data-t="'+t+'"><em>recupero</em><b>'+mmss((Date.now()-t)/1000)+'</b></span>';
+}
+function contaserie(r,b,k){
+  const S=serieDi(r); if(!S) return "";
+  const n=S.length, f2=Math.min(parseInt(state["CS_"+k])||0,n), m=b.cs||"tasto", fin=f2>=n;
+  const parola=S[0].lab==="giro"?"giri":"serie";
+  let h='<div class="cs cs-'+m+(fin?' fin':'')+'" id="cs_'+k+'">';
+  if(m==="pallini"){
+    const varia=S.some(function(x){return x.rp!==S[0].rp});
+    h+='<div class="csh"><span class="lb">'+(fin?'Fatto · ':'')+parola+(parola==="giri"?' fatti ':' fatte ')+f2+' di '+n+'</span>'+recCs(k)+'</div><div class="dots">';
+    S.forEach(function(x,i){h+='<button type="button" data-cs="'+k+'" data-i="'+i+'" class="'+(i<f2?'on':(i===f2?'next':''))+'">'+
+      '<b>'+(i+1)+'</b>'+(varia?'<em>'+x.rp+'</em>':'')+'</button>'});
+    h+='</div>';
+  } else if(m==="tasto"){
+    h+='<button type="button" class="big" data-cs="'+k+'" data-act="piu"'+(fin?' disabled':'')+'><span class="t">'+
+       (fin?'Esercizio fatto':(parola==="giri"?'Giro fatto':'Serie fatta'))+'</span><span class="c"><b>'+f2+'</b>/'+n+'</span></button>'+
+       '<div class="csb">'+(recCs(k)||'<span class="csr vuoto"><em>recupero</em><b>—</b></span>')+
+       (f2?'<button type="button" class="und" data-cs="'+k+'" data-act="meno">annulla l’ultima</button>':'')+'</div>';
+  } else {
+    h+='<div class="csh"><span class="lb">Le '+parola+'</span></div>';
+    S.forEach(function(x,i){
+      h+='<button type="button" class="sr'+(i<f2?' on':(i===f2?' next':''))+'" data-cs="'+k+'" data-i="'+i+'">'+
+         '<span class="o">'+(i+1)+'ª</span><span class="rp">'+colpiDi(x.rp)+'</span>'+
+         '<span class="rt">'+(i===f2-1?recCs(k,'in'):'')+'</span><span class="ck"></span></button>';
+    });
+  }
+  return h+'</div>';
+}
+function rigaObj(k){const p=k.split("_"),g=GIORNI.find(function(x){return x.id===p[0]}),b=g.blocks[+p[1]];return {b:b,r:b.rows[+p[2]]}}
+function segnaSerie(k,nuovo){
+  const x=rigaObj(k), S=serieDi(x.r), prima=parseInt(state["CS_"+k])||0;
+  nuovo=Math.max(0,Math.min(nuovo,S.length));
+  state["CS_"+k]=nuovo;
+  if(nuovo>prima){state["CT_"+k]=Date.now();state.__csLast=k;clin()}  /* serie segnata: clin clin e riparte il recupero */
+  if(nuovo===S.length&&nuovo>prima&&!state["__fe_cs_"+k]){const st=superaTest(x.r,x.b);
+    if(st){state["__fe_cs_"+k]=1;save();setTimeout(function(){festa(st.t,st.d)},350)}}
+  else if(nuovo===0&&state.__csLast===k){delete state.__csLast}
+  save();
+  document.querySelectorAll(".cs").forEach(function(el){            /* un solo recupero acceso alla volta */
+    const kk=el.id.slice(3), y=rigaObj(kk), t=document.createElement("div");
+    t.innerHTML=contaserie(y.r,y.b,kk); el.replaceWith(t.firstChild);
+  });
+  if(nuovo>prima){const nb=document.querySelector("#cs_"+k+" .big, #cs_"+k+" .dots, #cs_"+k+" .sr.on:last-of-type");
+    if(nb){nb.classList.add("batti");setTimeout(function(){nb.classList.remove("batti")},650)}}
+}
+function clin(){
+  /* due tocchi di vetro, corti e puliti: la serie e' segnata */
+  try{
+    if(!ACTX) ACTX=new (window.AudioContext||window.webkitAudioContext)();
+    if(ACTX.state==="suspended") ACTX.resume();
+    const out=ACTX.createGain(); out.gain.value=0.55; out.connect(ACTX.destination);
+    [[2093,0],[2794,0.095]].forEach(function(n){
+      const t=ACTX.currentTime+n[1];
+      [[1,1],[2.76,0.28],[5.4,0.08]].forEach(function(h){
+        const o=ACTX.createOscillator(), g=ACTX.createGain();
+        o.type="sine"; o.frequency.value=n[0]*h[0]; o.connect(g); g.connect(out);
+        g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(h[1],t+0.004);
+        g.gain.exponentialRampToValueAtTime(0.0001,t+(h[0]===1?0.32:0.12));
+        o.start(t); o.stop(t+0.34);
+      });
+    });
+  }catch(e){}
+  try{if(navigator.vibrate) navigator.vibrate(18)}catch(e){}
+}
+document.addEventListener("click",function(e){
+  const t=e.target.closest("[data-cs]"); if(!t) return;
+  const k=t.dataset.cs, f2=parseInt(state["CS_"+k])||0;
+  if(t.dataset.act==="piu") segnaSerie(k,f2+1);
+  else if(t.dataset.act==="meno") segnaSerie(k,f2-1);
+  else {const i=parseInt(t.dataset.i); segnaSerie(k,i<f2?i:i+1)}
+});
+setInterval(function(){document.querySelectorAll(".csr[data-t]").forEach(function(e){
+  const b=e.querySelector("b"); if(b) b.textContent=mmss((Date.now()-parseInt(e.dataset.t))/1000)})},1000);
+
+/* ---------- record: quando batti quello che avevi fatto prima, coriandoli, vibrazione e complimenti ---------- */
+function numeri(v){return (String(v==null?"":v).match(/\d+(?:[.,]\d+)?/g)||[]).map(function(x){return parseFloat(x.replace(",","."))})}
+function massimo(v){const a=numeri(v);return a.length?Math.max.apply(null,a):NaN}
+function migliorePrima(pref,bk,ri,i){
+  const b=bloccoDi(bk); let best=null;
+  for(let r=ri-1;r>=0;r--){const m=massimo(state[pref+bk+"_"+r+"_"+i]);
+    if(isFinite(m)&&(!best||m>best.v)) best={v:m,s:b.rows[r].s};}
+  return best;
+}
+const RECT={};
+function guardaRecord(kk,subito){
+  const m=kk.match(/^(U_|W_|MX_|RK_)([A-Z])_(\d+)_(\d+)_(\d+)$/); if(!m) return;
+  clearTimeout(RECT[kk]);
+  RECT[kk]=setTimeout(function(){
+    const pref=m[1], bk=m[2]+"_"+m[3], ri=+m[4], i=+m[5], cur=massimo(state[kk]);
+    if(!isFinite(cur)) return;
+    const prev=migliorePrima(pref,bk,ri,i); if(!prev||cur<=prev.v) return;
+    if(state["__fe_"+kk]===String(cur)) return;                   /* gia' festeggiato questo numero */
+    state["__fe_"+kk]=String(cur); save();
+    const b=bloccoDi(bk), r=b.rows[ri], nomi=nomiParti(b,parti(r).length), chi=nomi&&nomi[i]?nomi[i].toLowerCase()+": ":"";
+    const pz=parti(r)[Math.min(i,parti(r).length-1)], sec=isMaxTempo(pz.rp);
+    let t, d;
+    if(pref==="MX_"){t="Nuovo record";d=chi+f(cur)+(sec?" secondi":" colpi")+". Il tuo meglio era "+f(prev.v)+" in "+prev.s+"."}
+    else if(pref==="RK_"){const mav=/MAV/i.test(pz.ca);t=mav?"MAV più alta":"Top più alto";
+      d=f(cur)+" kg, "+f(Math.round((cur-prev.v)*100)/100)+" kg più di "+prev.s+"."}
+    else {const zav=/zavorr|corpo libero/i.test(pz.ca);t=zav?"Più zavorra":"Più peso";
+      d=chi+f(cur)+" kg, in "+prev.s+" erano "+f(prev.v)+"."}
+    festa(t,d);
+  },subito?60:1400);
+}
+function superaTest(r,b){
+  /* serie chiuse con il peso del test (o di piu') e almeno i colpi del test: il test l'hai battuto */
+  const rm=testDi(b); if(!rm) return null;
+  const nr=parseInt(rm)||0; if(!nr) return null;
+  const pz=parti(r); let ok=null;
+  pz.forEach(function(p){
+    const c=String(p.ca||""), reps=parseInt(p.rp)||0;
+    const pieno=(/peso del test/i.test(c)&&!/[−\-]\s*\d/.test(c))||/\+\s*\d/.test(c)&&/test/i.test(c)||
+      (function(){const q=c.match(/(\d+(?:[.,]\d+)?)\s*%\s*del test/i);return q&&parseFloat(q[1].replace(",","."))>=100})();
+    if(pieno&&reps>=nr&&p.ca!=="__TEST__") ok={reps:reps,se:p.se};
+  });
+  if(!ok) return null;
+  const neg=/discesa|negativ/i.test(String(r.es||"")+" "+String(r.n||""));
+  return {t:"Test battuto",d:ok.se+"×"+ok.reps+" con il peso del tuo "+rm+(neg?", e con la discesa lenta":"")+"."};
+}
+function festa(titolo,testo){
+  try{if(navigator.vibrate) navigator.vibrate([40,60,40,60,140])}catch(e){}
+  fanfara();
+  let el=document.getElementById("festa");
+  if(!el){el=document.createElement("div");el.id="festa";el.setAttribute("role","status");document.body.appendChild(el);
+    el.addEventListener("click",function(){el.className=""});}
+  el.innerHTML='<b>'+titolo+'</b><span>'+testo+'</span>';
+  el.className="on"; clearTimeout(el._t); el._t=setTimeout(function(){el.className=""},4500);
+  if(!(window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches)) coriandoli();
+}
+function fanfara(){
+  try{
+    if(!ACTX) ACTX=new (window.AudioContext||window.webkitAudioContext)();
+    if(ACTX.state==="suspended") ACTX.resume();
+    const out=ACTX.createGain(); out.gain.value=0.5; out.connect(ACTX.destination);
+    [[1568,0],[2093,0.09],[2637,0.18],[3136,0.27],[4186,0.40]].forEach(function(n){
+      const t=ACTX.currentTime+n[1];
+      [[1,1],[2.76,0.22]].forEach(function(h){
+        const o=ACTX.createOscillator(),g=ACTX.createGain();
+        o.type="sine";o.frequency.value=n[0]*h[0];o.connect(g);g.connect(out);
+        g.gain.setValueAtTime(0.0001,t);g.gain.exponentialRampToValueAtTime(h[1]*(n[1]>0.3?1:0.8),t+0.005);
+        g.gain.exponentialRampToValueAtTime(0.0001,t+(n[1]>0.3?0.6:0.25));o.start(t);o.stop(t+0.62);
+      });
+    });
+  }catch(e){}
+}
+function coriandoli(){
+  const cv=document.createElement("canvas"), dpr=Math.min(window.devicePixelRatio||1,2);
+  cv.id="coriandoli"; document.body.appendChild(cv);
+  const W=innerWidth,H=innerHeight; cv.width=W*dpr; cv.height=H*dpr; const c=cv.getContext("2d"); c.scale(dpr,dpr);
+  const col=["#C9A961","#A9863B","#E9D9B0","#FFFFFF","#23232A"], P=[];
+  for(let n=0;n<150;n++){const da=n%2?1:-1;            /* due getti dagli angoli in basso */
+    P.push({x:da<0?-10:W+10,y:H*0.72,vx:da*(-(3+Math.random()*7)),vy:-(9+Math.random()*9),g:0.32+Math.random()*0.1,
+      w:5+Math.random()*6,h:3+Math.random()*4,r:Math.random()*6.28,vr:(Math.random()-.5)*0.35,c:col[n%col.length],tondo:Math.random()<.25});}
+  const t0=performance.now();
+  (function step(now){
+    const e=now-t0; c.clearRect(0,0,W,H);
+    P.forEach(function(p){p.vy+=p.g;p.vx*=0.99;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;
+      c.save();c.globalAlpha=Math.max(0,1-Math.max(0,e-1800)/700);c.translate(p.x,p.y);c.rotate(p.r);c.fillStyle=p.c;
+      if(p.tondo){c.beginPath();c.arc(0,0,p.h/1.6,0,6.28);c.fill()}else c.fillRect(-p.w/2,-p.h/2,p.w,p.h);
+      if(p.c==="#FFFFFF"){c.strokeStyle="rgba(169,134,59,.35)";c.lineWidth=.6;c.strokeRect(-p.w/2,-p.h/2,p.w,p.h)}
+      c.restore();});
+    if(e<2500) requestAnimationFrame(step); else cv.remove();
+  })(t0);
+}
+
+/* ---------- EMOM: 10" per mettersi sotto, poi un beep a ogni minuto ---------- */
+let EMOMT=null, ACTX=null;
+function beep(n,freq){
+  /* onda quadra, due toni sovrapposti, compressore a valle: il massimo che un telefono tira fuori */
+  try{
+    if(!ACTX) ACTX=new (window.AudioContext||window.webkitAudioContext)();
+    if(ACTX.state==="suspended") ACTX.resume();
+    const comp=ACTX.createDynamicsCompressor();
+    comp.threshold.value=-6; comp.knee.value=0; comp.ratio.value=20; comp.attack.value=0.001; comp.release.value=0.05;
+    const out=ACTX.createGain(); out.gain.value=1.0; comp.connect(out); out.connect(ACTX.destination);
+    for(let i=0;i<n;i++){
+      const t=ACTX.currentTime+i*0.42;
+      [freq||1760,(freq||1760)*1.5].forEach(function(fr){
+        const o=ACTX.createOscillator(), g=ACTX.createGain();
+        o.type="square"; o.frequency.value=fr; o.connect(g); g.connect(comp);
+        g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(1.0,t+0.008);
+        g.gain.setValueAtTime(1.0,t+0.28); g.gain.exponentialRampToValueAtTime(0.0001,t+0.34);
+        o.start(t); o.stop(t+0.36);
+      });
+    }
+  }catch(e){}
+  try{if(navigator.vibrate) navigator.vibrate(n===1?250:[250,150,250,150,250])}catch(e){}
+  lampo(n);
+}
+function lampo(n){
+  let el=document.getElementById("lampo");
+  if(!el){el=document.createElement("div");el.id="lampo";document.body.appendChild(el)}
+  let c=0;
+  (function uno(){ el.className="on"; setTimeout(function(){el.className="";if(++c<n)setTimeout(uno,140)},260) })();
+}
+function emomToggle(k,min,btn){
+  if(EMOMT&&EMOMT.k===k){emomStop();return}
+  emomStop();
+  const box=document.getElementById("emom_"+k); if(!box) return;
+  const disp=box.querySelector(".ed");
+  beep(1,1175);                                  /* sblocca l'audio col tocco */
+  let wl=null; try{if(navigator.wakeLock) navigator.wakeLock.request("screen").then(function(w){wl=w}).catch(function(){})}catch(e){}
+  const t0=Date.now(), prep=10; let lastMin=-1, lastPrep=-1;
+  btn.textContent="Ferma"; btn.className="eb on";
+  function tick(){
+    const s=(Date.now()-t0)/1000;
+    if(s<prep){
+      const r=Math.ceil(prep-s);
+      if(r<=3&&r!==lastPrep){lastPrep=r;beep(1,1175)}
+      disp.innerHTML='<b>'+r+'</b><em>mettiti sotto</em>'; return;
+    }
+    const e=s-prep, m=Math.floor(e/60), sec=Math.floor(e%60);
+    if(m>=min){ disp.innerHTML='<b>FINE</b><em>'+min+' minuti fatti</em>'; beep(3,1760); emomStop(true); return; }
+    if(m!==lastMin){lastMin=m;beep(m===0?2:1,1760)}
+    disp.innerHTML='<b>'+(m+1)+'<small>/'+min+'</small></b><em>minuto</em><span class="es">'+(sec<10?"0":"")+sec+'\u2033</span>';
+  }
+  EMOMT={k:k,iv:setInterval(tick,200),btn:btn,disp:disp,min:min,getWl:function(){return wl}};
+  tick();
+}
+function emomStop(fine){
+  if(!EMOMT) return;
+  clearInterval(EMOMT.iv);
+  try{const w=EMOMT.getWl(); if(w) w.release()}catch(e){}
+  EMOMT.btn.textContent="Avvia EMOM"; EMOMT.btn.className="eb";
+  if(!fine) EMOMT.disp.innerHTML='<b>\u2014</b><em>EMOM '+EMOMT.min+'\u2032</em>';
+  EMOMT=null;
+}
+
+/* ---------- riepilogo per il coach ---------- */
+function segnato(){
+  const out=[];
+  GIORNI.forEach(function(g){g.blocks.forEach(function(b,bi){
+    const bk=g.id+"_"+bi;
+    const T=state["T_"+bk];
+    if(T&&String(T).trim()) out.push({g:g.id,nome:b.nome,riga:testDi(b)+": "+T+" kg"});
+    b.rows.forEach(function(r,ri){
+      const k=bk+"_"+ri, pezzi=[];
+      const fp=state["fp_"+k], ap=state["ap_"+k], sf=state["SF_"+k];
+      if(sf) pezzi.push("serie fatte "+sf);
+      const nomi=nomiBlocco(b);
+      for(let i=0;i<6;i++){const mx=state["MX_"+k+"_"+i], rk=state["RK_"+k+"_"+i], w=state["W_"+k+"_"+i];
+        const chi=nomi&&nomi[i]?nomi[i].toLowerCase()+" ":"";
+        if(mx) pezzi.push(chi+"MAX: "+mx); if(rk) pezzi.push(chi+"a RPE: "+rk+" kg"); if(w) pezzi.push(chi+"peso usato "+w+" kg");
+        const u=state["U_"+k+"_"+i]; if(u) pezzi.push(chi+"kg usati "+u);}
+      const nt=state["NT_"+k]; if(nt&&String(nt).trim()) pezzi.push("nuovo test "+String(nt).trim()+" "+uLab(b));
+      if(b.regola&&/MAX/i.test(String(r.rp||""))&&state["MX_"+k+"_0"]) pezzi.push("peso "+kg(pesoGiorno(bk,b,ri)));
+      if(fp) pezzi.push("fatica "+fp+"/10");
+      if(ap&&String(ap).trim()) pezzi.push(String(ap).trim());
+      if(pezzi.length) out.push({g:g.id,nome:r.s+" "+b.nome,riga:pezzi.join(" — ")});
+    });
+  })});
+  return out;
+}
+function segnaManda(){const n=segnato().length,b=document.getElementById("manda");if(!b)return;
+  b.className="manda"+(n?"":" vuoto");
+  b.textContent=n?("Manda al coach ("+(n===1?"1 cosa segnata":n+" cose segnate")+")"):"Non hai ancora segnato niente";}
+function testo(){
+  const r=segnato(); if(!r.length) return "";
+  let t=TITOLO+" — quello che ho segnato\n"; const per={};
+  r.forEach(function(x){(per[x.g]=per[x.g]||[]).push(x)});
+  Object.keys(per).sort().forEach(function(g){t+="\nGIORNO "+g+"\n";per[g].forEach(function(x){t+="• "+x.nome+" — "+x.riga+"\n"})});
+  return t;
+}
+function manda(){const t=testo();if(!t){alert("Non hai ancora segnato niente.");return}
+  window.open("https://wa.me/?text="+encodeURIComponent(t),"_blank");}
+
+/* ---------- selettori e disegno ---------- */
+let sel=(typeof SEL0!=="undefined"&&SEL0)?SEL0:1, dsel=(typeof DSEL0!=="undefined"&&DSEL0)?DSEL0:"";
+/* la settimana e il giorno scelti restano quelli dell'ultima volta */
+(function(){const w=parseInt(state.__sel);if(state.__sel!==undefined&&(w===0||SETT.indexOf(w)>=0))sel=w;
+  if(state.__dsel&&GIORNI.some(function(g){return g.id===state.__dsel}))dsel=state.__dsel;})();
+function scegli(w,d){if(w!==null)sel=w;if(d!==null)dsel=d;state.__sel=sel;state.__dsel=dsel;save();draw()}
+const chips=document.getElementById("chips"), dchips=document.getElementById("dchips");
+SETT.forEach(function(w){const b=document.createElement("button");b.textContent="S"+w;b.onclick=function(){scegli(w,null)};chips.appendChild(b)});
+(function(){const b=document.createElement("button");b.className="all";b.textContent="TUTTE";b.onclick=function(){scegli(0,null)};chips.appendChild(b)})();
+GIORNI.forEach(function(g){const b=document.createElement("button");b.textContent=g.id;b.onclick=function(){scegli(null,dsel===g.id?"":g.id)};dchips.appendChild(b)});
+(function(){const b=document.createElement("button");b.className="all";b.textContent="TUTTI";b.onclick=function(){scegli(null,"")};dchips.appendChild(b)})();
+function nserie(r){const ts=tipoSerie(r.se);if(ts.t!=="num")return 0;const m=String(r.se).match(/\d+/g);return m?m.reduce(function(a,x){return a+parseInt(x)},0):0}
+function settimanaDi(r){return parseInt(String(r.s).replace(/\D/g,""))||0}
+
+function draw(){
+  emomStop();
+  [].forEach.call(chips.children,function(b,i){b.setAttribute("aria-pressed",(i<SETT.length&&SETT[i]===sel)||(i===SETT.length&&sel===0)?"true":"false")});
+  [].forEach.call(dchips.children,function(b,i){b.setAttribute("aria-pressed",(i<GIORNI.length&&GIORNI[i].id===dsel)||(i===GIORNI.length&&dsel==="")?"true":"false")});
+  let h="";
+  GIORNI.forEach(function(g){
+    if(dsel&&g.id!==dsel) return;
+    const righe=g.blocks.map(function(b){return b.rows.filter(function(r){return !sel||settimanaDi(r)===sel})});
+    const ne=righe.filter(function(x){return x.length}).length; if(!ne) return;
+    const ns=righe.reduce(function(a,rr){return a+rr.reduce(function(y,r){return y+nserie(r)},0)},0);
+    h+='<div class="daybar">'+g.head+'<span>'+ne+' esercizi'+(sel&&ns?' · '+ns+' serie':'')+'</span></div>';
+    g.blocks.forEach(function(b,bi){
+      const bk=g.id+"_"+bi, rr=b.rows.filter(function(r){return !sel||settimanaDi(r)===sel}); if(!rr.length) return;
+      if(b.demo) h+='<div class="caso">'+b.demo+'</div>';
+      h+='<div class="ex"><h3>'+b.nome+(b.ruolo?'<em>'+b.ruolo+'</em>':'')+'</h3>'+riferimenti(b,bk,sel);
+      rr.forEach(function(r){h+=rigaHTML(r,b,bk,bk+"_"+b.rows.indexOf(r),sel)});
+      h+='</div>';
+    });
+  });
+  document.getElementById("out").innerHTML=h||'<p class="note">Niente da mostrare.</p>';
+  document.querySelectorAll(".sc").forEach(function(box){paintFp(box,parseInt(state["fp_"+box.dataset.k])||0,false)});
+  document.querySelectorAll("[data-emom]").forEach(function(b){if(b.dataset.bound)return;b.dataset.bound=1;
+    b.addEventListener("click",function(e){const t=e.currentTarget;emomToggle(t.dataset.emom,parseInt(t.dataset.min),t)})});
+  document.querySelectorAll("[data-fp]").forEach(function(b){if(b.dataset.bound)return;b.dataset.bound=1;
+    b.addEventListener("click",function(e){const t=e.currentTarget;setFp(t.dataset.fp,parseInt(t.dataset.n),t)})});
+  document.querySelectorAll("input[data-k]").forEach(function(i){if(i.dataset.bound)return;i.dataset.bound=1;
+    i.addEventListener("input",function(e){const kk=e.target.dataset.k;state[kk]=e.target.value;save();
+      if(/^(T_|W_|ref_|NT_|P_)/.test(kk)) ridipingi(); if(/^RK_/.test(kk)) ridipingiTop(kk); if(/^MX_/.test(kk)) ridipingiRel(kk); segnaManda(); guardaRecord(kk);});
+    i.addEventListener("change",function(e){guardaRecord(e.target.dataset.k,true)});});
+  segnaManda();
+  /* tante settimane: la riga scorre di lato e la settimana scelta resta in vista */
+  const act=chips.querySelector('[aria-pressed="true"]');
+  if(act&&chips.scrollWidth>chips.clientWidth) chips.scrollLeft=Math.max(0,act.offsetLeft-chips.clientWidth/2+act.offsetWidth/2);
+}
+function ridipingi(){
+  GIORNI.forEach(function(g){g.blocks.forEach(function(b,bi){const bk=g.id+"_"+bi;
+    b.rows.forEach(function(r,ri){const k=bk+"_"+ri, pz=parti(r), ts=tipoSerie(r.se);
+      RIGA_SENZA_SERIE=(ts.t==="nessuna");
+      document.querySelectorAll('[data-car^="'+k+'_"]').forEach(function(nd){
+        const i=parseInt(nd.dataset.car.slice(k.length+1))||0;
+        const p=pz[Math.min(i,pz.length-1)];
+        if(nd.querySelector("input")){
+          const bb=nd.querySelector("b"), base=pesoLavoro(bk,k,i), c=String(p.ca||"");
+          if(bb&&/peso di lavoro/i.test(c)) bb.textContent=(isFinite(base)&&base>0)?kg(base*sconto(c)):"\u2014";
+          return;
+        }
+        nd.innerHTML=risolvi(p.ca,bk,b,k,i);
+      });
+    });
+  })});
+}
+function ridipingiRel(kk){
+  document.querySelectorAll('.rel[data-src="'+kk+'"]').forEach(function(e){e.innerHTML=relTxt(kk,parseInt(e.dataset.d))});
+}
+function ridipingiTop(kk){
+  document.querySelectorAll('.topout[data-k="'+kk+'"]').forEach(function(e){
+    const tv=num(state[kk]), pct=parseFloat(e.dataset.pct);
+    e.innerHTML=(isFinite(tv)&&tv>0)?kg(tv*pct/100):'<span class="wait">dopo il top</span>';});
+}
+rifBox();
+draw();
+
+/* ---------- app installabile ---------- */
+if(typeof LETTURA==="undefined") var LETTURA=false;
+if("serviceWorker" in navigator) window.addEventListener("load",function(){
+  navigator.serviceWorker.register("sw.js").then(function(reg){
+    reg.update();
+    reg.addEventListener("updatefound",function(){
+      const nuovo=reg.installing; if(!nuovo) return;
+      nuovo.addEventListener("statechange",function(){
+        if(nuovo.state==="installed"&&navigator.serviceWorker.controller) avvisaVersione();
+      });
+    });
+  }).catch(function(){});
+  let ricaricato=false;
+  navigator.serviceWorker.addEventListener("controllerchange",function(){
+    if(ricaricato)return; ricaricato=true; location.reload();
+  });
+});
+function avvisaVersione(){
+  const e=document.getElementById("inst"); if(!e) return;
+  e.className="inst"; e.style.display="block";
+  e.innerHTML='<b>C’è una versione nuova della scheda.</b>'+
+    '<div class="riga"><button onclick="location.reload()">Aggiorna adesso</button></div>';
+}
+/* se l'app resta aperta a lungo, controlla ogni tanto */
+document.addEventListener("visibilitychange",function(){
+  if(document.visibilityState==="visible"&&navigator.serviceWorker&&navigator.serviceWorker.getRegistration)
+    navigator.serviceWorker.getRegistration().then(function(r){if(r)r.update()}).catch(function(){});
+});
+let PROMPT=null;
+function giaInstallata(){
+  return window.matchMedia("(display-mode: standalone)").matches || navigator.standalone===true;
+}
+const SVGGIU='<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" '+
+  'stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px">'+
+  '<path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>';
+const SVGCOND='<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" '+
+  'stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px">'+
+  '<path d="M12 15V3"/><path d="m8 7 4-4 4 4"/>'+
+  '<path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>';
+function inAppBrowser(){
+  const u=navigator.userAgent;
+  return /FBAN|FBAV|Instagram|Line\/|MicroMessenger|GSA\/|CriOS|FxiOS/i.test(u) ||
+    (/iphone|ipad|ipod/i.test(u) && !/Safari\//.test(u));
+}
+function mostraInstalla(modo){
+  if(giaInstallata()||LETTURA) return;
+  const e=document.getElementById("inst"); if(!e) return;
+  let chiusa=false;
+  try{chiusa=!!localStorage.getItem("ncp-inst-min")}catch(x){}
+  e.dataset.modo=modo;
+  e.style.display="block";
+  if(chiusa){
+    e.className="inst mini";
+    e.innerHTML='<button class="riapri" onclick="riapriInstalla()">'+SVGGIU+
+      ' Installa l’app sul telefono</button>';
+    return;
+  }
+  e.className="inst";
+  let h='<b>Installa NC Performance.</b> Avrai l’icona sulla schermata principale: '+
+    'si apre a tutto schermo, senza barre, e funziona anche quando non c’è rete.';
+  h+='<div class="riga"><button onclick="'+(modo==="android"?"installa()":"comeInstallare()")+'">'+
+    'Installa l’app</button>'+
+    '<button class="no" onclick="minimizzaInstalla()">Per adesso no</button></div>'+
+    '<div id="passi"></div>';
+  e.innerHTML=h;
+}
+function riapriInstalla(){
+  try{localStorage.removeItem("ncp-inst-min")}catch(x){}
+  mostraInstalla(document.getElementById("inst").dataset.modo||"ios");
+}
+function minimizzaInstalla(){
+  try{localStorage.setItem("ncp-inst-min","1")}catch(x){}
+  mostraInstalla(document.getElementById("inst").dataset.modo||"ios");
+}
+function comeInstallare(){
+  /* i passi si aprono solo quando tocchi «Installa l'app»; un secondo tocco li richiude */
+  const p=document.getElementById("passi"); if(!p) return;
+  if(p.innerHTML){p.innerHTML="";return}
+  let h='<ol class="passi">';
+  if(inAppBrowser()){
+    h+='<li><b>Prima apri questa pagina in Safari.</b> Da WhatsApp e dalle altre app '+
+      'l’installazione non esiste: serve Safari.<br>'+
+      '<span class="pic">Cerca in basso il tasto con i tre puntini o la bussola e scegli '+
+      '«Apri in Safari». Oppure copia il link qui sotto e incollalo in Safari.</span>'+
+      '<div class="riga"><button onclick="apriSafari()">Apri in Safari</button>'+
+      '<button class="no" onclick="copiaLink(this)">Copia il link</button></div></li>';
+  }
+  h+='<li>In Safari tocca il tasto <b>Condividi</b> <span class="ic">'+SVGCOND+'</span>, '+
+    'nella barra in fondo allo schermo.<br><span class="pic">Non la vedi? Tocca una volta '+
+    'il fondo dello schermo: la barra ricompare.</span></li>'+
+    '<li>Scorri l’elenco e scegli <b>Aggiungi a Home</b> '+
+    '<span class="pic">(in inglese: Add to Home Screen)</span></li>'+
+    '<li>Conferma in alto a destra</li></ol>';
+  if(!inAppBrowser())
+    h+='<div class="riga"><button class="no" onclick="copiaLink(this)">Copia il link</button></div>';
+  p.innerHTML=h;
+}
+function copiaLink(b){
+  const u=location.origin+location.pathname;
+  function fatto(){b.textContent="Copiato ✓"; setTimeout(function(){b.textContent="Copia il link"},2500)}
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(u).then(fatto).catch(function(){prompt("Copia il link:",u)});
+  } else { prompt("Copia il link:",u) }
+}
+function apriSafari(){
+  location.href="x-safari-"+location.origin+location.pathname;
+}
+function installa(){
+  if(!PROMPT) return;
+  PROMPT.prompt();
+  PROMPT.userChoice.then(function(){PROMPT=null;
+    const e=document.getElementById("inst"); if(e) e.style.display="none"});
+}
+function nienteInstalla(){
+  try{localStorage.setItem("ncp-no-inst","1")}catch(e){}
+  const e=document.getElementById("inst"); if(e) e.style.display="none";
+}
+window.addEventListener("beforeinstallprompt",function(e){
+  e.preventDefault(); PROMPT=e; mostraInstalla("android")});
+(function(){
+  const ios=/iphone|ipad|ipod/i.test(navigator.userAgent);
+  setTimeout(function(){
+    if(!giaInstallata()&&!PROMPT) mostraInstalla(ios?"ios":"altro");
+  },900);
+})();
+
+
+</script></body></html>
