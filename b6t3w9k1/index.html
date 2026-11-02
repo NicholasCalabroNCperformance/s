@@ -46,7 +46,6 @@ footer{margin-top:28px;padding-top:16px;border-top:1px solid var(--line);font-si
 border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
 @media print{.btns,nav,.wkbar{display:none}body{background:#fff}}
 
-
 .wkbar{position:sticky;top:0;z-index:5;background:var(--paper);padding:10px 14px 9px;margin:0 -14px;
 border-bottom:1px solid var(--line)}
 .wkbar .lab{display:block;font:700 9.5px/1 -apple-system,sans-serif;letter-spacing:.14em;
@@ -151,7 +150,6 @@ font:700 14px/1 -apple-system,sans-serif;letter-spacing:.06em}
 .manda.vuoto{background:var(--line);color:#8A8A92}
 .mandanota{font:400 11.5px/1.45 -apple-system,sans-serif;color:var(--mute);margin:8px 0 0;text-align:center}
 
-
 /* onde, giri, ramping, MAX */
 .wk .gl{display:flex;justify-content:space-between;align-items:center;gap:14px}
 .wk .gl .car{margin-top:0;text-align:right;font-size:17px}
@@ -206,7 +204,14 @@ padding:11px 14px;font:700 12px/1 -apple-system,sans-serif;letter-spacing:.06em;
 #chips{flex-wrap:nowrap;overflow-x:auto;position:relative;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 #chips::-webkit-scrollbar{display:none}
 #chips button{flex:0 0 auto}
-/* contaserie (tre prove) */
+/* la settimana scorsa, peso del giorno, code contate dal top (2026-11-01) */
+.wk .scorsa{margin:2px 0 10px;padding:8px 11px;border-left:3px solid var(--gold);background:var(--card);border-radius:0 8px 8px 0;
+font:400 13px/1.45 -apple-system,sans-serif;color:var(--ink)}
+.wk .scorsa .sl{display:block;font:700 9.5px/1.2 -apple-system,sans-serif;letter-spacing:.11em;text-transform:uppercase;color:var(--gold);margin-bottom:3px}
+.wk .oggi{font:700 17px/1.2 -apple-system,sans-serif;color:var(--ink)}
+.wk .pdiv{display:block;margin-top:6px;font:400 11.5px/1.3 -apple-system,sans-serif;color:var(--mute)}
+.wk .pdiv input.mini{width:58px;font-size:13px;padding:4px 6px;border-color:var(--line)}
+/* contaserie */
 .wk .cs{margin-top:12px}
 .wk .cs .csh{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
 .wk .cs .lb{font:700 9.5px/1 -apple-system,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
@@ -361,6 +366,7 @@ function rifBox(){
 /* ---------- riferimenti di un esercizio ---------- */
 const RE_TEST=/TEST\s*([\d–\-]+\s*RM)/i;
 function testDi(b){
+  if(b.test) return b.test;
   for(const r of b.rows){
     const m=(String(r.ca||"")+" "+String(r.rp||"")).match(RE_TEST);
     if(m) return m[1].replace(/\s+/g,"").toUpperCase();
@@ -369,12 +375,19 @@ function testDi(b){
 }
 function settDelTest(b){
   for(let i=0;i<b.rows.length;i++)
-    if(RE_TEST.test(String(b.rows[i].ca||"")+" "+String(b.rows[i].rp||"")))
+    if(RE_TEST.test(String(b.rows[i].ca||"")+" "+String(b.rows[i].rp||""))||/^TEST\b/i.test(String(b.rows[i].ca||"")))
       return parseInt(String(b.rows[i].s).replace(/\D/g,""))||1;
   return 1;
 }
 function vuoleLavoro(b){return b.rows.some(r=>/peso di lavoro/i.test(String(r.ca||"")))}
 function rifT(bk){return num(state["T_"+bk])}
+/* unità dell'esercizio: kg (di serie), s (tenute a tempo), altezza (push up su rialzo) */
+function unitaDi(b){return (b&&b.unita)||"kg"}
+function fmtU(b,x){const u=unitaDi(b);
+  if(u==="s") return Math.round(x)+" secondi";
+  if(u==="altezza") return "altezza "+f(x);
+  return kg(x);}
+function uLab(b){const u=unitaDi(b);return u==="s"?"secondi":(u==="altezza"?"":"kg")}
 function pesoLavoro(bk,k,i){
   /* il peso scritto in questa riga per questo pezzo; se manca, l'ultimo scritto nelle righe prima */
   const v=state["W_"+k+"_"+i]; if(v!==undefined&&String(v).trim()!=="") return num(v);
@@ -404,16 +417,18 @@ function parti(r){
   const se=String(r.se||"").split("/").map(x=>x.trim());
   const rp=String(r.rp||"").replace(/MAX\s*\/\s*2/gi,"MAX\u00bd").split("/").map(x=>x.trim());
   const ca=String(r.ca||"").trim();
-  const mt=ca.match(/^TEST\s*[\d–\-]+\s*RM\s*,\s*poi\s+(.+)$/i);
-  const cav=mt?null:ca.split("/").map(x=>x.trim());
+  const mn=ca.match(/^NUOVO\s+TEST\b[^,]*,\s*poi\s+(.+)$/i);
+  const mt=mn?null:ca.match(/^TEST\s*(?:[\d–\-]+\s*RM|tempo)\s*,\s*poi\s+(.+)$/i);
+  const cav=(mt||mn)?null:ca.split("/").map(x=>x.trim());
   const n=Math.max(se.length,rp.length,cav?cav.length:1);
   const out=[];
   for(let i=0;i<n;i++){
     const p={se:(se[i]!==undefined?se[i]:se[0]), rp:(rp[i]!==undefined?rp[i]:rp[0]),
-             ca:(mt?(i===0?"__TEST__":mt[1]):(cav[i]!==undefined?cav[i]:cav[0]))};
+             ca:(mn?(i===0?"__NUOVO__":mn[1]):(mt?(i===0?"__TEST__":mt[1]):(cav[i]!==undefined?cav[i]:cav[0])))};
     const tm=String(p.rp).match(RE_TEST);
     if(tm){p.test=tm[1].replace(/\s+/g,"").toUpperCase();p.rp=tm[1].split(/[–\-]/)[0].replace(/\D/g,"");p.ca="__TEST__";}
     if(/^TEST\b/i.test(p.ca)) p.ca="__TEST__";
+    if(/^NUOVO\s+TEST\b/i.test(p.ca)) p.ca="__NUOVO__";
     out.push(p);
   }
   return out;
@@ -439,8 +454,39 @@ function risolvi(t,bk,b,k,i){
   if(t==="__TEST__"){
     /* la serie del test: scritto TEST 10RM, e appena il test e' compilato anche il peso */
     const rm=testDi(b)||"";
-    return '<span class="tst">TEST '+rm+'</span>'+((isFinite(T)&&T>0)?' <span class="freccia">=</span> '+kg(T):'');
+    return '<span class="tst">TEST '+rm+'</span>'+((isFinite(T)&&T>0)?' <span class="freccia">=</span> '+fmtU(b,T):'');
   }
+  if(t==="__NUOVO__"){
+    const rm=testDi(b)||"";
+    return '<span class="tst">NUOVO TEST '+rm+'</span> <span class="mx usato">'+campo("NT_"+k,(unitaDi(b)==="altezza"?"alt.":uLab(b)),78)+
+      '<em>'+(unitaDi(b)==="altezza"?'altezza nuova':'nuovo '+(uLab(b)||'valore'))+'</em></span>';
+  }
+  if(/^(peso|altezza|tempo) del nuovo$/i.test(t)||/^\d+(?:[.,]\d+)?\s*%\s*del nuovo$/i.test(t)){
+    const v=num(state["NT_"+k]), pm=t.match(/^(\d+(?:[.,]\d+)?)\s*%/), pc=pm?parseFloat(pm[1].replace(",","."))/100:1;
+    if(!isFinite(v)||v<=0) return '<span class="wait">dopo il nuovo test</span>';
+    let x=v*pc; if(unitaDi(b)==="s") x=Math.max(30,Math.round(x+1e-9));
+    return fmtU(b,x)+(pm?'<span class="raw">'+pm[1]+'% del nuovo test</span>':'');
+  }
+  /* regola del peso: il peso del giorno sale da solo quando il top della settimana prima supera la soglia */
+  if(b&&b.regola&&/^peso del giorno$/i.test(t)){
+    const ri=rigaDi(k), P=pesoGiorno(bk,b,ri), sug=suggerito(bk,b,ri);
+    return '<b class="oggi">'+kg(P)+'</b> <span class="lieve">per manubrio</span>'+
+      '<span class="pdiv">peso diverso? '+campo("P_"+k,f(sug),58)+' kg</span>';
+  }
+  if(b&&b.regola&&/^stesso peso$/i.test(t)){
+    return '<span class="stp" data-bk="'+bk+'" data-ri="'+rigaDi(k)+'">'+kg(pesoGiorno(bk,b,rigaDi(k)))+'</span><span class="raw">stesso peso del top</span>';
+  }
+  /* altezza e tempo del test */
+  if(/^altezza del test$/i.test(t)){
+    return (isFinite(T)&&T>0)?'<b>altezza '+f(T)+'</b><span class="raw">l\u2019altezza del test</span>':'<span class="wait">dopo il test</span>';
+  }
+  if((m=t.match(/^(\d+(?:[.,]\d+)?)\s*%\s*del tempo del test$/i))||/^tempo del test$/i.test(t)){
+    const pc=m?parseFloat(m[1].replace(",","."))/100:1;
+    if(!isFinite(T)||T<=0) return '<span class="wait">dopo il test</span><span class="raw">'+t+'</span>';
+    return Math.max(30,Math.round(T*pc+1e-9))+' secondi<span class="raw">'+t+'</span>';
+  }
+  if((m=t.match(/^(\d+(?:[.,]\d+)?)\s*kg\s+per manubrio$/i))) return f(parseFloat(m[1].replace(",",".")))+' kg <span class="lieve">per manubrio</span>';
+  if(/^senza peso$/i.test(t)) return '<span class="lieve">senza peso</span>';
   /* peso del test, 5RM -15%, -20% da solo */
   if(/peso del test/i.test(t)) return daTest(t,T);
   if(/^\d+\s*RM\s*[−\-]\s*\d+\s*%/i.test(t)) return daTest(t,T);
@@ -489,6 +535,21 @@ function risolvi(t,bk,b,k,i){
   return usato(bk,k,i,t);
 }
 
+/* ---------- regola del peso (top set + code) ---------- */
+function rigaDi(k){return parseInt(String(k).slice(String(k).lastIndexOf("_")+1))||0}
+function topDi(bk,ri){return num(state["MX_"+bk+"_"+ri+"_0"])}
+function suggerito(bk,b,ri){
+  const R=b.regola; if(ri<=0) return R.start;
+  const prev=pesoGiorno(bk,b,ri-1);
+  if(b.rows[ri]&&b.rows[ri].inc===0) return prev;
+  const tp=topDi(bk,ri-1);
+  return (isFinite(tp)&&tp>R.soglia)?prev+R.passo:prev;
+}
+function pesoGiorno(bk,b,ri){
+  const v=num(state["P_"+bk+"_"+ri]); if(isFinite(v)&&v>0) return v;
+  return suggerito(bk,b,ri);
+}
+
 /* ---------- carico non prescritto: kg usati, con il peso della settimana prima come suggerimento ---------- */
 function precUsato(bk,k,i){
   const ri=parseInt(k.slice(k.lastIndexOf("_")+1))||0, b=bloccoDi(bk);
@@ -528,14 +589,25 @@ function ultimoMax(bk){
   });
   return best;
 }
+function relSrc(k,bk){
+  /* le code si contano dal top di questa riga; se la riga non ha top, dal top della settimana prima */
+  const ri=rigaDi(k), b=bk?bloccoDi(bk):null;
+  if(b&&b.rows[ri]&&/MAX/i.test(String(b.rows[ri].rp||""))) return "MX_"+k+"_0";
+  return ri>0?"MX_"+bk+"_"+(ri-1)+"_0":"";
+}
+function relTxt(src,d){const t=num(state[src]);
+  return (isFinite(t)&&t>0)?'<b>'+Math.max(1,t-d)+'</b><em>colpi</em>':'<b>\u2212'+d+'</b><em>colpi dal top</em>';}
 function colpiHTML(p,k,i,bk){
+  const mr=String(p.rp||"").trim().match(/^[\u2212\-](\d+)$/);
+  if(mr){const src=relSrc(k,bk);return '<span class="n rel" data-src="'+src+'" data-d="'+mr[1]+'">'+relTxt(src,parseInt(mr[1]))+'</span>';}
   if(isMaxTempo(p.rp)) return '<span class="n"><b>MAX</b><em>secondi</em></span>'+
     '<span class="mx">'+campo("MX_"+k+"_"+i,"45, 40, 38",92)+'<em>secondi fatti</em></span>';
   if(isMax(p.rp)) return '<span class="n"><b>MAX</b><em>colpi</em></span>'+
     '<span class="mx">'+campo("MX_"+k+"_"+i,"11, 10, 9",92)+'<em>colpi fatti</em></span>';
   if(isMezzoMax(p.rp)){const u=bk?ultimoMax(bk):null;
     return '<span class="n"><b>'+(u!==null?f(Math.round(u/2)):'\u00bd')+'</b><em>'+(u!==null?'met\u00e0 del MAX':'met\u00e0 del tuo MAX')+'</em></span>';}
-  const l=etich(p.rp);
+  let l=etich(p.rp); const bb=bk?bloccoDi(bk):null;
+  if(l==="colpi"&&bb&&bb.colpilab) l=bb.colpilab;
   return l?'<span class="n"><b>'+p.rp+'</b><em>'+l+'</em></span>':'';
 }
 function schema(p,k,i,bk){
@@ -579,11 +651,11 @@ function riferimenti(b,bk,sett){
   let h=''; const rm=testDi(b), tw=settDelTest(b);
   if(rm){
     const v=state["T_"+bk]===undefined?"":state["T_"+bk];
-    if(!sett||sett===tw||!v){
-      h+='<div class="tbx"><span class="lb">Il tuo '+rm+'</span><input type="text" inputmode="decimal" data-k="T_'+bk+
-        '" value="'+esc(v)+'" placeholder="—"><span class="u">kg</span>'+
-        '<span class="hint">da questo numero escono tutti i carichi di '+b.nome.toLowerCase()+' del blocco</span>'+
-        '<details class="how"'+(v?'':' open')+'><summary>Come si trova il '+rm+'</summary><p>'+howTo(rm)+'</p></details></div>';
+    if(!sett||sett===tw||b.rifSempre||(!v&&sett>tw)){
+      h+='<div class="tbx"><span class="lb">'+(b.testlab||('Il tuo '+rm))+'</span><input type="text" inputmode="decimal" data-k="T_'+bk+
+        '" value="'+esc(v)+'" placeholder="—"><span class="u">'+uLab(b)+'</span>'+
+        '<span class="hint">'+(b.hint||('da questo numero escono tutti i carichi di '+b.nome.toLowerCase()+' del blocco'))+'</span>'+
+        '<details class="how"'+(v?'':' open')+'><summary>'+(b.howlab||('Come si trova il '+rm))+'</summary><p>'+(b.how||howTo(rm))+'</p></details></div>';
     }
   }
   return h;
@@ -609,6 +681,43 @@ function fasciaTop(p,k,r){
     '<details class="how"'+(v?'':' open')+'><summary>Come si trova il top</summary><p>'+how+'</p></details></div>';
 }
 
+/* ---------- la settimana scorsa: quello che si è segnato sullo stesso esercizio ---------- */
+function scorsaHTML(b,bk,ri,sett){
+  if(!sett) return "";
+  if(b.regola){
+    const R=b.regola, row=b.rows[ri], haTop=/MAX/i.test(String(row.rp||""));
+    if(ri===0) return '<div class="scorsa"><span class="sl">Si parte</span>Peso: <b>'+kg(R.start)+'</b>. Segna sempre i colpi del top: '+
+      'quando superi i '+R.soglia+', la settimana dopo il peso sale di '+f(R.passo)+' kg da solo.</div>';
+    const pr=b.rows[ri-1], tp=topDi(bk,ri-1), pp=pesoGiorno(bk,b,ri-1), P=pesoGiorno(bk,b,ri);
+    const ps=String(pr.s);
+    if(!/MAX/i.test(String(pr.rp||""))) return '<div class="scorsa"><span class="sl">Settimana scorsa · '+ps+'</span>'+kg(pp)+', senza top set.</div>';
+    if(!isFinite(tp)||tp<=0) return '<div class="scorsa"><span class="sl">Settimana scorsa · '+ps+'</span>'+kg(pp)+
+      ' \u2014 colpi del top <b>non segnati</b>. Segnali sempre: servono a capire quando salire.</div>';
+    let h='<div class="scorsa"><span class="sl">Settimana scorsa · '+ps+'</span><b>'+kg(pp)+' \u00d7 '+tp+' colpi</b> nel top.';
+    if(!haTop) h+=' Oggi niente top: le serie si contano da quei '+tp+' colpi.';
+    else if(row.inc===0) h+=' Oggi stesso peso: confronta i colpi.';
+    else if(P>pp) h+=' Hai superato i '+R.soglia+': <b>oggi '+kg(P)+'</b>. Con il peso nuovo i colpi ripartono più bassi, va bene così.';
+    else h+=' Oggi stesso peso: <b>confermi i '+tp+' o ne fai '+(tp+1)+'</b>.';
+    return h+'</div>';
+  }
+  if(ri<=0) return "";
+  const k0=bk+"_"+(ri-1), pz=[];
+  const nomi=nomiBlocco(b);
+  for(let i=0;i<6;i++){
+    const chi=nomi&&nomi[i]?nomi[i].toLowerCase()+": ":"";
+    const mx=state["MX_"+k0+"_"+i], u=state["U_"+k0+"_"+i], rk=state["RK_"+k0+"_"+i], w=state["W_"+k0+"_"+i];
+    if(mx&&String(mx).trim()) pz.push(chi+(isMaxTempo(String((parti(b.rows[ri-1])[i]||{}).rp||""))?String(mx).trim()+" secondi":"MAX "+String(mx).trim()+" colpi"));
+    if(u&&String(u).trim()) pz.push(chi+String(u).trim()+(/^\d+(?:[.,]\d+)?$/.test(String(u).trim())?" kg":""));
+    if(rk&&String(rk).trim()) pz.push(chi+String(rk).trim()+" kg");
+    if(w&&String(w).trim()) pz.push(chi+String(w).trim()+" kg");
+  }
+  const nt=state["NT_"+k0]; if(nt&&String(nt).trim()) pz.push("nuovo test "+String(nt).trim());
+  const fp=state["fp_"+k0]; if(fp) pz.push("fatica "+fp+"/10");
+  const ap=state["ap_"+k0]; if(ap&&String(ap).trim()) pz.push("\u00ab"+String(ap).trim()+"\u00bb");
+  if(!pz.length) return "";
+  return '<div class="scorsa"><span class="sl">Settimana scorsa · '+String(b.rows[ri-1].s)+'</span>'+pz.join(" \u00b7 ")+'</div>';
+}
+
 /* ---------- la riga ---------- */
 function notaCoach(t){return String(t||"").replace(/\b(in|negli|nella|su(?:gli)?)\s+appunti\b/gi,"nelle note").replace(/\bappunti\b/g,"note")}
 function rigaHTML(r,b,bk,k,sett){
@@ -619,7 +728,7 @@ function rigaHTML(r,b,bk,k,sett){
   const car=function(p,i){let x=risolvi(p.ca,bk,b,k,i);
     if(!x&&ts.t!=="nessuna") x=usato(bk,k,i,"");
     return '<div class="car" data-car="'+k+'_'+i+'">'+x+'</div>'};
-  let h='<div class="wk">'+(sett?'':'<div class="s">Settimana '+String(r.s).replace(/\D/g,"")+'</div>');
+  let h='<div class="wk">'+(sett?'':'<div class="s">Settimana '+String(r.s).replace(/\D/g,"")+'</div>')+scorsaHTML(b,bk,rigaDi(k),sett);
 
   if(ts.t==="nessuna"){
     /* cardio, mobilita', lavori a tempo: una riga di testo */
@@ -725,9 +834,9 @@ function contaserie(r,b,k){
   }
   return h+'</div>';
 }
-function rigaDi(k){const p=k.split("_"),g=GIORNI.find(function(x){return x.id===p[0]}),b=g.blocks[+p[1]];return {b:b,r:b.rows[+p[2]]}}
+function rigaObj(k){const p=k.split("_"),g=GIORNI.find(function(x){return x.id===p[0]}),b=g.blocks[+p[1]];return {b:b,r:b.rows[+p[2]]}}
 function segnaSerie(k,nuovo){
-  const x=rigaDi(k), S=serieDi(x.r), prima=parseInt(state["CS_"+k])||0;
+  const x=rigaObj(k), S=serieDi(x.r), prima=parseInt(state["CS_"+k])||0;
   nuovo=Math.max(0,Math.min(nuovo,S.length));
   state["CS_"+k]=nuovo;
   if(nuovo>prima){state["CT_"+k]=Date.now();state.__csLast=k;clin()}  /* serie segnata: clin clin e riparte il recupero */
@@ -736,7 +845,7 @@ function segnaSerie(k,nuovo){
   else if(nuovo===0&&state.__csLast===k){delete state.__csLast}
   save();
   document.querySelectorAll(".cs").forEach(function(el){            /* un solo recupero acceso alla volta */
-    const kk=el.id.slice(3), y=rigaDi(kk), t=document.createElement("div");
+    const kk=el.id.slice(3), y=rigaObj(kk), t=document.createElement("div");
     t.innerHTML=contaserie(y.r,y.b,kk); el.replaceWith(t.firstChild);
   });
   if(nuovo>prima){const nb=document.querySelector("#cs_"+k+" .big, #cs_"+k+" .dots, #cs_"+k+" .sr.on:last-of-type");
@@ -941,6 +1050,8 @@ function segnato(){
         const chi=nomi&&nomi[i]?nomi[i].toLowerCase()+" ":"";
         if(mx) pezzi.push(chi+"MAX: "+mx); if(rk) pezzi.push(chi+"a RPE: "+rk+" kg"); if(w) pezzi.push(chi+"peso usato "+w+" kg");
         const u=state["U_"+k+"_"+i]; if(u) pezzi.push(chi+"kg usati "+u);}
+      const nt=state["NT_"+k]; if(nt&&String(nt).trim()) pezzi.push("nuovo test "+String(nt).trim()+" "+uLab(b));
+      if(b.regola&&/MAX/i.test(String(r.rp||""))&&state["MX_"+k+"_0"]) pezzi.push("peso "+kg(pesoGiorno(bk,b,ri)));
       if(fp) pezzi.push("fatica "+fp+"/10");
       if(ap&&String(ap).trim()) pezzi.push(String(ap).trim());
       if(pezzi.length) out.push({g:g.id,nome:r.s+" "+b.nome,riga:pezzi.join(" — ")});
@@ -1002,7 +1113,7 @@ function draw(){
     b.addEventListener("click",function(e){const t=e.currentTarget;setFp(t.dataset.fp,parseInt(t.dataset.n),t)})});
   document.querySelectorAll("input[data-k]").forEach(function(i){if(i.dataset.bound)return;i.dataset.bound=1;
     i.addEventListener("input",function(e){const kk=e.target.dataset.k;state[kk]=e.target.value;save();
-      if(/^(T_|W_|ref_)/.test(kk)) ridipingi(); if(/^RK_/.test(kk)) ridipingiTop(kk); segnaManda(); guardaRecord(kk);});
+      if(/^(T_|W_|ref_|NT_|P_)/.test(kk)) ridipingi(); if(/^RK_/.test(kk)) ridipingiTop(kk); if(/^MX_/.test(kk)) ridipingiRel(kk); segnaManda(); guardaRecord(kk);});
     i.addEventListener("change",function(e){guardaRecord(e.target.dataset.k,true)});});
   segnaManda();
   /* tante settimane: la riga scorre di lato e la settimana scelta resta in vista */
@@ -1025,6 +1136,9 @@ function ridipingi(){
       });
     });
   })});
+}
+function ridipingiRel(kk){
+  document.querySelectorAll('.rel[data-src="'+kk+'"]').forEach(function(e){e.innerHTML=relTxt(kk,parseInt(e.dataset.d))});
 }
 function ridipingiTop(kk){
   document.querySelectorAll('.topout[data-k="'+kk+'"]').forEach(function(e){
