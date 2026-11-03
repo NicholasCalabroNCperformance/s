@@ -1,6 +1,6 @@
 /* NC Performance — v5
    La pagina si aggiorna sempre quando c'è rete: la copia salvata serve solo offline. */
-const CACHE = "ncp-ki48cgwe-11031543";
+const CACHE = "ncp-ki48cgwe-11031554";
 const BASE = [ "./", "./index.html", "./manifest.webmanifest",
                "./icona-192.png", "./icona-512.png", "./icona-maskable.png" ];
 
