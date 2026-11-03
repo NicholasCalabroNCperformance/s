@@ -1631,16 +1631,22 @@ draw();
   function invia(beacon){
     T=null; const p=pacco();
     if(!p.n&&!giaMandato()) return;                       /* niente da archiviare, e mai mandato niente da qui */
-    /* campo «d» di un form: niente controlli CORS dal telefono, e Apps Script legge il testo intero */
-    const form="d="+encodeURIComponent(p.corpo);
-    if(beacon&&navigator.sendBeacon){try{if(navigator.sendBeacon(ARCH0,new Blob([form],{type:"application/x-www-form-urlencoded"}))){ricorda(p.n);return}}catch(e){}}
-    try{fetch(ARCH0,{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:form})
+    /* un form nascosto, non fetch: il POST segue da solo il rimbalzo di Google e il telefono non lo blocca
+       (da github.io fetch e sendBeacon vengono fermati dal browser prima di arrivare, 2026-11-03) */
+    try{
+      let fr=document.getElementById("nc_arch_fr");
+      if(!fr){fr=document.createElement("iframe");fr.id="nc_arch_fr";fr.name="nc_arch_fr";fr.setAttribute("aria-hidden","true");fr.style.cssText="position:absolute;width:0;height:0;border:0;opacity:0;pointer-events:none";document.body.appendChild(fr)}
+      const f=document.createElement("form"); f.method="POST"; f.action=ARCH0; f.target="nc_arch_fr"; f.style.display="none";
+      const i=document.createElement("input"); i.type="hidden"; i.name="d"; i.value=p.corpo; f.appendChild(i);
+      document.body.appendChild(f); f.submit(); setTimeout(function(){try{f.remove()}catch(e){}},4000);
+      ricorda(p.n); return;
+    }catch(e){}
+    try{fetch(ARCH0,{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:"d="+encodeURIComponent(p.corpo)})
       .then(function(){ricorda(p.n)}).catch(function(){})}catch(e){}
   }
   window.mandaArchivio=function(dopo){clearTimeout(T);T=setTimeout(invia,dopo==null?15000:dopo)};
   const salvaSoloQui=save; save=function(){salvaSoloQui();mandaArchivio()};
-  document.addEventListener("visibilitychange",function(){if(document.visibilityState==="hidden"&&T){clearTimeout(T);invia(true)}});
-  window.addEventListener("pagehide",function(){if(T){clearTimeout(T);invia(true)}});
+  document.addEventListener("visibilitychange",function(){if(document.visibilityState==="hidden"&&T){clearTimeout(T);invia()}});
   const ft=document.querySelector("footer"); if(ft) ft.textContent="Quello che scrivi resta su questo telefono e arriva anche al tuo coach.";
   mandaArchivio(2000);
 })();
