@@ -172,6 +172,15 @@ border:1px solid var(--gold);background:var(--card);border-radius:7px;font-varia
 .wk .car .usato{margin-left:0;align-items:flex-start}
 .wk .gl .car .usato{align-items:flex-end}
 .wk .car .usato input::placeholder{color:var(--mute);font-weight:600}
+/* kg serie per serie: una casella per ogni serie, sotto i colpi */
+.wk .kgserie{display:block;margin-top:2px}
+.wk .kgserie .ks-t{display:block;font:700 8.5px/1 -apple-system,sans-serif;letter-spacing:.11em;text-transform:uppercase;color:var(--mute);margin-bottom:5px}
+.wk .kgserie .ks-c{display:flex;flex-wrap:wrap;gap:6px}
+.wk .kgserie label{display:flex;flex-direction:column;align-items:center;gap:3px}
+.wk .kgserie input.mini{width:56px;padding:7px 4px;text-align:center}
+.wk .kgserie input::placeholder{color:var(--mute);font-weight:600}
+.wk .kgserie em{font:700 8.5px/1 -apple-system,sans-serif;font-style:normal;letter-spacing:.06em;color:var(--mute)}
+.wk .gl .car .kgserie .ks-c{justify-content:flex-end}
 .wk .mx em{font:700 8.5px/1 -apple-system,sans-serif;font-style:normal;letter-spacing:.11em;text-transform:uppercase;color:var(--mute);margin-top:3px}
 .wk .at{font:700 17px/1.2 -apple-system,sans-serif;color:var(--gold)}
 .wk .lieve{font:400 13px/1 -apple-system,sans-serif;color:var(--mute)}
@@ -221,6 +230,10 @@ background:var(--card);padding:6px 11px 5px}
 .wk .csr em{font:700 9px/1 -apple-system,sans-serif;font-style:normal;letter-spacing:.11em;text-transform:uppercase;color:var(--mute)}
 .wk .csr b{font:700 16px/1 -apple-system,sans-serif;color:var(--gold);font-variant-numeric:tabular-nums;min-width:38px;text-align:right}
 .wk .csr.vuoto b{color:var(--line)}
+.wk .csr.fine{background:var(--gold);border-color:var(--gold);animation:pronto .9s ease-out 1}
+.wk .csr.fine em,.wk .csr.fine b{color:#fff}
+@keyframes pronto{0%{transform:scale(1)}30%{transform:scale(1.08)}100%{transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){.wk .csr.fine{animation:none}}
 /* metodo 1: pallini */
 .wk .cs-pallini .dots{display:flex;gap:8px;flex-wrap:wrap}
 .wk .cs-pallini .dots button{width:38px;min-height:38px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);
@@ -342,6 +355,7 @@ font:400 12.5px/1.35 -apple-system,sans-serif;max-width:230px;box-shadow:0 6px 1
 font:400 13px/1.5 -apple-system,sans-serif;color:var(--ink)}
 #dash .d-come b{color:var(--gold)}
 @media print{.vista,#dash{display:none!important}}
+footer .diag{margin-top:6px;font:400 11px/1.4 -apple-system,sans-serif;color:var(--mute)}
 
 .inst{display:none;background:#23232A;color:#EDEDEE;border-radius:10px;padding:13px 15px;
 margin:0 0 16px;font:400 13px/1.5 -apple-system,sans-serif}
@@ -372,7 +386,7 @@ text-align:left;display:flex;align-items:center;gap:7px}
 <div id="out"></div>
 <div class="btns"><button onclick="window.print()">Stampa / salva in PDF</button></div>
 <footer>Quello che scrivi resta salvato su questo telefono.</footer></div>
-<script>const GIORNI=[{"id": "A", "head": "GIORNO A", "blocks": [{"t": "AFFONDO POSTERIORE CON MANUBRI — accosciata, il giorno del peso · colpi totali, alternati", "nome": "AFFONDO POSTERIORE CON MANUBRI", "ruolo": "accosciata, il giorno del peso · colpi totali, alternati", "lift": "", "rows": [{"s": "S1", "f": "Test", "se": "4", "rp": "8", "rec": "2'", "ca": "14 kg per manubrio", "es": "", "n": "Otto colpi totali, gambe alternate (4 per gamba), con 14 kg e ginocchiera. Recupero pieno. Da qui si aggiungono due colpi alla volta, uno per gamba: il peso sale solo quando arrivi a 12.", "ap": ""}, {"s": "S2", "f": "Accumulo", "se": "4", "rp": "10", "rec": "2'", "ca": "14 kg per manubrio", "es": "", "n": "Due colpi in più, uno per gamba.", "ap": ""}, {"s": "S3", "f": "Accumulo", "se": "4", "rp": "10", "rec": "2'", "ca": "14 kg per manubrio", "es": "", "n": "Stesso lavoro: rendilo pulito.", "ap": ""}, {"s": "S4", "f": "Accumulo", "se": "4", "rp": "12", "rec": "2'", "ca": "14 kg per manubrio", "es": "", "n": "Due colpi in più. Chiuse tutte e quattro da 12? La prossima il manubrio sale.", "ap": ""}, {"s": "S5", "f": "Accumulo", "se": "4", "rp": "8", "rec": "2'", "ca": "16 kg per manubrio", "es": "", "n": "Sali di un gradino (16 kg) e i colpi tornano a 8 totali.", "ap": ""}, {"s": "S6", "f": "Accumulo", "se": "4", "rp": "10", "rec": "2'", "ca": "16 kg per manubrio", "es": "", "n": "Due colpi in più, uno per gamba.", "ap": ""}, {"s": "S7", "f": "Accumulo", "se": "4", "rp": "10", "rec": "2'", "ca": "16 kg per manubrio", "es": "", "n": "Stesso lavoro: rendilo pulito.", "ap": ""}, {"s": "S8", "f": "Accumulo", "se": "4", "rp": "12", "rec": "2'", "ca": "16 kg per manubrio", "es": "", "n": "Due colpi in più: la settimana più carica del ciclo.", "ap": ""}, {"s": "S9", "f": "Richiamo", "se": "2", "rp": "8", "rec": "2'", "ca": "16 kg per manubrio", "es": "", "n": "Richiamo: due serie da 8 colpi totali.", "ap": ""}, {"s": "S10", "f": "Misura", "se": "1 / 2", "rp": "MAX / 8", "rec": "2'", "ca": "16 kg per manubrio", "es": "", "n": "Prima serie: quanti colpi totali puliti fai con 16 kg, gambe alternate; ti fermi quando il colpo rallenta. Segnali nella casella: è la misura del ciclo. Poi 2 serie da 8 colpi totali.", "ap": ""}], "colpilab": "colpi totali"}, {"t": "LAT MACHINE — tirata verticale, mai più di otto colpi", "nome": "LAT MACHINE", "ruolo": "tirata verticale, mai più di otto colpi", "lift": "", "rows": [{"s": "S1", "f": "Test", "se": "1 / 2", "rp": "8 / 5", "rec": "2'", "ca": "TEST 8RM, poi peso del test", "es": "Discesa 3\" sulle 2 serie", "n": "Sali per gradi fino al peso con cui fai 8 trazioni puliti, a ritmo normale: è il tuo peso del test. Scrivilo nella casella del test: vale fino alla settimana 9. Poi 2 serie da 5 con la discesa in 3 secondi. Mai più di otto colpi per serie: se la testa gira, fermati e dimmelo.", "ap": "", "durp": ["normale", "discesa 3\""]}, {"s": "S2", "f": "Accumulo", "se": "3", "rp": "5", "rec": "2'", "ca": "peso del test", "es": "Discesa 3\"", "n": "Tre serie da 5, discesa in 3 secondi. Il peso resta questo: cresce il lavoro.", "ap": "", "dur": "discesa 3\""}, {"s": "S3", "f": "Accumulo", "se": "4", "rp": "5", "rec": "2'", "ca": "peso del test", "es": "Discesa 3\"", "n": "Una serie in più.", "ap": "", "dur": "discesa 3\""}, {"s": "S4", "f": "Accumulo", "se": "3", "rp": "6", "rec": "2'", "ca": "peso del test", "es": "Discesa 3\"", "n": "Una serie in meno, un colpo in più.", "ap": "", "dur": "discesa 3\""}, {"s": "S5", "f": "Accumulo", "se": "4", "rp": "6", "rec": "2'", "ca": "peso del test", "es": "Discesa 3\"", "n": "Una serie in più.", "ap": "", "dur": "discesa 3\""}, {"s": "S6", "f": "Accumulo", "se": "3", "rp": "7", "rec": "2'", "ca": "peso del test", "es": "Discesa 3\"", "n": "Una serie in meno, un colpo in più.", "ap": "", "dur": "discesa 3\""}, {"s": "S7", "f": "Accumulo", "se": "4", "rp": "7", "rec": "2'", "ca": "peso del test", "es": "Discesa 3\"", "n": "Una serie in più.", "ap": "", "dur": "discesa 3\""}, {"s": "S8", "f": "Accumulo", "se": "4", "rp": "8", "rec": "2'", "ca": "peso del test", "es": "Discesa 3\"", "n": "Quattro serie da 8 al peso del test, discesa in 3 secondi: la settimana più dura del ciclo.", "ap": "", "dur": "discesa 3\""}, {"s": "S9", "f": "Richiamo", "se": "3", "rp": "5", "rec": "2'", "ca": "peso del test", "es": "Ritmo normale", "n": "Settimana di richiamo: tre serie da 5 senza discesa lenta.", "ap": "", "dur": "normale"}, {"s": "S10", "f": "Misura", "se": "1 / 2", "rp": "8 / 5", "rec": "2'", "ca": "NUOVO TEST 8RM, poi peso del nuovo", "es": "Discesa 3\" sulle 2 serie", "n": "Come in settimana 1: sali per gradi fino al peso con cui fai 8 colpi puliti. Scrivilo nella casella del test: è il punto di partenza del prossimo programma. Poi 2 serie da 5 con la discesa in 3 secondi. Sempre entro gli otto colpi.", "ap": "", "durp": ["normale", "discesa 3\""]}]}, {"t": "STACCO RUMENO SU CHIAPPA CON MANUBRI — estensione d'anca, il giorno del volume", "nome": "STACCO RUMENO SU CHIAPPA CON MANUBRI", "ruolo": "estensione d'anca, il giorno del volume", "lift": "", "rows": [{"s": "S1", "f": "Test", "se": "4", "rp": "10", "rec": "90\"", "ca": "12 kg per manubrio", "es": "Discesa 3\"", "n": "[FELPA] Felpa addosso prima di iniziare, sempre. Quattro serie da 10 con la discesa in 3 secondi: il peso è quello basso che tieni per la schiena, qui conta quanto lavoro fai. Ti fermi dove la schiena resta piatta.", "ap": "", "dur": "discesa 3\""}, {"s": "S2", "f": "Accumulo", "se": "5", "rp": "10", "rec": "90\"", "ca": "12 kg per manubrio", "es": "Discesa 3\"", "n": "[FELPA] Una serie in più.", "ap": "", "dur": "discesa 3\""}, {"s": "S3", "f": "Accumulo", "se": "4", "rp": "12", "rec": "90\"", "ca": "12 kg per manubrio", "es": "Discesa 3\"", "n": "[FELPA] Una serie in meno, due colpi in più.", "ap": "", "dur": "discesa 3\""}, {"s": "S4", "f": "Accumulo", "se": "5", "rp": "12", "rec": "90\"", "ca": "12 kg per manubrio", "es": "Discesa 3\"", "n": "[FELPA] Una serie in più.", "ap": "", "dur": "discesa 3\""}, {"s": "S5", "f": "Accumulo", "se": "5", "rp": "12", "rec": "90\"", "ca": "12 kg per manubrio", "es": "Discesa 3\"", "n": "[FELPA] Stesso lavoro: rendilo pulito.", "ap": "", "dur": "discesa 3\""}, {"s": "S6", "f": "Accumulo", "se": "6", "rp": "12", "rec": "90\"", "ca": "12 kg per manubrio", "es": "Discesa 3\"", "n": "[FELPA] Una serie in più.", "ap": "", "dur": "discesa 3\""}, {"s": "S7", "f": "Accumulo", "se": "5", "rp": "14", "rec": "90\"", "ca": "12 kg per manubrio", "es": "Discesa 3\"", "n": "[FELPA] Una serie in meno, due colpi in più.", "ap": "", "dur": "discesa 3\""}, {"s": "S8", "f": "Accumulo", "se": "6", "rp": "14", "rec": "90\"", "ca": "12 kg per manubrio", "es": "Discesa 3\"", "n": "[FELPA] Sei serie da 14 con la discesa in 3 secondi: la settimana più lunga del ciclo.", "ap": "", "dur": "discesa 3\""}, {"s": "S9", "f": "Richiamo", "se": "3", "rp": "10", "rec": "90\"", "ca": "12 kg per manubrio", "es": "Ritmo normale", "n": "[FELPA] Richiamo: tre serie da 10 senza discesa lenta.", "ap": "", "dur": "normale"}, {"s": "S10", "f": "Misura", "se": "4", "rp": "10", "rec": "90\"", "ca": "14 kg per manubrio", "es": "Ritmo normale", "n": "[FELPA] Prova a 14 kg senza discesa lenta, solo se la schiena è a posto: è il peso con cui riparte il prossimo programma. Se non lo è, resta a 12 e dimmelo.", "ap": "", "dur": "normale"}]}, {"t": "HOLLOW HOLD — core", "nome": "HOLLOW HOLD", "ruolo": "core", "lift": "", "rows": [{"s": "S1", "f": "Test", "se": "1 / 2", "rp": "— / —", "rec": "90\"", "ca": "TEST tempo, poi 70% del tempo del test", "es": "", "n": "Schiena bassa incollata a terra, ginocchia piegate quanto serve: tieni il più a lungo possibile e segna i secondi nella casella. È il tuo tempo del test. Poi 2 tenute al 70% di quel tempo. Mai sotto i 30 secondi.", "ap": ""}, {"s": "S2", "f": "Accumulo", "se": "5", "rp": "—", "rec": "90\"", "ca": "70% del tempo del test", "es": "", "n": "Cinque tenute al 70% del tempo del test. Mai sotto i 30 secondi.", "ap": ""}, {"s": "S3", "f": "Accumulo", "se": "5", "rp": "—", "rec": "90\"", "ca": "80% del tempo del test", "es": "", "n": "Tenute più lunghe.", "ap": ""}, {"s": "S4", "f": "Accumulo", "se": "5", "rp": "—", "rec": "90\"", "ca": "90% del tempo del test", "es": "", "n": "Tenute più lunghe.", "ap": ""}, {"s": "S5", "f": "Accumulo", "se": "4", "rp": "—", "rec": "90\"", "ca": "95% del tempo del test", "es": "", "n": "Una tenuta in meno, più lunga.", "ap": ""}, {"s": "S6", "f": "Accumulo", "se": "4", "rp": "—", "rec": "90\"", "ca": "tempo del test", "es": "", "n": "Quattro tenute al tempo del test: la settimana più dura.", "ap": ""}, {"s": "S7", "f": "Accumulo", "se": "5", "rp": "—", "rec": "90\"", "ca": "90% del tempo del test", "es": "", "n": "Settimana più leggera, una tenuta in più.", "ap": ""}, {"s": "S8", "f": "Accumulo", "se": "4", "rp": "—", "rec": "90\"", "ca": "95% del tempo del test", "es": "", "n": "Chiusura del blocco.", "ap": ""}, {"s": "S9", "f": "Richiamo", "se": "3", "rp": "—", "rec": "90\"", "ca": "70% del tempo del test", "es": "", "n": "Richiamo: tre tenute corte.", "ap": ""}, {"s": "S10", "f": "Misura", "se": "1 / 2", "rp": "— / —", "rec": "90\"", "ca": "NUOVO TEST tempo, poi 70% del nuovo", "es": "", "n": "Come la settimana 1: tieni il più a lungo possibile e segna i secondi. Confrontali con la settimana 1: è la misura del ciclo. Poi 2 tenute al 70%.", "ap": ""}], "unita": "s", "test": "tempo", "testlab": "Il tuo tempo del test", "hint": "i secondi della tenuta più lunga della settimana 1: da qui escono tutte le tenute.", "howlab": "Come si fa il test", "how": "<b>Tieni la posizione il più a lungo possibile, una volta sola.</b> Schiena bassa incollata a terra, ginocchia piegate quanto serve. Quando la schiena si stacca, ti fermi: quei secondi sono il tuo tempo del test."}, {"t": "PUSH UP SU RIALZO — spinta orizzontale", "nome": "PUSH UP SU RIALZO", "ruolo": "spinta orizzontale", "lift": "", "rows": [{"s": "S1", "f": "Test", "se": "1 / 2", "rp": "8 / 5", "rec": "2'", "ca": "TEST 8RM, poi altezza del test", "es": "Discesa 3\" sulle 2 serie", "n": "Scendi di un gradino alla volta fino all'altezza con cui fai 8 colpi puliti: è la tua altezza del test. Scrivila nella casella del test: vale fino alla settimana 9. Poi 2 serie da 5 con la discesa in 3 secondi. Se il gomito dà fastidio, risali di un'altezza per quel giorno e dimmelo.", "ap": ""}, {"s": "S2", "f": "Accumulo", "se": "3", "rp": "5", "rec": "2'", "ca": "altezza del test", "es": "Discesa 3\"", "n": "Tre serie da 5, discesa in 3 secondi. L'altezza resta questa: cresce il lavoro.", "ap": ""}, {"s": "S3", "f": "Accumulo", "se": "4", "rp": "5", "rec": "2'", "ca": "altezza del test", "es": "Discesa 3\"", "n": "Una serie in più.", "ap": ""}, {"s": "S4", "f": "Accumulo", "se": "3", "rp": "6", "rec": "2'", "ca": "altezza del test", "es": "Discesa 3\"", "n": "Una serie in meno, un colpo in più.", "ap": ""}, {"s": "S5", "f": "Accumulo", "se": "4", "rp": "6", "rec": "2'", "ca": "altezza del test", "es": "Discesa 3\"", "n": "Una serie in più.", "ap": ""}, {"s": "S6", "f": "Accumulo", "se": "3", "rp": "7", "rec": "2'", "ca": "altezza del test", "es": "Discesa 3\"", "n": "Una serie in meno, un colpo in più.", "ap": ""}, {"s": "S7", "f": "Accumulo", "se": "4", "rp": "7", "rec": "2'", "ca": "altezza del test", "es": "Discesa 3\"", "n": "Una serie in più.", "ap": ""}, {"s": "S8", "f": "Accumulo", "se": "4", "rp": "8", "rec": "2'", "ca": "altezza del test", "es": "Discesa 3\"", "n": "Quattro serie da 8 all'altezza del test, discesa in 3 secondi: la settimana più dura del ciclo.", "ap": ""}, {"s": "S9", "f": "Richiamo", "se": "3", "rp": "5", "rec": "2'", "ca": "altezza del test", "es": "Ritmo normale", "n": "Settimana di richiamo: tre serie da 5 senza discesa lenta.", "ap": ""}, {"s": "S10", "f": "Misura", "se": "1 / 2", "rp": "8 / 5", "rec": "2'", "ca": "NUOVO TEST 8RM, poi altezza del nuovo", "es": "Discesa 3\" sulle 2 serie", "n": "Come in settimana 1: trova l'altezza con cui fai 8 colpi puliti. Scrivila nella casella del test: è il punto di partenza del prossimo programma. Poi 2 serie da 5 con la discesa in 3 secondi.", "ap": ""}], "unita": "altezza", "rifSempre": true, "testlab": "La tua altezza del test", "hint": "l'altezza dell'appoggio con cui fai 8 colpi: resta questa per tutto il programma. Se ti serve abbassarla, cambiala qui.", "howlab": "Come si trova l'altezza", "how": "<b>Devi trovare l'appoggio più basso con cui fai 8 colpi puliti.</b> Parti da un'altezza comoda e fai 8 colpi. Scendi di un gradino alla volta, sempre serie da 8, finché trovi l'altezza più bassa che chiudi ancora pulita. Scrivi qui il numero dell'altezza."}]}, {"id": "B", "head": "GIORNO B", "blocks": [{"t": "AFFONDI CON MANUBRI — accosciata, colpi più alti · colpi totali, alternati", "nome": "AFFONDI CON MANUBRI", "ruolo": "accosciata, colpi più alti · colpi totali, alternati", "lift": "", "rows": [{"s": "S1", "f": "Test", "se": "3", "rp": "12", "rec": "2'", "ca": "12 kg per manubrio", "es": "", "n": "Dodici colpi totali, gambe alternate (6 per gamba), con 12 kg e ginocchiera. Ritmo regolare, tutte le serie uguali, recupero pieno.", "ap": ""}, {"s": "S2", "f": "Accumulo", "se": "4", "rp": "12", "rec": "2'", "ca": "12 kg per manubrio", "es": "", "n": "Una serie in più.", "ap": ""}, {"s": "S3", "f": "Accumulo", "se": "3", "rp": "14", "rec": "2'", "ca": "12 kg per manubrio", "es": "", "n": "Una serie in meno, due colpi in più (uno per gamba).", "ap": ""}, {"s": "S4", "f": "Accumulo", "se": "4", "rp": "14", "rec": "2'", "ca": "12 kg per manubrio", "es": "", "n": "Una serie in più: la settimana più lunga del blocco.", "ap": ""}, {"s": "S5", "f": "Accumulo", "se": "2 / 1", "rp": "16 / 10", "rec": "2'", "ca": "TEST 16RM, poi peso del test", "es": "", "n": "Trova il manubrio con cui fai 16 colpi totali puliti, gambe alternate (8 per gamba): due serie con quel peso. Scrivilo nella casella del test: è il peso delle prossime quattro settimane. Poi 1 serie da 10 totali.", "ap": ""}, {"s": "S6", "f": "Accumulo", "se": "3", "rp": "12", "rec": "2'", "ca": "peso del test", "es": "", "n": "Tre serie da 12 colpi totali col peso del test.", "ap": ""}, {"s": "S7", "f": "Accumulo", "se": "4", "rp": "12", "rec": "2'", "ca": "peso del test", "es": "", "n": "Una serie in più.", "ap": ""}, {"s": "S8", "f": "Accumulo", "se": "3", "rp": "14", "rec": "2'", "ca": "peso del test", "es": "", "n": "Una serie in meno, due colpi in più (uno per gamba).", "ap": ""}, {"s": "S9", "f": "Richiamo", "se": "2", "rp": "12", "rec": "2'", "ca": "peso del test", "es": "", "n": "Richiamo: due serie da 12 colpi totali.", "ap": ""}, {"s": "S10", "f": "Misura", "se": "2 / 1", "rp": "16 / 10", "rec": "2'", "ca": "NUOVO TEST 16RM, poi peso del nuovo", "es": "", "n": "Come la settimana 5: due serie da 16 colpi totali col peso più alto che chiudi pulito. Scrivilo nella casella del test: è il punto di partenza del prossimo programma. Poi 1 serie da 10 totali.", "ap": ""}], "colpilab": "colpi totali", "testlab": "Il tuo peso da 16 colpi", "hint": "il manubrio con cui fai 16 colpi totali, gambe alternate: è il peso delle settimane dopo.", "howlab": "Come si trova", "how": "<b>Devi trovare il manubrio più pesante con cui fai 16 colpi totali, gambe alternate (8 per gamba).</b> Parti dai 12 kg e fai 16 colpi. Se vengono puliti, sali di un gradino e riprova dopo il recupero. Il peso giusto è l'ultimo con cui chiudi i 16 colpi puliti. Scrivilo qui."}, {"t": "ROWING CON APPOGGIO — tirata orizzontale", "nome": "ROWING CON APPOGGIO", "ruolo": "tirata orizzontale", "lift": "", "rows": [{"s": "S1", "f": "Test", "se": "1 / 2", "rp": "8 / 5", "rec": "2'", "ca": "TEST 8RM, poi peso del test", "es": "Discesa 3\" sulle 2 serie", "n": "Sali per gradi fino al peso con cui fai 8 tirate puliti, a ritmo normale: è il tuo peso del test. Scrivilo nella casella del test: vale fino alla settimana 9. Poi 2 serie da 5 con la discesa in 3 secondi. Il petto resta incollato all'appoggio: se per tirare devi staccarlo, il peso è troppo.", "ap": "", "durp": ["normale", "discesa 3\""]}, {"s": "S2", "f": "Accumulo", "se": "3", "rp": "5", "rec": "2'", "ca": "peso del test", "es": "Discesa 3\"", "n": "Tre serie da 5, discesa in 3 secondi. Il peso resta questo: cresce il lavoro.", "ap": "", "dur": "discesa 3\""}, {"s": "S3", "f": "Accumulo", "se": "4", "rp": "5", "rec": "2'", "ca": "peso del test", "es": "Discesa 3\"", "n": "Una serie in più.", "ap": "", "dur": "discesa 3\""}, {"s": "S4", "f": "Accumulo", "se": "3", "rp": "6", "rec": "2'", "ca": "peso del test", "es": "Discesa 3\"", "n": "Una serie in meno, un colpo in più.", "ap": "", "dur": "discesa 3\""}, {"s": "S5", "f": "Accumulo", "se": "4", "rp": "6", "rec": "2'", "ca": "peso del test", "es": "Discesa 3\"", "n": "Una serie in più.", "ap": "", "dur": "discesa 3\""}, {"s": "S6", "f": "Accumulo", "se": "3", "rp": "7", "rec": "2'", "ca": "peso del test", "es": "Discesa 3\"", "n": "Una serie in meno, un colpo in più.", "ap": "", "dur": "discesa 3\""}, {"s": "S7", "f": "Accumulo", "se": "4", "rp": "7", "rec": "2'", "ca": "peso del test", "es": "Discesa 3\"", "n": "Una serie in più.", "ap": "", "dur": "discesa 3\""}, {"s": "S8", "f": "Accumulo", "se": "4", "rp": "8", "rec": "2'", "ca": "peso del test", "es": "Discesa 3\"", "n": "Quattro serie da 8 al peso del test, discesa in 3 secondi: la settimana più dura del ciclo.", "ap": "", "dur": "discesa 3\""}, {"s": "S9", "f": "Richiamo", "se": "3", "rp": "5", "rec": "2'", "ca": "peso del test", "es": "Ritmo normale", "n": "Settimana di richiamo: tre serie da 5 senza discesa lenta.", "ap": "", "dur": "normale"}, {"s": "S10", "f": "Misura", "se": "1 / 2", "rp": "8 / 5", "rec": "2'", "ca": "NUOVO TEST 8RM, poi peso del nuovo", "es": "Discesa 3\" sulle 2 serie", "n": "Come in settimana 1: sali per gradi fino al peso con cui fai 8 colpi puliti. Scrivilo nella casella del test: è il punto di partenza del prossimo programma. Poi 2 serie da 5 con la discesa in 3 secondi.", "ap": "", "durp": ["normale", "discesa 3\""]}]}, {"t": "STACCO RUMENO SU CHIAPPA CON MANUBRI — estensione d'anca, il giorno dell'intensità: top set + code", "nome": "STACCO RUMENO SU CHIAPPA CON MANUBRI", "ruolo": "estensione d'anca, il giorno dell'intensità: top set + code", "lift": "", "rows": [{"s": "S1", "f": "Test", "se": "1 / 3", "rp": "MAX / −3", "rec": "2'-3'", "ca": "peso del giorno / stesso peso", "es": "Fermo 2\" sotto", "n": "[FELPA · FERMO SOTTO] Felpa addosso, sempre. Prima serie: più colpi puliti possibile, ti fermi quando il colpo rallenta, e segnali nella casella. Poi 3 serie a 3 colpi in meno della prima, stesso peso, sempre col fermo di due secondi sotto. Da qui in avanti il peso sale di 2 kg la settimana dopo che il top supera i 10 colpi; a 10 esatti resta.", "ap": ""}, {"s": "S2", "f": "Accumulo", "se": "1 / 3", "rp": "MAX / −2", "rec": "2'-3'", "ca": "peso del giorno / stesso peso", "es": "Fermo 2\" sotto", "n": "[FELPA · FERMO SOTTO] Top set a più colpi puliti possibile, segnali. Poi 3 serie a 2 colpi in meno della prima.", "ap": ""}, {"s": "S3", "f": "Accumulo", "se": "1 / 1 / 2", "rp": "MAX / −1 / −2", "rec": "2'-3'", "ca": "peso del giorno / stesso peso", "es": "Fermo 2\" sotto", "n": "[FELPA · FERMO SOTTO] Top set a più colpi puliti possibile, segnali. Poi una serie a 1 colpo in meno e due serie a 2 colpi in meno.", "ap": ""}, {"s": "S4", "f": "Accumulo", "se": "1 / 2 / 1", "rp": "MAX / −1 / −2", "rec": "2'-3'", "ca": "peso del giorno / stesso peso", "es": "Fermo 2\" sotto", "n": "[FELPA · FERMO SOTTO] Top set a più colpi puliti possibile, segnali. Poi due serie a 1 colpo in meno e una a 2 colpi in meno: la settimana più intensa di questo giro.", "ap": ""}, {"s": "S5", "f": "Accumulo", "se": "1 / 3", "rp": "MAX / −3", "rec": "2'-3'", "ca": "peso del giorno / stesso peso", "es": "Fermo 2\" sotto", "n": "[FELPA · FERMO SOTTO] Top set a più colpi puliti possibile, segnali. Poi 3 serie a 3 colpi in meno: si riparte dal basso.", "ap": ""}, {"s": "S6", "f": "Accumulo", "se": "1 / 3", "rp": "MAX / −2", "rec": "2'-3'", "ca": "peso del giorno / stesso peso", "es": "Fermo 2\" sotto", "n": "[FELPA · FERMO SOTTO] Top set a più colpi puliti possibile, segnali. Poi 3 serie a 2 colpi in meno.", "ap": ""}, {"s": "S7", "f": "Accumulo", "se": "1 / 1 / 2", "rp": "MAX / −1 / −2", "rec": "2'-3'", "ca": "peso del giorno / stesso peso", "es": "Fermo 2\" sotto", "n": "[FELPA · FERMO SOTTO] Top set a più colpi puliti possibile, segnali. Poi una serie a 1 colpo in meno e due a 2 colpi in meno.", "ap": ""}, {"s": "S8", "f": "Accumulo", "se": "1 / 2 / 1", "rp": "MAX / −1 / −2", "rec": "2'-3'", "ca": "peso del giorno / stesso peso", "es": "Fermo 2\" sotto", "n": "[FELPA · FERMO SOTTO] Top set a più colpi puliti possibile, segnali. Poi due serie a 1 colpo in meno e una a 2 colpi in meno: la settimana più intensa del ciclo.", "ap": ""}, {"s": "S9", "f": "Richiamo", "se": "3", "rp": "−3", "rec": "2'-3'", "ca": "peso del giorno", "es": "Ritmo normale", "n": "[FELPA] Richiamo: niente top set e niente fermo, tre serie a 3 colpi in meno del top della settimana scorsa.", "ap": "", "inc": 0}, {"s": "S10", "f": "Misura", "se": "1 / 2", "rp": "MAX / −2", "rec": "2'-3'", "ca": "peso del giorno / stesso peso", "es": "Fermo 2\" sotto", "n": "[FELPA · FERMO SOTTO] Misura: Prima serie: più colpi puliti possibile, ti fermi quando il colpo rallenta, e segnali nella casella. Confronta i colpi e il peso con la settimana 1. Poi 2 serie a 2 colpi in meno.", "ap": "", "inc": 0}], "regola": {"start": 14, "soglia": 10, "passo": 2}}, {"t": "LENTO AVANTI CON MANUBRI — spinta verticale", "nome": "LENTO AVANTI CON MANUBRI", "ruolo": "spinta verticale", "lift": "", "rows": [{"s": "S1", "f": "Test", "se": "1 / 2", "rp": "8 / 5", "rec": "2'", "ca": "TEST 8RM, poi peso del test", "es": "Discesa 3\" sulle 2 serie", "n": "Sali per gradi fino al peso con cui fai 8 spinte puliti, a ritmo normale: è il tuo peso del test. Scrivilo nella casella del test: vale fino alla settimana 9. Poi 2 serie da 5 con la discesa in 3 secondi. Strict: niente spinta di gambe.", "ap": "", "durp": ["normale", "discesa 3\""]}, {"s": "S2", "f": "Accumulo", "se": "3", "rp": "5", "rec": "2'", "ca": "peso del test", "es": "Discesa 3\"", "n": "Tre serie da 5, discesa in 3 secondi. Il peso resta questo: cresce il lavoro.", "ap": "", "dur": "discesa 3\""}, {"s": "S3", "f": "Accumulo", "se": "4", "rp": "5", "rec": "2'", "ca": "peso del test", "es": "Discesa 3\"", "n": "Una serie in più.", "ap": "", "dur": "discesa 3\""}, {"s": "S4", "f": "Accumulo", "se": "3", "rp": "6", "rec": "2'", "ca": "peso del test", "es": "Discesa 3\"", "n": "Una serie in meno, un colpo in più.", "ap": "", "dur": "discesa 3\""}, {"s": "S5", "f": "Accumulo", "se": "4", "rp": "6", "rec": "2'", "ca": "peso del test", "es": "Discesa 3\"", "n": "Una serie in più.", "ap": "", "dur": "discesa 3\""}, {"s": "S6", "f": "Accumulo", "se": "3", "rp": "7", "rec": "2'", "ca": "peso del test", "es": "Discesa 3\"", "n": "Una serie in meno, un colpo in più.", "ap": "", "dur": "discesa 3\""}, {"s": "S7", "f": "Accumulo", "se": "4", "rp": "7", "rec": "2'", "ca": "peso del test", "es": "Discesa 3\"", "n": "Una serie in più.", "ap": "", "dur": "discesa 3\""}, {"s": "S8", "f": "Accumulo", "se": "4", "rp": "8", "rec": "2'", "ca": "peso del test", "es": "Discesa 3\"", "n": "Quattro serie da 8 al peso del test, discesa in 3 secondi: la settimana più dura del ciclo.", "ap": "", "dur": "discesa 3\""}, {"s": "S9", "f": "Richiamo", "se": "3", "rp": "5", "rec": "2'", "ca": "peso del test", "es": "Ritmo normale", "n": "Settimana di richiamo: tre serie da 5 senza discesa lenta.", "ap": "", "dur": "normale"}, {"s": "S10", "f": "Misura", "se": "1 / 2", "rp": "8 / 5", "rec": "2'", "ca": "NUOVO TEST 8RM, poi peso del nuovo", "es": "Discesa 3\" sulle 2 serie", "n": "Come in settimana 1: sali per gradi fino al peso con cui fai 8 colpi puliti. Scrivilo nella casella del test: è il punto di partenza del prossimo programma. Poi 2 serie da 5 con la discesa in 3 secondi.", "ap": "", "durp": ["normale", "discesa 3\""]}]}, {"t": "FACE PULL — postura delle spalle, non forza: peso fisso", "nome": "FACE PULL", "ruolo": "postura delle spalle, non forza: peso fisso", "lift": "", "rows": [{"s": "S1", "f": "Test", "se": "3", "rp": "12", "rec": "90\"", "ca": "peso adatto, sempre lo stesso", "es": "Extrarotazione in fondo", "n": "Postura, non forza. Trova il peso con cui fai 12 colpi lenti e controllati, con l'extrarotazione in fondo (gomiti alti, pugni che ruotano verso l'alto): gli ultimi colpi si devono sentire, ma il movimento resta pulito. Quel peso resta per tutto il programma: non si sale di piastrina. Scrivilo nella casella del test. Nel diario: 2,3 kg all'altezza 16.", "ap": ""}, {"s": "S2", "f": "Accumulo", "se": "3", "rp": "12", "rec": "90\"", "ca": "peso adatto, sempre lo stesso", "es": "Extrarotazione in fondo", "n": "Stesso peso, stesso movimento.", "ap": ""}, {"s": "S3", "f": "Accumulo", "se": "3", "rp": "12", "rec": "90\"", "ca": "peso adatto, sempre lo stesso", "es": "Extrarotazione in fondo", "n": "Stesso peso: cura l'extrarotazione in fondo.", "ap": ""}, {"s": "S4", "f": "Accumulo", "se": "4", "rp": "12", "rec": "90\"", "ca": "peso adatto, sempre lo stesso", "es": "Extrarotazione in fondo", "n": "Una serie in più, stesso peso.", "ap": ""}, {"s": "S5", "f": "Accumulo", "se": "3", "rp": "12", "rec": "90\"", "ca": "peso adatto, sempre lo stesso", "es": "Extrarotazione in fondo", "n": "Stesso peso.", "ap": ""}, {"s": "S6", "f": "Accumulo", "se": "3", "rp": "12", "rec": "90\"", "ca": "peso adatto, sempre lo stesso", "es": "Extrarotazione in fondo", "n": "Stesso peso.", "ap": ""}, {"s": "S7", "f": "Accumulo", "se": "3", "rp": "12", "rec": "90\"", "ca": "peso adatto, sempre lo stesso", "es": "Extrarotazione in fondo", "n": "Stesso peso.", "ap": ""}, {"s": "S8", "f": "Accumulo", "se": "4", "rp": "12", "rec": "90\"", "ca": "peso adatto, sempre lo stesso", "es": "Extrarotazione in fondo", "n": "Una serie in più, stesso peso: chiusura del blocco.", "ap": ""}, {"s": "S9", "f": "Richiamo", "se": "3", "rp": "12", "rec": "90\"", "ca": "peso adatto, sempre lo stesso", "es": "Extrarotazione in fondo", "n": "Richiamo: come sempre.", "ap": ""}, {"s": "S10", "f": "Misura", "se": "3", "rp": "12", "rec": "90\"", "ca": "peso adatto, sempre lo stesso", "es": "Extrarotazione in fondo", "n": "Come sempre, stesso peso.", "ap": ""}], "rec": false}, {"t": "PLANK — core", "nome": "PLANK", "ruolo": "core", "lift": "", "rows": [{"s": "S1", "f": "Test", "se": "1 / 2", "rp": "— / —", "rec": "90\"", "ca": "TEST tempo, poi 70% del tempo del test", "es": "", "n": "Fianchi in linea, niente sedere in alto: tieni il più a lungo possibile e segna i secondi nella casella. È il tuo tempo del test. Poi 2 tenute al 70% di quel tempo. Mai sotto i 30 secondi.", "ap": ""}, {"s": "S2", "f": "Accumulo", "se": "3", "rp": "—", "rec": "90\"", "ca": "70% del tempo del test", "es": "", "n": "Tre tenute al 70% del tempo del test. Mai sotto i 30 secondi.", "ap": ""}, {"s": "S3", "f": "Accumulo", "se": "3", "rp": "—", "rec": "90\"", "ca": "80% del tempo del test", "es": "", "n": "Tenute più lunghe.", "ap": ""}, {"s": "S4", "f": "Accumulo", "se": "3", "rp": "—", "rec": "90\"", "ca": "90% del tempo del test", "es": "", "n": "Tenute più lunghe.", "ap": ""}, {"s": "S5", "f": "Accumulo", "se": "3", "rp": "—", "rec": "90\"", "ca": "95% del tempo del test", "es": "", "n": "Tenute più lunghe.", "ap": ""}, {"s": "S6", "f": "Accumulo", "se": "3", "rp": "—", "rec": "90\"", "ca": "tempo del test", "es": "", "n": "Tre tenute al tempo del test: la settimana più dura.", "ap": ""}, {"s": "S7", "f": "Accumulo", "se": "3", "rp": "—", "rec": "90\"", "ca": "90% del tempo del test", "es": "", "n": "Settimana più leggera.", "ap": ""}, {"s": "S8", "f": "Accumulo", "se": "3", "rp": "—", "rec": "90\"", "ca": "95% del tempo del test", "es": "", "n": "Chiusura del blocco.", "ap": ""}, {"s": "S9", "f": "Richiamo", "se": "2", "rp": "—", "rec": "90\"", "ca": "70% del tempo del test", "es": "", "n": "Richiamo: due tenute corte.", "ap": ""}, {"s": "S10", "f": "Misura", "se": "1 / 2", "rp": "— / —", "rec": "90\"", "ca": "NUOVO TEST tempo, poi 70% del nuovo", "es": "", "n": "Come la settimana 1: tieni il più a lungo possibile e segna i secondi. Confrontali con la settimana 1. Poi 2 tenute al 70%.", "ap": ""}], "unita": "s", "test": "tempo", "testlab": "Il tuo tempo del test", "hint": "i secondi della tenuta più lunga della settimana 1: da qui escono tutte le tenute.", "howlab": "Come si fa il test", "how": "<b>Tieni il plank il più a lungo possibile, una volta sola.</b> Fianchi in linea, niente sedere in alto. Quando la linea si perde, ti fermi: quei secondi sono il tuo tempo del test."}]}];const LS="sab-m2";const TITOLO="Mesociclo 2 — ricomposizione";const MASSIMALI=[];const MIGRA_VECCHIO=false;const SEL0=0;const DSEL0="";const PERSONA0="sab";const PROG0="Mesociclo 2";const PROGN0=2;const DASH=false;
+<script>const GIORNI=[{"id": "A", "head": "GIORNO A", "blocks": [{"t": "AFFONDO POSTERIORE CON MANUBRI — accosciata, il giorno del peso · colpi totali, alternati", "nome": "AFFONDO POSTERIORE CON MANUBRI", "ruolo": "accosciata, il giorno del peso · colpi totali, alternati", "lift": "", "rows": [{"s": "S1", "f": "Test", "se": "4", "rp": "8", "rec": "2'", "ca": "14 kg per manubrio", "es": "", "n": "Otto colpi totali, gambe alternate (4 per gamba), con 14 kg e ginocchiera. Recupero pieno. Da qui si aggiungono due colpi alla volta, uno per gamba: il peso sale solo quando arrivi a 12.", "ap": ""}, {"s": "S2", "f": "Accumulo", "se": "4", "rp": "10", "rec": "2'", "ca": "14 kg per manubrio", "es": "", "n": "Due colpi in più, uno per gamba.", "ap": ""}, {"s": "S3", "f": "Accumulo", "se": "4", "rp": "10", "rec": "2'", "ca": "14 kg per manubrio", "es": "", "n": "Stesso lavoro: rendilo pulito.", "ap": ""}, {"s": "S4", "f": "Accumulo", "se": "4", "rp": "12", "rec": "2'", "ca": "14 kg per manubrio", "es": "", "n": "Due colpi in più. Chiuse tutte e quattro da 12? La prossima il manubrio sale.", "ap": ""}, {"s": "S5", "f": "Accumulo", "se": "4", "rp": "8", "rec": "2'", "ca": "16 kg per manubrio", "es": "", "n": "Sali di un gradino (16 kg) e i colpi tornano a 8 totali.", "ap": ""}, {"s": "S6", "f": "Accumulo", "se": "4", "rp": "10", "rec": "2'", "ca": "16 kg per manubrio", "es": "", "n": "Due colpi in più, uno per gamba.", "ap": ""}, {"s": "S7", "f": "Accumulo", "se": "4", "rp": "10", "rec": "2'", "ca": "16 kg per manubrio", "es": "", "n": "Stesso lavoro: rendilo pulito.", "ap": ""}, {"s": "S8", "f": "Accumulo", "se": "4", "rp": "12", "rec": "2'", "ca": "16 kg per manubrio", "es": "", "n": "Due colpi in più: la settimana più carica del ciclo.", "ap": ""}, {"s": "S9", "f": "Richiamo", "se": "2", "rp": "8", "rec": "2'", "ca": "16 kg per manubrio", "es": "", "n": "Richiamo: due serie da 8 colpi totali.", "ap": ""}, {"s": "S10", "f": "Misura", "se": "1 / 2", "rp": "MAX / 8", "rec": "2'", "ca": "16 kg per manubrio", "es": "", "n": "Prima serie: quanti colpi totali puliti fai con 16 kg, gambe alternate; ti fermi quando il colpo rallenta. Segnali nella casella: è la misura del ciclo. Poi 2 serie da 8 colpi totali.", "ap": ""}], "colpilab": "colpi totali"}, {"t": "LAT MACHINE — tirata verticale, mai più di otto colpi", "nome": "LAT MACHINE", "ruolo": "tirata verticale, mai più di otto colpi", "lift": "", "rows": [{"s": "S1", "f": "Test", "se": "1 / 2", "rp": "8 / 5", "rec": "2'", "ca": "TEST 8RM, poi peso del test", "es": "Negativa 3\" sulle 2 serie", "n": "Sali per gradi fino al peso con cui fai 8 trazioni puliti, a ritmo normale: è il tuo peso del test. Scrivilo nella casella del test: vale fino alla settimana 9. Poi 2 serie da 5 con la negativa in 3 secondi: la barra torna su lenta. Mai più di otto colpi per serie: se la testa gira, fermati e dimmelo.", "ap": "", "durp": ["normale", "negativa 3\""]}, {"s": "S2", "f": "Accumulo", "se": "3", "rp": "5", "rec": "2'", "ca": "peso del test", "es": "Negativa 3\"", "n": "Tre serie da 5, negativa in 3 secondi: la barra torna su lenta. Il peso resta questo: cresce il lavoro.", "ap": "", "dur": "negativa 3\""}, {"s": "S3", "f": "Accumulo", "se": "4", "rp": "5", "rec": "2'", "ca": "peso del test", "es": "Negativa 3\"", "n": "Una serie in più.", "ap": "", "dur": "negativa 3\""}, {"s": "S4", "f": "Accumulo", "se": "3", "rp": "6", "rec": "2'", "ca": "peso del test", "es": "Negativa 3\"", "n": "Una serie in meno, un colpo in più.", "ap": "", "dur": "negativa 3\""}, {"s": "S5", "f": "Accumulo", "se": "4", "rp": "6", "rec": "2'", "ca": "peso del test", "es": "Negativa 3\"", "n": "Una serie in più.", "ap": "", "dur": "negativa 3\""}, {"s": "S6", "f": "Accumulo", "se": "3", "rp": "7", "rec": "2'", "ca": "peso del test", "es": "Negativa 3\"", "n": "Una serie in meno, un colpo in più.", "ap": "", "dur": "negativa 3\""}, {"s": "S7", "f": "Accumulo", "se": "4", "rp": "7", "rec": "2'", "ca": "peso del test", "es": "Negativa 3\"", "n": "Una serie in più.", "ap": "", "dur": "negativa 3\""}, {"s": "S8", "f": "Accumulo", "se": "4", "rp": "8", "rec": "2'", "ca": "peso del test", "es": "Negativa 3\"", "n": "Quattro serie da 8 al peso del test, negativa in 3 secondi: la settimana più dura del ciclo.", "ap": "", "dur": "negativa 3\""}, {"s": "S9", "f": "Richiamo", "se": "3", "rp": "5", "rec": "2'", "ca": "peso del test", "es": "Ritmo normale", "n": "Settimana di richiamo: tre serie da 5 senza negativa lenta.", "ap": "", "dur": "normale"}, {"s": "S10", "f": "Misura", "se": "1 / 2", "rp": "8 / 5", "rec": "2'", "ca": "NUOVO TEST 8RM, poi peso del nuovo", "es": "Negativa 3\" sulle 2 serie", "n": "Come in settimana 1: sali per gradi fino al peso con cui fai 8 colpi puliti. Scrivilo nella casella del test: è il punto di partenza del prossimo programma. Poi 2 serie da 5 con la negativa in 3 secondi. Sempre entro gli otto colpi.", "ap": "", "durp": ["normale", "negativa 3\""]}]}, {"t": "STACCO RUMENO SU CHIAPPA CON MANUBRI — estensione d'anca, il giorno del volume", "nome": "STACCO RUMENO SU CHIAPPA CON MANUBRI", "ruolo": "estensione d'anca, il giorno del volume", "lift": "", "rows": [{"s": "S1", "f": "Test", "se": "4", "rp": "10", "rec": "90\"", "ca": "12 kg per manubrio", "es": "Negativa 3\"", "n": "[FELPA] Felpa addosso prima di iniziare, sempre. Quattro serie da 10 con la negativa in 3 secondi, cioè scendi lenta: il peso è quello basso che tieni per la schiena, qui conta quanto lavoro fai. Ti fermi dove la schiena resta piatta.", "ap": "", "dur": "negativa 3\""}, {"s": "S2", "f": "Accumulo", "se": "5", "rp": "10", "rec": "90\"", "ca": "12 kg per manubrio", "es": "Negativa 3\"", "n": "[FELPA] Una serie in più.", "ap": "", "dur": "negativa 3\""}, {"s": "S3", "f": "Accumulo", "se": "4", "rp": "12", "rec": "90\"", "ca": "12 kg per manubrio", "es": "Negativa 3\"", "n": "[FELPA] Una serie in meno, due colpi in più.", "ap": "", "dur": "negativa 3\""}, {"s": "S4", "f": "Accumulo", "se": "5", "rp": "12", "rec": "90\"", "ca": "12 kg per manubrio", "es": "Negativa 3\"", "n": "[FELPA] Una serie in più.", "ap": "", "dur": "negativa 3\""}, {"s": "S5", "f": "Accumulo", "se": "5", "rp": "12", "rec": "90\"", "ca": "12 kg per manubrio", "es": "Negativa 3\"", "n": "[FELPA] Stesso lavoro: rendilo pulito.", "ap": "", "dur": "negativa 3\""}, {"s": "S6", "f": "Accumulo", "se": "6", "rp": "12", "rec": "90\"", "ca": "12 kg per manubrio", "es": "Negativa 3\"", "n": "[FELPA] Una serie in più.", "ap": "", "dur": "negativa 3\""}, {"s": "S7", "f": "Accumulo", "se": "5", "rp": "14", "rec": "90\"", "ca": "12 kg per manubrio", "es": "Negativa 3\"", "n": "[FELPA] Una serie in meno, due colpi in più.", "ap": "", "dur": "negativa 3\""}, {"s": "S8", "f": "Accumulo", "se": "6", "rp": "14", "rec": "90\"", "ca": "12 kg per manubrio", "es": "Negativa 3\"", "n": "[FELPA] Sei serie da 14 con la negativa in 3 secondi: la settimana più lunga del ciclo.", "ap": "", "dur": "negativa 3\""}, {"s": "S9", "f": "Richiamo", "se": "3", "rp": "10", "rec": "90\"", "ca": "12 kg per manubrio", "es": "Ritmo normale", "n": "[FELPA] Richiamo: tre serie da 10 senza negativa lenta.", "ap": "", "dur": "normale"}, {"s": "S10", "f": "Misura", "se": "4", "rp": "10", "rec": "90\"", "ca": "14 kg per manubrio", "es": "Ritmo normale", "n": "[FELPA] Prova a 14 kg senza negativa lenta, solo se la schiena è a posto: è il peso con cui riparte il prossimo programma. Se non lo è, resta a 12 e dimmelo.", "ap": "", "dur": "normale"}]}, {"t": "HOLLOW HOLD — core", "nome": "HOLLOW HOLD", "ruolo": "core", "lift": "", "rows": [{"s": "S1", "f": "Test", "se": "1 / 2", "rp": "— / —", "rec": "90\"", "ca": "TEST tempo, poi 70% del tempo del test", "es": "", "n": "Schiena bassa incollata a terra, ginocchia piegate quanto serve: tieni il più a lungo possibile e segna i secondi nella casella. È il tuo tempo del test. Poi 2 tenute al 70% di quel tempo. Mai sotto i 30 secondi.", "ap": ""}, {"s": "S2", "f": "Accumulo", "se": "5", "rp": "—", "rec": "90\"", "ca": "70% del tempo del test", "es": "", "n": "Cinque tenute al 70% del tempo del test. Mai sotto i 30 secondi.", "ap": ""}, {"s": "S3", "f": "Accumulo", "se": "5", "rp": "—", "rec": "90\"", "ca": "80% del tempo del test", "es": "", "n": "Tenute più lunghe.", "ap": ""}, {"s": "S4", "f": "Accumulo", "se": "5", "rp": "—", "rec": "90\"", "ca": "90% del tempo del test", "es": "", "n": "Tenute più lunghe.", "ap": ""}, {"s": "S5", "f": "Accumulo", "se": "4", "rp": "—", "rec": "90\"", "ca": "95% del tempo del test", "es": "", "n": "Una tenuta in meno, più lunga.", "ap": ""}, {"s": "S6", "f": "Accumulo", "se": "4", "rp": "—", "rec": "90\"", "ca": "tempo del test", "es": "", "n": "Quattro tenute al tempo del test: la settimana più dura.", "ap": ""}, {"s": "S7", "f": "Accumulo", "se": "5", "rp": "—", "rec": "90\"", "ca": "90% del tempo del test", "es": "", "n": "Settimana più leggera, una tenuta in più.", "ap": ""}, {"s": "S8", "f": "Accumulo", "se": "4", "rp": "—", "rec": "90\"", "ca": "95% del tempo del test", "es": "", "n": "Chiusura del blocco.", "ap": ""}, {"s": "S9", "f": "Richiamo", "se": "3", "rp": "—", "rec": "90\"", "ca": "70% del tempo del test", "es": "", "n": "Richiamo: tre tenute corte.", "ap": ""}, {"s": "S10", "f": "Misura", "se": "1 / 2", "rp": "— / —", "rec": "90\"", "ca": "NUOVO TEST tempo, poi 70% del nuovo", "es": "", "n": "Come la settimana 1: tieni il più a lungo possibile e segna i secondi. Confrontali con la settimana 1: è la misura del ciclo. Poi 2 tenute al 70%.", "ap": ""}], "unita": "s", "test": "tempo", "testlab": "Il tuo tempo del test", "hint": "i secondi della tenuta più lunga della settimana 1: da qui escono tutte le tenute.", "howlab": "Come si fa il test", "how": "<b>Tieni la posizione il più a lungo possibile, una volta sola.</b> Schiena bassa incollata a terra, ginocchia piegate quanto serve. Quando la schiena si stacca, ti fermi: quei secondi sono il tuo tempo del test."}, {"t": "PUSH UP SU RIALZO — spinta orizzontale", "nome": "PUSH UP SU RIALZO", "ruolo": "spinta orizzontale", "lift": "", "rows": [{"s": "S1", "f": "Test", "se": "1 / 2", "rp": "8 / 5", "rec": "2'", "ca": "TEST 8RM, poi altezza del test", "es": "Negativa 3\" sulle 2 serie", "n": "Scendi di un gradino alla volta fino all'altezza con cui fai 8 colpi puliti: è la tua altezza del test. Scrivila nella casella del test: vale fino alla settimana 9. Poi 2 serie da 5 con la negativa in 3 secondi: scendi lenta. Se il gomito dà fastidio, risali di un'altezza per quel giorno e dimmelo.", "ap": ""}, {"s": "S2", "f": "Accumulo", "se": "3", "rp": "5", "rec": "2'", "ca": "altezza del test", "es": "Negativa 3\"", "n": "Tre serie da 5, negativa in 3 secondi: scendi lenta. L'altezza resta questa: cresce il lavoro.", "ap": ""}, {"s": "S3", "f": "Accumulo", "se": "4", "rp": "5", "rec": "2'", "ca": "altezza del test", "es": "Negativa 3\"", "n": "Una serie in più.", "ap": ""}, {"s": "S4", "f": "Accumulo", "se": "3", "rp": "6", "rec": "2'", "ca": "altezza del test", "es": "Negativa 3\"", "n": "Una serie in meno, un colpo in più.", "ap": ""}, {"s": "S5", "f": "Accumulo", "se": "4", "rp": "6", "rec": "2'", "ca": "altezza del test", "es": "Negativa 3\"", "n": "Una serie in più.", "ap": ""}, {"s": "S6", "f": "Accumulo", "se": "3", "rp": "7", "rec": "2'", "ca": "altezza del test", "es": "Negativa 3\"", "n": "Una serie in meno, un colpo in più.", "ap": ""}, {"s": "S7", "f": "Accumulo", "se": "4", "rp": "7", "rec": "2'", "ca": "altezza del test", "es": "Negativa 3\"", "n": "Una serie in più.", "ap": ""}, {"s": "S8", "f": "Accumulo", "se": "4", "rp": "8", "rec": "2'", "ca": "altezza del test", "es": "Negativa 3\"", "n": "Quattro serie da 8 all'altezza del test, negativa in 3 secondi: la settimana più dura del ciclo.", "ap": ""}, {"s": "S9", "f": "Richiamo", "se": "3", "rp": "5", "rec": "2'", "ca": "altezza del test", "es": "Ritmo normale", "n": "Settimana di richiamo: tre serie da 5 senza negativa lenta.", "ap": ""}, {"s": "S10", "f": "Misura", "se": "1 / 2", "rp": "8 / 5", "rec": "2'", "ca": "NUOVO TEST 8RM, poi altezza del nuovo", "es": "Negativa 3\" sulle 2 serie", "n": "Come in settimana 1: trova l'altezza con cui fai 8 colpi puliti. Scrivila nella casella del test: è il punto di partenza del prossimo programma. Poi 2 serie da 5 con la negativa in 3 secondi.", "ap": ""}], "unita": "altezza", "rifSempre": true, "testlab": "La tua altezza del test", "hint": "l'altezza dell'appoggio con cui fai 8 colpi: resta questa per tutto il programma. Se ti serve abbassarla, cambiala qui.", "howlab": "Come si trova l'altezza", "how": "<b>Devi trovare l'appoggio più basso con cui fai 8 colpi puliti.</b> Parti da un'altezza comoda e fai 8 colpi. Scendi di un gradino alla volta, sempre serie da 8, finché trovi l'altezza più bassa che chiudi ancora pulita. Scrivi qui il numero dell'altezza."}]}, {"id": "B", "head": "GIORNO B", "blocks": [{"t": "AFFONDI CON MANUBRI — accosciata, colpi più alti · colpi totali, alternati", "nome": "AFFONDI CON MANUBRI", "ruolo": "accosciata, colpi più alti · colpi totali, alternati", "lift": "", "rows": [{"s": "S1", "f": "Test", "se": "3", "rp": "12", "rec": "2'", "ca": "12 kg per manubrio", "es": "", "n": "Dodici colpi totali, gambe alternate (6 per gamba), con 12 kg e ginocchiera. Ritmo regolare, tutte le serie uguali, recupero pieno.", "ap": ""}, {"s": "S2", "f": "Accumulo", "se": "4", "rp": "12", "rec": "2'", "ca": "12 kg per manubrio", "es": "", "n": "Una serie in più.", "ap": ""}, {"s": "S3", "f": "Accumulo", "se": "3", "rp": "14", "rec": "2'", "ca": "12 kg per manubrio", "es": "", "n": "Una serie in meno, due colpi in più (uno per gamba).", "ap": ""}, {"s": "S4", "f": "Accumulo", "se": "4", "rp": "14", "rec": "2'", "ca": "12 kg per manubrio", "es": "", "n": "Una serie in più: la settimana più lunga del blocco.", "ap": ""}, {"s": "S5", "f": "Accumulo", "se": "2 / 1", "rp": "16 / 10", "rec": "2'", "ca": "TEST 16RM, poi peso del test", "es": "", "n": "Trova il manubrio con cui fai 16 colpi totali puliti, gambe alternate (8 per gamba): due serie con quel peso. Scrivilo nella casella del test: è il peso delle prossime quattro settimane. Poi 1 serie da 10 totali.", "ap": ""}, {"s": "S6", "f": "Accumulo", "se": "3", "rp": "12", "rec": "2'", "ca": "peso del test", "es": "", "n": "Tre serie da 12 colpi totali col peso del test.", "ap": ""}, {"s": "S7", "f": "Accumulo", "se": "4", "rp": "12", "rec": "2'", "ca": "peso del test", "es": "", "n": "Una serie in più.", "ap": ""}, {"s": "S8", "f": "Accumulo", "se": "3", "rp": "14", "rec": "2'", "ca": "peso del test", "es": "", "n": "Una serie in meno, due colpi in più (uno per gamba).", "ap": ""}, {"s": "S9", "f": "Richiamo", "se": "2", "rp": "12", "rec": "2'", "ca": "peso del test", "es": "", "n": "Richiamo: due serie da 12 colpi totali.", "ap": ""}, {"s": "S10", "f": "Misura", "se": "2 / 1", "rp": "16 / 10", "rec": "2'", "ca": "NUOVO TEST 16RM, poi peso del nuovo", "es": "", "n": "Come la settimana 5: due serie da 16 colpi totali col peso più alto che chiudi pulito. Scrivilo nella casella del test: è il punto di partenza del prossimo programma. Poi 1 serie da 10 totali.", "ap": ""}], "colpilab": "colpi totali", "testlab": "Il tuo peso da 16 colpi", "hint": "il manubrio con cui fai 16 colpi totali, gambe alternate: è il peso delle settimane dopo.", "howlab": "Come si trova", "how": "<b>Devi trovare il manubrio più pesante con cui fai 16 colpi totali, gambe alternate (8 per gamba).</b> Parti dai 12 kg e fai 16 colpi. Se vengono puliti, sali di un gradino e riprova dopo il recupero. Il peso giusto è l'ultimo con cui chiudi i 16 colpi puliti. Scrivilo qui."}, {"t": "ROWING CON APPOGGIO — tirata orizzontale", "nome": "ROWING CON APPOGGIO", "ruolo": "tirata orizzontale", "lift": "", "rows": [{"s": "S1", "f": "Test", "se": "1 / 2", "rp": "8 / 5", "rec": "2'", "ca": "TEST 8RM, poi peso del test", "es": "Negativa 3\" sulle 2 serie", "n": "Sali per gradi fino al peso con cui fai 8 tirate puliti, a ritmo normale: è il tuo peso del test. Scrivilo nella casella del test: vale fino alla settimana 9. Poi 2 serie da 5 con la negativa in 3 secondi: le braccia tornano avanti lente. Il petto resta incollato all'appoggio: se per tirare devi staccarlo, il peso è troppo.", "ap": "", "durp": ["normale", "negativa 3\""]}, {"s": "S2", "f": "Accumulo", "se": "3", "rp": "5", "rec": "2'", "ca": "peso del test", "es": "Negativa 3\"", "n": "Tre serie da 5, negativa in 3 secondi: le braccia tornano avanti lente. Il peso resta questo: cresce il lavoro.", "ap": "", "dur": "negativa 3\""}, {"s": "S3", "f": "Accumulo", "se": "4", "rp": "5", "rec": "2'", "ca": "peso del test", "es": "Negativa 3\"", "n": "Una serie in più.", "ap": "", "dur": "negativa 3\""}, {"s": "S4", "f": "Accumulo", "se": "3", "rp": "6", "rec": "2'", "ca": "peso del test", "es": "Negativa 3\"", "n": "Una serie in meno, un colpo in più.", "ap": "", "dur": "negativa 3\""}, {"s": "S5", "f": "Accumulo", "se": "4", "rp": "6", "rec": "2'", "ca": "peso del test", "es": "Negativa 3\"", "n": "Una serie in più.", "ap": "", "dur": "negativa 3\""}, {"s": "S6", "f": "Accumulo", "se": "3", "rp": "7", "rec": "2'", "ca": "peso del test", "es": "Negativa 3\"", "n": "Una serie in meno, un colpo in più.", "ap": "", "dur": "negativa 3\""}, {"s": "S7", "f": "Accumulo", "se": "4", "rp": "7", "rec": "2'", "ca": "peso del test", "es": "Negativa 3\"", "n": "Una serie in più.", "ap": "", "dur": "negativa 3\""}, {"s": "S8", "f": "Accumulo", "se": "4", "rp": "8", "rec": "2'", "ca": "peso del test", "es": "Negativa 3\"", "n": "Quattro serie da 8 al peso del test, negativa in 3 secondi: la settimana più dura del ciclo.", "ap": "", "dur": "negativa 3\""}, {"s": "S9", "f": "Richiamo", "se": "3", "rp": "5", "rec": "2'", "ca": "peso del test", "es": "Ritmo normale", "n": "Settimana di richiamo: tre serie da 5 senza negativa lenta.", "ap": "", "dur": "normale"}, {"s": "S10", "f": "Misura", "se": "1 / 2", "rp": "8 / 5", "rec": "2'", "ca": "NUOVO TEST 8RM, poi peso del nuovo", "es": "Negativa 3\" sulle 2 serie", "n": "Come in settimana 1: sali per gradi fino al peso con cui fai 8 colpi puliti. Scrivilo nella casella del test: è il punto di partenza del prossimo programma. Poi 2 serie da 5 con la negativa in 3 secondi.", "ap": "", "durp": ["normale", "negativa 3\""]}]}, {"t": "STACCO RUMENO SU CHIAPPA CON MANUBRI — estensione d'anca, il giorno dell'intensità: top set + code", "nome": "STACCO RUMENO SU CHIAPPA CON MANUBRI", "ruolo": "estensione d'anca, il giorno dell'intensità: top set + code", "lift": "", "rows": [{"s": "S1", "f": "Test", "se": "1 / 3", "rp": "MAX / −3", "rec": "2'-3'", "ca": "peso del giorno / stesso peso", "es": "Fermo 2\" sotto", "n": "[FELPA · FERMO SOTTO] Felpa addosso, sempre. Prima serie: più colpi puliti possibile, ti fermi quando il colpo rallenta, e segnali nella casella. Poi 3 serie a 3 colpi in meno della prima, stesso peso, sempre col fermo di due secondi sotto. Da qui in avanti il peso sale di 2 kg la settimana dopo che il top supera i 10 colpi; a 10 esatti resta.", "ap": ""}, {"s": "S2", "f": "Accumulo", "se": "1 / 3", "rp": "MAX / −2", "rec": "2'-3'", "ca": "peso del giorno / stesso peso", "es": "Fermo 2\" sotto", "n": "[FELPA · FERMO SOTTO] Top set a più colpi puliti possibile, segnali. Poi 3 serie a 2 colpi in meno della prima.", "ap": ""}, {"s": "S3", "f": "Accumulo", "se": "1 / 1 / 2", "rp": "MAX / −1 / −2", "rec": "2'-3'", "ca": "peso del giorno / stesso peso", "es": "Fermo 2\" sotto", "n": "[FELPA · FERMO SOTTO] Top set a più colpi puliti possibile, segnali. Poi una serie a 1 colpo in meno e due serie a 2 colpi in meno.", "ap": ""}, {"s": "S4", "f": "Accumulo", "se": "1 / 2 / 1", "rp": "MAX / −1 / −2", "rec": "2'-3'", "ca": "peso del giorno / stesso peso", "es": "Fermo 2\" sotto", "n": "[FELPA · FERMO SOTTO] Top set a più colpi puliti possibile, segnali. Poi due serie a 1 colpo in meno e una a 2 colpi in meno: la settimana più intensa di questo giro.", "ap": ""}, {"s": "S5", "f": "Accumulo", "se": "1 / 3", "rp": "MAX / −3", "rec": "2'-3'", "ca": "peso del giorno / stesso peso", "es": "Fermo 2\" sotto", "n": "[FELPA · FERMO SOTTO] Top set a più colpi puliti possibile, segnali. Poi 3 serie a 3 colpi in meno: si riparte dal basso.", "ap": ""}, {"s": "S6", "f": "Accumulo", "se": "1 / 3", "rp": "MAX / −2", "rec": "2'-3'", "ca": "peso del giorno / stesso peso", "es": "Fermo 2\" sotto", "n": "[FELPA · FERMO SOTTO] Top set a più colpi puliti possibile, segnali. Poi 3 serie a 2 colpi in meno.", "ap": ""}, {"s": "S7", "f": "Accumulo", "se": "1 / 1 / 2", "rp": "MAX / −1 / −2", "rec": "2'-3'", "ca": "peso del giorno / stesso peso", "es": "Fermo 2\" sotto", "n": "[FELPA · FERMO SOTTO] Top set a più colpi puliti possibile, segnali. Poi una serie a 1 colpo in meno e due a 2 colpi in meno.", "ap": ""}, {"s": "S8", "f": "Accumulo", "se": "1 / 2 / 1", "rp": "MAX / −1 / −2", "rec": "2'-3'", "ca": "peso del giorno / stesso peso", "es": "Fermo 2\" sotto", "n": "[FELPA · FERMO SOTTO] Top set a più colpi puliti possibile, segnali. Poi due serie a 1 colpo in meno e una a 2 colpi in meno: la settimana più intensa del ciclo.", "ap": ""}, {"s": "S9", "f": "Richiamo", "se": "3", "rp": "−3", "rec": "2'-3'", "ca": "peso del giorno", "es": "Ritmo normale", "n": "[FELPA] Richiamo: niente top set e niente fermo, tre serie a 3 colpi in meno del top della settimana scorsa.", "ap": "", "inc": 0}, {"s": "S10", "f": "Misura", "se": "1 / 2", "rp": "MAX / −2", "rec": "2'-3'", "ca": "peso del giorno / stesso peso", "es": "Fermo 2\" sotto", "n": "[FELPA · FERMO SOTTO] Misura: Prima serie: più colpi puliti possibile, ti fermi quando il colpo rallenta, e segnali nella casella. Confronta i colpi e il peso con la settimana 1. Poi 2 serie a 2 colpi in meno.", "ap": "", "inc": 0}], "regola": {"start": 14, "soglia": 10, "passo": 2}}, {"t": "LENTO AVANTI CON MANUBRI — spinta verticale", "nome": "LENTO AVANTI CON MANUBRI", "ruolo": "spinta verticale", "lift": "", "rows": [{"s": "S1", "f": "Test", "se": "1 / 2", "rp": "8 / 5", "rec": "2'", "ca": "TEST 8RM, poi peso del test", "es": "Negativa 3\" sulle 2 serie", "n": "Sali per gradi fino al peso con cui fai 8 spinte puliti, a ritmo normale: è il tuo peso del test. Scrivilo nella casella del test: vale fino alla settimana 9. Poi 2 serie da 5 con la negativa in 3 secondi: i manubri scendono lenti. Strict: niente spinta di gambe.", "ap": "", "durp": ["normale", "negativa 3\""]}, {"s": "S2", "f": "Accumulo", "se": "3", "rp": "5", "rec": "2'", "ca": "peso del test", "es": "Negativa 3\"", "n": "Tre serie da 5, negativa in 3 secondi: i manubri scendono lenti. Il peso resta questo: cresce il lavoro.", "ap": "", "dur": "negativa 3\""}, {"s": "S3", "f": "Accumulo", "se": "4", "rp": "5", "rec": "2'", "ca": "peso del test", "es": "Negativa 3\"", "n": "Una serie in più.", "ap": "", "dur": "negativa 3\""}, {"s": "S4", "f": "Accumulo", "se": "3", "rp": "6", "rec": "2'", "ca": "peso del test", "es": "Negativa 3\"", "n": "Una serie in meno, un colpo in più.", "ap": "", "dur": "negativa 3\""}, {"s": "S5", "f": "Accumulo", "se": "4", "rp": "6", "rec": "2'", "ca": "peso del test", "es": "Negativa 3\"", "n": "Una serie in più.", "ap": "", "dur": "negativa 3\""}, {"s": "S6", "f": "Accumulo", "se": "3", "rp": "7", "rec": "2'", "ca": "peso del test", "es": "Negativa 3\"", "n": "Una serie in meno, un colpo in più.", "ap": "", "dur": "negativa 3\""}, {"s": "S7", "f": "Accumulo", "se": "4", "rp": "7", "rec": "2'", "ca": "peso del test", "es": "Negativa 3\"", "n": "Una serie in più.", "ap": "", "dur": "negativa 3\""}, {"s": "S8", "f": "Accumulo", "se": "4", "rp": "8", "rec": "2'", "ca": "peso del test", "es": "Negativa 3\"", "n": "Quattro serie da 8 al peso del test, negativa in 3 secondi: la settimana più dura del ciclo.", "ap": "", "dur": "negativa 3\""}, {"s": "S9", "f": "Richiamo", "se": "3", "rp": "5", "rec": "2'", "ca": "peso del test", "es": "Ritmo normale", "n": "Settimana di richiamo: tre serie da 5 senza negativa lenta.", "ap": "", "dur": "normale"}, {"s": "S10", "f": "Misura", "se": "1 / 2", "rp": "8 / 5", "rec": "2'", "ca": "NUOVO TEST 8RM, poi peso del nuovo", "es": "Negativa 3\" sulle 2 serie", "n": "Come in settimana 1: sali per gradi fino al peso con cui fai 8 colpi puliti. Scrivilo nella casella del test: è il punto di partenza del prossimo programma. Poi 2 serie da 5 con la negativa in 3 secondi.", "ap": "", "durp": ["normale", "negativa 3\""]}]}, {"t": "FACE PULL — postura delle spalle, non forza: peso fisso", "nome": "FACE PULL", "ruolo": "postura delle spalle, non forza: peso fisso", "lift": "", "rows": [{"s": "S1", "f": "Test", "se": "3", "rp": "12", "rec": "90\"", "ca": "peso adatto, sempre lo stesso", "es": "Extrarotazione in fondo", "n": "Postura, non forza. Trova il peso con cui fai 12 colpi lenti e controllati, con l'extrarotazione in fondo (gomiti alti, pugni che ruotano verso l'alto): gli ultimi colpi si devono sentire, ma il movimento resta pulito. Quel peso resta per tutto il programma: non si sale di piastrina. Scrivilo nella casella del test. Nel diario: 2,3 kg all'altezza 16.", "ap": ""}, {"s": "S2", "f": "Accumulo", "se": "3", "rp": "12", "rec": "90\"", "ca": "peso adatto, sempre lo stesso", "es": "Extrarotazione in fondo", "n": "Stesso peso, stesso movimento.", "ap": ""}, {"s": "S3", "f": "Accumulo", "se": "3", "rp": "12", "rec": "90\"", "ca": "peso adatto, sempre lo stesso", "es": "Extrarotazione in fondo", "n": "Stesso peso: cura l'extrarotazione in fondo.", "ap": ""}, {"s": "S4", "f": "Accumulo", "se": "4", "rp": "12", "rec": "90\"", "ca": "peso adatto, sempre lo stesso", "es": "Extrarotazione in fondo", "n": "Una serie in più, stesso peso.", "ap": ""}, {"s": "S5", "f": "Accumulo", "se": "3", "rp": "12", "rec": "90\"", "ca": "peso adatto, sempre lo stesso", "es": "Extrarotazione in fondo", "n": "Stesso peso.", "ap": ""}, {"s": "S6", "f": "Accumulo", "se": "3", "rp": "12", "rec": "90\"", "ca": "peso adatto, sempre lo stesso", "es": "Extrarotazione in fondo", "n": "Stesso peso.", "ap": ""}, {"s": "S7", "f": "Accumulo", "se": "3", "rp": "12", "rec": "90\"", "ca": "peso adatto, sempre lo stesso", "es": "Extrarotazione in fondo", "n": "Stesso peso.", "ap": ""}, {"s": "S8", "f": "Accumulo", "se": "4", "rp": "12", "rec": "90\"", "ca": "peso adatto, sempre lo stesso", "es": "Extrarotazione in fondo", "n": "Una serie in più, stesso peso: chiusura del blocco.", "ap": ""}, {"s": "S9", "f": "Richiamo", "se": "3", "rp": "12", "rec": "90\"", "ca": "peso adatto, sempre lo stesso", "es": "Extrarotazione in fondo", "n": "Richiamo: come sempre.", "ap": ""}, {"s": "S10", "f": "Misura", "se": "3", "rp": "12", "rec": "90\"", "ca": "peso adatto, sempre lo stesso", "es": "Extrarotazione in fondo", "n": "Come sempre, stesso peso.", "ap": ""}], "rec": false}, {"t": "PLANK — core", "nome": "PLANK", "ruolo": "core", "lift": "", "rows": [{"s": "S1", "f": "Test", "se": "1 / 2", "rp": "— / —", "rec": "90\"", "ca": "TEST tempo, poi 70% del tempo del test", "es": "", "n": "Fianchi in linea, niente sedere in alto: tieni il più a lungo possibile e segna i secondi nella casella. È il tuo tempo del test. Poi 2 tenute al 70% di quel tempo. Mai sotto i 30 secondi.", "ap": ""}, {"s": "S2", "f": "Accumulo", "se": "3", "rp": "—", "rec": "90\"", "ca": "70% del tempo del test", "es": "", "n": "Tre tenute al 70% del tempo del test. Mai sotto i 30 secondi.", "ap": ""}, {"s": "S3", "f": "Accumulo", "se": "3", "rp": "—", "rec": "90\"", "ca": "80% del tempo del test", "es": "", "n": "Tenute più lunghe.", "ap": ""}, {"s": "S4", "f": "Accumulo", "se": "3", "rp": "—", "rec": "90\"", "ca": "90% del tempo del test", "es": "", "n": "Tenute più lunghe.", "ap": ""}, {"s": "S5", "f": "Accumulo", "se": "3", "rp": "—", "rec": "90\"", "ca": "95% del tempo del test", "es": "", "n": "Tenute più lunghe.", "ap": ""}, {"s": "S6", "f": "Accumulo", "se": "3", "rp": "—", "rec": "90\"", "ca": "tempo del test", "es": "", "n": "Tre tenute al tempo del test: la settimana più dura.", "ap": ""}, {"s": "S7", "f": "Accumulo", "se": "3", "rp": "—", "rec": "90\"", "ca": "90% del tempo del test", "es": "", "n": "Settimana più leggera.", "ap": ""}, {"s": "S8", "f": "Accumulo", "se": "3", "rp": "—", "rec": "90\"", "ca": "95% del tempo del test", "es": "", "n": "Chiusura del blocco.", "ap": ""}, {"s": "S9", "f": "Richiamo", "se": "2", "rp": "—", "rec": "90\"", "ca": "70% del tempo del test", "es": "", "n": "Richiamo: due tenute corte.", "ap": ""}, {"s": "S10", "f": "Misura", "se": "1 / 2", "rp": "— / —", "rec": "90\"", "ca": "NUOVO TEST tempo, poi 70% del nuovo", "es": "", "n": "Come la settimana 1: tieni il più a lungo possibile e segna i secondi. Confrontali con la settimana 1. Poi 2 tenute al 70%.", "ap": ""}], "unita": "s", "test": "tempo", "testlab": "Il tuo tempo del test", "hint": "i secondi della tenuta più lunga della settimana 1: da qui escono tutte le tenute.", "howlab": "Come si fa il test", "how": "<b>Tieni il plank il più a lungo possibile, una volta sola.</b> Fianchi in linea, niente sedere in alto. Quando la linea si perde, ti fermi: quei secondi sono il tuo tempo del test."}]}];const LS="sab-m2";const TITOLO="Mesociclo 2 — ricomposizione";const MASSIMALI=[];const MIGRA_VECCHIO=false;const SEL0=0;const DSEL0="";const PERSONA0="sab";const PROG0="Mesociclo 2";const PROGN0=2;const DASH=false;const DIAG=false;
 const SETT=(function(){const s={};GIORNI.forEach(function(g){g.blocks.forEach(function(b){
   b.rows.forEach(function(r){const n=parseInt(String(r.s).replace(/\D/g,""));if(n)s[n]=1})})});
   return Object.keys(s).map(Number).sort(function(a,b){return a-b})})();
@@ -620,12 +634,54 @@ function bloccoDi(bk){const p=bk.split("_"),g=GIORNI.find(function(x){return x.i
 let RIGA_SENZA_SERIE=false;
 function usato(bk,k,i,t){
   if(!k||RIGA_SENZA_SERIE) return t?'<span class="wait">'+t+'</span>':'';
+  const ms=serieMulti(k,i,t); if(ms) return usatoSerie(bk,k,i,t,ms);
   const pr=precUsato(bk,k,i), zav=/zavorr|corpo libero/i.test(t||"");
-  const piu=/salire|ogni serie/i.test(t||"");                 /* pesi diversi serie per serie: tastiera completa */
+  const piu=/salire|ogni serie/i.test(t||"");
   const kk="U_"+k+"_"+i, v=state[kk]||"";
   return '<span class="mx usato"><input type="text"'+(piu?'':' inputmode="decimal"')+' class="mini" data-k="'+kk+
     '" value="'+esc(v)+'" placeholder="'+(pr?esc(pr.s+": "+pr.v):(piu?"60-70-80":"kg"))+'" style="width:'+(piu?104:84)+'px">'+
     '<em>'+(zav?'kg di zavorra':'kg usati')+'</em></span>'+(t?'<span class="raw">'+t+'</span>':'');
+}
+/* pesi diversi serie per serie (12-10-8 «a salire», 60-70-80): una casella per ogni serie, sotto i suoi colpi.
+   Le caselle sono U_<riga>_<pezzo>_s0, _s1…; U_<riga>_<pezzo> resta il riassunto «60-70-80» (2026-11-03) */
+function serieMulti(k,i,t){
+  let x; try{x=rigaObj(k)}catch(e){return null}
+  const ts=tipoSerie(x.r.se); if(ts.t!=="num") return null;
+  const p=parti(x.r)[i]; if(!p) return null;
+  const n=parseInt(p.se)||0; if(n<2||n>8) return null;
+  const rr=String(p.rp||"").split("-").map(function(z){return z.trim()});
+  const diversi=rr.length===n&&rr.some(function(z){return z!==rr[0]});
+  const lista=numeri(t).length===n&&/^[\d\s.,\-\u2013]+\s*(kg)?$/i.test(String(t||"").trim());
+  if(!(diversi||lista||/salire|ogni serie/i.test(t||""))) return null;
+  return {n:n,rp:rr.length===n?rr:null};
+}
+function usatoSerie(bk,k,i,t,ms){
+  const base="U_"+k+"_"+i, unito=numeri(state[base]);
+  const zav=/zavorr|corpo libero/i.test(t||"");
+  let h='<span class="kgserie"><span class="ks-t">'+(zav?'kg di zavorra':'kg usati')+', serie per serie</span><span class="ks-c">';
+  for(let j=0;j<ms.n;j++){
+    const kk=base+"_s"+j;
+    let v=state[kk]; if(v===undefined&&unito.length===ms.n) v=f(unito[j]);  /* dati scritti prima tutti in una casella */
+    const pr=precSerie(bk,k,i,j,ms.n);
+    h+='<label><input type="text" inputmode="decimal" class="mini" data-k="'+kk+'" value="'+esc(v||"")+
+       '" placeholder="'+(pr?esc(pr):"kg")+'"><em>'+(ms.rp?ms.rp[j]+(ms.rp[j]==="1"?" colpo":" colpi"):(j+1)+"\u00aa serie")+'</em></label>';
+  }
+  return h+'</span></span>'+(t?'<span class="raw">'+t+'</span>':'');
+}
+function precSerie(bk,k,i,j,n){
+  /* il peso della stessa serie nell'ultima settimana in cui c'e' */
+  const ri=rigaDi(k);
+  for(let r=ri-1;r>=0;r--){const b0="U_"+bk+"_"+r+"_"+i, v=state[b0+"_s"+j];
+    if(v!==undefined&&String(v).trim()!=="") return String(v).trim();
+    const a=numeri(state[b0]); if(a.length===n) return f(a[j]); if(a.length===1) return f(a[0]);}
+  return null;
+}
+function unisciSerie(kk){
+  /* una casella di una serie cambiata: si rifa' il riassunto «60-70-80» (? dove manca) */
+  const m=kk.match(/^(U_[A-Z]_\d+_\d+_\d+)_s\d+$/); if(!m) return;
+  let ult=-1; for(let j=0;j<12;j++) if(String(state[m[1]+"_s"+j]||"").trim()) ult=j;
+  const vals=[]; for(let j=0;j<=ult;j++) vals.push(String(state[m[1]+"_s"+j]||"").trim()||"?");
+  if(vals.length) state[m[1]]=vals.join("-"); else delete state[m[1]];
 }
 
 /* ---------- schemi ---------- */
@@ -778,13 +834,21 @@ function scorsaHTML(b,bk,ri,sett){
   return '<div class="scorsa"><span class="sl">Settimana scorsa · '+String(b.rows[ri-1].s)+'</span>'+pz.join(" \u00b7 ")+'</div>';
 }
 
+/* il recupero scritto come il contatore: 90" -> 1:30, 2'-3' -> 2:00–3:00, cosi' lo riconosci quando arriva (2026-11-03) */
+function recVedi(t){
+  t=String(t||"");
+  if(/EMOM|il minuto/i.test(t)) return t;
+  return t.replace(/(\d+)\s*(''|"|\u2033)|(\d+)\s*('|\u2032|\u2019)(?:\s*(\d+)\s*(''|"|\u2033))?/g,function(a,s1,u1,m2,u2,s2){
+    return mmss(s1!==undefined?+s1:(+m2*60+(s2?+s2:0)));
+  }).replace(/(\d)\s*-\s*(\d)/g,"$1\u2013$2");
+}
 /* ---------- la riga ---------- */
 function notaCoach(t){return String(t||"").replace(/\b(in|negli|nella|su(?:gli)?)\s+appunti\b/gi,"nelle note").replace(/\bappunti\b/g,"note")}
 function rigaHTML(r,b,bk,k,sett){
   const ts=tipoSerie(r.se), pz=parti(r), nomi=nomiParti(b,pz.length);
   RIGA_SENZA_SERIE=(ts.t==="nessuna");
   const recLab=(ts.t==="giri"&&!/giro|giri|onda|onde/i.test(r.rec||""))?('Rec tra '+(ts.parola==="onde"?'le onde':'i giri')):'Rec';
-  const pill=r.rec?'<span class="rec"><em>'+recLab+'</em>'+r.rec+'</span>':'';
+  const pill=r.rec?'<span class="rec"><em>'+recLab+'</em>'+recVedi(r.rec)+'</span>':'';
   const car=function(p,i){let x=risolvi(p.ca,bk,b,k,i);
     if(!x&&ts.t!=="nessuna") x=usato(bk,k,i,"");
     return '<div class="car" data-car="'+k+'_'+i+'">'+x+'</div>'};
@@ -863,10 +927,24 @@ function serieDi(r){
 }
 function mmss(sec){sec=Math.max(0,Math.floor(sec));const m=Math.floor(sec/60),s2=sec%60;return m+":"+(s2<10?"0":"")+s2}
 function colpiDi(rp){rp=String(rp).trim();if(/^\d+$/.test(rp))return rp+(rp==="1"?" colpo":" colpi");return rp}
-function recCs(k,cl){
+/* i secondi di recupero scritti dal coach: il primo numero (2'-3' -> 2', 90"-2' -> 90"); nei giri, quello tra i giri */
+function recSec(t){
+  t=String(t||"").trim(); if(!t||/EMOM|il minuto/i.test(t)) return 0;
+  const pz=t.split("\u00b7").map(function(x){return x.trim()});
+  const s=pz.find(function(x){return /tra (i giri|le onde|le serie)/i.test(x)})||pz[pz.length-1];
+  if(/^nessuno/i.test(s)) return 0;
+  const m=s.match(/(\d+(?:[.,]\d+)?)\s*(''|'|\u2032|\u2019|"|\u2033|min\b|minuti|sec\b|secondi|s\b)?(?:\s*(\d+)\s*("|\u2033|''))?/i);
+  if(!m) return 0;
+  const n=parseFloat(m[1].replace(",",".")), u=m[2]||"";
+  let sec=/^('|\u2032|\u2019|min)/i.test(u)&&u!=="''"?n*60:(u?n:(n<=10?n*60:n));
+  if(m[3]) sec+=parseInt(m[3]);
+  return Math.round(sec);
+}
+function recCs(k,cl,r){
   const t=parseInt(state["CT_"+k]);
   if(state.__csLast!==k||!t) return '';
-  return '<span class="csr'+(cl?' '+cl:'')+'" data-t="'+t+'"><em>recupero</em><b>'+mmss((Date.now()-t)/1000)+'</b></span>';
+  const fine=r?recSec(r.rec):0, pas=(Date.now()-t)/1000, ok=fine&&pas>=fine;
+  return '<span class="csr'+(cl?' '+cl:'')+(ok?' fine':'')+'" data-t="'+t+'"'+(fine?' data-f="'+fine+'"':'')+'><em>'+(ok?'puoi ripartire':'recupero')+'</em><b>'+mmss(pas)+'</b></span>';
 }
 function contaserie(r,b,k){
   const S=serieDi(r); if(!S) return "";
@@ -875,21 +953,21 @@ function contaserie(r,b,k){
   let h='<div class="cs cs-'+m+(fin?' fin':'')+'" id="cs_'+k+'">';
   if(m==="pallini"){
     const varia=S.some(function(x){return x.rp!==S[0].rp});
-    h+='<div class="csh"><span class="lb">'+(fin?'Fatto · ':'')+parola+(parola==="giri"?' fatti ':' fatte ')+f2+' di '+n+'</span>'+recCs(k)+'</div><div class="dots">';
+    h+='<div class="csh"><span class="lb">'+(fin?'Fatto · ':'')+parola+(parola==="giri"?' fatti ':' fatte ')+f2+' di '+n+'</span>'+recCs(k,'',r)+'</div><div class="dots">';
     S.forEach(function(x,i){h+='<button type="button" data-cs="'+k+'" data-i="'+i+'" class="'+(i<f2?'on':(i===f2?'next':''))+'">'+
       '<b>'+(i+1)+'</b>'+(varia?'<em>'+x.rp+'</em>':'')+'</button>'});
     h+='</div>';
   } else if(m==="tasto"){
     h+='<button type="button" class="big" data-cs="'+k+'" data-act="piu"'+(fin?' disabled':'')+'><span class="t">'+
        (fin?'Esercizio fatto':(parola==="giri"?'Giro fatto':'Serie fatta'))+'</span><span class="c"><b>'+f2+'</b>/'+n+'</span></button>'+
-       '<div class="csb">'+(recCs(k)||'<span class="csr vuoto"><em>recupero</em><b>—</b></span>')+
+       '<div class="csb">'+(recCs(k,'',r)||(fin?'<span></span>':'<span class="csr vuoto"><em>recupero</em><b>—</b></span>'))+
        (f2?'<button type="button" class="und" data-cs="'+k+'" data-act="meno">annulla l’ultima</button>':'')+'</div>';
   } else {
     h+='<div class="csh"><span class="lb">Le '+parola+'</span></div>';
     S.forEach(function(x,i){
       h+='<button type="button" class="sr'+(i<f2?' on':(i===f2?' next':''))+'" data-cs="'+k+'" data-i="'+i+'">'+
          '<span class="o">'+(i+1)+'ª</span><span class="rp">'+colpiDi(x.rp)+'</span>'+
-         '<span class="rt">'+(i===f2-1?recCs(k,'in'):'')+'</span><span class="ck"></span></button>';
+         '<span class="rt">'+(i===f2-1?recCs(k,'in',r):'')+'</span><span class="ck"></span></button>';
     });
   }
   return h+'</div>';
@@ -899,16 +977,21 @@ function segnaSerie(k,nuovo){
   const x=rigaObj(k), S=serieDi(x.r), prima=parseInt(state["CS_"+k])||0;
   nuovo=Math.max(0,Math.min(nuovo,S.length));
   state["CS_"+k]=nuovo;
-  if(nuovo>prima){state["CT_"+k]=Date.now();state.__csLast=k}
-  else if(nuovo===0&&state.__csLast===k){delete state.__csLast}
+  const ultima=nuovo>prima&&nuovo===S.length;
+  if(nuovo>prima&&!ultima) clin();                                  /* il suono prima di tutto il resto */
+  /* dopo l'ultima serie niente recupero: si cambia esercizio (2026-11-03) */
+  if(nuovo>prima&&!ultima){state["CT_"+k]=Date.now();state.__csLast=k}
+  else if((nuovo===S.length||nuovo===0)&&state.__csLast===k){delete state.__csLast}
+  if(nuovo>prima) tieniAcceso();
   save();
-  ricostruisci();
-  /* ultima serie: se e' un record suona la campana (B), se no il clin della serie (A) */
-  const rec=(nuovo>prima&&nuovo===S.length)?cercaRecord(function(e){return e.k===k}):null;
-  if(nuovo>prima){if(rec)festaRecord(rec);else clin()}
+  /* ultima serie: se e' un record suona la campana (B), se no il clin della serie (A).
+     Se il conto dei record si inceppa, il clin suona lo stesso */
+  let rec=null;
+  try{ricostruisci(); if(ultima) rec=cercaRecord(function(e){return e.k===k})}catch(err){segnalaErrore(err)}
+  if(ultima){if(rec)festaRecord(rec);else clin()}
   document.querySelectorAll(".cs").forEach(function(el){            /* un solo recupero acceso alla volta */
-    const kk=el.id.slice(3), y=rigaObj(kk), t=document.createElement("div");
-    t.innerHTML=contaserie(y.r,y.b,kk); el.replaceWith(t.firstChild);
+    try{const kk=el.id.slice(3), y=rigaObj(kk), t=document.createElement("div");
+      t.innerHTML=contaserie(y.r,y.b,kk); el.replaceWith(t.firstChild);}catch(err){segnalaErrore(err)}
   });
   if(nuovo>prima){const nb=document.querySelector("#cs_"+k+" .big, #cs_"+k+" .dots, #cs_"+k+" .sr.on:last-of-type");
     if(nb){nb.classList.add("batti");setTimeout(function(){nb.classList.remove("batti")},650)}}
@@ -925,16 +1008,35 @@ document.addEventListener("click",function(e){
   else if(t.dataset.act==="meno") segnaSerie(k,f2-1);
   else {const i=parseInt(t.dataset.i); segnaSerie(k,i<f2?i:i+1)}
 });
+/* il recupero conta sempre in avanti; quando arriva al tempo del coach: un plin, una vibrazione corta,
+   e la scritta diventa "puoi ripartire". Il contatore non si ferma. */
+const PLIN={};
 setInterval(function(){document.querySelectorAll(".csr[data-t]").forEach(function(e){
-  const b=e.querySelector("b"); if(b) b.textContent=mmss((Date.now()-parseInt(e.dataset.t))/1000)})},1000);
+  const sec=(Date.now()-parseInt(e.dataset.t))/1000, b=e.querySelector("b"); if(b) b.textContent=mmss(sec);
+  const fine=parseInt(e.dataset.f)||0; if(!fine||sec<fine) return;
+  if(!e.classList.contains("fine")){e.classList.add("fine");const em=e.querySelector("em");if(em)em.textContent="puoi ripartire"}
+  const key=e.dataset.t+"|"+fine; if(!PLIN[key]&&sec<fine+20){PLIN[key]=1;plin()}
+})},1000);
+function plin(){
+  try{const o=busVetro(.6);tocco(o,3520,0,.5);tocco(o,3520,.16,.7,.7)}catch(e){}
+  try{if(navigator.vibrate) navigator.vibrate([70,60,70])}catch(e){}
+}
+/* durante il recupero lo schermo resta acceso (se no il telefono ferma la pagina e il plin non arriva):
+   si spegne da solo 10 minuti dopo l'ultima serie segnata */
+let SVEGLIA=null, SVEGLIAT=null;
+function tieniAcceso(){
+  try{if(!SVEGLIA&&navigator.wakeLock) navigator.wakeLock.request("screen").then(function(w){SVEGLIA=w;w.addEventListener("release",function(){SVEGLIA=null})}).catch(function(){})}catch(e){}
+  clearTimeout(SVEGLIAT); SVEGLIAT=setTimeout(function(){try{if(SVEGLIA)SVEGLIA.release()}catch(e){}SVEGLIA=null;SVEGLIAT=null},600000);
+}
+document.addEventListener("visibilitychange",function(){if(document.visibilityState==="visible"&&SVEGLIAT&&!SVEGLIA)tieniAcceso()});
 
 /* ---------- record: il meglio di sempre, anche dei programmi passati (v2, 2026-11-03) ----------
    Ogni cosa fatta diventa una "voce": esercizio, kg, colpi (o secondi), quante serie, quanto era dura
-   (fermi, discesa, salita). Le voci restano sul telefono per sempre, programma dopo programma, nella
+   (fermi, negativa, positiva). Le voci restano sul telefono per sempre, programma dopo programma, nella
    chiave nc-storico-<persona>. Un record e' quando oggi fai qualcosa che nelle settimane (o nei programmi)
    prima non c'era:
      piu' peso agli stessi colpi · piu' colpi allo stesso peso · piu' serie allo stesso peso e colpi,
-     al livello piu' alto · lo stesso livello piu' alto ma piu' duro (discesa lenta, fermi).
+     al livello piu' alto · lo stesso livello piu' alto ma piu' duro (negativa lenta, fermi).
    Il test, il top @RPE, la MAV e i secondi sono record a se'. Le voci della stessa settimana non si
    confrontano tra loro: la settimana 1 di un cliente nuovo non festeggia mai. Uguale = solo il clin. */
 const PERSONA=(typeof PERSONA0!=="undefined"&&PERSONA0)||LS;
@@ -948,7 +1050,9 @@ function numeri(v){return (String(v==null?"":v).match(/\d+(?:[.,]\d+)?/g)||[]).m
 function massimo(v){const a=numeri(v);return a.length?Math.max.apply(null,a):NaN}
 const EPS=0.01;
 
-/* quanto e' dura: [fermi, secondi di discesa, secondi di salita] */
+/* quanto e' dura: [fermi, secondi di negativa, secondi di positiva].
+   Negativa = la fase in cui il peso torna giu' (squat, panca, rumeno: la discesa; lat machine: la barra che risale;
+   rowing: le braccia che tornano avanti). Positiva = quella in cui lo sollevi. Valgono per ogni esercizio (2026-11-03) */
 const PAROLE={un:1,uno:1,una:1,due:2,tre:3,quattro:4,cinque:5};
 function durDa(t,nota){
   /* nota=true: testo libero del coach, il fermo conta solo se e' scritto come prescrizione (non "ti fermi") */
@@ -958,9 +1062,9 @@ function durDa(t,nota){
   if((m=t.match(/\b(\d+|uno|una|due|tre|quattro|cinque)\s+fermi\b/))) fe=PAROLE[m[1]]||parseInt(m[1])||1;
   else if(nota?/\bfermo\s+(pieno\s+)?\d+\s*["\u2033]|\bfermo\s+(sotto|gi[u\u00f9]|in buca|al petto|sopra|all.incastro)|\bcon\s+(il\s+)?fermo\b/.test(t)
                :/\bfermo\b|\bpausa\b/.test(t)) fe=1;
-  if((m=t.match(/discesa[^.;:]*?(\d+)\s*(?:["″]|sec\b|secondi|s\b)/))) di=Math.max(di,+m[1]);
-  else if(/discesa lenta|negativa|scendi contando/.test(t)) di=Math.max(di,3);
-  if((m=t.match(/salita[^.;:]*?(\d+)\s*(?:["″]|sec\b|secondi|s\b)/))) sa=Math.max(sa,+m[1]);
+  if((m=t.match(/(?:discesa|negativa)[^.;:]*?(\d+)\s*(?:["″]|sec\b|secondi|s\b)/))) di=Math.max(di,+m[1]);
+  else if(/discesa lenta|negativa lenta|\bnegativa\b|scendi contando/.test(t)) di=Math.max(di,3);
+  if((m=t.match(/(?:salita|positiva)[^.;:]*?(\d+)\s*(?:["″]|sec\b|secondi|s\b)/))) sa=Math.max(sa,+m[1]);
   return [fe,di,sa];
 }
 function durDi(b,r,i){
@@ -970,7 +1074,7 @@ function durDi(b,r,i){
   const nota=(String(r&&r.n||"")+" "+String(r&&r.es||"")).toLowerCase();
   if(b.dur===undefined){const x=durDa(nota,true);d=[Math.max(d[0],x[0]),Math.max(d[1],x[1]),Math.max(d[2],x[2])]}
   if(/senza tempo|squat liscio|\bliscio\b|no var\b|da gara|senza variante/.test(nota)) return [0,0,0];
-  if(/senza (la )?discesa|niente discesa/.test(nota)) d[1]=0;
+  if(/senza (la )?(discesa|negativa)|niente (discesa|negativa)/.test(nota)) d[1]=0;
   if(/senza ferm|niente ferm/.test(nota)) d[0]=0;
   return d;
 }
@@ -979,8 +1083,8 @@ function durPiu(a,b){return durMag(a,b)&&(a[0]>b[0]||a[1]>b[1]||a[2]>b[2])}
 function durZero(a){return !a[0]&&!a[1]&&!a[2]}
 function durTxt(a){const p=[];
   if(a[0]) p.push(a[0]===1?"il fermo":a[0]+" fermi");
-  if(a[1]) p.push("la discesa in "+a[1]+"″");
-  if(a[2]) p.push("la salita in "+a[2]+"″");
+  if(a[1]) p.push("la negativa in "+a[1]+"″");
+  if(a[2]) p.push("la positiva in "+a[2]+"″");
   return p.length?"con "+p.join(" e "):""}
 
 /* chi e' l'esercizio: lo stesso nome anche in un programma nuovo. Fermi e tempi non cambiano l'esercizio:
@@ -1003,6 +1107,11 @@ function haCs(r,b){
 
 /* i kg di un pezzo (numero, lista per serie, NaN se non si sa) */
 function kgNum(p,bk,b,k,i){
+  if(state["U_"+k+"_"+i+"_s0"]!==undefined){                       /* una casella per serie */
+    let ult=-1;for(let j=0;j<12;j++)if(state["U_"+k+"_"+i+"_s"+j]!==undefined)ult=j;
+    const out=[];for(let j=0;j<=ult;j++)out.push(num(state["U_"+k+"_"+i+"_s"+j]));
+    if(out.some(function(x){return isFinite(x)})) return out;
+  }
   const u=state["U_"+k+"_"+i];
   if(u!==undefined&&String(u).trim()!==""){const a=numeri(u);return a.length?(a.length===1?a[0]:a):NaN}
   const t=String(p.ca||"").trim(), T=rifT(bk); let m;
@@ -1093,7 +1202,7 @@ function vociRiga(out,g,b,bk,r,ri){
     if(uS){kgv=0;rr=secNum(p,bk,k);u="s"}
     else{
       const sd=secDa(x.rp); const kv=kgNum(p,bk,b,k,x.i);
-      kgv=Array.isArray(kv)?(kv.length===x.nP?kv[x.j]:Math.max.apply(null,kv)):kv;
+      kgv=Array.isArray(kv)?(kv.length===x.nP?kv[x.j]:Math.max.apply(null,kv.filter(function(z){return isFinite(z)}))):kv;
       if(sd>0){rr=sd;u="s";if(!isFinite(kgv)&&/corpo libero/i.test(String(p.ca)))kgv=0}
       else{const mr=String(x.rp).trim().match(/^[−\-](\d+)$/);
         if(mr){const src=relSrc(k,bk),tp=num(state[src]);rr=(isFinite(tp)&&tp>0)?Math.max(1,tp-parseInt(mr[1])):NaN}
@@ -1119,11 +1228,16 @@ function ricostruisci(){
   Object.keys(STO.e).forEach(function(id){if(STO.e[id].ls===LS)delete STO.e[id]});
   V.forEach(function(e){STO.e[e.id]=e});
   vociMassimali().forEach(function(e){STO.e[e.id]=e});
+  /* "gia' festeggiato" vale solo finche' il dato resta uguale: se lo togli, lo cambi o annulli una serie,
+     la volta dopo che lo rimetti e chiudi le serie il record suona di nuovo (2026-11-03) */
+  Object.keys(STO.fe).forEach(function(id){const e=STO.e[id];if(!e||firma(e)!==STO.fe[id])delete STO.fe[id]});
+  delete STO.fr;
   salvaSto(); return V;
 }
 function tutteLeVoci(){return Object.keys(STO.e).map(function(id){return STO.e[id]})}
 
 /* il confronto con tutto quello che c'era prima (settimane prima, programmi prima) */
+function rpeV(e){return e.ty==="top"?(e.rpe!=null?e.rpe:null):((e.ty==="rm"||e.ty==="max")?10:null)}  /* test, massimale, MAX = al limite */
 function prima(e,P){return e.pgn<P.pgn||(e.pgn===P.pgn&&e.w<P.w)}
 function miglior(a,campo){return a.reduce(function(x,y){return y[campo]>x[campo]?y:x})}
 function confronta(P,tutte){
@@ -1137,6 +1251,14 @@ function confronta(P,tutte){
     if(sr.length){const q=miglior(sr,"kg");if(P.kg>q.kg+EPS)fac.push({t:"peso",q:q})}
     if(!fac.length){const sk=C.filter(function(e){return Math.abs(e.kg-P.kg)<EPS});
       if(sk.length){const q=miglior(sk,"r");if(P.r>q.r)fac.push({t:"colpi",q:q})}}
+  }
+  /* stesso peso e stessi colpi, ma piu' facile: prima @8, oggi @7 (o prima era il test o il massimale, cioe' @10) */
+  if(P.rpe!=null){
+    const A=C.filter(function(e){return e.r>=P.r});
+    const inCima=A.length&&P.kg>=Math.max.apply(null,A.map(function(e){return e.kg}))-EPS;
+    const R=C.filter(function(e){return Math.abs(e.kg-P.kg)<EPS&&e.r===P.r&&rpeV(e)!=null});
+    const gia=C.some(function(e){return e.kg>=P.kg-EPS&&e.r>=P.r&&rpeV(e)!=null&&rpeV(e)<=P.rpe});
+    if(inCima&&R.length&&!gia) fac.push({t:"facile",q:R.reduce(function(x,y){return rpeV(y)<rpeV(x)?y:x})});
   }
   if(!durZero(P.d)){                                                  /* al livello piu' alto, ma piu' dura */
     const A=prev.filter(function(e){return e.r>=P.r});
@@ -1161,7 +1283,7 @@ function confronta(P,tutte){
   }
   return fac.length?fac:null;
 }
-const ORDINE={peso:0,colpi:1,dura:2,serie:3};
+const ORDINE={peso:0,colpi:1,facile:2,dura:3,serie:4};
 function ordinaFac(fac){fac.sort(function(a,b){return (b.primo?1:0)-(a.primo?1:0)||ORDINE[a.t]-ORDINE[b.t]});return fac}
 function firma(e){return e.kg+"|"+e.r+"|"+e.n+"|"+e.d.join(",")}
 function cercaRecord(filtro){
@@ -1172,12 +1294,8 @@ function cercaRecord(filtro){
     ordinaFac(fac);
     cand.push({e:e,fac:fac})});
   if(!cand.length) return null;
-  cand.forEach(function(c){STO.fe[c.e.id]=firma(c.e)});
-  if(!STO.fr) STO.fr={};
+  cand.forEach(function(c){STO.fe[c.e.id]=firma(c.e)}); salvaSto();
   cand.sort(function(a,b){return ((a.fac[0].primo?0:1)-(b.fac[0].primo?0:1))||(ORDINE[a.fac[0].t]-ORDINE[b.fac[0].t])||(b.e.kg-a.e.kg)});
-  const riga=LS+"|"+cand[0].e.k;                                      /* una festa per riga: il resto va nella bacheca */
-  if(STO.fr[riga]){salvaSto();return null}
-  STO.fr[riga]=1; salvaSto();
   return cand[0];
 }
 
@@ -1198,6 +1316,7 @@ function titoloRec(fac,e){
   return fac.map(function(x){
     if(x.t==="peso") return e.ty==="rm"?"Nuovo "+e.rm:(e.ty==="top"?"Top più alto":(e.ty==="mav"?"MAV più alta":"Più peso"));
     if(x.t==="colpi") return e.u==="s"?"Più tempo":"Più colpi";
+    if(x.t==="facile") return "Più facile";
     if(x.t==="dura") return "Più dura";
     return e.u==="s"?"Più tenute":"Più serie";
   }).join(" · ");
@@ -1216,6 +1335,8 @@ function testoRec(fac,e){
     if(q.ty==="rm") return nm+": "+colpiTxt(e)+" "+aKg(e)+dur+". Era il tuo peso da "+q.r+qd+".";
     return nm+": "+colpiTxt(e)+" "+aKg(e)+dur+". Finora a quel peso"+(dt?", "+dt+",":"")+" "+(q.r===1?"ne avevi fatto al massimo 1":"ne avevi fatti al massimo "+q.r)+qd+".";
   }
+  if(x.t==="facile") return nm+": "+f(e.kg)+" kg per "+colpiTxt(e)+" @"+f(e.rpe)+dur+". "+
+    (q.ty==="top"?"Prima lo stesso peso era @"+f(q.rpe):"Prima a quel peso era il tuo "+(q.ty==="rm"?q.rm:"massimo")+", al limite")+qd+".";
   if(x.t==="dura") return nm+": "+colpiTxt(e)+" "+aKg(e)+" "+dt+". Finora, a quel peso per "+colpiTxt(e)+", solo "+(durZero(q.d)?"a ritmo normale":durTxt(q.d))+qd+".";
   if(e.u==="s") return nm+": "+e.n+" tenute da "+e.r+" secondi. Finora a quel tempo "+(q.n===1?"ne avevi fatta al massimo una":"ne avevi fatte al massimo "+q.n)+qd+".";
   return nm+": "+e.n+" serie da "+colpiTxt(e)+" "+aKg(e)+dur+". Finora a quel peso"+(dt?", "+dt+",":"")+" "+(q.n===1?"ne avevi fatta al massimo una":"ne avevi fatte al massimo "+q.n)+qd+".";
@@ -1232,7 +1353,7 @@ function guardaRecord(kk,subito){
     let m, filtro=null;
     if((m=kk.match(/^T_([A-Z]_\d+)$/))){const bk=m[1];filtro=function(e){return e.ty==="rm"&&e.k.indexOf(bk+"_")===0}}
     else if((m=kk.match(/^(?:NT_|RK_|MX_)([A-Z]_\d+_\d+)/))){const k=m[1];filtro=function(e){return e.k===k}}
-    else if((m=kk.match(/^(?:U_|W_)([A-Z]_\d+_\d+)_\d+$/))){const k=m[1],x=rigaObj(k),S=serieDi(x.r),c=parseInt(state["CS_"+k])||0;
+    else if((m=kk.match(/^(?:U_|W_)([A-Z]_\d+_\d+)_\d+(?:_s\d+)?$/))){const k=m[1],x=rigaObj(k),S=serieDi(x.r),c=parseInt(state["CS_"+k])||0;
       if(!(haCs(x.r,x.b)&&S&&c<S.length)) filtro=function(e){return e.k===k}}
     if(!filtro) return;
     const rec=cercaRecord(filtro); if(rec) festaRecord(rec);
@@ -1241,9 +1362,25 @@ function guardaRecord(kk,subito){
 
 /* suoni: lo stesso vetro. Serie fatta = due tocchi (A); record = i due tocchi e poi la campana (B) */
 const VETRO=[[1,1],[2.76,0.28],[5.4,0.08]];
-function busVetro(g){if(!ACTX)ACTX=new (window.AudioContext||window.webkitAudioContext)();if(ACTX.state==="suspended")ACTX.resume();
-  const o=ACTX.createGain();o.gain.value=g;o.connect(ACTX.destination);return o}
-function tocco(out,fr,t0,d,g){const t=ACTX.currentTime+t0;
+/* audio: iPhone sospende o "interrompe" il suono quando l'app va in secondo piano o lo schermo si spegne.
+   A ogni tocco lo si risveglia (con un suono muto, il trucco classico di Safari), e prima di ogni suono si
+   controlla che sia acceso davvero (2026-11-03) */
+function audio(){
+  try{
+    if(!ACTX||ACTX.state==="closed") ACTX=new (window.AudioContext||window.webkitAudioContext)();
+    if(ACTX.state!=="running"){const p=ACTX.resume();if(p&&p.catch)p.catch(function(){})}
+  }catch(e){}
+  return ACTX;
+}
+function sblocca(){
+  const a=audio(); if(!a) return;
+  try{const b=a.createBuffer(1,1,22050),src=a.createBufferSource();src.buffer=b;src.connect(a.destination);src.start(0)}catch(e){}
+  diagAudio();
+}
+["touchend","click","keydown"].forEach(function(ev){document.addEventListener(ev,sblocca,{capture:true,passive:true})});
+document.addEventListener("visibilitychange",function(){if(document.visibilityState==="visible"&&ACTX&&ACTX.state!=="running")audio()});
+function busVetro(g){const a=audio();const o=a.createGain();o.gain.value=g;o.connect(a.destination);return o}
+function tocco(out,fr,t0,d,g){const t=ACTX.currentTime+0.02+t0;
   VETRO.forEach(function(h){const o=ACTX.createOscillator(),e=ACTX.createGain();
     o.type="sine";o.frequency.value=fr*h[0];o.connect(e);e.connect(out);
     e.gain.setValueAtTime(0.0001,t);e.gain.exponentialRampToValueAtTime((g||1)*h[1],t+0.004);
@@ -1281,13 +1418,31 @@ function coriandoli(){
   })(t0);
 }
 
+/* ---------- diagnostica: in fondo alla pagina, solo dove il coach la accende ---------- */
+function diagRiga(id,txt){
+  if(typeof DIAG==="undefined"||!DIAG) return;
+  let el=document.getElementById(id);
+  if(!el){const ft=document.querySelector("footer");if(!ft)return;el=document.createElement("div");el.id=id;el.className="diag";ft.appendChild(el)}
+  el.textContent=txt;
+}
+let DIAGT=null;
+function diagAudio(){clearTimeout(DIAGT);DIAGT=setTimeout(function(){
+  const st=ACTX?ACTX.state:"non ancora usato";
+  diagRiga("diag-audio","Suono: "+(st==="running"?"acceso":"bloccato dal telefono ("+st+")")+
+    (/iPhone|iPad/.test(navigator.userAgent)?" \u00b7 su iPhone, con l\u2019interruttore laterale su silenzioso i suoni della scheda non si sentono":""));
+},400)}
+function segnalaErrore(err){
+  try{console.error(err)}catch(e){}
+  diagRiga("diag-err","Errore della scheda: "+String(err&&err.message||err).slice(0,140)+" \u2014 mandalo al coach");
+}
+window.addEventListener("error",function(e){segnalaErrore(e.error||e.message)});
+
 /* ---------- EMOM: 10" per mettersi sotto, poi un beep a ogni minuto ---------- */
 let EMOMT=null, ACTX=null;
 function beep(n,freq){
   /* onda quadra, due toni sovrapposti, compressore a valle: il massimo che un telefono tira fuori */
   try{
-    if(!ACTX) ACTX=new (window.AudioContext||window.webkitAudioContext)();
-    if(ACTX.state==="suspended") ACTX.resume();
+    audio();
     const comp=ACTX.createDynamicsCompressor();
     comp.threshold.value=-6; comp.knee.value=0; comp.ratio.value=20; comp.attack.value=0.001; comp.release.value=0.05;
     const out=ACTX.createGain(); out.gain.value=1.0; comp.connect(out); out.connect(ACTX.destination);
@@ -1361,6 +1516,7 @@ function segnato(){
         if(mx) pezzi.push(chi+"MAX: "+mx); if(rk) pezzi.push(chi+"a RPE: "+rk+" kg"); if(w) pezzi.push(chi+"peso usato "+w+" kg");
         const u=state["U_"+k+"_"+i]; if(u) pezzi.push(chi+"kg usati "+u);}
       const nt=state["NT_"+k]; if(nt&&String(nt).trim()) pezzi.push("nuovo test "+String(nt).trim()+" "+uLab(b));
+      const cs=parseInt(state["CS_"+k])||0; if(cs){const S=serieDi(r);pezzi.push((S&&S[0].lab==="giro"?"giri fatti ":"serie fatte ")+cs+(S?"/"+S.length:""))}
       if(b.regola&&/MAX/i.test(String(r.rp||""))&&state["MX_"+k+"_0"]) pezzi.push("peso "+kg(pesoGiorno(bk,b,ri)));
       if(fp) pezzi.push("fatica "+fp+"/10");
       if(ap&&String(ap).trim()) pezzi.push(String(ap).trim());
@@ -1422,7 +1578,7 @@ function draw(){
   document.querySelectorAll("[data-fp]").forEach(function(b){if(b.dataset.bound)return;b.dataset.bound=1;
     b.addEventListener("click",function(e){const t=e.currentTarget;setFp(t.dataset.fp,parseInt(t.dataset.n),t)})});
   document.querySelectorAll("input[data-k]").forEach(function(i){if(i.dataset.bound)return;i.dataset.bound=1;
-    i.addEventListener("input",function(e){const kk=e.target.dataset.k;state[kk]=e.target.value;save();
+    i.addEventListener("input",function(e){const kk=e.target.dataset.k;state[kk]=e.target.value;unisciSerie(kk);save();
       if(/^(T_|W_|ref_|NT_|P_)/.test(kk)) ridipingi(); if(/^RK_/.test(kk)) ridipingiTop(kk); if(/^MX_/.test(kk)) ridipingiRel(kk); segnaManda(); guardaRecord(kk);});
     i.addEventListener("change",function(e){guardaRecord(e.target.dataset.k,true)});});
   segnaManda();
@@ -1458,6 +1614,34 @@ function ridipingiTop(kk){
 rifBox();
 ricostruisci();
 draw();
+
+/* ---------- archivio: una copia di quello che segni arriva al coach (foglio Google del coach) ----------
+   All'apertura parte tutto quello che c'e' gia' sul telefono (anche le settimane passate); poi una copia
+   15 secondi dopo l'ultima cosa segnata, e subito quando si chiude o si cambia app. Senza rete non succede
+   niente: i dati restano sul telefono e partono alla volta dopo. */
+(function(){
+  if(typeof ARCH0==="undefined"||!ARCH0) return;
+  let T=null;
+  function dove(){const ua=navigator.userAgent, app=(navigator.standalone||(window.matchMedia&&matchMedia("(display-mode: standalone)").matches));
+    return (app?"app":"browser")+" \u00b7 "+(/iPhone|iPad/.test(ua)?"iPhone":(/Android/.test(ua)?"Android":"computer"))}
+  function pacco(){const seg=segnato();
+    return {n:seg.length,corpo:JSON.stringify({k:ARCHK0,p:PERSONA,ls:LS,pg:PROG,tit:TITOLO,n:seg.length,seg:seg,st:state,sto:STO,ua:dove()})}}
+  function giaMandato(){try{return parseInt(localStorage.getItem(LS+"__archN"))||0}catch(e){return 0}}
+  function ricorda(n){try{localStorage.setItem(LS+"__archN",String(n));localStorage.setItem(LS+"__archT",String(Date.now()))}catch(e){}}
+  function invia(beacon){
+    T=null; const p=pacco();
+    if(!p.n&&!giaMandato()) return;                       /* niente da archiviare, e mai mandato niente da qui */
+    if(beacon&&navigator.sendBeacon){try{if(navigator.sendBeacon(ARCH0,new Blob([p.corpo],{type:"text/plain;charset=utf-8"}))){ricorda(p.n);return}}catch(e){}}
+    try{fetch(ARCH0,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:p.corpo})
+      .then(function(){ricorda(p.n)}).catch(function(){})}catch(e){}
+  }
+  window.mandaArchivio=function(dopo){clearTimeout(T);T=setTimeout(invia,dopo==null?15000:dopo)};
+  const salvaSoloQui=save; save=function(){salvaSoloQui();mandaArchivio()};
+  document.addEventListener("visibilitychange",function(){if(document.visibilityState==="hidden"&&T){clearTimeout(T);invia(true)}});
+  window.addEventListener("pagehide",function(){if(T){clearTimeout(T);invia(true)}});
+  const ft=document.querySelector("footer"); if(ft) ft.textContent="Quello che scrivi resta su questo telefono e arriva anche al tuo coach.";
+  mandaArchivio(2000);
+})();
 
 
 /* ---------- app installabile ---------- */
