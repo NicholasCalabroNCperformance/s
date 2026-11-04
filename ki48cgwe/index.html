@@ -1521,7 +1521,7 @@ document.addEventListener("visibilitychange",function(){if(document.visibilitySt
    - LA MUSICA NON SI FERMA MAI (coach, 4/11): file audio solo con audioSession «ambient»; se il telefono non
      ce l'ha (Android), gli stessi suoni passano da Web Audio, che non ferma la musica. Se il file viene
      fermato, suona lo stesso suono da Web Audio. Ogni esito si annota nel diario (diagnostica + archivio). */
-const SRS=22050, FAT_PASSO=0.085;
+const SRS=22050, FAT_PASSO=0.05;   /* fatica piu' veloce: numeri e note allo stesso passo (coach, 4/11 sera) */
 const SCALA=[523.25,587.33,659.25,783.99,880,1046.5,1174.66,1318.51,1567.98,1760];
 /* un timbro = parziali [rapporto, ampiezza, tempo di smorzamento in s] + attacco + ottava */
 const TIMBRI={
@@ -1547,14 +1547,14 @@ function nota(T,fr,dur){
   if(T.colpo){let lp=0,r=12345;const m=Math.min(n,Math.round(.006*SRS));      /* il colpo del martelletto, appena */
     for(let i=0;i<m;i++){r=(r*1103515245+12345)&0x7fffffff;lp=lp*.55+((r/0x3fffffff)-1)*.45;y[i]+=lp*T.colpo*(1-i/m)}}
   const na=Math.max(1,Math.round(T.a*SRS)); for(let i=0;i<na&&i<n;i++) y[i]*=i/na;
-  const fade=Math.min(n,Math.round(.02*SRS)); for(let i=0;i<fade;i++) y[n-1-i]*=i/fade;
+  const fade=Math.min(n,Math.round(Math.min(.02,dur/4)*SRS)); for(let i=0;i<fade;i++) y[n-1-i]*=i/fade;
   return NOTE[key]=y;
 }
-function mixa(T,pezzi,dur){
+function mixa(T,pezzi,dur,vol){
   const n=Math.round(dur*SRS), y=new Float32Array(n);
   pezzi.forEach(function(p){const q=nota(T,p[1],p[2]),o=Math.round(p[0]*SRS);for(let i=0;i<q.length&&o+i<n;i++)y[o+i]+=q[i]*p[3]});
   let m=0; for(let i=0;i<n;i++){const a=y[i]<0?-y[i]:y[i]; if(a>m) m=a}
-  if(m>0){const g=.8/m; for(let i=0;i<n;i++) y[i]*=g}
+  if(m>0){const g=.8*(vol||1)/m; for(let i=0;i<n;i++) y[i]*=g}
   return y;
 }
 /* le partiture: [quando, nota, durata, volume] */
@@ -1563,9 +1563,11 @@ const PARTITURE={
   plin:{d:1.0,c:[[0,1318.51,.45,1],[.17,1318.51,.8,.75]]},                    /* puoi ripartire: la stessa nota due volte */
   record:{d:1.9,c:[[0,523.25,.5,.6],[.09,659.25,.5,.65],[.18,783.99,.6,.7],[.32,1046.5,1.5,1]]}   /* record: l'accordo che sale */
 };
+/* la fatica (coach, 4/11 sera): scaletta fitta e molto bassa; il numero premuto un po' piu' deciso ma corto
+   (si taglia prima); tutta la fatica piu' bassa degli altri suoni */
 function partituraFatica(v){const c=[];
-  for(let i=0;i<v;i++){const ult=i===v-1; c.push([i*FAT_PASSO,SCALA[i],ult?.9:.3,ult?1:.42])}
-  return {d:(v-1)*FAT_PASSO+.95,c:c}}
+  for(let i=0;i<v;i++){const ult=i===v-1; c.push([i*FAT_PASSO,SCALA[i],ult?.13:.07,ult?1:.16])}   /* un «du» secco, niente coda */
+  return {d:(v-1)*FAT_PASSO+.15,c:c,vol:.5}}
 function wavDa(y){
   const n=y.length,b=new ArrayBuffer(44+n*2),v=new DataView(b);
   function s(o,x){for(let i=0;i<x.length;i++)v.setUint8(o+i,x.charCodeAt(i))}
@@ -1580,7 +1582,7 @@ function suonoDi(nome){
   if(SUONI[nome]) return SUONI[nome];
   try{
     const T=TIMBRI[TIMBRO], m=nome.match(/^fat_(\d+)$/), P=m?partituraFatica(+m[1]):PARTITURE[nome]; if(!P) return null;
-    const y=mixa(T,P.c,P.d), S={y:y,url:"",el:[],i:0};
+    const y=mixa(T,P.c,P.d,P.vol), S={y:y,url:"",el:[],i:0};
     if(FILE_OK){S.url=URL.createObjectURL(wavDa(y));
       for(let i=0;i<(COPIE[nome]||0);i++){const a=new Audio();a.preload="auto";a.src=S.url;a.setAttribute("playsinline","");a.dataset.s=nome;S.el.push(a)}}
     return SUONI[nome]=S;
