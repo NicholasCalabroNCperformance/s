@@ -47,6 +47,7 @@ main{max-width:640px;margin:0 auto;padding:12px 16px calc(env(safe-area-inset-bo
 .quando.fermo{color:var(--red)}
 .quando.oggi{color:var(--green)}
 .cose{font-size:11px;color:var(--mute)}
+.cose .link{border:1px solid var(--gold,#A9863B);background:none;color:inherit;border-radius:999px;padding:3px 9px;font:600 11px -apple-system,sans-serif;margin-top:2px}
 .mat{border:0;background:none;color:var(--mute);font-size:15px;padding:6px 4px 6px 8px}
 .ren{display:flex;gap:8px;padding:0 14px 12px 70px;border-top:0}
 .ren input{flex:1;min-width:0;font:inherit;font-size:15px;padding:9px 11px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
@@ -87,7 +88,7 @@ main{max-width:640px;margin:0 auto;padding:12px 16px calc(env(safe-area-inset-bo
     I nomi li scrivi tu con la matita e restano solo su questo telefono. <button id="cambiak" type="button">Cambia chiave</button></div>
 </main>
 <script>
-const ARCH="https://script.google.com/macros/s/AKfycbxAHwzQlwAaeNLaKEy0EHuY-QOC7aiu-AnScNLi1J_kElFpdx4FNrEhDSbT3MSmlCSV/exec", MAP={"nicho": "k3m9x7q2", "sab": "ki48cgwe", "af": "b6t3w9k1", "collaudo": "p4q7z2m8"}, QUI=location.pathname;
+const ARCH="https://script.google.com/macros/s/AKfycbxAHwzQlwAaeNLaKEy0EHuY-QOC7aiu-AnScNLi1J_kElFpdx4FNrEhDSbT3MSmlCSV/exec", MAP={"nicho": "k3m9x7q2", "sab": "ki48cgwe", "af": "b6t3w9k1", "collaudo": "p4q7z2m8"}, PROG={"nicho": "Mesociclo 5", "sab": "Mesociclo 2", "af": "Mesociclo 3", "collaudo": "Collaudo"}, QUI=location.pathname;
 const $=function(id){return document.getElementById(id)};
 function g(k){try{return localStorage.getItem(k)}catch(e){return null}}
 function s(k,v){try{localStorage.setItem(k,v)}catch(e){}}
@@ -118,6 +119,8 @@ async function carica(){
   if(!j){stato("Non riesco a leggere l’archivio: controlla la rete e riprova.",true);return}
   if(!j.ok){if(j.err==="chiave"){s("nc-coach-k","");stato("Chiave sbagliata.",true);setTimeout(mostraChiave,900)}else stato("Errore: "+j.err,true);return}
   DATI=(j.schede||[]).filter(function(x){return x.persona!=="collaudo"||MAP.collaudo});
+  /* ogni scheda collegata compare sempre, anche se l'atleta non ha ancora segnato niente (coach, 4/11 sera) */
+  Object.keys(MAP).forEach(function(p){if(!DATI.some(function(x){return x.persona===p}))DATI.push({persona:p,programma:PROG[p]||"",nuova:true,n:0})});
   ["cercaBox","filtri","piede"].forEach(function(i){$(i).hidden=false}); stato("");
   disegna();
 }
@@ -126,7 +129,7 @@ function disegna(){
   let v=DATI.map(function(x){return {x:x,nome:N[x.persona]||"",gg:giorni(x.aggiornato)}});
   $("conta").hidden=!v.length; $("conta").textContent=v.length;
   if(q) v=v.filter(function(o){return norm(o.nome).indexOf(q)>=0||norm(o.x.persona).indexOf(q)>=0||norm(o.x.programma).indexOf(q)>=0});
-  if(FILTRO==="sett") v=v.filter(function(o){return o.gg<7}); if(FILTRO==="fermi") v=v.filter(function(o){return o.gg>=8});
+  if(FILTRO==="sett") v=v.filter(function(o){return o.gg<7}); if(FILTRO==="fermi") v=v.filter(function(o){return o.gg>=8&&!o.x.nuova});
   v.sort(function(a,b){return (a.nome||a.x.persona).localeCompare(b.nome||b.x.persona,"it")});
   if(!q&&FILTRO==="tutti") v.sort(function(a,b){return a.gg-b.gg||(a.nome||a.x.persona).localeCompare(b.nome||b.x.persona,"it")});
   if(!DATI.length){L.innerHTML='<div class="vuoto">Nessuna scheda nell’archivio ancora.</div>';return}
@@ -136,11 +139,14 @@ function disegna(){
     const x=o.x, r=document.createElement("div"); r.className="riga"; r.setAttribute("role","button");
     const titolo=o.nome||x.persona;
     r.innerHTML='<div class="av'+(o.gg===0?' oggi':'')+'"></div><div class="testo"><div class="nome"><span class="n"></span>'+(o.nome?'<span class="sig"></span>':'')+'</div><div class="info"></div></div>'+
-      '<div class="dx"><span class="quando'+(o.gg===0?' oggi':(o.gg>=8?' fermo':''))+'"></span><span class="cose"></span></div><button class="mat" type="button" aria-label="Scrivi il nome">✎</button>';
+      '<div class="dx"><span class="quando'+(o.gg===0?' oggi':(o.gg>=8&&!x.nuova?' fermo':''))+'"></span><span class="cose"></span></div><button class="mat" type="button" aria-label="Scrivi il nome">✎</button>';
     r.querySelector(".av").textContent=iniziali(titolo); r.querySelector(".n").textContent=titolo;
     if(o.nome) r.querySelector(".sig").textContent=x.persona;
     r.querySelector(".info").textContent=x.programma||"";
-    r.querySelector(".quando").textContent=quando(x.aggiornato); r.querySelector(".cose").textContent=(x.n||0)+" segnate";
+    if(x.nuova){r.querySelector(".quando").textContent="non ancora usata";
+      const c=r.querySelector(".cose"); c.innerHTML='<button class="link" type="button">Copia il link</button>';
+      c.querySelector("button").onclick=function(e){e.stopPropagation();copia(location.origin+"/s/"+MAP[x.persona]+"/",this)}}
+    else{r.querySelector(".quando").textContent=quando(x.aggiornato); r.querySelector(".cose").textContent=(x.n||0)+" segnate"}
     r.onclick=function(e){if(e.target.closest(".mat"))return;apri(x,titolo)};
     r.querySelector(".mat").onclick=function(e){e.stopPropagation();APERTO=APERTO===x.persona?null:x.persona;disegna()};
     box.appendChild(r);
@@ -151,12 +157,14 @@ function disegna(){
   });
   L.appendChild(box);
 }
+function copia(u,b){const ok=function(){const t=b.textContent;b.textContent="Copiato ✓";setTimeout(function(){b.textContent=t},2000)};
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(u).then(ok).catch(function(){prompt("Il link:",u)});else prompt("Il link:",u)}
 function esc(t){return String(t).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
 function apri(x,nome){
   const cart=MAP[x.persona]; if(!cart){stato("Per «"+x.persona+"» non c’è ancora una scheda collegata a questa pagina.",true);return}
   const D=x.st||{}; const st=D.st||D, sto=D.sto||null;
   try{
-    localStorage.setItem(x.ls,JSON.stringify(st));
+    if(x.ls) localStorage.setItem(x.ls,JSON.stringify(st));     /* scheda non ancora usata: niente dati da copiare */
     if(sto) localStorage.setItem("nc-storico-"+x.persona,JSON.stringify(sto)); else localStorage.removeItem("nc-storico-"+x.persona);
     localStorage.setItem("nc-coach",JSON.stringify({p:x.persona,t:x.aggiornato,da:QUI,nome:nome}));
   }catch(e){}
