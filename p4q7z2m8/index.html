@@ -150,6 +150,12 @@ font:700 14px/1 -apple-system,sans-serif;letter-spacing:.06em}
 .manda.vuoto{background:var(--line);color:#8A8A92}
 .mandanota{font:400 11.5px/1.45 -apple-system,sans-serif;color:var(--mute);margin:8px 0 0;text-align:center}
 
+/* prova dei suoni della fatica (solo campo di prova) */
+#fatprova{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:12px 0 0;padding:10px 12px;border:1px dashed var(--gold);border-radius:12px;background:var(--card)}
+#fatprova span{font:700 10px/1.2 -apple-system,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);width:100%}
+#fatprova span em{font-style:normal;color:var(--mute);letter-spacing:.06em}
+#fatprova button{border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:8px 12px;font:600 13px -apple-system,sans-serif}
+#fatprova button[aria-pressed="true"]{border-color:var(--gold);background:var(--gold);color:#fff}
 /* vista coach */
 #coachbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:14px;padding:10px 16px;background:#23232A;color:#E9D9B0;font-size:14px;border-bottom:1px solid #A9863B}
 #coachbar a{color:#C9A961;text-decoration:none;font-weight:600;white-space:nowrap}
@@ -349,6 +355,39 @@ font:700 11.5px/1 -apple-system,sans-serif;cursor:pointer;white-space:nowrap}
 font:400 12.5px/1.35 -apple-system,sans-serif;max-width:230px;box-shadow:0 6px 18px rgba(0,0,0,.18)}
 #dash .d-tip b{display:block;font-weight:700;font-size:11px;letter-spacing:.06em}
 #dash .d-tip em{display:block;font-style:normal;font-weight:700;color:#C9A961;margin-top:2px}
+#dash .d-tiles small{font-size:14px;color:var(--mute);font-weight:600;margin-left:2px}
+#dash .d-lista{margin-top:10px}
+#dash .d-dure,#dash .d-barre,#dash .d-stima{list-style:none;margin:0;padding:0}
+#dash .d-dure li{display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid var(--line)}
+#dash .d-dure li:first-child{border-top:0}
+#dash .d-fp{flex:0 0 30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font:700 14px -apple-system,sans-serif;color:#fff;background:var(--gold)}
+#dash .d-fp[data-v="8"],#dash .d-fp[data-v="9"],#dash .d-fp[data-v="10"]{background:#8C2F1F}
+#dash .d-nm{flex:1;min-width:0;font:600 14px/1.3 -apple-system,sans-serif;color:var(--ink)}
+#dash .d-dure .d-qd,#dash .d-stima .d-qd{font:600 11px/1.3 -apple-system,sans-serif;color:var(--mute)}
+#dash .d-barre li{display:grid;grid-template-columns:1fr 34%;grid-template-rows:auto auto;column-gap:10px;padding:7px 0;border-top:1px solid var(--line)}
+#dash .d-barre li:first-child{border-top:0}
+#dash .d-barre .d-nm{grid-column:1;font-size:13px}
+#dash .d-barre b{grid-column:2;grid-row:1;text-align:right;font:700 13px -apple-system,sans-serif;color:var(--ink)}
+#dash .d-barre .d-bar{grid-column:1/3;grid-row:2;height:6px;border-radius:3px;background:var(--band);margin-top:5px;overflow:hidden}
+#dash .d-barre .d-bar i{display:block;height:100%;background:var(--gold);border-radius:3px}
+#dash .d-stima li{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;padding:9px 0;border-top:1px solid var(--line)}
+#dash .d-stima li:first-child{border-top:0}
+#dash .d-stima b{font:600 22px/1.1 -apple-system,sans-serif;color:var(--ink)}
+#dash .d-stima .d-qd{width:100%}
+#dash .d-calw{overflow-x:auto}
+#dash .d-cal{border-collapse:separate;border-spacing:3px;margin:0 auto}
+#dash .d-cal th{font:700 9.5px -apple-system,sans-serif;color:var(--mute);padding:0 2px}
+#dash .d-cal td{padding:0}
+#dash .d-q{display:block;width:20px;height:20px;border-radius:5px;border:1.5px solid var(--line);box-sizing:border-box}
+#dash .d-q2{background:var(--gold);border-color:var(--gold)}
+#dash .d-q1{background:linear-gradient(135deg,var(--gold) 50%,transparent 50%);border-color:var(--gold)}
+#dash .d-q-1{border-style:dashed;opacity:.35}
+#dash .d-fut{opacity:.45}
+#dash .d-scelte{margin-top:18px}
+#dash .d-sce[hidden]{display:none}
+#dash .d-sce{display:flex;flex-direction:column;gap:8px;margin-top:10px;padding:12px 14px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+#dash .d-sce label{font:500 14px -apple-system,sans-serif;color:var(--ink);display:flex;align-items:center;gap:8px}
+#dash .d-sce input{width:18px;height:18px;accent-color:var(--gold)}
 #dash .d-tabw{overflow-x:auto;margin-top:10px;border-top:1px solid var(--line);padding-top:8px}
 #dash .d-tab{width:100%;border-collapse:collapse;font:400 13px/1.35 -apple-system,sans-serif;font-variant-numeric:tabular-nums}
 #dash .d-tab caption{text-align:left;font:700 9.5px/1.2 -apple-system,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);padding-bottom:6px}
@@ -390,7 +429,7 @@ text-align:left;display:flex;align-items:center;gap:7px}
 <div id="out"></div>
 <div class="btns"><button onclick="window.print()">Stampa / salva in PDF</button></div>
 <footer>Quello che scrivi resta salvato su questo telefono.</footer></div>
-<script>const GIORNI=[{"id": "A", "head": "GIORNO A — ONDE, RAMPING, TEST", "blocks": [{"t": "SQUAT — onde (4 giri da 3-2-1)", "nome": "SQUAT", "ruolo": "gara", "rows": [{"s": "S1", "f": "Est", "se": "4 onde", "rp": "3 / 2 / 1", "rec": "2'-3'", "ca": "85 / 92,5 / 100", "es": "", "n": "Quattro onde. Un'onda: 3 colpi a 85, carichi subito a 92,5 e fai 2, carichi a 100 e fai 1. Dentro l'onda il recupero è solo il tempo di cambiare i dischi. Poi recupero pieno e riparti con l'onda dopo.", "ap": ""}, {"s": "S2", "f": "Est", "se": "3 onde + 2", "rp": "3 / 2 / 1", "rec": "2'-3'", "ca": "87,5 / 95 / 102,5", "es": "", "n": "Tre onde complete come la scorsa settimana, poi due singole in più all'ultimo peso.", "ap": ""}], "demo": "onde"}, {"t": "PANCA — ramping a RPE", "nome": "PANCA", "ruolo": "gara", "rows": [{"s": "S1", "f": "Int", "se": "RAMP + 2", "rp": "3 / 3", "rec": "3'", "ca": "RPE 8 / 85% del top", "es": "", "n": "Sali di peso serie dopo serie, triple, finché una tripla ti lascia 2 colpi in canna (fatica della serie 8 su 10): quello è il top. Scrivilo. Poi 2 triple all'85% di quel peso.", "ap": ""}, {"s": "S2", "f": "Int", "se": "RAMP + 3", "rp": "2 / 2", "rec": "3'", "ca": "RPE 8 / 85% del top", "es": "", "n": "Stesso lavoro a doppie.", "ap": ""}], "demo": "ramping a RPE, poi back-off sul top"}, {"t": "STACCO — serie a numero aperto", "nome": "STACCO", "ruolo": "gara", "rows": [{"s": "S1", "f": "Test", "se": "1 / 3", "rp": "TEST 3RM / 5", "rec": "3'", "ca": "TEST 3RM / 70% del test", "es": "", "n": "Prima trovi il 3RM e lo scrivi. Poi 3 cinquine al 70%.", "ap": ""}, {"s": "S2", "f": "Est", "se": "N", "rp": "5", "rec": "3'", "ca": "72,5% del test", "es": "", "n": "Cinquine al 72,5% finché restano veloci. Quando la velocità cala, chiudi. Segna quante ne hai fatte.", "ap": ""}], "demo": "test nel carico, poi serie a numero aperto"}, {"t": "REMATORE CON MANUBRIO — test scritto nelle reps", "nome": "REMATORE CON MANUBRIO", "ruolo": "tirata orizzontale", "rows": [{"s": "S1", "f": "Test", "se": "1 / 3", "rp": "TEST 8RM / 8", "rec": "2'", "ca": "TEST 8RM / 8RM −15%", "es": "", "n": "Prima trovi l'8RM e lo scrivi. Poi 3 serie da 8 togliendo il 15%.", "ap": ""}, {"s": "S2", "f": "Acc", "se": "4", "rp": "8", "rec": "2'", "ca": "−15%", "es": "", "n": "Quattro serie al peso della scorsa settimana.", "ap": ""}], "demo": "test scritto nella colonna dei colpi"}]}, {"id": "B", "head": "GIORNO B — MAX, SUPERSERIE, SENZA SERIE", "blocks": [{"t": "LAT MACHINE — serie a MAX", "nome": "LAT MACHINE", "ruolo": "tirata verticale", "rows": [{"s": "S1", "f": "Test", "se": "1 / 2", "rp": "TEST 10RM / 8", "rec": "2'", "ca": "TEST 10RM / peso del test", "es": "", "n": "Trovi il 10RM, poi due serie da 8 a quel peso.", "ap": ""}, {"s": "S2", "f": "Acc", "se": "3", "rp": "MAX", "rec": "2'", "ca": "peso del test", "es": "", "n": "Tre serie a più colpi possibile, pulite. Scrivi quanti ne fai in ogni serie.", "ap": ""}], "demo": "serie a MAX con i colpi da segnare"}, {"t": "CURL BILANCIERE Z + PUSH DOWN CORDA — superserie", "nome": "CURL BILANCIERE Z + PUSH DOWN CORDA", "ruolo": "superserie", "rows": [{"s": "S1", "f": "Acc", "se": "3 giri", "rp": "12 / 15", "rec": "nessuno dentro il giro · 90\" tra i giri", "ca": "peso di lavoro / peso di lavoro −30%", "es": "Curl, poi push down", "n": "Tre giri: curl e subito push down. Novanta secondi tra un giro e l'altro. Segna il peso che usi.", "ap": ""}, {"s": "S2", "f": "Acc", "se": "4 giri", "rp": "10 / 15", "rec": "nessuno dentro il giro · 90\" tra i giri", "ca": "peso di lavoro / peso di lavoro −30%", "es": "Curl, poi push down", "n": "Un giro in più, curl a 10.", "ap": ""}], "demo": "superserie a giri, peso di lavoro per ogni esercizio"}, {"t": "PLANK — tenuta a MAX", "nome": "PLANK", "ruolo": "core", "rows": [{"s": "S1", "f": "Acc", "se": "3", "rp": "MAX s", "rec": "60\"-90\"", "ca": "corpo libero", "es": "", "n": "Tieni finché la colonna rimane il più possibile neutra. Segna i secondi di ogni tenuta.", "ap": ""}, {"s": "S2", "f": "Acc", "se": "4", "rp": "MAX/2", "rec": "60\"", "ca": "corpo libero", "es": "", "n": "Quattro tenute alla metà del tuo MAX della scorsa settimana, recupero corto.", "ap": ""}], "demo": "tenuta a MAX, poi metà del MAX"}, {"t": "CARDIO IN ZONA 2 — camminata in pendenza", "nome": "CARDIO IN ZONA 2", "ruolo": "aerobico", "rows": [{"s": "S1", "f": "—", "se": "—", "rp": "30'", "rec": "", "ca": "—", "es": "", "n": "Mezz'ora al passo: devi riuscire a parlare.", "ap": ""}, {"s": "S2", "f": "—", "se": "—", "rp": "35'", "rec": "", "ca": "—", "es": "", "n": "Cinque minuti in più.", "ap": ""}], "demo": "riga senza serie"}, {"t": "STACCO EMOM", "nome": "STACCO EMOM", "ruolo": "variante · salita lenta", "rows": [{"s": "S1", "f": "Int", "se": "12", "rp": "1", "rec": "il minuto (EMOM)", "ca": "140", "es": "Salita contata 4\"", "n": "Dodici minuti: allo scoccare di ogni minuto una singola, salita contata in 4\". Il recupero è quello che avanza del minuto. Avvia il timer: dieci secondi per metterti sotto, poi un beep a ogni minuto.", "ap": ""}, {"s": "S2", "f": "Int", "se": "15", "rp": "1", "rec": "il minuto (EMOM)", "ca": "140", "es": "Salita contata 4\"", "n": "Tre minuti in più.", "ap": ""}], "demo": "EMOM con il timer"}]}];const LS="sch-collaudo";const TITOLO="Programma di collaudo";const MASSIMALI=[];const MIGRA_VECCHIO=false;const SEL0=0;const DSEL0="";const PERSONA0="collaudo";const PROG0="Programma di collaudo";const PROGN0=1;const DASH=false;const DIAG=false;const RINOMINA0={"id": "", "m": {}};const PRECARICA0={"id": "", "d": {}};const ARCH0="https://script.google.com/macros/s/AKfycbxAHwzQlwAaeNLaKEy0EHuY-QOC7aiu-AnScNLi1J_kElFpdx4FNrEhDSbT3MSmlCSV/exec";const ARCHK0="nc-D0HwANdwVcy44E_ZaPgOT123";
+<script>const GIORNI=[{"id": "A", "head": "GIORNO A — ONDE, RAMPING, TEST", "blocks": [{"t": "SQUAT — onde (4 giri da 3-2-1)", "nome": "SQUAT", "ruolo": "gara", "rows": [{"s": "S1", "f": "Est", "se": "4 onde", "rp": "3 / 2 / 1", "rec": "2'-3'", "ca": "85 / 92,5 / 100", "es": "", "n": "Quattro onde. Un'onda: 3 colpi a 85, carichi subito a 92,5 e fai 2, carichi a 100 e fai 1. Dentro l'onda il recupero è solo il tempo di cambiare i dischi. Poi recupero pieno e riparti con l'onda dopo.", "ap": ""}, {"s": "S2", "f": "Est", "se": "3 onde + 2", "rp": "3 / 2 / 1", "rec": "2'-3'", "ca": "87,5 / 95 / 102,5", "es": "", "n": "Tre onde complete come la scorsa settimana, poi due singole in più all'ultimo peso.", "ap": ""}], "demo": "onde"}, {"t": "PANCA — ramping a RPE", "nome": "PANCA", "ruolo": "gara", "rows": [{"s": "S1", "f": "Int", "se": "RAMP + 2", "rp": "3 / 3", "rec": "3'", "ca": "RPE 8 / 85% del top", "es": "", "n": "Sali di peso serie dopo serie, triple, finché una tripla ti lascia 2 colpi in canna (fatica della serie 8 su 10): quello è il top. Scrivilo. Poi 2 triple all'85% di quel peso.", "ap": ""}, {"s": "S2", "f": "Int", "se": "RAMP + 3", "rp": "2 / 2", "rec": "3'", "ca": "RPE 8 / 85% del top", "es": "", "n": "Stesso lavoro a doppie.", "ap": ""}], "demo": "ramping a RPE, poi back-off sul top"}, {"t": "STACCO — serie a numero aperto", "nome": "STACCO", "ruolo": "gara", "rows": [{"s": "S1", "f": "Test", "se": "1 / 3", "rp": "TEST 3RM / 5", "rec": "3'", "ca": "TEST 3RM / 70% del test", "es": "", "n": "Prima trovi il 3RM e lo scrivi. Poi 3 cinquine al 70%.", "ap": ""}, {"s": "S2", "f": "Est", "se": "N", "rp": "5", "rec": "3'", "ca": "72,5% del test", "es": "", "n": "Cinquine al 72,5% finché restano veloci. Quando la velocità cala, chiudi. Segna quante ne hai fatte.", "ap": ""}], "demo": "test nel carico, poi serie a numero aperto"}, {"t": "REMATORE CON MANUBRIO — test scritto nelle reps", "nome": "REMATORE CON MANUBRIO", "ruolo": "tirata orizzontale", "rows": [{"s": "S1", "f": "Test", "se": "1 / 3", "rp": "TEST 8RM / 8", "rec": "2'", "ca": "TEST 8RM / 8RM −15%", "es": "", "n": "Prima trovi l'8RM e lo scrivi. Poi 3 serie da 8 togliendo il 15%.", "ap": ""}, {"s": "S2", "f": "Acc", "se": "4", "rp": "8", "rec": "2'", "ca": "−15%", "es": "", "n": "Quattro serie al peso della scorsa settimana.", "ap": ""}], "demo": "test scritto nella colonna dei colpi"}]}, {"id": "B", "head": "GIORNO B — MAX, SUPERSERIE, SENZA SERIE", "blocks": [{"t": "LAT MACHINE — serie a MAX", "nome": "LAT MACHINE", "ruolo": "tirata verticale", "rows": [{"s": "S1", "f": "Test", "se": "1 / 2", "rp": "TEST 10RM / 8", "rec": "2'", "ca": "TEST 10RM / peso del test", "es": "", "n": "Trovi il 10RM, poi due serie da 8 a quel peso.", "ap": ""}, {"s": "S2", "f": "Acc", "se": "3", "rp": "MAX", "rec": "2'", "ca": "peso del test", "es": "", "n": "Tre serie a più colpi possibile, pulite. Scrivi quanti ne fai in ogni serie.", "ap": ""}], "demo": "serie a MAX con i colpi da segnare"}, {"t": "CURL BILANCIERE Z + PUSH DOWN CORDA — superserie", "nome": "CURL BILANCIERE Z + PUSH DOWN CORDA", "ruolo": "superserie", "rows": [{"s": "S1", "f": "Acc", "se": "3 giri", "rp": "12 / 15", "rec": "nessuno dentro il giro · 90\" tra i giri", "ca": "peso di lavoro / peso di lavoro −30%", "es": "Curl, poi push down", "n": "Tre giri: curl e subito push down. Novanta secondi tra un giro e l'altro. Segna il peso che usi.", "ap": ""}, {"s": "S2", "f": "Acc", "se": "4 giri", "rp": "10 / 15", "rec": "nessuno dentro il giro · 90\" tra i giri", "ca": "peso di lavoro / peso di lavoro −30%", "es": "Curl, poi push down", "n": "Un giro in più, curl a 10.", "ap": ""}], "demo": "superserie a giri, peso di lavoro per ogni esercizio"}, {"t": "PLANK — tenuta a MAX", "nome": "PLANK", "ruolo": "core", "rows": [{"s": "S1", "f": "Acc", "se": "3", "rp": "MAX s", "rec": "60\"-90\"", "ca": "corpo libero", "es": "", "n": "Tieni finché la colonna rimane il più possibile neutra. Segna i secondi di ogni tenuta.", "ap": ""}, {"s": "S2", "f": "Acc", "se": "4", "rp": "MAX/2", "rec": "60\"", "ca": "corpo libero", "es": "", "n": "Quattro tenute alla metà del tuo MAX della scorsa settimana, recupero corto.", "ap": ""}], "demo": "tenuta a MAX, poi metà del MAX"}, {"t": "CARDIO IN ZONA 2 — camminata in pendenza", "nome": "CARDIO IN ZONA 2", "ruolo": "aerobico", "rows": [{"s": "S1", "f": "—", "se": "—", "rp": "30'", "rec": "", "ca": "—", "es": "", "n": "Mezz'ora al passo: devi riuscire a parlare.", "ap": ""}, {"s": "S2", "f": "—", "se": "—", "rp": "35'", "rec": "", "ca": "—", "es": "", "n": "Cinque minuti in più.", "ap": ""}], "demo": "riga senza serie"}, {"t": "STACCO EMOM", "nome": "STACCO EMOM", "ruolo": "variante · salita lenta", "rows": [{"s": "S1", "f": "Int", "se": "12", "rp": "1", "rec": "il minuto (EMOM)", "ca": "140", "es": "Salita contata 4\"", "n": "Dodici minuti: allo scoccare di ogni minuto una singola, salita contata in 4\". Il recupero è quello che avanza del minuto. Avvia il timer: dieci secondi per metterti sotto, poi un beep a ogni minuto.", "ap": ""}, {"s": "S2", "f": "Int", "se": "15", "rp": "1", "rec": "il minuto (EMOM)", "ca": "140", "es": "Salita contata 4\"", "n": "Tre minuti in più.", "ap": ""}], "demo": "EMOM con il timer"}]}];const LS="sch-collaudo";const TITOLO="Programma di collaudo";const MASSIMALI=[];const MIGRA_VECCHIO=false;const SEL0=0;const DSEL0="";const PERSONA0="collaudo";const PROG0="Programma di collaudo";const PROGN0=1;const DASH=false;const DIAG=false;const SFAT=true;const RINOMINA0={"id": "", "m": {}};const PRECARICA0={"id": "", "d": {}};const ARCH0="https://script.google.com/macros/s/AKfycbxAHwzQlwAaeNLaKEy0EHuY-QOC7aiu-AnScNLi1J_kElFpdx4FNrEhDSbT3MSmlCSV/exec";const ARCHK0="nc-D0HwANdwVcy44E_ZaPgOT123";
 const SETT=(function(){const s={};GIORNI.forEach(function(g){g.blocks.forEach(function(b){
   b.rows.forEach(function(r){const n=parseInt(String(r.s).replace(/\D/g,""));if(n)s[n]=1})})});
   return Object.keys(s).map(Number).sort(function(a,b){return a-b})})();
@@ -1028,7 +1067,7 @@ function segnaSerie(k,nuovo){
 }
 function clin(){
   /* due tocchi di vetro, corti e puliti: la serie e' segnata (suono A) */
-  try{const o=busVetro(.55);tocco(o,2093,0,.32);tocco(o,2794,.095,.32)}catch(e){}
+  suona("clin",function(){const o=busVetro(.55);tocco(o,2093,0,.32);tocco(o,2794,.095,.32)});
   try{if(navigator.vibrate) navigator.vibrate(18)}catch(e){}
 }
 document.addEventListener("click",function(e){
@@ -1048,7 +1087,7 @@ setInterval(function(){document.querySelectorAll(".csr[data-t]").forEach(functio
   const key=e.dataset.t+"|"+fine; if(!PLIN[key]&&sec<fine+20){PLIN[key]=1;plin()}
 })},1000);
 function plin(){
-  try{const o=busVetro(.6);tocco(o,3520,0,.5);tocco(o,3520,.16,.7,.7)}catch(e){}
+  suona("plin",function(){const o=busVetro(.6);tocco(o,3520,0,.5);tocco(o,3520,.16,.7,.7)});
   try{if(navigator.vibrate) navigator.vibrate([70,60,70])}catch(e){}
 }
 /* durante il recupero lo schermo resta acceso (se no il telefono ferma la pagina e il plin non arriva):
@@ -1407,7 +1446,6 @@ function sessione(){
   }catch(e){}
 }
 function audio(forte){
-  if(forte) sessione();
   try{
     if(!ACTX||ACTX.state==="closed") ACTX=new (window.AudioContext||window.webkitAudioContext)();
     if(ACTX.state!=="running"){const p=ACTX.resume();if(p&&p.catch)p.catch(function(){})}
@@ -1449,6 +1487,8 @@ function riapriAudio(){
 }
 window.audioDiario=function(){return AU_LOG.slice()};
 function sblocca(){
+  const dopo=!SBLOCCATI?"primo tocco":(AU_NASC?"dopo secondo piano":"");
+  if(dopo){sbloccaFile(dopo==="primo tocco"?"":dopo);if(dopo!=="primo tocco")AU_DOPO=dopo}
   riapriAudio();
   const a=audio(); if(!a) return;
   try{const b=a.createBuffer(1,1,22050),src=a.createBufferSource();src.buffer=b;src.connect(a.destination);src.start(0)}catch(e){}
@@ -1462,7 +1502,73 @@ function tocco(out,fr,t0,d,g){const t=ACTX.currentTime+0.02+t0;
     o.type="sine";o.frequency.value=fr*h[0];o.connect(e);e.connect(out);
     e.gain.setValueAtTime(0.0001,t);e.gain.exponentialRampToValueAtTime((g||1)*h[1],t+0.004);
     e.gain.exponentialRampToValueAtTime(0.0001,t+(h[0]===1?d:d*0.4));o.start(t);o.stop(t+d+0.05)})}
-function suonoRecord(){try{const o=busVetro(.55);tocco(o,2093,0,.32);tocco(o,2794,.095,.32);tocco(o,3136,.3,1.6,1)}catch(e){}}
+function suonoRecord(){suona("record",function(){const o=busVetro(.55);tocco(o,2093,0,.32);tocco(o,2794,.095,.32);tocco(o,3136,.3,1.6,1)})}
+
+/* ---------- i suoni come file audio (2026-11-04) ----------
+   Perche': il diario del telefono di nicho (archivio, 4/11) dice che dopo il secondo piano, a ogni tocco, l'audio
+   della pagina era «suspended» o «interrupted», e anche quello riaperto nasceva «suspended»: iPhone, in un'app
+   dalla schermata Home, non riaccende Web Audio. Un elemento <audio> fatto partire da un tocco invece riparte
+   sempre, e riattiva anche il suono della pagina. Quindi: i suoni si preparano una volta come file WAV (stessa
+   ricetta, OfflineAudioContext), si suonano come file, e Web Audio resta solo come riserva se il file non parte.
+   Il primo tocco (e il primo dopo il secondo piano) «sblocca» i file, cosi' anche il plin a fine recupero, che
+   parte senza tocco, puo' suonare. Ogni esito si annota nel diario (diagnostica + archivio). */
+const RICETTE={
+  clin:{d:.55,g:.55,t:[[2093,0,.32],[2794,.095,.32]]},
+  plin:{d:1.0,g:.6,t:[[3520,0,.5],[3520,.16,.7,.7]]},
+  record:{d:2.1,g:.55,t:[[2093,0,.32],[2794,.095,.32],[3136,.3,1.6,1]]},
+  muto:{d:.06,g:0,t:[]}
+};
+const SUONI={}; let SBLOCCATI=false, AU_DOPO="";
+function toccoSu(c,out,fr,t0,d,g){const t=0.01+t0;
+  VETRO.forEach(function(h){const o=c.createOscillator(),e=c.createGain();
+    o.type="sine";o.frequency.value=fr*h[0];o.connect(e);e.connect(out);
+    e.gain.setValueAtTime(0.0001,t);e.gain.exponentialRampToValueAtTime((g||1)*h[1],t+0.004);
+    e.gain.exponentialRampToValueAtTime(0.0001,t+(h[0]===1?d:d*0.4));o.start(t);o.stop(t+d+0.05)})}
+function inWav(buf){
+  const ch=buf.getChannelData(0), n=ch.length, sr=buf.sampleRate, b=new ArrayBuffer(44+n*2), v=new DataView(b);
+  function s(o,x){for(let i=0;i<x.length;i++)v.setUint8(o+i,x.charCodeAt(i))}
+  s(0,"RIFF");v.setUint32(4,36+n*2,true);s(8,"WAVE");s(12,"fmt ");v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,1,true);
+  v.setUint32(24,sr,true);v.setUint32(28,sr*2,true);v.setUint16(32,2,true);v.setUint16(34,16,true);s(36,"data");v.setUint32(40,n*2,true);
+  for(let i=0;i<n;i++){const x=Math.max(-1,Math.min(1,ch[i]));v.setInt16(44+i*2,x<0?x*0x8000:x*0x7fff,true)}
+  return new Blob([b],{type:"audio/wav"});
+}
+function preparaSuono(nome,r,copie){
+  try{
+    const OC=window.OfflineAudioContext||window.webkitOfflineAudioContext; if(!OC) return;
+    const sr=22050, c=new OC(1,Math.ceil(sr*r.d),sr), out=c.createGain(); out.gain.value=r.g; out.connect(c.destination);
+    r.t.forEach(function(x){toccoSu(c,out,x[0],x[1],x[2],x[3])});
+    if(r.extra) r.extra(c,out);
+    const fine=function(buf){
+      const url=URL.createObjectURL(inWav(buf)), el=[];
+      for(let i=0;i<(copie||2);i++){const a=new Audio();a.preload="auto";a.src=url;a.setAttribute("playsinline","");a.dataset.s=nome;el.push(a)}
+      SUONI[nome]={el:el,i:0};
+    };
+    const p=c.startRendering(); if(p&&p.then) p.then(fine).catch(function(){}); else c.oncomplete=function(e){fine(e.renderedBuffer)};
+  }catch(e){}
+}
+Object.keys(RICETTE).forEach(function(k){preparaSuono(k,RICETTE[k],k==="clin"?3:2)});
+function suona(nome,riserva){
+  const P=SUONI[nome];
+  if(!P){try{riserva()}catch(e){};return}
+  const a=P.el[P.i++%P.el.length];
+  a.dataset.sbl="";            /* se lo sblocco e' ancora in corso su questo file, non lo deve fermare */
+  try{a.pause();a.currentTime=0}catch(e){}
+  let p=null; try{a.muted=false;a.volume=1;p=a.play()}catch(e){p=Promise.reject(e)}
+  if(p&&p.then) p.then(function(){if(AU_DOPO){annotaAudio(nome+" ok (file) "+AU_DOPO);AU_DOPO=""}})
+    .catch(function(err){annotaAudio(nome+": file fermato ("+((err&&err.name)||"?")+") \u2192 riserva");try{riserva()}catch(e){}});
+}
+/* sblocco: al tocco ogni file parte muto e si ferma subito; da li' in poi iPhone lo lascia suonare */
+function sbloccaFile(perche){
+  const nomi=Object.keys(SUONI); if(!nomi.length) return;
+  let ok=0, n=0;
+  nomi.forEach(function(k){SUONI[k].el.forEach(function(a){n++;
+    try{a.muted=true;a.dataset.sbl="1";const p=a.play();
+      if(p&&p.then) p.then(function(){if(a.dataset.sbl==="1"){a.pause();a.currentTime=0;a.muted=false;a.dataset.sbl=""}ok++;if(ok===n&&perche)annotaAudio("file sbloccati ("+perche+")")})
+        .catch(function(err){a.muted=false;if(perche)annotaAudio("sblocco file fermato ("+((err&&err.name)||"?")+")")});
+      else{a.pause();a.muted=false}
+    }catch(e){a.muted=false}})});
+  SBLOCCATI=true;
+}
 
 function festa(titolo,testo){
   try{if(navigator.vibrate) navigator.vibrate([40,60,40,60,140])}catch(e){}
@@ -1584,7 +1690,8 @@ function segnato(){
   GIORNI.forEach(function(g){g.blocks.forEach(function(b,bi){
     const bk=g.id+"_"+bi;
     const T=state["T_"+bk];
-    if(T&&String(T).trim()) out.push({g:g.id,nome:b.nome,riga:testDi(b)+": "+T+" kg"});
+    /* l'unita' giusta: kg, secondi, o l'altezza dell'appoggio (push up su rialzo: piu' basso = piu' difficile) */
+    if(T&&String(T).trim()) out.push({g:g.id,nome:b.nome,riga:testDi(b)+": "+(unitaDi(b)==="altezza"?"altezza "+String(T).trim()+" (più bassa = più difficile)":String(T).trim()+" "+(uLab(b)||"kg"))});
     b.rows.forEach(function(r,ri){
       const k=bk+"_"+ri, pezzi=[];
       const fp=state["fp_"+k], ap=state["ap_"+k], sf=state["SF_"+k];
@@ -1744,6 +1851,39 @@ draw();
     document.body.insertBefore(el,document.body.firstChild);
     const st=document.createElement("style"); st.textContent="#inst{display:none!important}"; document.head.appendChild(st);   /* niente «installa l'app»: e' la scheda di un altro */
   }catch(e){}
+})();
+
+/* ---------- prova: un suono che sale con la fatica percepita (solo dove il JSON ha suoni_fatica) ----------
+   Tre varianti da confrontare sul campo di prova; si sceglie in alto nella pagina, la scelta resta sul telefono.
+   A «scala»: un tocco che sale di nota con il numero · B «colpi»: piu' tocchi e piu' forte · C «peso»: la nota
+   scende e dall'8 in su arriva anche un colpo basso (2026-11-04) */
+const FAT_V={A:"Scala",B:"Colpi",C:"Peso"};
+function fatSuonoScelto(){try{return localStorage.getItem("nc-suono-fatica")||""}catch(e){return ""}}
+(function(){
+  if(typeof SFAT==="undefined"||!SFAT) return;
+  for(let n=1;n<=10;n++){
+    const fa=784*Math.pow(2,(n-1)*2/9);
+    preparaSuono("fA"+n,{d:.5,g:.5,t:[[fa,0,.38]]},1);
+    const k=1+Math.floor((n-1)/3), tb=[]; for(let i=0;i<k;i++) tb.push([1568,i*.11,.26,.55+.045*n]);
+    preparaSuono("fB"+n,{d:.35+k*.11,g:.6,t:tb},1);
+    const fc=2349*Math.pow(2,-(n-1)*1.5/9);
+    preparaSuono("fC"+n,{d:n>=8?.9:.5,g:.5,t:[[fc,0,.36]],extra:n>=8?function(c,out){
+      const o=c.createOscillator(),e=c.createGain();o.type="sine";o.frequency.value=n===10?82:98;o.connect(e);e.connect(out);
+      e.gain.setValueAtTime(0.0001,.05);e.gain.exponentialRampToValueAtTime(.9,.07);e.gain.exponentialRampToValueAtTime(0.0001,.75);o.start(.05);o.stop(.8)}:null},1);
+  }
+  const box=document.createElement("div"); box.id="fatprova";
+  function disegna(){const v=fatSuonoScelto();
+    box.innerHTML='<span>Suono della fatica <em>prova</em></span>'+Object.keys(FAT_V).map(function(k){
+      return '<button type="button" data-fv="'+k+'" aria-pressed="'+(v===k)+'">'+k+' \u00b7 '+FAT_V[k]+'</button>'}).join("")+
+      '<button type="button" data-fv="" aria-pressed="'+(!v)+'">Spento</button>';}
+  disegna();
+  box.addEventListener("click",function(e){const b=e.target.closest("[data-fv]");if(!b)return;
+    try{localStorage.setItem("nc-suono-fatica",b.dataset.fv)}catch(x){} disegna();
+    if(b.dataset.fv){let i=0;const giro=[3,6,9];(function prossimo(){if(i>=giro.length)return;suona("f"+b.dataset.fv+giro[i++],function(){});setTimeout(prossimo,650)})()}});
+  const h=document.querySelector("header"); if(h) h.insertAdjacentElement("afterend",box);
+  const vecchio=setFp;
+  setFp=function(k,n,el){const v=fatSuonoScelto(), primo=String(state["fp_"+k])!==String(n);
+    vecchio(k,n,el); if(v&&primo) suona("f"+v+n,function(){});};
 })();
 
 
