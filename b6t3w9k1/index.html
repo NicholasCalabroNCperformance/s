@@ -160,8 +160,9 @@ font:700 14px/1 -apple-system,sans-serif;letter-spacing:.06em}
 #fatprova .demo{width:100%;display:flex;align-items:center;gap:6px;margin-top:4px;font:600 12px -apple-system,sans-serif;color:var(--mute)}
 #fatprova .demo b{font-weight:700}
 /* vista coach */
-#coachbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:14px;padding:10px 16px;background:#23232A;color:#E9D9B0;font-size:14px;border-bottom:1px solid #A9863B}
-#coachbar a{color:#C9A961;text-decoration:none;font-weight:600;white-space:nowrap}
+#coachbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:14px;padding:calc(env(safe-area-inset-top) + 10px) 16px 10px;background:#23232A;color:#E9D9B0;font-size:14px;border-bottom:1px solid #A9863B}
+#coachbar a{color:#C9A961;text-decoration:none;font-weight:700;white-space:nowrap;padding:8px 12px;margin:-8px 0 -8px -12px;border-radius:10px;font-size:15px}
+#coachbar a:active{background:#34343B}
 #coachbar b{color:#fff}
 /* onde, giri, ramping, MAX */
 .wk .gl{display:flex;justify-content:space-between;align-items:center;gap:14px}
@@ -1532,6 +1533,12 @@ const RICETTE={
   muto:{d:.06,g:0,t:[]}
 };
 const SUONI={}; let SBLOCCATI=false, AU_DOPO="";
+/* LA MUSICA NON SI FERMA MAI (coach, 4/11: «molto meglio senza suono che mettere in pausa la musica»).
+   Un file audio su iPhone, di suo, ferma Spotify. Con audioSession «ambient» invece suona insieme alla musica
+   (e rispetta il tasto silenzioso). Si imposta una volta sola, all'apertura, e non si cambia piu'.
+   Se il telefono non ha audioSession, i file non si usano: resta Web Audio, che non ferma la musica. */
+let FILE_OK=false;
+try{const s=navigator.audioSession;if(s){s.type="ambient";FILE_OK=(s.type==="ambient")}}catch(e){FILE_OK=false}
 function toccoSu(c,out,fr,t0,d,g){const t=0.01+t0;
   VETRO.forEach(function(h){const o=c.createOscillator(),e=c.createGain();
     o.type="sine";o.frequency.value=fr*h[0];o.connect(e);e.connect(out);
@@ -1562,7 +1569,7 @@ function preparaSuono(nome,r,copie){
 Object.keys(RICETTE).forEach(function(k){preparaSuono(k,RICETTE[k],k==="clin"?3:2)});
 function suona(nome,riserva){
   const P=SUONI[nome];
-  if(!P){try{riserva()}catch(e){};return}
+  if(!P||!FILE_OK){try{riserva()}catch(e){};return}
   const a=P.el[P.i++%P.el.length];
   a.dataset.sbl="";            /* se lo sblocco e' ancora in corso su questo file, non lo deve fermare */
   try{a.pause();a.currentTime=0}catch(e){}
@@ -1572,7 +1579,7 @@ function suona(nome,riserva){
 }
 /* sblocco: al tocco ogni file parte muto e si ferma subito; da li' in poi iPhone lo lascia suonare */
 function sbloccaFile(perche){
-  const nomi=Object.keys(SUONI); if(!nomi.length) return;
+  const nomi=Object.keys(SUONI); if(!nomi.length||!FILE_OK) return;
   let ok=0, n=0;
   nomi.forEach(function(k){SUONI[k].el.forEach(function(a){n++;
     try{a.muted=true;a.dataset.sbl="1";const p=a.play();
@@ -1862,7 +1869,9 @@ draw();
     el.innerHTML='<a href="'+(COACH.da||"../")+'">\u2190 Clienti</a><span>Vista coach \u00b7 <b></b> \u00b7 dati delle '+hh+' del '+gg+'</span>';
     el.querySelector("b").textContent=COACH.nome||PERSONA;
     document.body.insertBefore(el,document.body.firstChild);
-    const st=document.createElement("style"); st.textContent="#inst{display:none!important}"; document.head.appendChild(st);   /* niente «installa l'app»: e' la scheda di un altro */
+    const st=document.createElement("style"); st.textContent="#inst{display:none!important}"; document.head.appendChild(st);
+    /* la barra non deve finire sotto l'orologio: area sicura dell'iPhone */
+    const mv=document.querySelector('meta[name="viewport"]'); if(mv&&mv.content.indexOf("viewport-fit")<0) mv.content+=",viewport-fit=cover";   /* niente «installa l'app»: e' la scheda di un altro */
   }catch(e){}
 })();
 
@@ -1888,6 +1897,18 @@ const STRUMENTI={
     for(let i=0;i<n;i++){const t=i/SRS;lp=lp*.6+(Math.random()*2-1)*.4;y[i]=Math.sin(w*i)*Math.exp(-t/.045)+(i<200?lp*.5*(1-i/200):0)}return y}},
   piano:{nome:"Piano elettrico",nota:function(fr,d){const n=Math.round(d*SRS),y=new Float32Array(n),wc=2*Math.PI*fr/SRS;
     for(let i=0;i<n;i++){const t=i/SRS,I=2.2*Math.exp(-t/.18);y[i]=Math.sin(wc*i+I*Math.sin(wc*i))*Math.exp(-t/.55)*Math.min(1,i/40)}return y}},
+  /* suoni secchi, "tum" (richiesta del coach: tipo marmo scalpellato) */
+  pietra:{nome:"Pietra",nota:function(fr,d){const n=Math.round(d*SRS),y=new Float32Array(n),f0=fr*.75;let hp=0,pr=0;
+    for(let i=0;i<n;i++){const t=i/SRS,r=Math.random()*2-1;hp=.85*(hp+r-pr);pr=r;
+      y[i]=(i<180?hp*.9*(1-i/180):0)+Math.sin(2*Math.PI*f0*t)*Math.exp(-t/.05)+.45*Math.sin(2*Math.PI*f0*2.31*t)*Math.exp(-t/.025)+.25*Math.sin(2*Math.PI*f0*3.73*t)*Math.exp(-t/.015)}return y}},
+  tum:{nome:"Tum",nota:function(fr,d){const n=Math.round(d*SRS),y=new Float32Array(n);let ph=0;
+    for(let i=0;i<n;i++){const t=i/SRS,f=fr*.22*(1+.9*Math.exp(-t/.03));ph+=2*Math.PI*f/SRS;y[i]=Math.sin(ph)*Math.exp(-t/.11)*Math.min(1,i/20)+(i<90?(Math.random()*2-1)*.25*(1-i/90):0)}return y}},
+  tamburo:{nome:"Tamburo di legno",nota:function(fr,d){const n=Math.round(d*SRS),y=new Float32Array(n);let ph=0,lp=0;
+    for(let i=0;i<n;i++){const t=i/SRS,f=fr*.42*(1+.35*Math.exp(-t/.02));ph+=2*Math.PI*f/SRS;lp=lp*.8+(Math.random()*2-1)*.2;
+      y[i]=Math.sin(ph)*Math.exp(-t/.08)+lp*Math.exp(-t/.02)*.8}return y}},
+  clave:{nome:"Clave",nota:function(fr,d){return parziali(fr*2.6,d,[[1,1,.028],[1.52,.15,.012]],.0008)}},
+  legnobasso:{nome:"Legno basso",nota:function(fr,d){const n=Math.round(d*SRS),y=new Float32Array(n),w=2*Math.PI*fr*.9/SRS;let lp=0;
+    for(let i=0;i<n;i++){const t=i/SRS;lp=lp*.7+(Math.random()*2-1)*.3;y[i]=Math.sin(w*i)*Math.exp(-t/.07)+.3*Math.sin(w*2.7*i)*Math.exp(-t/.02)+(i<160?lp*.5*(1-i/160):0)}return y}},
   pizzico:{nome:"Pizzicato",nota:function(fr,d){const n=Math.round(d*SRS),y=new Float32Array(n),N=Math.max(2,Math.round(SRS/fr)),b=new Float32Array(N);
     for(let i=0;i<N;i++)b[i]=Math.random()*2-1;let k=0;for(let i=0;i<n;i++){const a=b[k],c=b[(k+1)%N];y[i]=a;b[k]=.996*.5*(a+c);k=(k+1)%N}return y}}
 };
@@ -1919,8 +1940,10 @@ function preparaClin(id){
   const S=STRUMENTI[id]; if(!S||SUONI["clin_"+id]) return;
   fileSuono("clin_"+id,mixa([{t:0,y:S.nota(783.99,.4),g:.8},{t:.095,y:S.nota(1046.5,.45),g:1}],.6),3)}
 function sceltaSuono(chiave){try{return localStorage.getItem(chiave)||""}catch(e){return ""}}
+/* la fatica suona col piano elettrico per tutti (scelta del coach, 4/11), a meno che sul telefono non si scelga altro o «spento» */
+function fatScelta(){const v=sceltaSuono("nc-suono-fatica");return v==="spento"?"":(v&&STRUMENTI[v]?v:"piano")}
 (function(){
-  const f=sceltaSuono("nc-suono-fatica"), c=sceltaSuono("nc-suono-serie");
+  const f=fatScelta(), c=sceltaSuono("nc-suono-serie");
   try{if(f)preparaFatica(f);if(c&&c!=="vetro")preparaClin(c)}catch(e){}
 })();
 /* il clin: se c'e' uno strumento scelto (e non e' il vetro di sempre), suona quello */
@@ -1931,7 +1954,7 @@ clin=function(){const c=sceltaSuono("nc-suono-serie");
 /* la fatica: l'accensione dei numeri va allo stesso passo del suono */
 const paintFpBase=paintFp;
 paintFp=function(box,v,anim){
-  const id=sceltaSuono("nc-suono-fatica");
+  const id=fatScelta();
   if(!anim||!id||!SUONI["fat_"+id+"_1"]) return paintFpBase(box,v,anim);
   const kids=box.children,key=box.dataset.k||"";
   if(FPT[key]) FPT[key].forEach(clearTimeout); FPT[key]=[];
@@ -1944,21 +1967,21 @@ paintFp=function(box,v,anim){
 (function(){
   if(typeof SFAT==="undefined"||!SFAT) return;
   const box=document.createElement("div"); box.id="fatprova";
-  function riga(chiave,tit,spento){const v=sceltaSuono(chiave);
+  function riga(chiave,tit,spento){const v=spento?(fatScelta()||"spento"):(sceltaSuono(chiave)||"vetro");
     return '<span>'+tit+' <em>prova</em></span>'+Object.keys(STRUMENTI).map(function(k){
-      return '<button type="button" data-ch="'+chiave+'" data-sv="'+k+'" aria-pressed="'+(v===k||(!v&&!spento&&k==="vetro"))+'">'+STRUMENTI[k].nome+'</button>'}).join("")+
-      (spento?'<button type="button" data-ch="'+chiave+'" data-sv="" aria-pressed="'+(!v)+'">Spento</button>':'')}
+      return '<button type="button" data-ch="'+chiave+'" data-sv="'+k+'" aria-pressed="'+(v===k)+'">'+STRUMENTI[k].nome+'</button>'}).join("")+
+      (spento?'<button type="button" data-ch="'+chiave+'" data-sv="spento" aria-pressed="'+(v==="spento")+'">Spento</button>':'')}
   function disegna(){box.innerHTML=riga("nc-suono-fatica","Suono della fatica",true)+'<i></i>'+riga("nc-suono-serie","Suono della serie (clin)",false)+
     '<div class="demo"><b>Prova la fatica:</b> '+[3,6,8,10].map(function(n){return '<button type="button" data-demo="'+n+'">'+n+'</button>'}).join("")+'</div>'}
   disegna();
   box.addEventListener("click",function(e){
     const d=e.target.closest("[data-demo]");
-    if(d){const sc=document.querySelector(".sc");const id=sceltaSuono("nc-suono-fatica");
+    if(d){const sc=document.querySelector(".sc");const id=fatScelta();
       if(id){preparaFatica(id);if(sc){sc.scrollIntoView({block:"center"});paintFp(sc,+d.dataset.demo,true);setTimeout(function(){paintFp(sc,parseInt(state["fp_"+sc.dataset.k])||0,false)},2600)}else suona("fat_"+id+"_"+d.dataset.demo,function(){})}
       return}
     const b=e.target.closest("[data-sv]"); if(!b) return;
     try{localStorage.setItem(b.dataset.ch,b.dataset.sv)}catch(x){}
-    if(b.dataset.ch==="nc-suono-fatica"&&b.dataset.sv){preparaFatica(b.dataset.sv);sbloccaFile("");setTimeout(function(){suona("fat_"+b.dataset.sv+"_6",function(){})},60)}
+    if(b.dataset.ch==="nc-suono-fatica"&&b.dataset.sv&&b.dataset.sv!=="spento"){preparaFatica(b.dataset.sv);sbloccaFile("");setTimeout(function(){suona("fat_"+b.dataset.sv+"_6",function(){})},60)}
     if(b.dataset.ch==="nc-suono-serie"){if(b.dataset.sv!=="vetro"){preparaClin(b.dataset.sv);sbloccaFile("")}setTimeout(function(){clin()},60)}
     disegna()});
   const h=document.querySelector("header"); if(h) h.insertAdjacentElement("afterend",box);
@@ -1995,6 +2018,7 @@ document.addEventListener("visibilitychange",function(){
     navigator.serviceWorker.getRegistration().then(function(r){if(r)r.update()}).catch(function(){});
 });
 let PROMPT=null;
+const SVGPUNTINI='<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="5" cy="12" r="2" fill="currentColor"/><circle cx="12" cy="12" r="2" fill="currentColor"/><circle cx="19" cy="12" r="2" fill="currentColor"/></svg>';
 function giaInstallata(){
   return window.matchMedia("(display-mode: standalone)").matches || navigator.standalone===true;
 }
@@ -2064,12 +2088,16 @@ function comeInstallare(){
       '<div class="riga"><button onclick="apriSafari()">Apri in Safari</button>'+
       '<button class="no" onclick="copiaLink(this)">Copia il link</button></div></li>';
   }
-  h+='<li>In Safari tocca il tasto <b>Condividi</b> <span class="ic">'+SVGCOND+'</span>, '+
-    'nella barra in fondo allo schermo.<br><span class="pic">Non la vedi? Tocca una volta '+
-    'il fondo dello schermo: la barra ricompare.</span></li>'+
-    '<li>Scorri l’elenco e scegli <b>Aggiungi a Home</b> '+
-    '<span class="pic">(in inglese: Add to Home Screen)</span></li>'+
-    '<li>Conferma in alto a destra</li></ol>';
+  /* iPhone di adesso: in Safari il tasto Condividi sta dentro i tre puntini in basso a destra; sugli iPhone piu'
+     vecchi e' l'icona Condividi nella barra in fondo. Si dicono tutte e due (richiesta del coach 2026-11-04) */
+  h+='<li>In Safari tocca i <b>tre puntini</b> <span class="ic">'+SVGPUNTINI+'</span> <b>in basso a destra</b>, '+
+    'accanto all\u2019indirizzo.<br><span class="pic">Non li vedi? Tocca una volta il fondo dello schermo: la barra ricompare. '+
+    'Su un iPhone meno recente al posto dei tre puntini c\u2019\u00e8 direttamente il tasto Condividi '+
+    '<span class="ic">'+SVGCOND+'</span> in fondo allo schermo: tocca quello e salta il passo 2.</span></li>'+
+    '<li>Nel menu tocca <b>Condividi</b> <span class="ic">'+SVGCOND+'</span></li>'+
+    '<li>Scorri l\u2019elenco verso il basso e scegli <b>Aggiungi alla schermata Home</b> '+
+    '<span class="pic">(in inglese: Add to Home Screen). Se non c\u2019\u00e8, tocca \u00abAltro\u00bb in fondo all\u2019elenco.</span></li>'+
+    '<li>Se c\u2019\u00e8 \u00abApri come app web\u00bb, lascialo acceso. Poi tocca <b>Aggiungi</b> in alto a destra</li></ol>';
   if(!inAppBrowser())
     h+='<div class="riga"><button class="no" onclick="copiaLink(this)">Copia il link</button></div>';
   p.innerHTML=h;
