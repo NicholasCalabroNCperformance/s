@@ -1567,7 +1567,7 @@ const PARTITURE={
    (si taglia prima); tutta la fatica piu' bassa degli altri suoni */
 function partituraFatica(v){const c=[];
   for(let i=0;i<v;i++){const ult=i===v-1; c.push([i*FAT_PASSO,SCALA[i],ult?.13:.07,ult?1:.16])}   /* un «du» secco, niente coda */
-  return {d:(v-1)*FAT_PASSO+.15,c:c,vol:.5}}
+  return {d:(v-1)*FAT_PASSO+.15,c:c,vol:.25}}   /* volume fatica: un quarto (coach, 4/11 sera: «piu' basso ancora») */
 function wavDa(y){
   const n=y.length,b=new ArrayBuffer(44+n*2),v=new DataView(b);
   function s(o,x){for(let i=0;i<x.length;i++)v.setUint8(o+i,x.charCodeAt(i))}
