@@ -378,6 +378,8 @@ font:400 12.5px/1.35 -apple-system,sans-serif;max-width:230px;box-shadow:0 6px 1
 #dash .d-stima li:first-child{border-top:0}
 #dash .d-stima b{font:600 22px/1.1 -apple-system,sans-serif;color:var(--ink)}
 #dash .d-stima .d-qd{width:100%}
+.tbx .tes{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;margin:0 0 10px}
+.tbx .tes .lb{width:100%}
 #dash .d-calw{overflow-x:auto}
 #dash .d-fq{border-collapse:separate;border-spacing:3px;margin:0 auto;width:100%;max-width:340px}
 #dash .d-fq thead th{font:700 10px -apple-system,sans-serif;color:var(--mute);text-align:center}
@@ -550,7 +552,16 @@ function settDelTest(b){
   return 1;
 }
 function vuoleLavoro(b){return b.rows.some(r=>/peso di lavoro/i.test(String(r.ca||"")))}
-function rifT(bk){return num(state["T_"+bk])}
+function rifT(bk,i){
+  /* superserie con il test per ogni esercizio (b.testEs): T_<blocco>_<esercizio>; se non c'e', il test del blocco */
+  if(i!==undefined){const v=state["T_"+bk+"_"+i]; if(v!==undefined&&String(v).trim()!=="") return num(v)}
+  return num(state["T_"+bk])}
+/* i colpi serie per serie: "6-4-4-4-6" su 5 serie e' una lista; "10-12" su 2 serie e' un RANGE (dai 10 ai 12 colpi),
+   non 10 poi 12 (coach, 5/11: Y e T da prono). Due numeri che salgono = range */
+function listaColpi(rp,n){const rr=String(rp||"").split("-").map(function(z){return z.trim()});
+  if(rr.length!==n) return null;
+  if(n===2&&/^\d+$/.test(rr[0])&&/^\d+$/.test(rr[1])&&+rr[0]<+rr[1]) return null;
+  return rr}
 /* unità dell'esercizio: kg (di serie), s (tenute a tempo), altezza (push up su rialzo) */
 function unitaDi(b){return (b&&b.unita)||"kg"}
 function fmtU(b,x){const u=unitaDi(b);
@@ -620,7 +631,8 @@ function daTest(t,T){
 function risolvi(t,bk,b,k,i){
   t=String(t||"").trim(); k=k||""; i=i||0;
   if(!t||t==="—") return "";
-  const T=rifT(bk); let m;
+  let T=rifT(bk), m;
+  if(b&&b.testEs) T=rifT(bk,i);
   if(t==="__TEST__"){
     /* la serie del test: scritto TEST 10RM, e appena il test e' compilato anche il peso */
     const rm=testDi(b)||"";
@@ -746,11 +758,11 @@ function serieMulti(k,i,t){
   const ts=tipoSerie(x.r.se); if(ts.t!=="num") return null;
   const p=parti(x.r)[i]; if(!p) return null;
   const n=parseInt(p.se)||0; if(n<2||n>8) return null;
-  const rr=String(p.rp||"").split("-").map(function(z){return z.trim()});
-  const diversi=rr.length===n&&rr.some(function(z){return z!==rr[0]});
+  const rr=listaColpi(p.rp,n)||String(p.rp||"").split("-").map(function(z){return z.trim()});
+  const diversi=!!listaColpi(p.rp,n)&&rr.some(function(z){return z!==rr[0]});
   const lista=numeri(t).length===n&&/^[\d\s.,\-\u2013]+\s*(kg)?$/i.test(String(t||"").trim());
   if(!(diversi||lista||/salire|ogni serie/i.test(t||""))) return null;
-  return {n:n,rp:rr.length===n?rr:null};
+  return {n:n,rp:listaColpi(p.rp,n)};
 }
 function usatoSerie(bk,k,i,t,ms){
   const base="U_"+k+"_"+i, unito=numeri(state[base]);
@@ -862,6 +874,20 @@ function howTo(rm){
 }
 function riferimenti(b,bk,sett){
   let h=''; const rm=testDi(b), tw=settDelTest(b);
+  const nomiT=b.testEs?nomiBlocco(b):null;
+  if(rm&&nomiT){
+    /* superserie: il test si fa su ognuno dei due esercizi, uno alla volta; poi si lavora a giri (coach, 5/11) */
+    const vv=nomiT.map(function(x,i){const v=state["T_"+bk+"_"+i];return v===undefined?"":v});
+    if(!sett||sett===tw||b.rifSempre||(vv.some(function(v){return !v})&&sett>tw)){
+      h+='<div class="tbx">';
+      nomiT.forEach(function(nm,i){
+        h+='<div class="tes"><span class="lb">Il tuo '+rm+' · '+cap(nm.toLowerCase())+'</span><input type="text" inputmode="decimal" data-k="T_'+bk+'_'+i+
+          '" value="'+esc(vv[i])+'" placeholder="—"><span class="u">'+uLab(b)+'</span></div>'});
+      h+='<span class="hint">Il test si fa su ognuno dei due, separati. Poi lavori a giri: '+nomiT.map(function(x){return x.toLowerCase()}).join(' e subito ')+', e il recupero è alla fine del giro.</span>'+
+        '<details class="how"'+(vv.every(function(v){return v})?'':' open')+'><summary>Come si trova il '+rm+'</summary><p>'+howTo(rm)+'</p></details></div>';
+    }
+    return h;
+  }
   if(rm){
     const v=state["T_"+bk]===undefined?"":state["T_"+bk];
     if(!sett||sett===tw||b.rifSempre||(!v&&sett>tw)){
@@ -947,7 +973,8 @@ function rigaHTML(r,b,bk,k,sett){
   const recLab=(ts.t==="giri"&&!/giro|giri|onda|onde/i.test(r.rec||""))?('Rec tra '+(ts.parola==="onde"?'le onde':'i giri')):'Rec';
   const pill=r.rec?'<span class="rec"><em>'+recLab+'</em>'+recVedi(r.rec)+'</span>':'';
   const car=function(p,i){let x=risolvi(p.ca,bk,b,k,i);
-    if(!x&&ts.t!=="nessuna") x=usato(bk,k,i,"");
+    if(b.casa) x="";                                  /* a casa: niente kg da scrivere */
+    else if(!x&&ts.t!=="nessuna") x=usato(bk,k,i,"");
     return '<div class="car" data-car="'+k+'_'+i+'">'+x+'</div>'};
   let h='<div class="wk">'+(sett?'':'<div class="s">Settimana '+String(r.s).replace(/\D/g,"")+'</div>')+scorsaHTML(b,bk,rigaDi(k),sett);
 
@@ -967,6 +994,13 @@ function rigaHTML(r,b,bk,k,sett){
     h+='</div>';
     if(ts.extra){const p=pz[pz.length-1];
       h+='<div class="poi">poi</div><div class="parte"><div class="sch">'+schema({se:ts.extra,rp:p.rp},k,pz.length,bk)+'</div>'+car(p,pz.length)+'</div>';}
+    /* superserie: poi un giro diverso, stessi esercizi (es. 1 giro da 15 togliendo il 30%): i kg escono dal peso di ognuno */
+    if(r.giro2){const G=r.giro2, sc=1-(G.sconto||0)/100;
+      h+='<div class="poi">poi</div><div class="giro"><div class="gt">'+((G.n||1)===1?'<b>1</b> giro':'Ripeti <b>'+G.n+'</b> volte')+(G.sconto?' <em>togliendo il '+G.sconto+'%</em>':'')+'</div>';
+      pz.forEach(function(p,i){const base=pesoLavoro(bk,k,i);
+        h+='<div class="gp">'+(nomi?'<span class="gn">'+nomi[i]+'</span>':'')+'<div class="gl"><div class="sch"><span class="n"><b>'+G.rp+'</b><em>colpi</em></span></div>'+
+          '<div class="car">'+((isFinite(base)&&base>0)?kg(base*sc):'<span class="wait">dal peso di sopra</span>')+'</div></div></div>'});
+      h+='</div>';}
   }
   else if(ts.t==="ramp"){
     const p0=pz[0];
@@ -1003,7 +1037,7 @@ function rigaHTML(r,b,bk,k,sett){
   }
   if(b.cs!==false&&!h.includes('class="emom"')) h+=contaserie(r,b,k);   /* EMOM: conta il timer */
   if(r.n) h+='<div class="nota">'+notaCoach(r.n)+'</div>';
-  return h+feedback(k,r)+'</div>';
+  return h+(b.casa?'':feedback(k,r))+'</div>';
 }
 
 /* ---------- contaserie: segni la serie, parte il recupero (solo da quanto stai recuperando) ---------- */
@@ -1012,13 +1046,14 @@ function serieDi(r){
   const pz=parti(r), out=[];
   if(ts.t==="giri"){
     for(let g=0;g<ts.n;g++) out.push({rp:pz.map(function(p){return p.rp}).join(" + "),lab:"giro"});
+    if(r.giro2) for(let g=0;g<(r.giro2.n||1);g++) out.push({rp:String(r.giro2.rp),lab:"giro"});
     for(let x=0;x<ts.extra;x++) out.push({rp:pz[pz.length-1].rp,lab:"serie"});
     return out;
   }
   if(ts.t==="ramp"&&ts.extra){const p=pz[1]||pz[0];for(let x=0;x<ts.extra;x++)out.push({rp:p.rp,lab:"serie"});return out}
   (ts.t==="ramp"?pz.slice(1):pz).forEach(function(p){
-    const n=parseInt(p.se)||0, rr=String(p.rp).split("-").map(function(x){return x.trim()});
-    for(let x=0;x<n;x++) out.push({rp:(rr.length===n?rr[x]:p.rp),lab:"serie"});
+    const n=parseInt(p.se)||0, rr=listaColpi(p.rp,n);
+    for(let x=0;x<n;x++) out.push({rp:(rr?rr[x]:p.rp),lab:"serie"});
   });
   return out.length?out:null;
 }
@@ -1225,7 +1260,7 @@ function kgNum(p,bk,b,k,i){
   }
   const u=state["U_"+k+"_"+i];
   if(u!==undefined&&String(u).trim()!==""){const a=numeri(u);return a.length?(a.length===1?a[0]:a):NaN}
-  const t=String(p.ca||"").trim(), T=rifT(bk); let m;
+  const t=String(p.ca||"").trim(), T=rifT(bk,b&&b.testEs?i:undefined); let m;
   const pc=function(x){return parseFloat(x.replace(",","."))/100};
   if(/^(corpo libero|senza peso)$/i.test(t)) return 0;
   if(t==="__TEST__") return T>0?T:NaN;
@@ -1263,7 +1298,13 @@ function vociTutte(){
   GIORNI.forEach(function(g){g.blocks.forEach(function(b,bi){
     if(norec(b)) return;
     const bk=g.id+"_"+bi, rm=testDi(b), uS=unitaDi(b)==="s", T=rifT(bk);
-    if(rm&&T>0){
+    if(rm&&b.testEs){const nomiT=nomiBlocco(b)||[];
+      const tw=settDelTest(b); let ri=b.rows.findIndex(function(r){return settimanaDi(r)===tw}); if(ri<0) ri=0;
+      nomiT.forEach(function(nm,i){const Ti=num(state["T_"+bk+"_"+i]), rr=parseInt(rm)||0;
+        if(Ti>0&&rr) out.push(voce({k:bk+"_"+ri,i:i,ty:"rm",rm:rm,ex:exDi(b,b.rows[ri],i,nomiT),nome:cap(nm.toLowerCase()),kg:Ti,r:rr,u:"",n:1,
+          d:durDi(b,b.rows[ri],i),w:tw,g:g.id,cl:b.colpilab||""}))});
+    }
+    else if(rm&&T>0){
       const tw=settDelTest(b); let ri=b.rows.findIndex(function(r){return settimanaDi(r)===tw}); if(ri<0) ri=0;
       const r0=b.rows[ri], rr=uS?Math.round(T):(parseInt(rm)||0);
       if(rr) out.push(voce({k:bk+"_"+ri,i:0,ty:"rm",rm:rm,ex:exDi(b,r0,0,null),nome:b.nome,kg:uS?0:T,r:rr,u:uS?"s":"",n:1,
@@ -1302,8 +1343,8 @@ function vociRiga(out,g,b,bk,r,ri){
   } else if(ts.t==="ramp"&&ts.extra){const ii=pz[1]?1:0;for(let j=0;j<c;j++)fatte.push({i:ii,rp:pz[ii].rp,j:j,nP:ts.extra})}
   else {const lista=[];
     pz.forEach(function(p,i){if(ts.t==="ramp"&&i===0)return;
-      const n=parseInt(p.se)||0, rr=String(p.rp).split("-").map(function(x){return x.trim()});
-      for(let j=0;j<n;j++)lista.push({i:i,rp:(rr.length===n?rr[j]:p.rp),j:j,nP:n})});
+      const n=parseInt(p.se)||0, rr=listaColpi(p.rp,n);
+      for(let j=0;j<n;j++)lista.push({i:i,rp:(rr?rr[j]:p.rp),j:j,nP:n})});
     lista.slice(0,c).forEach(function(x){fatte.push(x)});
   }
   const gruppi={};
@@ -1784,6 +1825,8 @@ function segnato(){
     const bk=g.id+"_"+bi;
     const T=state["T_"+bk];
     /* l'unita' giusta: kg, secondi, o l'altezza dell'appoggio (push up su rialzo: piu' basso = piu' difficile) */
+    if(b.testEs) (nomiBlocco(b)||[]).forEach(function(nm,i){const Ti=state["T_"+bk+"_"+i];
+      if(Ti&&String(Ti).trim()) out.push({g:g.id,nome:nm,riga:testDi(b)+": "+String(Ti).trim()+" kg"})});
     if(T&&String(T).trim()) out.push({g:g.id,nome:b.nome,riga:testDi(b)+": "+(unitaDi(b)==="altezza"?"altezza "+String(T).trim()+" (più bassa = più difficile)":String(T).trim()+" "+(uLab(b)||"kg"))});
     b.rows.forEach(function(r,ri){
       const k=bk+"_"+ri, pezzi=[];
