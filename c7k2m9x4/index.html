@@ -2,94 +2,158 @@
 <html lang="it"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
-<meta name="theme-color" content="#23232A">
+<meta name="theme-color" content="#1B1B20">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icona-192.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="NC Coach">
 <title>NC Performance · Clienti</title>
 <style>
-:root{--oro:#A9863B;--oro2:#C9A961;--nero:#23232A;--carta:#F1F1F2;--testo:#1c1c21;--grigio:#6b6b72}
-*{box-sizing:border-box}
-body{margin:0;background:var(--carta);color:var(--testo);font:16px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;-webkit-text-size-adjust:100%}
-header{background:var(--nero);color:#fff;padding:18px 16px 14px;display:flex;align-items:baseline;gap:12px}
-header .mono{font-family:Georgia,serif;color:var(--oro2);font-size:22px;letter-spacing:.08em}
-header h1{font-size:17px;margin:0;font-weight:600}
-header .sub{color:#bbb;font-size:13px;margin-left:auto}
-main{padding:14px 16px 40px;max-width:640px;margin:0 auto}
-.card{background:#fff;border:1px solid #e3e3e6;border-radius:14px;padding:14px 14px;margin:10px 0}
-.cli{display:flex;align-items:center;gap:12px;cursor:pointer}
-.cli .sig{font-family:Georgia,serif;color:var(--oro);font-size:20px;min-width:52px;text-align:center;background:#faf6ec;border-radius:10px;padding:8px 6px}
-.cli .nome{font-weight:600;font-size:17px}
-.cli .info{color:var(--grigio);font-size:13px;margin-top:2px}
-.cli .fr{margin-left:auto;color:var(--oro);font-size:22px}
-.cli.vecchio .info b{color:#b3402a}
-button{font:inherit;background:var(--nero);color:#fff;border:0;border-radius:10px;padding:12px 16px;font-weight:600}
-button.sec{background:#fff;color:var(--nero);border:1px solid #cfcfd4}
-input{font:inherit;width:100%;padding:12px;border:1px solid #cfcfd4;border-radius:10px;background:#fff}
-label{display:block;font-size:13px;color:var(--grigio);margin:10px 0 4px}
-.riga{display:flex;gap:10px;margin-top:10px}
-.msg{color:var(--grigio);font-size:14px;padding:10px 2px}
-.err{color:#b3402a}
-footer{color:var(--grigio);font-size:12px;padding:10px 2px;text-align:center}
-footer a{color:var(--grigio)}
-.rin{font-size:13px;color:var(--grigio);margin-top:8px}
-.rin input{padding:8px 10px;font-size:14px}
+:root{--gold:#A9863B;--gold2:#C9A961;--bg:#F3F2EF;--card:#FFFFFF;--ink:#17171C;--mute:#6E6D73;--line:#E4E2DC;--soft:#F7F3EA;--red:#A23A22;--green:#3F7A4E}
+@media (prefers-color-scheme:dark){:root{--bg:#121215;--card:#1C1C21;--ink:#F2F0EA;--mute:#9A9890;--line:#2C2C33;--soft:#26231C;--red:#E07A5F;--green:#7FBF8E}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.4 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;-webkit-text-size-adjust:100%}
+.top{position:sticky;top:0;z-index:5;background:#1B1B20;color:#fff;padding:calc(env(safe-area-inset-top) + 14px) 16px 12px}
+.barra{display:flex;align-items:center;gap:12px;max-width:640px;margin:0 auto}
+.mono{font-family:Georgia,"Times New Roman",serif;color:var(--gold2);font-size:22px;letter-spacing:.06em}
+.barra h1{font-size:19px;font-weight:650;margin:0;letter-spacing:-.01em}
+.conta{font-size:12px;font-weight:700;color:#1B1B20;background:var(--gold2);border-radius:999px;padding:2px 8px}
+.ic{margin-left:auto;width:38px;height:38px;border-radius:12px;border:1px solid #34343B;background:#24242A;color:#E9D9B0;display:flex;align-items:center;justify-content:center;font-size:18px}
+.ic.gira{animation:gira .8s linear infinite}@keyframes gira{to{transform:rotate(360deg)}}
+.cerca{max-width:640px;margin:12px auto 0;position:relative}
+.cerca input{width:100%;font:inherit;font-size:16px;padding:12px 40px 12px 40px;border-radius:14px;border:0;background:#2A2A31;color:#fff;outline:none}
+.cerca input::placeholder{color:#8F8E95}
+.cerca .lente{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:16px;height:16px;border:2px solid #8F8E95;border-radius:50%}
+.cerca .lente:after{content:"";position:absolute;width:7px;height:2px;background:#8F8E95;right:-6px;bottom:-3px;transform:rotate(45deg)}
+.cerca .x{position:absolute;right:8px;top:50%;transform:translateY(-50%);border:0;background:#3A3A42;color:#ddd;width:26px;height:26px;border-radius:50%;font-size:14px;display:none}
+.filtri{max-width:640px;margin:10px auto 0;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.filtri::-webkit-scrollbar{display:none}
+.filtri button{flex:0 0 auto;font:600 13px -apple-system,sans-serif;color:#D6D4CC;background:transparent;border:1px solid #3A3A42;border-radius:999px;padding:7px 12px}
+.filtri button[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:#fff}
+main{max-width:640px;margin:0 auto;padding:12px 16px calc(env(safe-area-inset-bottom) + 30px)}
+.lista{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.riga{display:flex;align-items:center;gap:12px;padding:12px 14px;border-top:1px solid var(--line);cursor:pointer}
+.riga:first-child{border-top:0}
+.riga:active{background:var(--soft)}
+.av{flex:0 0 44px;height:44px;border-radius:50%;background:var(--soft);color:var(--gold);display:flex;align-items:center;justify-content:center;font:600 16px Georgia,serif;letter-spacing:.02em;position:relative}
+.av.oggi:after{content:"";position:absolute;right:0;bottom:1px;width:11px;height:11px;border-radius:50%;background:var(--green);border:2px solid var(--card)}
+.testo{flex:1;min-width:0}
+.nome{font-weight:650;font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nome .sig{font-weight:600;font-size:12px;color:var(--mute);margin-left:6px}
+.info{font-size:13px;color:var(--mute);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dx{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+.quando{font:650 12px -apple-system,sans-serif;color:var(--mute)}
+.quando.fermo{color:var(--red)}
+.quando.oggi{color:var(--green)}
+.cose{font-size:11px;color:var(--mute)}
+.mat{border:0;background:none;color:var(--mute);font-size:15px;padding:6px 4px 6px 8px}
+.ren{display:flex;gap:8px;padding:0 14px 12px 70px;border-top:0}
+.ren input{flex:1;min-width:0;font:inherit;font-size:15px;padding:9px 11px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+.ren button{font:600 14px -apple-system,sans-serif;border:0;border-radius:10px;padding:9px 12px;background:var(--gold);color:#fff}
+.vuoto,.msg{text-align:center;color:var(--mute);font-size:14px;padding:28px 10px}
+.err{color:var(--red)}
+.chiave{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px}
+.chiave b{font-size:17px}
+.chiave p{color:var(--mute);font-size:14px;margin:6px 0 12px}
+.chiave input{width:100%;font:inherit;padding:12px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+.chiave button{margin-top:10px;width:100%;font:650 15px -apple-system,sans-serif;border:0;border-radius:12px;padding:13px;background:var(--gold);color:#fff}
+.piede{text-align:center;color:var(--mute);font-size:12px;margin-top:16px;line-height:1.5}
+.piede button{border:0;background:none;color:var(--mute);text-decoration:underline;font:inherit;padding:4px}
 </style></head>
 <body>
-<header><div class="mono">NC</div><h1>Clienti</h1><div class="sub" id="ora"></div></header>
-<main>
-<div id="chiave" class="card" style="display:none">
-  <b>Chiave di lettura</b>
-  <div class="msg">Serve una volta sola: resta su questo telefono. È quella che hai tu e che non sta in nessuna scheda.</div>
-  <label for="k">Chiave</label><input id="k" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="ncl-…">
-  <div class="riga"><button id="salvak">Salva ed entra</button></div>
+<div class="top">
+  <div class="barra"><div class="mono">NC</div><h1>Clienti</h1><span class="conta" id="conta" hidden></span>
+    <button class="ic" id="aggiorna" type="button" aria-label="Aggiorna">&#8635;</button></div>
+  <div class="cerca" id="cercaBox" hidden><span class="lente" aria-hidden="true"></span>
+    <input id="cerca" type="search" placeholder="Cerca per nome o sigla" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search">
+    <button class="x" id="pulisci" type="button" aria-label="Cancella">&#10005;</button></div>
+  <div class="filtri" id="filtri" hidden>
+    <button type="button" data-f="tutti" aria-pressed="true">Tutti</button>
+    <button type="button" data-f="sett">Ultimi 7 giorni</button>
+    <button type="button" data-f="fermi">Fermi da 8+ giorni</button>
+  </div>
 </div>
-<div id="lista"></div>
-<div id="stato" class="msg"></div>
-<div class="riga" id="azioni" style="display:none"><button class="sec" id="aggiorna">Aggiorna</button><button class="sec" id="cambiak">Cambia chiave</button></div>
+<main>
+  <div id="chiave" class="chiave" hidden>
+    <b>Chiave di lettura</b>
+    <p>Serve una volta sola e resta su questo telefono. È la tua, non sta in nessuna scheda.</p>
+    <input id="k" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="ncl-…">
+    <button id="salvak" type="button">Entra</button>
+  </div>
+  <div id="lista"></div>
+  <div id="stato" class="msg" hidden></div>
+  <div class="piede" id="piede" hidden>Le schede che apri da qui sono una copia dell’archivio: quello che tocchi non va all’archivio.<br>
+    I nomi li scrivi tu con la matita e restano solo su questo telefono. <button id="cambiak" type="button">Cambia chiave</button></div>
 </main>
-<footer>Le schede che apri da qui sono una copia dell’archivio: quello che tocchi non va all’archivio.</footer>
 <script>
 const ARCH="https://script.google.com/macros/s/AKfycbxAHwzQlwAaeNLaKEy0EHuY-QOC7aiu-AnScNLi1J_kElFpdx4FNrEhDSbT3MSmlCSV/exec", MAP={"nicho": "k3m9x7q2", "sab": "ki48cgwe", "af": "b6t3w9k1", "collaudo": "p4q7z2m8"}, QUI=location.pathname;
+const $=function(id){return document.getElementById(id)};
 function g(k){try{return localStorage.getItem(k)}catch(e){return null}}
 function s(k,v){try{localStorage.setItem(k,v)}catch(e){}}
 function nomi(){try{return JSON.parse(g("nc-coach-nomi")||"{}")}catch(e){return {}}}
-function quando(iso){const d=new Date(iso);if(isNaN(d))return "";const hh=("0"+d.getHours()).slice(-2)+":"+("0"+d.getMinutes()).slice(-2);
-  const oggi=new Date();const gg=d.toDateString()===oggi.toDateString()?"oggi":("0"+d.getDate()).slice(-2)+"/"+("0"+(d.getMonth()+1)).slice(-2);return gg+" alle "+hh}
-function vecchio(iso){const d=new Date(iso);return !isNaN(d)&&(Date.now()-d.getTime())>8*864e5}
-const $=function(id){return document.getElementById(id)};
-function mostraChiave(){$("chiave").style.display="";$("lista").innerHTML="";$("azioni").style.display="none";$("stato").textContent="";$("k").focus()}
-$("salvak").onclick=function(){const v=$("k").value.trim();if(!v)return;s("nc-coach-k",v);$("chiave").style.display="none";carica()};
+function salvaNome(p,v){const M=nomi();if(v&&v.trim())M[p]=v.trim();else delete M[p];s("nc-coach-nomi",JSON.stringify(M))}
+function giorni(iso){const d=new Date(iso);if(isNaN(d))return 999;const a=new Date();a.setHours(0,0,0,0);const b=new Date(d);b.setHours(0,0,0,0);return Math.round((a-b)/864e5)}
+function quando(iso){const d=new Date(iso);if(isNaN(d))return "";const n=giorni(iso),hh=("0"+d.getHours()).slice(-2)+":"+("0"+d.getMinutes()).slice(-2);
+  if(n===0)return "oggi "+hh; if(n===1)return "ieri "+hh; if(n<7)return n+" giorni fa"; return ("0"+d.getDate()).slice(-2)+"/"+("0"+(d.getMonth()+1)).slice(-2)}
+function iniziali(t){const p=String(t).trim().split(/\s+/);return ((p[0]||"")[0]||"").toUpperCase()+((p[1]||"")[0]||(p[0]||"")[1]||"").toUpperCase()}
+function norm(t){return String(t||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"")}
+let DATI=[], FILTRO="tutti", APERTO=null;
+function mostraChiave(){$("chiave").hidden=false;["cercaBox","filtri","piede","stato"].forEach(function(i){$(i).hidden=true});$("lista").innerHTML="";$("conta").hidden=true;setTimeout(function(){$("k").focus()},50)}
+$("salvak").onclick=function(){const v=$("k").value.trim();if(!v)return;s("nc-coach-k",v);$("chiave").hidden=true;carica()};
+$("k").addEventListener("keydown",function(e){if(e.key==="Enter")$("salvak").click()});
 $("cambiak").onclick=function(){$("k").value="";mostraChiave()};
 $("aggiorna").onclick=carica;
+$("cerca").addEventListener("input",function(){$("pulisci").style.display=this.value?"block":"none";disegna()});
+$("pulisci").onclick=function(){$("cerca").value="";this.style.display="none";disegna();$("cerca").focus()};
+$("filtri").addEventListener("click",function(e){const b=e.target.closest("[data-f]");if(!b)return;FILTRO=b.dataset.f;
+  this.querySelectorAll("button").forEach(function(x){x.setAttribute("aria-pressed",x===b?"true":"false")});disegna()});
+function stato(t,err){const e=$("stato");e.hidden=!t;e.textContent=t||"";e.className="msg"+(err?" err":"")}
 async function carica(){
   const k=g("nc-coach-k"); if(!k){mostraChiave();return}
-  $("stato").textContent="Leggo l’archivio…"; $("stato").className="msg";
+  $("aggiorna").classList.add("gira"); if(!DATI.length) stato("Leggo l’archivio…");
   let j=null;
   try{const r=await fetch(ARCH+"?k="+encodeURIComponent(k)+"&t="+Date.now(),{credentials:"omit",cache:"no-store"});j=await r.json()}catch(e){}
-  if(!j){$("stato").textContent="Non riesco a leggere l’archivio: controlla la rete e riprova.";$("stato").className="msg err";$("azioni").style.display="";return}
-  if(!j.ok){$("stato").textContent=j.err==="chiave"?"Chiave sbagliata.":"Errore: "+j.err;$("stato").className="msg err";s("nc-coach-k","");setTimeout(mostraChiave,900);return}
-  const N=nomi(), L=$("lista"); L.innerHTML="";
-  const sch=(j.schede||[]).slice().sort(function(a,b){return String(b.aggiornato).localeCompare(String(a.aggiornato))});
-  if(!sch.length){$("stato").textContent="Nessuna scheda nell’archivio ancora.";$("azioni").style.display="";return}
-  sch.forEach(function(x){
-    const d=document.createElement("div"); d.className="card";
-    const nome=N[x.persona]||x.persona;
-    d.innerHTML='<div class="cli'+(vecchio(x.aggiornato)?" vecchio":"")+'"><div class="sig"></div><div><div class="nome"></div><div class="info"></div></div><div class="fr">›</div></div>'+
-      '<div class="rin">Nome su questo telefono: <input type="text" placeholder="solo qui, non va in giro"></div>';
-    d.querySelector(".sig").textContent=x.persona; d.querySelector(".nome").textContent=nome;
-    d.querySelector(".info").innerHTML='<b>'+quando(x.aggiornato)+'</b> · '+(x.n||0)+' cose segnate · '+(x.programma||"");
-    const inp=d.querySelector(".rin input"); inp.value=N[x.persona]||""; inp.onchange=function(){const M=nomi();if(inp.value.trim())M[x.persona]=inp.value.trim();else delete M[x.persona];s("nc-coach-nomi",JSON.stringify(M));d.querySelector(".nome").textContent=M[x.persona]||x.persona};
-    d.querySelector(".cli").onclick=function(){apri(x,M_nome(x.persona))};
-    L.appendChild(d);
-  });
-  $("stato").textContent=""; $("azioni").style.display="";
+  $("aggiorna").classList.remove("gira");
+  if(!j){stato("Non riesco a leggere l’archivio: controlla la rete e riprova.",true);return}
+  if(!j.ok){if(j.err==="chiave"){s("nc-coach-k","");stato("Chiave sbagliata.",true);setTimeout(mostraChiave,900)}else stato("Errore: "+j.err,true);return}
+  DATI=(j.schede||[]).filter(function(x){return x.persona!=="collaudo"||MAP.collaudo});
+  ["cercaBox","filtri","piede"].forEach(function(i){$(i).hidden=false}); stato("");
+  disegna();
 }
-function M_nome(p){return nomi()[p]||p}
+function disegna(){
+  const N=nomi(), q=norm($("cerca").value), L=$("lista"); L.innerHTML="";
+  let v=DATI.map(function(x){return {x:x,nome:N[x.persona]||"",gg:giorni(x.aggiornato)}});
+  $("conta").hidden=!v.length; $("conta").textContent=v.length;
+  if(q) v=v.filter(function(o){return norm(o.nome).indexOf(q)>=0||norm(o.x.persona).indexOf(q)>=0||norm(o.x.programma).indexOf(q)>=0});
+  if(FILTRO==="sett") v=v.filter(function(o){return o.gg<7}); if(FILTRO==="fermi") v=v.filter(function(o){return o.gg>=8});
+  v.sort(function(a,b){return (a.nome||a.x.persona).localeCompare(b.nome||b.x.persona,"it")});
+  if(!q&&FILTRO==="tutti") v.sort(function(a,b){return a.gg-b.gg||(a.nome||a.x.persona).localeCompare(b.nome||b.x.persona,"it")});
+  if(!DATI.length){L.innerHTML='<div class="vuoto">Nessuna scheda nell’archivio ancora.</div>';return}
+  if(!v.length){L.innerHTML='<div class="vuoto">Nessuno con «'+esc($("cerca").value||"")+'»'+(FILTRO!=="tutti"?" in questo filtro":"")+'.</div>';return}
+  const box=document.createElement("div"); box.className="lista";
+  v.forEach(function(o){
+    const x=o.x, r=document.createElement("div"); r.className="riga"; r.setAttribute("role","button");
+    const titolo=o.nome||x.persona;
+    r.innerHTML='<div class="av'+(o.gg===0?' oggi':'')+'"></div><div class="testo"><div class="nome"><span class="n"></span>'+(o.nome?'<span class="sig"></span>':'')+'</div><div class="info"></div></div>'+
+      '<div class="dx"><span class="quando'+(o.gg===0?' oggi':(o.gg>=8?' fermo':''))+'"></span><span class="cose"></span></div><button class="mat" type="button" aria-label="Scrivi il nome">✎</button>';
+    r.querySelector(".av").textContent=iniziali(titolo); r.querySelector(".n").textContent=titolo;
+    if(o.nome) r.querySelector(".sig").textContent=x.persona;
+    r.querySelector(".info").textContent=x.programma||"";
+    r.querySelector(".quando").textContent=quando(x.aggiornato); r.querySelector(".cose").textContent=(x.n||0)+" segnate";
+    r.onclick=function(e){if(e.target.closest(".mat"))return;apri(x,titolo)};
+    r.querySelector(".mat").onclick=function(e){e.stopPropagation();APERTO=APERTO===x.persona?null:x.persona;disegna()};
+    box.appendChild(r);
+    if(APERTO===x.persona){const f=document.createElement("div");f.className="ren";
+      f.innerHTML='<input type="text" placeholder="Nome (solo su questo telefono)"><button type="button">Salva</button>';
+      const i=f.querySelector("input"); i.value=o.nome; const ok=function(){salvaNome(x.persona,i.value);APERTO=null;disegna()};
+      f.querySelector("button").onclick=ok; i.addEventListener("keydown",function(e){if(e.key==="Enter")ok()}); box.appendChild(f); setTimeout(function(){i.focus()},30)}
+  });
+  L.appendChild(box);
+}
+function esc(t){return String(t).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
 function apri(x,nome){
-  const cart=MAP[x.persona]; if(!cart){$("stato").textContent="Per «"+x.persona+"» non c’è ancora una scheda collegata a questa pagina.";$("stato").className="msg err";return}
+  const cart=MAP[x.persona]; if(!cart){stato("Per «"+x.persona+"» non c’è ancora una scheda collegata a questa pagina.",true);return}
   const D=x.st||{}; const st=D.st||D, sto=D.sto||null;
   try{
     localStorage.setItem(x.ls,JSON.stringify(st));
@@ -98,7 +162,6 @@ function apri(x,nome){
   }catch(e){}
   location.href="../"+cart+"/?coach="+Date.now();
 }
-$("ora").textContent=new Date().toLocaleDateString("it-IT",{weekday:"short",day:"2-digit",month:"2-digit"});
 carica();
 if("serviceWorker" in navigator) window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})});
 </script>
