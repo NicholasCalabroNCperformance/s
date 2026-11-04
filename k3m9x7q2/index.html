@@ -1742,6 +1742,7 @@ draw();
     el.innerHTML='<a href="'+(COACH.da||"../")+'">\u2190 Clienti</a><span>Vista coach \u00b7 <b></b> \u00b7 dati delle '+hh+' del '+gg+'</span>';
     el.querySelector("b").textContent=COACH.nome||PERSONA;
     document.body.insertBefore(el,document.body.firstChild);
+    const st=document.createElement("style"); st.textContent="#inst{display:none!important}"; document.head.appendChild(st);   /* niente «installa l'app»: e' la scheda di un altro */
   }catch(e){}
 })();
 
