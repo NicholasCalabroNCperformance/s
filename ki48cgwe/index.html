@@ -1091,6 +1091,20 @@ document.addEventListener("click",function(e){
   else if(t.dataset.act==="meno") segnaSerie(k,f2-1);
   else {const i=parseInt(t.dataset.i); segnaSerie(k,i<f2?i:i+1)}
 });
+/* la data dell'allenamento (per «Frequenza», coach 4/11 sera): al primo segno di un giorno di una settimana si scrive
+   DT_<giorno>_<settimana> = la data di oggi. Una volta sola; nella vista coach mai (e' la scheda di un altro) */
+function segnaData(t){
+  if(COACH||!t||!t.closest) return;
+  const e=t.closest("[data-k],[data-cs],[data-fp],[data-car],[data-emom]"); if(!e) return;
+  const v=e.dataset.k||e.dataset.cs||e.dataset.fp||e.dataset.car||e.dataset.emom||"";
+  const m=String(v).match(/([A-Z])_(\d+)_(\d+)/); if(!m) return;
+  try{const x=rigaObj(m[1]+"_"+m[2]+"_"+m[3]); const w=settimanaDi(x.r); if(!w) return;
+    const k="DT_"+m[1]+"_"+w; if(state[k]) return;
+    const d=new Date(); state[k]=d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2); save();
+  }catch(err){}
+}
+document.addEventListener("input",function(e){segnaData(e.target)},true);
+document.addEventListener("click",function(e){segnaData(e.target)},true);
 /* il recupero conta sempre in avanti; quando arriva al tempo del coach: un plin, una vibrazione corta,
    e la scritta diventa "puoi ripartire". Il contatore non si ferma. */
 const PLIN={};
