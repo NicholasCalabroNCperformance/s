@@ -379,6 +379,20 @@ font:400 12.5px/1.35 -apple-system,sans-serif;max-width:230px;box-shadow:0 6px 1
 #dash .d-stima b{font:600 22px/1.1 -apple-system,sans-serif;color:var(--ink)}
 #dash .d-stima .d-qd{width:100%}
 #dash .d-calw{overflow-x:auto}
+#dash .d-fq{border-collapse:separate;border-spacing:3px;margin:0 auto;width:100%;max-width:340px}
+#dash .d-fq thead th{font:700 10px -apple-system,sans-serif;color:var(--mute);text-align:center}
+#dash .d-fq tbody th{font:600 10px/1.15 -apple-system,sans-serif;color:var(--mute);text-align:left;white-space:nowrap;padding-right:4px}
+#dash .d-fq tbody th b{display:block;color:var(--ink);font-weight:700}
+#dash .d-fq tbody th i{font-style:normal;color:var(--gold);font-weight:700}
+#dash .d-fq td{padding:0}
+#dash .d-fd{display:flex;align-items:center;justify-content:center;height:30px;border-radius:7px;border:1.5px solid var(--line);font:600 10.5px -apple-system,sans-serif;color:var(--mute);box-sizing:border-box}
+#dash .d-fd.on{background:var(--gold);border-color:var(--gold);color:#fff;font-weight:800;font-size:12px}
+#dash .d-fd.fut{border-style:dashed;opacity:.45}
+#dash .d-fd.oggi{box-shadow:0 0 0 2px var(--ink) inset}
+#dash .d-leg{display:flex;gap:16px;justify-content:center;font:600 11px -apple-system,sans-serif;color:var(--mute);margin-top:6px}
+#dash .d-leg i{display:inline-block;vertical-align:-1px;margin-right:6px}
+#dash .d-lb{width:10px;height:10px;border-radius:2px;background:var(--line)}
+#dash .d-ll{width:14px;height:3px;border-radius:2px;background:var(--gold);vertical-align:2px!important}
 #dash .d-cal{border-collapse:separate;border-spacing:3px;margin:0 auto}
 #dash .d-cal th{font:700 9.5px -apple-system,sans-serif;color:var(--mute);padding:0 2px}
 #dash .d-cal td{padding:0}
@@ -1091,6 +1105,20 @@ document.addEventListener("click",function(e){
   else if(t.dataset.act==="meno") segnaSerie(k,f2-1);
   else {const i=parseInt(t.dataset.i); segnaSerie(k,i<f2?i:i+1)}
 });
+/* la data dell'allenamento (per «Frequenza», coach 4/11 sera): al primo segno di un giorno di una settimana si scrive
+   DT_<giorno>_<settimana> = la data di oggi. Una volta sola; nella vista coach mai (e' la scheda di un altro) */
+function segnaData(t){
+  if(COACH||!t||!t.closest) return;
+  const e=t.closest("[data-k],[data-cs],[data-fp],[data-car],[data-emom]"); if(!e) return;
+  const v=e.dataset.k||e.dataset.cs||e.dataset.fp||e.dataset.car||e.dataset.emom||"";
+  const m=String(v).match(/([A-Z])_(\d+)_(\d+)/); if(!m) return;
+  try{const x=rigaObj(m[1]+"_"+m[2]+"_"+m[3]); const w=settimanaDi(x.r); if(!w) return;
+    const k="DT_"+m[1]+"_"+w; if(state[k]) return;
+    const d=new Date(); state[k]=d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2); save();
+  }catch(err){}
+}
+document.addEventListener("input",function(e){segnaData(e.target)},true);
+document.addEventListener("click",function(e){segnaData(e.target)},true);
 /* il recupero conta sempre in avanti; quando arriva al tempo del coach: un plin, una vibrazione corta,
    e la scritta diventa "puoi ripartire". Il contatore non si ferma. */
 const PLIN={};
@@ -2033,18 +2061,46 @@ function datiFatica(R){
   const media=conF.length?conF.reduce(function(s,x){return s+x.fp},0)/conF.length:0;
   return {n:conF.length,media:media,sett:sett,ex:ex,dure:dure,alte:conF.filter(function(x){return x.fp>=8}).length};
 }
-/* costanza: per ogni settimana e giorno, quanto e' stato fatto (0 niente, 1 in parte, 2 tutto) */
-function datiCostanza(R){
-  const giorni=GIORNI.map(function(g){return g.id}), m={};
-  R.forEach(function(x){const c=m[x.w+"_"+x.g]=m[x.w+"_"+x.g]||{tot:0,fatte:0};c.tot++;if(x.fatta)c.fatte++});
-  return {giorni:giorni,cella:function(w,g){const c=m[w+"_"+g];if(!c||!c.tot)return -1;return c.fatte===0?0:(c.fatte>=c.tot?2:1)}};
-}
 /* volume: kg x colpi x serie delle serie segnate, per settimana (solo kg, solo questo programma) */
 function datiVolume(){
   const per={}; let tot=0;
   tutteLeVoci().filter(function(e){return e.ls===LS&&e.u===""&&e.kg>0&&e.ty!=="rm"}).forEach(function(e){
     const v=e.kg*e.r*(e.n||1); per[e.w]=(per[e.w]||0)+v; tot+=v});
   return {sett:SETT.map(function(w){return {w:w,v:per[w]||0}}),tot:tot};
+}
+/* frequenza (coach, 4/11 sera): il calendario vero, dal lunedi' alla domenica, con i giorni di riposo.
+   La data di un allenamento e' DT_<giorno>_<settimana> (si scrive al primo segno di quel giorno, vedi motore);
+   per i giorni segnati prima di questa versione si usa l'ora dei recuperi (CT_). Niente data = niente casella: non si inventa */
+function dataDi(ms){const d=new Date(ms);return new Date(d.getFullYear(),d.getMonth(),d.getDate())}
+function chiaveData(d){return d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2)}
+function datiFrequenza(R){
+  const gw={}, fatti={};
+  R.forEach(function(x){if(!x.fatta)return; const k=x.g+"_"+x.w; fatti[k]=1;
+    const ct=parseInt(state["CT_"+x.k]); if(ct&&(!gw[k]||ct<gw[k])) gw[k]=ct});
+  Object.keys(fatti).forEach(function(k){const v=state["DT_"+k]; if(v){const p=String(v).split("-");gw[k]=new Date(+p[0],+p[1]-1,+p[2]).getTime()}});
+  const giorni={}; let senza=[];
+  Object.keys(fatti).forEach(function(k){
+    if(!gw[k]){senza.push(k);return}
+    const d=chiaveData(dataDi(gw[k])), p=k.split("_"); (giorni[d]=giorni[d]||[]).push({g:p[0],w:+p[1]})});
+  const date=Object.keys(giorni).sort();
+  const sw={}; senza.forEach(function(k){sw[k.split("_")[1]]=1});
+  return {giorni:giorni,date:date,senza:Object.keys(sw).map(Number).sort(function(a,b){return a-b})};
+}
+/* intensita' relativa teorica e volume: dal programma scritto, non da quello che hai fatto.
+   Intensita' = media dei %1RM pesata sui colpi; volume = colpi in programma (serie x ripetizioni) delle stesse righe.
+   Contano solo i pezzi con un % del massimale (non "% del top", non RPE, non MAX) */
+function datiIntensita(){
+  const per={};
+  GIORNI.forEach(function(g){g.blocks.forEach(function(b){b.rows.forEach(function(r){
+    const w=settimanaDi(r); if(!w) return;
+    parti(r).forEach(function(p){
+      const m=String(p.ca||"").match(/^(\d+(?:[.,]\d+)?)\s*%(?!\s*del)/); if(!m) return;
+      const pc=parseFloat(m[1].replace(",",".")), n=parseInt(p.se)||0; if(!n||pc<=0||pc>110) return;
+      const rr=String(p.rp).split("-").map(function(x){return parseInt(x)}); if(rr.some(isNaN)) return;
+      const colpi=rr.length===n?rr.reduce(function(a,x){return a+x},0):n*rr[0];
+      const x=per[w]=per[w]||{c:0,s:0}; x.c+=colpi; x.s+=pc*colpi;
+    })})})});
+  return SETT.map(function(w){const x=per[w];return {w:w,c:x?x.c:0,i:x&&x.c?x.s/x.c:0}});
 }
 /* stima del massimale dai top a RPE e dai test (RPE: colpi in canna = 10 - RPE). E' una stima, non un numero vero */
 function datiStima(){
@@ -2119,18 +2175,18 @@ function disegnaDash(){
   dash.appendChild(g2);
   /* sezioni nuove: fatica, costanza, volume, stima del massimale */
   const R=righeTutte(), F=datiFatica(R);
-  sezProgressi(recs); sezFatica(F); sezCostanza(datiCostanza(R),ultimaW); sezVolume(datiVolume()); sezStima(datiStima());
+  sezProgressi(recs); sezFatica(F); sezFrequenza(datiFrequenza(R));sezIntensita(datiIntensita()); sezVolume(datiVolume()); sezStima(datiStima());
   /* scegli cosa vedere: resta sul telefono */
   scelte();
   /* come ragiona */
   dash.appendChild(el("p","d-come",'<b>Come nasce un record.</b> Ogni cosa che segni resta sul telefono, anche nei programmi dopo. '+
     'È record quando fai più peso agli stessi colpi, più colpi allo stesso peso, più serie allo stesso peso, oppure lo stesso peso più dura '+
-    '(negativa lenta, fermi). Uguale a prima non è record. Le cose della stessa settimana non si confrontano tra loro.'));
+    '(negativa lenta, fermi). Uguale a prima non è record.'));
 }
 
 /* ---- le sezioni nuove ---- */
 const SEZ=[["progressi","Prima e adesso"],["record","Ultimi record"],["peso","Il peso più alto"],["serie","Serie fatte"],["fatica","Fatica percepita"],
-  ["costanza","Costanza"],["volume","Volume"],["stima","Stima del massimale"]];
+  ["frequenza","Frequenza"],["intensita","Intensità e volume"],["volume","Volume"],["stima","Stima del massimale"]];
 function sezOff(){try{return JSON.parse(localStorage.getItem("nc-dash-off")||"[]")}catch(e){return []}}
 function scelte(){
   const off=sezOff();
@@ -2213,29 +2269,76 @@ function sezFatica(F){
     li.querySelector(".d-nm").textContent=x.nome; ul.appendChild(li)});
   d.appendChild(ul); s.appendChild(d);
   /* gli esercizi piu' duri, in media */
-  if(F.ex.length>1){
-    const e=el("div","d-graf d-lista"); e.appendChild(el("div","d-gs","Gli esercizi più duri, in media"));
+  if(F.ex.length){
+    const e=el("div","d-graf d-lista"); e.appendChild(el("div","d-gs","La fatica media di ogni esercizio, dal più duro. Tra parentesi quante volte l’hai segnata."));
     const ue=el("ul","d-barre");
-    F.ex.slice(0,6).forEach(function(x){const li=el("li");
+    F.ex.forEach(function(x){const li=el("li");
       li.innerHTML='<span class="d-nm"></span><span class="d-bar"><i style="width:'+(x.m*10)+'%"></i></span><b>'+f1(x.m)+'</b>';
-      li.querySelector(".d-nm").textContent=x.nome+(x.v.length>1?" ("+x.v.length+")":""); ue.appendChild(li)});
+      li.querySelector(".d-nm").textContent=x.nome+" ("+x.v.length+")"; ue.appendChild(li)});
     e.appendChild(ue); s.appendChild(e);
   }
   dash.appendChild(s);
 }
-function sezCostanza(C,ultimaW){
-  const s=el("section","d-sez"); s.dataset.sez="costanza"; s.appendChild(el("h2","d-h","Costanza"));
-  const g=el("div","d-graf"); g.appendChild(el("div","d-gs","Ogni quadrato è un giorno del programma: pieno = fatto tutto, a metà = fatto in parte, vuoto = non ancora."));
-  let h='<table class="d-cal"><thead><tr><th></th>'+SETT.map(function(w){return '<th>S'+w+'</th>'}).join("")+'</tr></thead><tbody>';
-  let fatti=0, passati=0;
-  C.giorni.forEach(function(gd){h+='<tr><th>'+gd+'</th>';
-    SETT.forEach(function(w){const c=C.cella(w,gd);
-      if(c>=0&&w<=ultimaW){passati++;if(c===2)fatti++}
-      h+='<td><span class="d-q d-q'+c+(w>ultimaW?' d-fut':'')+'" title="S'+w+' Giorno '+gd+'"></span></td>'});
-    h+='</tr>'});
+const MESI=["gen","feb","mar","apr","mag","giu","lug","ago","set","ott","nov","dic"];
+function sezFrequenza(Q){
+  const s=el("section","d-sez"); s.dataset.sez="frequenza"; s.appendChild(el("h2","d-h","Frequenza"));
+  if(!Q.date.length){
+    s.appendChild(el("p","d-nota","Compare dal primo allenamento segnato in app: ogni giorno in cui segni qualcosa prende la sua data."+
+      (Q.senza.length?" Le settimane "+Q.senza.map(function(w){return "S"+w}).join(", ")+" non hanno la data (fatte prima dell’app).":"")));
+    dash.appendChild(s); return}
+  const oggi=dataDi(Date.now()), p0=Q.date[0].split("-"), d0=new Date(+p0[0],+p0[1]-1,+p0[2]);
+  const lun=new Date(d0); lun.setDate(d0.getDate()-((d0.getDay()+6)%7));
+  const ultima=Q.date[Q.date.length-1].split("-"), dz=new Date(+ultima[0],+ultima[1]-1,+ultima[2]), fine=dz>oggi?dz:oggi;
+  /* numeri: allenamenti, a settimana, riposo piu' lungo */
+  const nAll=Q.date.length, setti=Math.max(1,Math.ceil(((fine-lun)/864e5+1)/7));
+  let gap=0; for(let i=1;i<Q.date.length;i++){const a=Q.date[i-1].split("-"),b=Q.date[i].split("-");
+    const g=Math.round((new Date(+b[0],+b[1]-1,+b[2])-new Date(+a[0],+a[1]-1,+a[2]))/864e5)-1; if(g>gap)gap=g}
+  const t=el("div","d-tiles");
+  t.innerHTML='<div><span class="d-lab">Allenamenti</span><b>'+nAll+'</b><em>giorni segnati in app</em></div>'+
+    '<div><span class="d-lab">A settimana</span><b>'+f1(nAll/setti)+'</b><em>media su '+setti+' settiman'+(setti===1?'a':'e')+'</em></div>'+
+    '<div><span class="d-lab">Riposo più lungo</span><b>'+gap+'</b><em>giorn'+(gap===1?'o':'i')+' di fila</em></div>';
+  s.appendChild(t);
+  const g=el("div","d-graf"); g.appendChild(el("div","d-gs","Il calendario vero, dal lunedì alla domenica. Pieno = ti sei allenato (la lettera è il giorno del programma), vuoto = riposo."));
+  let h='<table class="d-fq"><thead><tr><th></th>'+["L","M","M","G","V","S","D"].map(function(x){return '<th>'+x+'</th>'}).join("")+'</tr></thead><tbody>';
+  for(let d=new Date(lun);d<=fine;d.setDate(d.getDate()+7)){
+    let riga='', ws={};
+    for(let i=0;i<7;i++){const x=new Date(d);x.setDate(d.getDate()+i);const k=chiaveData(x),q=Q.giorni[k],fut=x>oggi,og=+x===+oggi;
+      if(q) q.forEach(function(y){ws[y.w]=1});
+      riga+='<td><span class="d-fd'+(q?' on':'')+(fut?' fut':'')+(og?' oggi':'')+'" title="'+x.getDate()+' '+MESI[x.getMonth()]+(q?' · '+q.map(function(y){return 'S'+y.w+' Giorno '+y.g}).join(', '):(fut?'':' · riposo'))+'">'+
+        (q?q.map(function(y){return y.g}).join(""):x.getDate())+'</span></td>'}
+    const sw=Object.keys(ws).map(Number).sort(function(a,b){return a-b});
+    h+='<tr><th><b>'+d.getDate()+' '+MESI[d.getMonth()]+'</b>'+(sw.length?'<i>'+sw.map(function(w){return 'S'+w}).join(' ')+'</i>':'')+'</th>'+riga+'</tr>'}
   h+='</tbody></table>';
   g.appendChild(el("div","d-calw",h));
-  if(passati) g.appendChild(el("p","d-nota",'<b>'+fatti+'</b> giorni fatti tutti su <b>'+passati+'</b> fino alla S'+ultimaW+'.'));
+  if(Q.senza.length) g.appendChild(el("p","d-nota","Le settimane "+Q.senza.map(function(w){return "S"+w}).join(", ")+" sono fatte ma senza data (prima dell’app): non sono nel calendario."));
+  s.appendChild(g); dash.appendChild(s);
+}
+function sezIntensita(D){
+  const con=D.filter(function(x){return x.c>0}); if(!con.length) return;
+  const s=el("section","d-sez"); s.dataset.sez="intensita"; s.appendChild(el("h2","d-h","Intensità relativa e volume"));
+  const g=el("div","d-graf"); g.appendChild(el("div","d-gs","<b>Teorici, dal programma.</b> Colonne: i colpi in programma con un % del massimale. Linea: il % medio di quei colpi. Tocca una settimana."));
+  const W=340,H=170,L=34,R=34,T=18,B=24,n=D.length;
+  const cmax=Math.max.apply(null,con.map(function(x){return x.c})), passo=scala(cmax*1.1), ctop=Math.ceil(cmax*1.05/passo)*passo;
+  const imin=Math.floor((Math.min.apply(null,con.map(function(x){return x.i}))-5)/5)*5, imax=Math.ceil((Math.max.apply(null,con.map(function(x){return x.i}))+3)/5)*5;
+  const yc=function(v){return T+(ctop-v)*(H-T-B)/ctop}, yi=function(v){return T+(imax-v)*(H-T-B)/(imax-imin)};
+  const bw=(W-L-R)/n, wd=Math.min(20,bw*0.55);
+  let sv='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Intensità relativa e volume per settimana">';
+  for(let v=0;v<=ctop+1e-9;v+=passo) sv+='<line class="d-grid" x1="'+L+'" x2="'+(W-R)+'" y1="'+yc(v)+'" y2="'+yc(v)+'"/><text x="'+(L-6)+'" y="'+(yc(v)+3)+'" text-anchor="end">'+v+'</text>';
+  for(let v=imin;v<=imax;v+=5) sv+='<text x="'+(W-R+6)+'" y="'+(yi(v)+3)+'">'+v+'%</text>';
+  let pts=[];
+  D.forEach(function(x,i){const cx=L+i*bw+(bw-wd)/2;
+    if(x.c>0){sv+='<rect x="'+cx+'" y="'+yc(x.c)+'" width="'+wd+'" height="'+(H-B-yc(x.c))+'" rx="3" fill="var(--line)"/>';pts.push([cx+wd/2,yi(x.i)])}
+    sv+='<text x="'+(cx+wd/2)+'" y="'+(H-B+14)+'" text-anchor="middle">S'+x.w+'</text>';
+    sv+='<rect class="d-hit" data-i="'+i+'" x="'+(L+i*bw)+'" y="'+T+'" width="'+bw+'" height="'+(H-T-B+18)+'" fill="transparent"/>'});
+  if(pts.length>1) sv+='<polyline points="'+pts.map(function(p){return p.join(",")}).join(" ")+'" fill="none" stroke="'+COL+'" stroke-width="2.2" stroke-linejoin="round"/>';
+  pts.forEach(function(p){sv+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="3.2" fill="'+COL+'"/>'});
+  sv+='</svg>';
+  const box=el("div","d-svg",sv); g.appendChild(box);
+  box.querySelectorAll(".d-hit").forEach(function(hh){hh.addEventListener("click",function(ev){ev.stopPropagation();
+    const i=+hh.dataset.i,x=D[i],r=box.getBoundingClientRect(),sc=r.width/W;
+    tip(box,(L+i*bw+bw/2)*sc,(x.c?Math.min(yc(x.c),yi(x.i)):H-B)*sc,'<b>S'+x.w+'</b>'+(x.c?f1(x.i)+'% medio · '+x.c+' colpi':'niente con il %'))})});
+  box.addEventListener("click",function(){nascondiTip(box)});
+  g.appendChild(el("div","d-leg",'<span><i class="d-lb"></i>volume (colpi)</span><span><i class="d-ll"></i>intensità (% del massimale)</span>'));
   s.appendChild(g); dash.appendChild(s);
 }
 function sezVolume(V){
