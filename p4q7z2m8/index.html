@@ -730,10 +730,14 @@ function usato(bk,k,i,t){
   const ms=serieMulti(k,i,t); if(ms) return usatoSerie(bk,k,i,t,ms);
   const pr=precUsato(bk,k,i), zav=/zavorr|corpo libero/i.test(t||"");
   const piu=/salire|ogni serie/i.test(t||"");
-  const kk="U_"+k+"_"+i, v=state[kk]||"";
+  const kk="U_"+k+"_"+i; let v=state[kk]||"";
+  /* esercizi a peso fisso (posturali: Y e T, face pull): il peso scritto la prima volta resta, non si riscrive ogni volta
+     (coach, 5/11). Si vede gia' scritto; se cambia, lo si corregge e da li' in avanti vale il nuovo */
+  const b0=bloccoDi(bk), fisso=!!(b0&&b0.rec===false&&!v&&pr);
+  if(fisso) v=pr.v;
   return '<span class="mx usato"><input type="text"'+(piu?'':' inputmode="decimal"')+' class="mini" data-k="'+kk+
     '" value="'+esc(v)+'" placeholder="'+(pr?esc(pr.s+": "+pr.v):(piu?"60-70-80":"kg"))+'" style="width:'+(piu?104:84)+'px">'+
-    '<em>'+(zav?'kg di zavorra':'kg usati')+'</em></span>'+(t?'<span class="raw">'+t+'</span>':'');
+    '<em>'+(zav?'kg di zavorra':'kg usati')+(fisso?' \u00b7 resta quello':'')+'</em></span>'+(t?'<span class="raw">'+t+'</span>':'');
 }
 /* pesi diversi serie per serie (12-10-8 «a salire», 60-70-80): una casella per ogni serie, sotto i suoi colpi.
    Le caselle sono U_<riga>_<pezzo>_s0, _s1…; U_<riga>_<pezzo> resta il riassunto «60-70-80» (2026-11-03) */
