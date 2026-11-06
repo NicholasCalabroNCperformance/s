@@ -31,6 +31,12 @@ html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.4 -apple-sy
 .filtri::-webkit-scrollbar{display:none}
 .filtri button{flex:0 0 auto;font:600 13px -apple-system,sans-serif;color:#D6D4CC;background:transparent;border:1px solid #3A3A42;border-radius:999px;padding:7px 12px}
 .filtri button[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:#fff}
+.tuttebox{max-width:640px;margin:14px auto 0;text-align:center}
+.tuttebox button{width:100%;font:650 15px -apple-system,sans-serif;border:1px solid var(--gold);background:none;color:var(--gold);border-radius:12px;padding:12px}
+.tuttebox button[disabled]{opacity:.55}
+.tuttebox span{display:block;color:var(--mute);font-size:12px;margin-top:7px;line-height:1.45}
+.riga.caricando{opacity:.5}
+.riga.caricando .quando::after{content:" · apro…";color:var(--gold)}
 main{max-width:640px;margin:0 auto;padding:12px 16px calc(env(safe-area-inset-bottom) + 30px)}
 .lista{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden}
 .riga{display:flex;align-items:center;gap:12px;padding:12px 14px;border-top:1px solid var(--line);cursor:pointer}
@@ -83,12 +89,16 @@ main{max-width:640px;margin:0 auto;padding:12px 16px calc(env(safe-area-inset-bo
     <button id="salvak" type="button">Entra</button>
   </div>
   <div id="lista"></div>
+  <div class="tuttebox" id="tuttebox" hidden>
+    <button type="button" id="tutte">Carica tutte le schede</button>
+    <span>Serve per fare il punto: le schede si aprono gi&agrave; pronte, senza attesa.</span>
+  </div>
   <div id="stato" class="msg" hidden></div>
   <div class="piede" id="piede" hidden>Le schede che apri da qui sono una copia dell’archivio: quello che tocchi non va all’archivio.<br>
     I nomi li scrivi tu con la matita e restano solo su questo telefono. <button id="cambiak" type="button">Cambia chiave</button></div>
 </main>
 <script>
-const ARCH="https://script.google.com/macros/s/AKfycbxAHwzQlwAaeNLaKEy0EHuY-QOC7aiu-AnScNLi1J_kElFpdx4FNrEhDSbT3MSmlCSV/exec", MAP={"nicho": "k3m9x7q2", "sab": "ki48cgwe", "af": "b6t3w9k1", "collaudo": "p4q7z2m8"}, PROG={"nicho": "Mesociclo 5", "sab": "Mesociclo 2", "af": "Mesociclo 3", "collaudo": "Collaudo"}, QUI=location.pathname;
+const ARCH="https://script.google.com/macros/s/AKfycbxAHwzQlwAaeNLaKEy0EHuY-QOC7aiu-AnScNLi1J_kElFpdx4FNrEhDSbT3MSmlCSV/exec", MAP={"nicho": "k3m9x7q2", "sab": "ki48cgwe", "af": "b6t3w9k1", "collaudo": "p4q7z2m8", "si": "s7h2n4v6"}, PROG={"nicho": "Mesociclo 5", "sab": "Mesociclo 2", "af": "Mesociclo 3", "collaudo": "Collaudo", "si": "Mesociclo 5"}, QUI=location.pathname;
 const $=function(id){return document.getElementById(id)};
 function g(k){try{return localStorage.getItem(k)}catch(e){return null}}
 function s(k,v){try{localStorage.setItem(k,v)}catch(e){}}
@@ -100,28 +110,43 @@ function quando(iso){const d=new Date(iso);if(isNaN(d))return "";const n=giorni(
 function iniziali(t){const p=String(t).trim().split(/\s+/);return ((p[0]||"")[0]||"").toUpperCase()+((p[1]||"")[0]||(p[0]||"")[1]||"").toUpperCase()}
 function norm(t){return String(t||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"")}
 let DATI=[], FILTRO="tutti", APERTO=null;
-function mostraChiave(){$("chiave").hidden=false;["cercaBox","filtri","piede","stato"].forEach(function(i){$(i).hidden=true});$("lista").innerHTML="";$("conta").hidden=true;setTimeout(function(){$("k").focus()},50)}
+function mostraChiave(){$("chiave").hidden=false;["cercaBox","filtri","piede","stato","tuttebox"].forEach(function(i){$(i).hidden=true});$("lista").innerHTML="";$("conta").hidden=true;setTimeout(function(){$("k").focus()},50)}
 $("salvak").onclick=function(){const v=$("k").value.trim();if(!v)return;s("nc-coach-k",v);$("chiave").hidden=true;carica()};
 $("k").addEventListener("keydown",function(e){if(e.key==="Enter")$("salvak").click()});
 $("cambiak").onclick=function(){$("k").value="";mostraChiave()};
-$("aggiorna").onclick=carica;
+$("aggiorna").onclick=function(){carica(COMPLETI)};
+$("tutte").onclick=function(){carica(true)};
 $("cerca").addEventListener("input",function(){$("pulisci").style.display=this.value?"block":"none";disegna()});
 $("pulisci").onclick=function(){$("cerca").value="";this.style.display="none";disegna();$("cerca").focus()};
 $("filtri").addEventListener("click",function(e){const b=e.target.closest("[data-f]");if(!b)return;FILTRO=b.dataset.f;
   this.querySelectorAll("button").forEach(function(x){x.setAttribute("aria-pressed",x===b?"true":"false")});disegna()});
 function stato(t,err){const e=$("stato");e.hidden=!t;e.textContent=t||"";e.className="msg"+(err?" err":"")}
-async function carica(){
+/* All'apertura si legge SOLO l'elenco: con 20-30 clienti i dati di tutti sono troppi e lenti.
+   I dati di una persona arrivano quando la tocchi, e restano in memoria per il resto della sessione.
+   «Carica tutte» li prende tutti in un colpo, per fare il punto della situazione. (coach, 6/11) */
+let COMPLETI=false;
+async function chiama(extra){
+  const k=g("nc-coach-k"); if(!k) return null;
+  try{const r=await fetch(ARCH+"?k="+encodeURIComponent(k)+(extra||"")+"&t="+Date.now(),{credentials:"omit",cache:"no-store"});return await r.json()}catch(e){return null}
+}
+function erroreArchivio(j){
+  if(!j){stato("Non riesco a leggere l’archivio: controlla la rete e riprova.",true);return true}
+  if(!j.ok){if(j.err==="chiave"){s("nc-coach-k","");stato("Chiave sbagliata.",true);setTimeout(mostraChiave,900)}else stato("Errore: "+j.err,true);return true}
+  return false;
+}
+async function carica(tutte){
   const k=g("nc-coach-k"); if(!k){mostraChiave();return}
-  $("aggiorna").classList.add("gira"); if(!DATI.length) stato("Leggo l’archivio…");
-  let j=null;
-  try{const r=await fetch(ARCH+"?k="+encodeURIComponent(k)+"&t="+Date.now(),{credentials:"omit",cache:"no-store"});j=await r.json()}catch(e){}
-  $("aggiorna").classList.remove("gira");
-  if(!j){stato("Non riesco a leggere l’archivio: controlla la rete e riprova.",true);return}
-  if(!j.ok){if(j.err==="chiave"){s("nc-coach-k","");stato("Chiave sbagliata.",true);setTimeout(mostraChiave,900)}else stato("Errore: "+j.err,true);return}
+  $("aggiorna").classList.add("gira");
+  const b=$("tutte"); if(tutte){b.disabled=true;b.textContent="Carico…"}
+  if(!DATI.length) stato(tutte?"Leggo tutte le schede…":"Leggo l’elenco…");
+  const j=await chiama(tutte?"":"&lista=1");
+  $("aggiorna").classList.remove("gira"); b.disabled=false;
+  if(erroreArchivio(j)){b.textContent="Carica tutte";return}
+  COMPLETI=!!tutte; b.textContent=tutte?"Tutte caricate":"Carica tutte";
   DATI=(j.schede||[]).filter(function(x){return x.persona!=="collaudo"||MAP.collaudo});
   /* ogni scheda collegata compare sempre, anche se l'atleta non ha ancora segnato niente (coach, 4/11 sera) */
   Object.keys(MAP).forEach(function(p){if(!DATI.some(function(x){return x.persona===p}))DATI.push({persona:p,programma:PROG[p]||"",nuova:true,n:0})});
-  ["cercaBox","filtri","piede"].forEach(function(i){$(i).hidden=false}); stato("");
+  ["cercaBox","filtri","piede","tuttebox"].forEach(function(i){$(i).hidden=false}); stato("");
   disegna();
 }
 function disegna(){
@@ -147,7 +172,7 @@ function disegna(){
       const c=r.querySelector(".cose"); c.innerHTML='<button class="link" type="button">Copia il link</button>';
       c.querySelector("button").onclick=function(e){e.stopPropagation();copia(location.origin+"/s/"+MAP[x.persona]+"/",this)}}
     else{r.querySelector(".quando").textContent=quando(x.aggiornato); r.querySelector(".cose").textContent=(x.n||0)+" segnate"}
-    r.onclick=function(e){if(e.target.closest(".mat"))return;apri(x,titolo)};
+    r.onclick=function(e){if(e.target.closest(".mat"))return;apri(x,titolo,r)};
     r.querySelector(".mat").onclick=function(e){e.stopPropagation();APERTO=APERTO===x.persona?null:x.persona;disegna()};
     box.appendChild(r);
     if(APERTO===x.persona){const f=document.createElement("div");f.className="ren";
@@ -160,8 +185,18 @@ function disegna(){
 function copia(u,b){const ok=function(){const t=b.textContent;b.textContent="Copiato ✓";setTimeout(function(){b.textContent=t},2000)};
   if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(u).then(ok).catch(function(){prompt("Il link:",u)});else prompt("Il link:",u)}
 function esc(t){return String(t).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
-function apri(x,nome){
+async function apri(x,nome,riga){
   const cart=MAP[x.persona]; if(!cart){stato("Per «"+x.persona+"» non c’è ancora una scheda collegata a questa pagina.",true);return}
+  /* nell'elenco i dati non ci sono: si prendono adesso, solo per questa persona, e restano in memoria */
+  if(!x.nuova&&!x.st){
+    if(riga) riga.classList.add("caricando");
+    const j=await chiama("&p="+encodeURIComponent(x.persona));
+    if(riga) riga.classList.remove("caricando");
+    if(erroreArchivio(j))return;
+    const trovata=(j.schede||[]).filter(function(y){return y.persona===x.persona})[0];
+    if(!trovata||!trovata.st){stato("Per «"+(nome||x.persona)+"» l’archivio non ha ancora dati.",true);return}
+    x.st=trovata.st; x.ls=trovata.ls||x.ls; x.aggiornato=trovata.aggiornato||x.aggiornato; stato("");
+  }
   const D=x.st||{}; const st=D.st||D, sto=D.sto||null;
   try{
     if(x.ls) localStorage.setItem(x.ls,JSON.stringify(st));     /* scheda non ancora usata: niente dati da copiare */
@@ -170,7 +205,7 @@ function apri(x,nome){
   }catch(e){}
   location.href="../"+cart+"/?coach="+Date.now();
 }
-carica();
+carica(false);
 if("serviceWorker" in navigator) window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})});
 </script>
 </body></html>
