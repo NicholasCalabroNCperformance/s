@@ -150,6 +150,20 @@ font:700 14px/1 -apple-system,sans-serif;letter-spacing:.06em}
 .manda.vuoto{background:var(--line);color:#8A8A92}
 .mandanota{font:400 11.5px/1.45 -apple-system,sans-serif;color:var(--mute);margin:8px 0 0;text-align:center}
 
+/* prova dei suoni della fatica (solo campo di prova) */
+#fatprova{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:12px 0 0;padding:10px 12px;border:1px dashed var(--gold);border-radius:12px;background:var(--card)}
+#fatprova span{font:700 10px/1.2 -apple-system,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);width:100%}
+#fatprova span em{font-style:normal;color:var(--mute);letter-spacing:.06em}
+#fatprova button{border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:8px 12px;font:600 13px -apple-system,sans-serif}
+#fatprova button[aria-pressed="true"]{border-color:var(--gold);background:var(--gold);color:#fff}
+#fatprova i{display:block;width:100%;height:1px;background:var(--line);margin:4px 0}
+#fatprova .demo{width:100%;display:flex;align-items:center;gap:6px;margin-top:4px;font:600 12px -apple-system,sans-serif;color:var(--mute)}
+#fatprova .demo b{font-weight:700}
+/* vista coach */
+#coachbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:14px;padding:calc(env(safe-area-inset-top) + 10px) 16px 10px;background:#23232A;color:#E9D9B0;font-size:14px;border-bottom:1px solid #A9863B}
+#coachbar a{color:#C9A961;text-decoration:none;font-weight:700;white-space:nowrap;padding:8px 12px;margin:-8px 0 -8px -12px;border-radius:10px;font-size:15px}
+#coachbar a:active{background:#34343B}
+#coachbar b{color:#fff}
 /* onde, giri, ramping, MAX */
 .wk .gl{display:flex;justify-content:space-between;align-items:center;gap:14px}
 .wk .gl .car{margin-top:0;text-align:right;font-size:17px}
@@ -345,6 +359,55 @@ font:700 11.5px/1 -apple-system,sans-serif;cursor:pointer;white-space:nowrap}
 font:400 12.5px/1.35 -apple-system,sans-serif;max-width:230px;box-shadow:0 6px 18px rgba(0,0,0,.18)}
 #dash .d-tip b{display:block;font-weight:700;font-size:11px;letter-spacing:.06em}
 #dash .d-tip em{display:block;font-style:normal;font-weight:700;color:#C9A961;margin-top:2px}
+#dash .d-tiles small{font-size:14px;color:var(--mute);font-weight:600;margin-left:2px}
+#dash .d-lista{margin-top:10px}
+#dash .d-dure,#dash .d-barre,#dash .d-stima{list-style:none;margin:0;padding:0}
+#dash .d-dure li{display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid var(--line)}
+#dash .d-dure li:first-child{border-top:0}
+#dash .d-fp{flex:0 0 30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font:700 14px -apple-system,sans-serif;color:#fff;background:var(--gold)}
+#dash .d-fp[data-v="8"],#dash .d-fp[data-v="9"],#dash .d-fp[data-v="10"]{background:#8C2F1F}
+#dash .d-nm{flex:1;min-width:0;font:600 14px/1.3 -apple-system,sans-serif;color:var(--ink)}
+#dash .d-dure .d-qd,#dash .d-stima .d-qd{font:600 11px/1.3 -apple-system,sans-serif;color:var(--mute)}
+#dash .d-barre li{display:grid;grid-template-columns:1fr 34%;grid-template-rows:auto auto;column-gap:10px;padding:7px 0;border-top:1px solid var(--line)}
+#dash .d-barre li:first-child{border-top:0}
+#dash .d-barre .d-nm{grid-column:1;font-size:13px}
+#dash .d-barre b{grid-column:2;grid-row:1;text-align:right;font:700 13px -apple-system,sans-serif;color:var(--ink)}
+#dash .d-barre .d-bar{grid-column:1/3;grid-row:2;height:6px;border-radius:3px;background:var(--band);margin-top:5px;overflow:hidden}
+#dash .d-barre .d-bar i{display:block;height:100%;background:var(--gold);border-radius:3px}
+#dash .d-stima li{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;padding:9px 0;border-top:1px solid var(--line)}
+#dash .d-stima li:first-child{border-top:0}
+#dash .d-stima b{font:600 22px/1.1 -apple-system,sans-serif;color:var(--ink)}
+#dash .d-stima .d-qd{width:100%}
+.tbx .tes{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;margin:0 0 10px}
+.tbx .tes .lb{width:100%}
+#dash .d-calw{overflow-x:auto}
+#dash .d-fq{border-collapse:separate;border-spacing:3px;margin:0 auto;width:100%;max-width:340px}
+#dash .d-fq thead th{font:700 10px -apple-system,sans-serif;color:var(--mute);text-align:center}
+#dash .d-fq tbody th{font:600 10px/1.15 -apple-system,sans-serif;color:var(--mute);text-align:left;white-space:nowrap;padding-right:4px}
+#dash .d-fq tbody th b{display:block;color:var(--ink);font-weight:700}
+#dash .d-fq tbody th i{font-style:normal;color:var(--gold);font-weight:700}
+#dash .d-fq td{padding:0}
+#dash .d-fd{display:flex;align-items:center;justify-content:center;height:30px;border-radius:7px;border:1.5px solid var(--line);font:600 10.5px -apple-system,sans-serif;color:var(--mute);box-sizing:border-box}
+#dash .d-fd.on{background:var(--gold);border-color:var(--gold);color:#fff;font-weight:800;font-size:12px}
+#dash .d-fd.fut{border-style:dashed;opacity:.45}
+#dash .d-fd.oggi{box-shadow:0 0 0 2px var(--ink) inset}
+#dash .d-leg{display:flex;gap:16px;justify-content:center;font:600 11px -apple-system,sans-serif;color:var(--mute);margin-top:6px}
+#dash .d-leg i{display:inline-block;vertical-align:-1px;margin-right:6px}
+#dash .d-lb{width:10px;height:10px;border-radius:2px;background:var(--line)}
+#dash .d-ll{width:14px;height:3px;border-radius:2px;background:var(--gold);vertical-align:2px!important}
+#dash .d-cal{border-collapse:separate;border-spacing:3px;margin:0 auto}
+#dash .d-cal th{font:700 9.5px -apple-system,sans-serif;color:var(--mute);padding:0 2px}
+#dash .d-cal td{padding:0}
+#dash .d-q{display:block;width:20px;height:20px;border-radius:5px;border:1.5px solid var(--line);box-sizing:border-box}
+#dash .d-q2{background:var(--gold);border-color:var(--gold)}
+#dash .d-q1{background:linear-gradient(135deg,var(--gold) 50%,transparent 50%);border-color:var(--gold)}
+#dash .d-q-1{border-style:dashed;opacity:.35}
+#dash .d-fut{opacity:.45}
+#dash .d-scelte{margin-top:18px}
+#dash .d-sce[hidden]{display:none}
+#dash .d-sce{display:flex;flex-direction:column;gap:8px;margin-top:10px;padding:12px 14px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+#dash .d-sce label{font:500 14px -apple-system,sans-serif;color:var(--ink);display:flex;align-items:center;gap:8px}
+#dash .d-sce input{width:18px;height:18px;accent-color:var(--gold)}
 #dash .d-tabw{overflow-x:auto;margin-top:10px;border-top:1px solid var(--line);padding-top:8px}
 #dash .d-tab{width:100%;border-collapse:collapse;font:400 13px/1.35 -apple-system,sans-serif;font-variant-numeric:tabular-nums}
 #dash .d-tab caption{text-align:left;font:700 9.5px/1.2 -apple-system,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);padding-bottom:6px}
@@ -356,6 +419,61 @@ font:400 13px/1.5 -apple-system,sans-serif;color:var(--ink)}
 #dash .d-come b{color:var(--gold)}
 @media print{.vista,#dash{display:none!important}}
 footer .diag{margin-top:6px;font:400 11px/1.4 -apple-system,sans-serif;color:var(--mute)}
+/* l'allenamento: tasto nella fascia del giorno, timer, durata, tasto di fine (2026-11-07) */
+.daybar{flex-wrap:wrap}
+.daybar .att{flex:0 0 auto;margin-left:auto;display:inline-flex;align-items:baseline;gap:6px;border:1.5px solid rgba(255,255,255,.85);border-radius:999px;
+background:transparent;color:#fff;padding:6px 11px;font:700 10.5px/1 -apple-system,sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+.daybar button.att:active{background:rgba(255,255,255,.18)}
+.daybar .att em{font:700 9px/1 -apple-system,sans-serif;font-style:normal;letter-spacing:.1em;opacity:.9}
+.daybar .att b{font:700 13px/1 -apple-system,sans-serif;letter-spacing:0;font-variant-numeric:tabular-nums}
+.daybar .att.on{background:#fff;color:var(--gold);border-color:#fff}
+.daybar .att.fatto{border-style:dashed}
+.daybar .att .riapri{border:0;background:none;color:#fff;font:600 10px/1 -apple-system,sans-serif;text-decoration:underline;text-underline-offset:2px;padding:0 0 0 4px;letter-spacing:0;text-transform:none;cursor:pointer}
+.daybar .att.fatto .riapri{opacity:.85}
+.attfine{display:flex;flex-direction:column;align-items:stretch;gap:6px;margin:4px 0 18px}
+.attfine button{border:1.5px solid var(--gold);border-radius:10px;background:var(--card);color:var(--gold);padding:13px 16px;
+font:700 12px/1 -apple-system,sans-serif;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+.attfine button:active{background:var(--gold);color:#fff}
+.attfine span{font:400 11.5px/1.4 -apple-system,sans-serif;color:var(--mute);text-align:center}
+@media print{.daybar .att,.attfine{display:none!important}}
+/* calendario del mese */
+#dash .d-calnav{display:flex;align-items:center;justify-content:space-between;margin:2px 0 10px}
+#dash .d-calnav b{font:700 15px/1.2 Georgia,serif;color:var(--ink);text-transform:capitalize}
+#dash .d-calnav button{width:36px;height:36px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);font:700 20px/1 -apple-system,sans-serif;cursor:pointer}
+#dash .d-calnav button:disabled{opacity:.3;cursor:default}
+#dash .d-mese td{padding:0;width:14.28%}
+#dash .d-mese .d-fd{position:relative;flex-direction:column;height:44px;width:100%;gap:1px;border-radius:9px;cursor:default;padding:0;background:var(--card)}
+#dash .d-mese .d-fd i{font:600 11px/1 -apple-system,sans-serif;font-style:normal;color:var(--mute)}
+#dash .d-mese .d-fd b{font:800 12.5px/1 -apple-system,sans-serif;letter-spacing:.04em}
+#dash .d-mese .d-fd.on{background:var(--gold);border-color:var(--gold);cursor:pointer}
+#dash .d-mese .d-fd.on i{color:rgba(255,255,255,.85)}
+#dash .d-mese .d-fd.on b{color:#fff}
+#dash .d-mese .d-fd.on.inf{background:var(--card);border-color:var(--gold);border-style:dashed}
+#dash .d-mese .d-fd.on.inf i{color:var(--mute)}
+#dash .d-mese .d-fd.on.inf b{color:var(--gold)}
+#dash .d-mese .d-fd.corso b::after{content:"";display:inline-block;width:6px;height:6px;border-radius:999px;background:#fff;margin-left:3px;vertical-align:1px}
+#dash .d-mese .d-fd.sel{box-shadow:0 0 0 2px var(--ink)}
+#dash .d-mese .d-fd.fuori{border:0;background:transparent}
+#dash .d-mese .d-fd.fut{border-style:dashed;opacity:.45}
+#dash .d-mese .d-fd.oggi:not(.sel){box-shadow:0 0 0 2px var(--ink) inset}
+#dash .d-l1{width:12px;height:12px;border-radius:3px;background:var(--gold)}
+#dash .d-l2{width:12px;height:12px;border-radius:3px;border:1.5px dashed var(--gold);box-sizing:border-box}
+#dash .d-l3{width:12px;height:12px;border-radius:3px;border:1.5px solid var(--line);box-sizing:border-box}
+#dash .d-li{width:14px;height:0;border-top:2px dashed var(--ink);vertical-align:2px!important}
+#dash .d-leg{flex-wrap:wrap;row-gap:4px}
+#dash .d-caldet{margin-top:12px;border-top:1px solid var(--line);padding-top:10px}
+#dash .d-caldet[hidden]{display:none}
+#dash .d-cdd{font:700 10.5px/1.2 -apple-system,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+#dash .d-cdw{margin-top:6px}
+#dash .d-cdw>b{display:block;font:700 15px/1.2 Georgia,serif;color:var(--ink)}
+#dash .d-cdw>em{display:block;font:400 11.5px/1.3 -apple-system,sans-serif;font-style:normal;color:var(--mute);margin-top:2px}
+#dash .d-cdw ul{list-style:none;margin:6px 0 0;padding:0}
+#dash .d-cdw li{display:flex;align-items:baseline;gap:8px;padding:6px 0;border-top:1px dashed var(--line);font:400 13px/1.35 -apple-system,sans-serif}
+#dash .d-cdw li span{flex:0 0 112px;font:700 10px/1.3 -apple-system,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+#dash .d-cdw li b{font:700 14px/1.3 -apple-system,sans-serif;color:var(--ink)}
+#dash .d-cdw li small{font:400 11.5px/1.3 -apple-system,sans-serif;color:var(--mute)}
+#dash .d-cdw li.d-cdf b{font-weight:500;font-size:13px}
+#dash .d-cdw li.d-cdf b i{font-style:normal;font-weight:800;color:var(--gold)}
 
 .inst{display:none;background:#23232A;color:#EDEDEE;border-radius:10px;padding:13px 15px;
 margin:0 0 16px;font:400 13px/1.5 -apple-system,sans-serif}
@@ -386,7 +504,7 @@ text-align:left;display:flex;align-items:center;gap:7px}
 <div id="out"></div>
 <div class="btns"><button onclick="window.print()">Stampa / salva in PDF</button></div>
 <footer>Quello che scrivi resta salvato su questo telefono.</footer></div>
-<script>const GIORNI=[{"id": "A", "head": "GIORNO A", "blocks": [{"t": "PANCA PIANA — forza", "nome": "PANCA PIANA", "ruolo": "forza", "rows": [{"s": "S1", "f": "Test", "se": "ramp + 2", "rp": "3 / 3", "ca": "da ~70 kg sali al 3RM poi 2 serie al 90% del test", "rec": "3 min", "n": "[TEST 3 COLPI] Sali a singole e doppie fino al massimo carico con cui chiudi 3 colpi puliti — l ultimo deve somigliare al primo, non va a cedimento. SCRIVI IL NUMERO NEGLI APPUNTI: tutte le settimane dopo girano su questo. Poi togli il 10% e fai 2 sole serie da 3 a quel peso. Polsiere, presa larga come sempre.", "ap": "", "es": ""}, {"s": "S2", "f": "Lavoro", "se": "5", "rp": "3", "ca": "90% del 3RM", "rec": "3 min", "n": "[DENTE DI SEGA] 5 serie da 3 al 90% del peso del test. Prima onda corta: poche ripetizioni, carico gia serio ma controllato.", "ap": "", "es": ""}, {"s": "S3", "f": "Lavoro", "se": "5", "rp": "5", "ca": "85% del 3RM", "rec": "3 min", "n": "[DENTE DI SEGA] 5 serie da 5 al 85% del peso del test. Onda lunga: piu ripetizioni a carico piu basso. Le due onde salgono in parallelo, non si incrociano.", "ap": "", "es": ""}, {"s": "S4", "f": "Lavoro", "se": "5", "rp": "3", "ca": "95% del 3RM", "rec": "3 min", "n": "[DENTE DI SEGA] 5 serie da 3 al 95% del peso del test. Seconda onda corta, un gradino sopra la prima.", "ap": "", "es": ""}, {"s": "S5", "f": "Lavoro", "se": "5", "rp": "5", "ca": "90% del 3RM", "rec": "3 min", "n": "[DENTE DI SEGA] 5 serie da 5 al 90% del peso del test. Onda lunga, un gradino sopra la precedente: piu pesante di due settimane fa, piu leggera di settimana scorsa.", "ap": "", "es": ""}, {"s": "S6", "f": "Lavoro", "se": "5", "rp": "3", "ca": "peso del test", "rec": "3 min", "n": "[DENTE DI SEGA] 5 serie da 3 al 100% del peso del test. PUNTA DEL BLOCCO: il tuo 3RM ripetuto 5 volte. Se una serie si rompe, recuperi e continui finche non hai fatto i 15 colpi totali, anche spezzandoli.", "ap": "", "es": ""}, {"s": "S7", "f": "Lavoro", "se": "5", "rp": "5", "ca": "95% del 3RM = il tuo 5RM stimato", "rec": "3 min", "n": "[DENTE DI SEGA] 5 serie da 5 al 95% del peso del test. ULTIMA ONDA: 5 colpi a quello che dovrebbe essere il tuo 5RM, calcolato dal test di S1. Se una serie si rompe, recuperi e continui finche non hai fatto i 25 colpi totali, anche spezzandoli.", "ap": "", "es": ""}, {"s": "S8", "f": "Misura", "se": "ramp + 2", "rp": "3 / 3", "ca": "ri-test poi 2 serie al 90%", "rec": "3 min", "n": "[MISURA] Si rifa lo stesso test di S1, 3 colpi puliti, poi 2 serie da 3 al 90% del nuovo peso. Scrivi il numero accanto a quello di S1: la differenza e il risultato di otto settimane e diventa il riferimento del prossimo blocco.", "ap": "", "es": ""}]}, {"t": "STACCO — forza", "nome": "STACCO", "ruolo": "forza", "rows": [{"s": "S1", "f": "Test", "se": "ramp + 2", "rp": "3 / 3", "ca": "da ~100 kg sali al 3RM poi 2 serie al 90% del test", "rec": "3 min", "n": "[TEST 3 COLPI] Sali fino al carico con cui chiudi 3 colpi puliti, senza cedimento. SCRIVI IL NUMERO NEGLI APPUNTI. Poi togli il 10% e fai 2 sole serie da 3. Ogni colpo riparte da terra ferma, mai di rimbalzo.", "ap": "", "es": ""}, {"s": "S2", "f": "Lavoro", "se": "4", "rp": "5", "ca": "77,5% del 3RM", "rec": "3 min", "n": "[CARICO CHE SALE] 4 serie da 5 al 77,5% del peso del test. Si parte largo e leggero: quattro serie da 5 che devono uscire veloci da terra.", "ap": "", "es": ""}, {"s": "S3", "f": "Lavoro", "se": "4", "rp": "5", "ca": "82,5% del 3RM", "rec": "3 min", "n": "[CARICO CHE SALE] 4 serie da 5 al 82,5% del peso del test. Stessi colpi, primo gradino di carico.", "ap": "", "es": ""}, {"s": "S4", "f": "Lavoro", "se": "4", "rp": "4", "ca": "87,5% del 3RM", "rec": "3 min", "n": "[CARICO CHE SALE] 4 serie da 4 al 87,5% del peso del test. Scende un colpo e sale il carico: e il baratto del blocco, e si ripete fino in fondo.", "ap": "", "es": ""}, {"s": "S5", "f": "Lavoro", "se": "4", "rp": "4", "ca": "90% del 3RM", "rec": "3 min", "n": "[CARICO CHE SALE] 4 serie da 4 al 90% del peso del test. Stessi quattro colpi, un gradino sopra.", "ap": "", "es": ""}, {"s": "S6", "f": "Lavoro", "se": "4", "rp": "3", "ca": "92,5% del 3RM", "rec": "3 min", "n": "[CARICO CHE SALE] 4 serie da 3 al 92,5% del peso del test. Tre colpi: da qui in poi e lavoro pesante, ma le serie restano quattro.", "ap": "", "es": ""}, {"s": "S7", "f": "Lavoro", "se": "4", "rp": "3", "ca": "95% del 3RM", "rec": "3 min", "n": "[CARICO CHE SALE] 4 serie da 3 al 95% del peso del test. Il carico piu alto su cui fai ancora tre colpi.", "ap": "", "es": ""}, {"s": "S8", "f": "Misura", "se": "4", "rp": "2", "ca": "100% del 3RM", "rec": "3 min", "n": "[CARICO CHE SALE] 4 serie da 2 al 100% del peso del test. Chiusura: due colpi al peso con cui a novembre ne facevi tre. E la misura del blocco, senza rifare un test.", "ap": "", "es": ""}]}, {"t": "SPINTE SU PANCA 15° — manubri", "nome": "SPINTE SU PANCA 15°", "ruolo": "manubri", "rows": [{"s": "S1", "f": "Test", "se": "ramp + 2", "rp": "8 / 8", "ca": "peso trovato in S1 poi 2 serie al 90%", "rec": "2 min", "n": "[TEST 8 COLPI] Trova il carico con cui fai 8 colpi puliti, l ultimo come il primo, senza cedimento. Scrivilo negli Appunti: regge tutto il blocco. Poi togli il 10% e fai 2 serie da 8. Manubri: sali di 2 kg per volta.", "ap": "", "es": ""}, {"s": "S2", "f": "Lavoro", "se": "1 / 2", "rp": "7 / 8", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Una serie da 7 al peso del test, poi 2 serie da 8 togliendo il 20%. Nel top si spinge, nei back-off no.", "ap": "", "es": ""}, {"s": "S3", "f": "Lavoro", "se": "1 / 2", "rp": "8 / 8", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Il top arriva a 8 colpi: e il numero del test, ma dopo una settimana di lavoro.", "ap": "", "es": ""}, {"s": "S4", "f": "Lavoro", "se": "1 / 3", "rp": "7 / 8", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Top piu leggero e una serie di richiamo in piu: settimana di volume.", "ap": "", "es": ""}, {"s": "S5", "f": "Lavoro", "se": "1 / 3", "rp": "8 / 8", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Di nuovo 8 colpi al top, ma con una serie di richiamo in piu della prima volta.", "ap": "", "es": ""}, {"s": "S6", "f": "Lavoro", "se": "1 / 1 / 1", "rp": "9 / 8 / MAX", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Top da 9 — UN colpo in piu del test, non due: e il tetto del blocco. Poi un back-off da 8 e una serie a esaurimento a −20%.", "ap": "", "es": ""}, {"s": "S7", "f": "Lavoro", "se": "1 / 2", "rp": "9 / 8", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Si conferma il top da 9, senza serie a esaurimento.", "ap": "", "es": ""}, {"s": "S8", "f": "Misura", "se": "1 / 2", "rp": "MAX / 8", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[MISURA] Una serie a esaurimento al peso del test, poi 2 serie da 8 a −20%. Segna i colpi del MAX accanto al 8 di S1.", "ap": "", "es": ""}]}, {"t": "PULLEY CON TRIANGOLO", "nome": "PULLEY CON TRIANGOLO", "ruolo": "", "rows": [{"s": "S1", "f": "Test", "se": "ramp + 2", "rp": "10 / 10", "ca": "peso trovato in S1 poi 2 serie al 90%", "rec": "2 min", "n": "[TEST 10 COLPI] Trova il carico con cui fai 10 colpi puliti, l ultimo come il primo, senza cedimento. Scrivilo negli Appunti: regge tutto il blocco. Poi togli il 10% e fai 2 serie da 10. Macchina: vai al pin piu vicino al peso giusto.", "ap": "", "es": ""}, {"s": "S2", "f": "Lavoro", "se": "1 / 2", "rp": "9 / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Una serie da 9 al peso del test, poi 2 serie da 10 togliendo il 20%. Nel top si spinge, nei back-off no.", "ap": "", "es": ""}, {"s": "S3", "f": "Lavoro", "se": "1 / 2", "rp": "10 / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Il top arriva a 10 colpi: e il numero del test, ma dopo una settimana di lavoro.", "ap": "", "es": ""}, {"s": "S4", "f": "Lavoro", "se": "1 / 3", "rp": "9 / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Top piu leggero e una serie di richiamo in piu: settimana di volume.", "ap": "", "es": ""}, {"s": "S5", "f": "Lavoro", "se": "1 / 3", "rp": "10 / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Di nuovo 10 colpi al top, ma con una serie di richiamo in piu della prima volta.", "ap": "", "es": ""}, {"s": "S6", "f": "Lavoro", "se": "1 / 1 / 1", "rp": "11 / 10 / MAX", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Top da 11 — UN colpo in piu del test, non due: e il tetto del blocco. Poi un back-off da 10 e una serie a esaurimento a −20%.", "ap": "", "es": ""}, {"s": "S7", "f": "Lavoro", "se": "1 / 2", "rp": "11 / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Si conferma il top da 11, senza serie a esaurimento.", "ap": "", "es": ""}, {"s": "S8", "f": "Misura", "se": "1 / 2", "rp": "MAX / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[MISURA] Una serie a esaurimento al peso del test, poi 2 serie da 10 a −20%. Segna i colpi del MAX accanto al 10 di S1.", "ap": "", "es": ""}]}, {"t": "ALZATE LATERALI", "nome": "ALZATE LATERALI", "ruolo": "", "rows": [{"s": "S1", "f": "Test", "se": "1 ladder", "rp": "1-2-3-4-5-5", "ca": "peso trovato in S1", "rec": "15 s / pieno", "n": "[LADDER] Trova il carico da 12 colpi puliti, poi fai UNA scala: 1 colpo, 15 secondi, 2 colpi, 15 secondi, 3, 4, 5 e ancora 5. Quella e una scala. Quindici secondi tra un gradino e l altro, recupero pieno tra una scala e l altra. Niente slancio: se serve la schiena, scendi di peso.", "ap": "", "es": ""}, {"s": "S2", "f": "Lavoro", "se": "2 ladder", "rp": "1-2-3-4-5-5", "ca": "peso della scorsa", "rec": "15 s / pieno", "n": "[LADDER] Due scale, recupero pieno tra una e l altra. Quindici secondi tra un gradino e l altro, recupero pieno tra una scala e l altra.", "ap": "", "es": ""}, {"s": "S3", "f": "Lavoro", "se": "3 ladder", "rp": "1-2-3-4-5-5", "ca": "peso della scorsa", "rec": "15 s / pieno", "n": "[LADDER] Tre scale: settimana piena del primo giro. Quindici secondi tra un gradino e l altro, recupero pieno tra una scala e l altra.", "ap": "", "es": ""}, {"s": "S4", "f": "Lavoro", "se": "1 ladder", "rp": "1-2-3-4-5-5", "ca": "peso della scorsa +1 kg per manubrio", "rec": "15 s / pieno", "n": "[LADDER] Sale il peso di un gradino e si torna a una scala sola. Quindici secondi tra un gradino e l altro, recupero pieno tra una scala e l altra.", "ap": "", "es": ""}, {"s": "S5", "f": "Lavoro", "se": "2 ladder", "rp": "1-2-3-4-5-5", "ca": "peso della scorsa", "rec": "15 s / pieno", "n": "[LADDER] Due scale al peso nuovo. Quindici secondi tra un gradino e l altro, recupero pieno tra una scala e l altra.", "ap": "", "es": ""}, {"s": "S6", "f": "Lavoro", "se": "3 ladder", "rp": "1-2-3-4-5-5", "ca": "peso della scorsa", "rec": "15 s / pieno", "n": "[LADDER] Tre scale al peso nuovo: settimana piena del secondo giro. Quindici secondi tra un gradino e l altro, recupero pieno tra una scala e l altra.", "ap": "", "es": ""}, {"s": "S7", "f": "Lavoro", "se": "1 ladder", "rp": "1-2-3-4-5-5", "ca": "peso della scorsa +1 kg per manubrio", "rec": "15 s / pieno", "n": "[LADDER] Ultimo gradino di peso, una scala. Quindici secondi tra un gradino e l altro, recupero pieno tra una scala e l altra.", "ap": "", "es": ""}, {"s": "S8", "f": "Misura", "se": "2 ladder", "rp": "1-2-3-4-5-5", "ca": "peso della scorsa", "rec": "15 s / pieno", "n": "[MISURA] Due scale. Segna negli Appunti il peso a cui sei arrivato. Quindici secondi tra un gradino e l altro, recupero pieno tra una scala e l altra.", "ap": "", "es": ""}]}, {"t": "CURL AI CAVI + PUSH-DOWN — superserie", "nome": "CURL AI CAVI + PUSH-DOWN", "ruolo": "superserie", "rows": [{"s": "S1", "f": "Test", "se": "ramp + 2", "rp": "6 / 6", "ca": "peso trovato in S1 poi 2 giri al 90%", "rec": "90 s", "n": "[TEST 6 COLPI] Un giro = i due esercizi di fila. Sali di peso fino al giro che ti da 6 colpi puliti su entrambi e scrivilo negli Appunti. Poi togli il 10% e fai 2 giri da 6. Un giro = curl e subito push-down, senza pausa in mezzo.", "ap": "", "es": ""}, {"s": "S2", "f": "Lavoro", "se": "4", "rp": "4", "ca": "peso del test", "rec": "90 s", "n": "[REPS A MEZZI COLPI] Quattro giri da 4 sul peso da 6: intensita alta, volume basso. Niente tecniche dentro la superserie.", "ap": "", "es": ""}, {"s": "S3", "f": "Lavoro", "se": "4", "rp": "4 / 5", "ca": "peso del test", "rec": "90 s", "n": "[REPS A MEZZI COLPI] Mezzo gradino: il primo e il terzo giro da 4, il secondo e il quarto da 5.", "ap": "", "es": ""}, {"s": "S4", "f": "Lavoro", "se": "4", "rp": "5", "ca": "peso del test", "rec": "90 s", "n": "[REPS A MEZZI COLPI] Quattro giri pieni da 5.", "ap": "", "es": ""}, {"s": "S5", "f": "Lavoro", "se": "4", "rp": "5 / 6", "ca": "peso del test", "rec": "90 s", "n": "[REPS A MEZZI COLPI] Mezzo gradino: si alternano 5 e 6 colpi.", "ap": "", "es": ""}, {"s": "S6", "f": "Lavoro", "se": "4", "rp": "6", "ca": "peso del test", "rec": "90 s", "n": "[REPS A MEZZI COLPI] Quattro giri da 6: sei arrivato ai colpi del test, allo stesso peso.", "ap": "", "es": ""}, {"s": "S7", "f": "Lavoro", "se": "4", "rp": "4", "ca": "peso del test", "rec": "90 s", "n": "[REPS A MEZZI COLPI] Sale il peso di un gradino e i colpi tornano a 4: secondo giro della scala.", "ap": "", "es": ""}, {"s": "S8", "f": "Misura", "se": "1 / 3", "rp": "MAX / 5", "ca": "peso del test", "rec": "90 s", "n": "[MISURA] Un giro a esaurimento, poi 3 giri da 5 allo stesso peso. Segna i colpi.", "ap": "", "es": ""}]}, {"t": "CALF IN PIEDI — colpi alti", "nome": "CALF IN PIEDI", "ruolo": "colpi alti", "rows": [{"s": "S1", "f": "Test", "se": "ramp + 2", "rp": "15 / 12", "ca": "peso trovato in S1 poi 2 serie al 90%", "rec": "60 s", "n": "[TEST 15 COLPI] Il polpaccio si testa QUI, in S1, e il peso trovato vale anche negli altri due giorni. Trova il carico con cui fai 15 colpi pieni, scrivilo negli Appunti, poi togli il 10% e fai 2 serie da 12. Sali in punta e scendi in allungo completo, senza rimbalzare.", "ap": "", "es": ""}, {"s": "S2", "f": "Lavoro", "se": "3", "rp": "12", "ca": "peso del test", "rec": "60 s", "n": "[SERIE CHE SALGONO] Tre serie da 12 al peso del test: comode, servono a prendere la misura.", "ap": "", "es": ""}, {"s": "S3", "f": "Lavoro", "se": "4", "rp": "12", "ca": "peso del test", "rec": "60 s", "n": "[SERIE CHE SALGONO] Una serie in piu, stesso peso e stessi colpi.", "ap": "", "es": ""}, {"s": "S4", "f": "Lavoro", "se": "5", "rp": "12", "ca": "peso del test", "rec": "60 s", "n": "[SERIE CHE SALGONO] Cinque serie da 12: 60 colpi in una seduta.", "ap": "", "es": ""}, {"s": "S5", "f": "Lavoro", "se": "6", "rp": "12", "ca": "peso del test", "rec": "60 s", "n": "[SERIE CHE SALGONO] Sei serie: settimana piena del primo giro.", "ap": "", "es": ""}, {"s": "S6", "f": "Lavoro", "se": "3", "rp": "15", "ca": "peso del test", "rec": "60 s", "n": "[SERIE CHE SALGONO] Si riparte da tre serie ma a 15 colpi: i colpi del test, allo stesso peso.", "ap": "", "es": ""}, {"s": "S7", "f": "Lavoro", "se": "4", "rp": "15", "ca": "peso del test", "rec": "60 s", "n": "[SERIE CHE SALGONO] Quattro serie da 15: 60 colpi, tutti lunghi.", "ap": "", "es": ""}, {"s": "S8", "f": "Misura", "se": "1 / 3", "rp": "MAX / 12", "ca": "peso del test", "rec": "60 s", "n": "[MISURA] Una serie a esaurimento al peso del test, poi 3 serie da 12. Segna i colpi del MAX e confrontali con i 15 di S1.", "ap": "", "es": ""}]}]}, {"id": "B", "head": "GIORNO B", "blocks": [{"t": "SQUAT — forza", "nome": "SQUAT", "ruolo": "forza", "rows": [{"s": "S1", "f": "Test", "se": "ramp + 2", "rp": "3 / 3", "ca": "da ~85 kg sali al 3RM poi 2 serie al 90% del test", "rec": "3 min", "n": "[TEST 3 COLPI] Sali fino al massimo carico con cui chiudi 3 colpi puliti, senza andare a cedimento. SCRIVI IL NUMERO NEGLI APPUNTI. Poi togli il 10% e fai 2 sole serie da 3. Stessa profondita a ogni colpo.", "ap": "", "es": ""}, {"s": "S2", "f": "Lavoro", "se": "5", "rp": "7", "ca": "80% del 3RM", "rec": "3 min", "n": "[LOOP 7-5-3] 5 serie da 7 al 80% del peso del test. Parte larga del dente: tanti colpi, carico piu basso.", "ap": "", "es": ""}, {"s": "S3", "f": "Lavoro", "se": "5", "rp": "5", "ca": "87,5% del 3RM", "rec": "3 min", "n": "[LOOP 7-5-3] 5 serie da 5 al 87,5% del peso del test. Scendono i colpi, sale il carico.", "ap": "", "es": ""}, {"s": "S4", "f": "Lavoro", "se": "5", "rp": "3", "ca": "92,5% del 3RM", "rec": "3 min", "n": "[LOOP 7-5-3] 5 serie da 3 al 92,5% del peso del test. Punta del primo giro: 3 colpi al carico piu alto del giro.", "ap": "", "es": ""}, {"s": "S5", "f": "Lavoro", "se": "5", "rp": "7", "ca": "85% del 3RM", "rec": "3 min", "n": "[LOOP 7-5-3] 5 serie da 7 al 85% del peso del test. Secondo giro: stessi 7 colpi di S2 ma piu pesanti.", "ap": "", "es": ""}, {"s": "S6", "f": "Lavoro", "se": "5", "rp": "5", "ca": "90% del 3RM", "rec": "3 min", "n": "[LOOP 7-5-3] 5 serie da 5 al 90% del peso del test. Stessi 5 colpi di S3, un gradino sopra.", "ap": "", "es": ""}, {"s": "S7", "f": "Lavoro", "se": "5", "rp": "3", "ca": "peso del test", "rec": "3 min", "n": "[LOOP 7-5-3] 5 serie da 3 al 100% del peso del test. PUNTA DEL BLOCCO: il tuo 3RM ripetuto 5 volte. Se una serie si rompe, recuperi e continui finche non hai fatto i 15 colpi totali, anche spezzandoli.", "ap": "", "es": ""}, {"s": "S8", "f": "Misura", "se": "ramp + 2", "rp": "3 / 3", "ca": "ri-test poi 2 serie al 90%", "rec": "3 min", "n": "[MISURA] Si rifa il test di S1, poi 2 serie da 3 al 90% del nuovo peso. Scrivi il numero accanto a quello di S1: la differenza e il risultato del blocco ed e il riferimento del prossimo.", "ap": "", "es": ""}]}, {"t": "TRAZIONI", "nome": "TRAZIONI", "ruolo": "", "rows": [{"s": "S1", "f": "Test", "se": "ramp + 2", "rp": "6 / 4", "ca": "corpo + zavorra poi 2 serie da 4 uguali", "rec": "3 min", "n": "[TEST 6 COLPI] Trova la zavorra con cui chiudi 6 trazioni piene e pulite, senza strappi e senza cedimento. NEGLI APPUNTI SCRIVI DUE NUMERI: il tuo peso corporeo e la zavorra. Poi 2 sole serie da 4 alla STESSA zavorra (qui non si toglie il 10%: si tolgono due colpi). Da qui in poi lavori a chili veri, mai a percentuale.", "ap": "", "es": ""}, {"s": "S2", "f": "Lavoro", "se": "6", "rp": "3", "ca": "zavorra del test", "rec": "2 min", "n": "[COLPI SOTTO IL TEST] 6 serie da 3 alla zavorra del test. Sono 3 colpi su 6 possibili: devono uscire facili e tutti uguali.", "ap": "", "es": ""}, {"s": "S3", "f": "Lavoro", "se": "5", "rp": "4", "ca": "zavorra del test", "rec": "2-3 min", "n": "[COLPI SOTTO IL TEST] 5 serie da 4, stessa zavorra. Un colpo in piu, una serie in meno.", "ap": "", "es": ""}, {"s": "S4", "f": "Lavoro", "se": "4", "rp": "5", "ca": "zavorra del test", "rec": "2-3 min", "n": "[COLPI SOTTO IL TEST] 4 serie da 5, stessa zavorra. Questa e la settimana dura del giro: 5 su 6.", "ap": "", "es": ""}, {"s": "S5", "f": "Lavoro", "se": "6", "rp": "3", "ca": "zavorra del test +2,5 kg", "rec": "2 min", "n": "[COLPI SOTTO IL TEST] La zavorra sale di 2,5 kg e si torna a 3 colpi. Secondo giro.", "ap": "", "es": ""}, {"s": "S6", "f": "Lavoro", "se": "5", "rp": "4", "ca": "zavorra del test +2,5 kg", "rec": "2-3 min", "n": "[COLPI SOTTO IL TEST] 5 serie da 4 alla zavorra nuova.", "ap": "", "es": ""}, {"s": "S7", "f": "Lavoro", "se": "4", "rp": "5", "ca": "zavorra del test +2,5 kg", "rec": "2-3 min", "n": "[COLPI SOTTO IL TEST] 4 serie da 5 alla zavorra nuova: settimana dura del secondo giro.", "ap": "", "es": ""}, {"s": "S8", "f": "Misura", "se": "1 / 3", "rp": "MAX / MAX ÷ 2", "ca": "zavorra del test +2,5 kg", "rec": "3 min", "n": "[MISURA] Una serie a esaurimento alla zavorra nuova, poi 3 serie da meta dei colpi che hai fatto. Segna i colpi del MAX: e il nuovo riferimento.", "ap": "", "es": ""}]}, {"t": "ROWING MACHINE", "nome": "ROWING MACHINE", "ruolo": "", "rows": [{"s": "S1", "f": "Test", "se": "ramp + 2", "rp": "10 / 10", "ca": "peso trovato in S1 poi 2 serie al 90%", "rec": "2 min", "n": "[TEST 10 COLPI] Trova il carico con cui fai 10 colpi puliti, l ultimo come il primo, senza cedimento. Scrivilo negli Appunti: regge tutto il blocco. Poi togli il 10% e fai 2 serie da 10. Petto in fuori, tira ai fianchi e non alle spalle.", "ap": "", "es": ""}, {"s": "S2", "f": "Lavoro", "se": "1 / 2", "rp": "9 / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Una serie da 9 al peso del test, poi 2 serie da 10 togliendo il 20%. Nel top si spinge, nei back-off no.", "ap": "", "es": ""}, {"s": "S3", "f": "Lavoro", "se": "1 / 2", "rp": "10 / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Il top arriva a 10 colpi: e il numero del test, ma dopo una settimana di lavoro.", "ap": "", "es": ""}, {"s": "S4", "f": "Lavoro", "se": "1 / 3", "rp": "9 / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Top piu leggero e una serie di richiamo in piu: settimana di volume.", "ap": "", "es": ""}, {"s": "S5", "f": "Lavoro", "se": "1 / 3", "rp": "10 / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Di nuovo 10 colpi al top, ma con una serie di richiamo in piu della prima volta.", "ap": "", "es": ""}, {"s": "S6", "f": "Lavoro", "se": "1 / 1 / 1", "rp": "11 / 10 / MAX", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Top da 11 — UN colpo in piu del test, non due: e il tetto del blocco. Poi un back-off da 10 e una serie a esaurimento a −20%.", "ap": "", "es": ""}, {"s": "S7", "f": "Lavoro", "se": "1 / 2", "rp": "11 / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Si conferma il top da 11, senza serie a esaurimento.", "ap": "", "es": ""}, {"s": "S8", "f": "Misura", "se": "1 / 2", "rp": "MAX / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[MISURA] Una serie a esaurimento al peso del test, poi 2 serie da 10 a −20%. Segna i colpi del MAX accanto al 10 di S1.", "ap": "", "es": ""}]}, {"t": "LENTO AVANTI MANUBRI + ALZATE POSTERIORI AI CAVI — superserie", "nome": "LENTO AVANTI MANUBRI + ALZATE POSTERIORI AI CAVI", "ruolo": "superserie", "rows": [{"s": "S1", "f": "Test", "se": "1 / 3", "rp": "MAX / N", "ca": "peso della scorsa +2 kg se il top > 12", "rec": "90 s", "n": "[TOP A ESAURIMENTO + CODE] Un giro a esaurimento, poi 3 giri con TRE colpi in meno di quelli del MAX di oggi. Scegli il peso: deve darti circa 12 colpi al primo giro. Un giro = lento avanti e subito alzate posteriori. Ogni settimana, PRIMA di iniziare, rileggi i colpi che hai segnato la volta scorsa: o li confermi o ne fai uno in piu.", "ap": "", "es": ""}, {"s": "S2", "f": "Lavoro", "se": "1 / 4", "rp": "MAX / N", "ca": "peso della scorsa +2 kg se il top > 12", "rec": "90 s", "n": "[TOP A ESAURIMENTO + CODE] Un giro di richiamo in piu, sempre a tre colpi in meno del MAX di oggi.", "ap": "", "es": ""}, {"s": "S3", "f": "Lavoro", "se": "1 / 4", "rp": "MAX / N", "ca": "peso della scorsa +2 kg se il top > 12", "rec": "90 s", "n": "[TOP A ESAURIMENTO + CODE] Le code si avvicinano al top: DUE colpi in meno del MAX, non tre.", "ap": "", "es": ""}, {"s": "S4", "f": "Lavoro", "se": "4", "rp": "N", "ca": "peso della scorsa +2 kg se il top > 12", "rec": "90 s", "n": "[TOP A ESAURIMENTO + CODE] Settimana di richiamo: niente esaurimento. Quattro giri a tre colpi in meno del MAX che hai segnato la settimana scorsa.", "ap": "", "es": ""}, {"s": "S5", "f": "Lavoro", "se": "1 / 3", "rp": "MAX / N", "ca": "peso della scorsa +2 kg se il top > 12", "rec": "90 s", "n": "[TOP A ESAURIMENTO + CODE] Si riparte. Se la settimana scorsa il top ha passato i 12 colpi, oggi il peso sale di 2 kg per manubrio. Code a tre colpi dal MAX.", "ap": "", "es": ""}, {"s": "S6", "f": "Lavoro", "se": "1 / 4", "rp": "MAX / N", "ca": "peso della scorsa +2 kg se il top > 12", "rec": "90 s", "n": "[TOP A ESAURIMENTO + CODE] Un richiamo in piu, code a tre colpi dal MAX.", "ap": "", "es": ""}, {"s": "S7", "f": "Lavoro", "se": "1 / 4", "rp": "MAX / N", "ca": "peso della scorsa +2 kg se il top > 12", "rec": "90 s", "n": "[TOP A ESAURIMENTO + CODE] Code a due colpi dal MAX.", "ap": "", "es": ""}, {"s": "S8", "f": "Misura", "se": "1 / 2", "rp": "MAX / N", "ca": "peso della scorsa +2 kg se il top > 12", "rec": "90 s", "n": "[MISURA] Ultimo giro: un MAX e 2 code a due colpi. Confronta i colpi con quelli di S1.", "ap": "", "es": ""}]}, {"t": "CURL BILANCIERE + FRENCH PRESS — superserie", "nome": "CURL BILANCIERE + FRENCH PRESS", "ruolo": "superserie", "rows": [{"s": "S1", "f": "Test", "se": "ramp + 2", "rp": "6 / 6", "ca": "peso trovato in S1 poi 2 giri al 90%", "rec": "90 s", "n": "[TEST 6 COLPI] Un giro = i due esercizi di fila. Sali di peso fino al giro che ti da 6 colpi puliti su entrambi e scrivilo negli Appunti. Poi togli il 10% e fai 2 giri da 6. Un giro = curl e subito french press.", "ap": "", "es": ""}, {"s": "S2", "f": "Lavoro", "se": "4", "rp": "4", "ca": "peso del test", "rec": "90 s", "n": "[REPS A MEZZI COLPI] Quattro giri da 4 sul peso da 6: intensita alta, volume basso. Niente tecniche dentro la superserie.", "ap": "", "es": ""}, {"s": "S3", "f": "Lavoro", "se": "4", "rp": "4 / 5", "ca": "peso del test", "rec": "90 s", "n": "[REPS A MEZZI COLPI] Mezzo gradino: il primo e il terzo giro da 4, il secondo e il quarto da 5.", "ap": "", "es": ""}, {"s": "S4", "f": "Lavoro", "se": "4", "rp": "5", "ca": "peso del test", "rec": "90 s", "n": "[REPS A MEZZI COLPI] Quattro giri pieni da 5.", "ap": "", "es": ""}, {"s": "S5", "f": "Lavoro", "se": "4", "rp": "5 / 6", "ca": "peso del test", "rec": "90 s", "n": "[REPS A MEZZI COLPI] Mezzo gradino: si alternano 5 e 6 colpi.", "ap": "", "es": ""}, {"s": "S6", "f": "Lavoro", "se": "4", "rp": "6", "ca": "peso del test", "rec": "90 s", "n": "[REPS A MEZZI COLPI] Quattro giri da 6: sei arrivato ai colpi del test, allo stesso peso.", "ap": "", "es": ""}, {"s": "S7", "f": "Lavoro", "se": "4", "rp": "4", "ca": "peso del test", "rec": "90 s", "n": "[REPS A MEZZI COLPI] Sale il peso di un gradino e i colpi tornano a 4: secondo giro della scala.", "ap": "", "es": ""}, {"s": "S8", "f": "Misura", "se": "1 / 3", "rp": "MAX / 5", "ca": "peso del test", "rec": "90 s", "n": "[MISURA] Un giro a esaurimento, poi 3 giri da 5 allo stesso peso. Segna i colpi.", "ap": "", "es": ""}]}, {"t": "CALF IN PIEDI — EMOM al minuto", "nome": "CALF IN PIEDI", "ruolo": "EMOM al minuto", "rows": [{"s": "S1", "f": "Test", "se": "8 giri", "rp": "8", "ca": "peso del test del Giorno A, −20%", "rec": "al minuto", "n": "[EMOM] Si usa il peso testato nel Giorno A meno il 20%: qui i colpi sono tanti e ravvicinati, il peso pieno non passa. Otto giri, otto colpi al minuto. Fai i colpi e aspetti lo scadere del minuto: il resto e recupero. Tieni un orologio davanti.", "ap": "", "es": ""}, {"s": "S2", "f": "Lavoro", "se": "8 giri", "rp": "9", "ca": "peso del test del Giorno A, −20%", "rec": "al minuto", "n": "[EMOM] Un colpo in piu al minuto, stesso numero di giri.", "ap": "", "es": ""}, {"s": "S3", "f": "Lavoro", "se": "9 giri", "rp": "9", "ca": "peso del test del Giorno A, −20%", "rec": "al minuto", "n": "[EMOM] Un giro in piu: il minuto comincia a stare stretto.", "ap": "", "es": ""}, {"s": "S4", "f": "Lavoro", "se": "10 giri", "rp": "9", "ca": "peso del test del Giorno A, −20%", "rec": "al minuto", "n": "[EMOM] Dieci giri da 9: novanta colpi in dieci minuti.", "ap": "", "es": ""}, {"s": "S5", "f": "Lavoro", "se": "10 giri", "rp": "10", "ca": "peso del test del Giorno A, −20%", "rec": "al minuto", "n": "[EMOM] Dieci colpi al minuto per dieci minuti: cento colpi.", "ap": "", "es": ""}, {"s": "S6", "f": "Lavoro", "se": "10 giri", "rp": "10", "ca": "peso del test del Giorno A, −20%", "rec": "al minuto", "n": "[EMOM] Si ripete: qui non si sale, si consolida.", "ap": "", "es": ""}, {"s": "S7", "f": "Lavoro", "se": "10 giri", "rp": "11", "ca": "peso del test del Giorno A, −20%", "rec": "al minuto", "n": "[EMOM] Undici al minuto: settimana piu densa del blocco.", "ap": "", "es": ""}, {"s": "S8", "f": "Misura", "se": "1 / 3", "rp": "MAX / 12", "ca": "peso del test del Giorno A, −20%", "rec": "90 s", "n": "[MISURA] Si esce dall orologio: una serie a esaurimento a quel peso, poi 3 serie da 12. Segna i colpi del MAX.", "ap": "", "es": ""}]}]}, {"id": "C", "head": "GIORNO C", "blocks": [{"t": "PANCA PIANA — fermo 2 s al petto", "nome": "PANCA PIANA", "ruolo": "fermo 2 s al petto", "rows": [{"s": "S1", "f": "Test", "se": "ramp + 2", "rp": "8 / 8", "ca": "peso trovato in S1 poi 2 serie al 90%", "rec": "2 min", "n": "[TEST 8 COLPI] Trova il carico con cui fai 8 colpi puliti, l ultimo come il primo, senza cedimento. Scrivilo negli Appunti: regge tutto il blocco. Poi togli il 10% e fai 2 serie da 8. Fermo di 2 secondi al petto a ogni colpo, petto fermo e non molle.", "ap": "", "es": ""}, {"s": "S2", "f": "Lavoro", "se": "1 / 2", "rp": "7 / 8", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Una serie da 7 al peso del test, poi 2 serie da 8 togliendo il 20%. Nel top si spinge, nei back-off no.", "ap": "", "es": ""}, {"s": "S3", "f": "Lavoro", "se": "1 / 2", "rp": "8 / 8", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Il top arriva a 8 colpi: e il numero del test, ma dopo una settimana di lavoro.", "ap": "", "es": ""}, {"s": "S4", "f": "Lavoro", "se": "1 / 3", "rp": "7 / 8", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Top piu leggero e una serie di richiamo in piu: settimana di volume.", "ap": "", "es": ""}, {"s": "S5", "f": "Lavoro", "se": "1 / 3", "rp": "8 / 8", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Di nuovo 8 colpi al top, ma con una serie di richiamo in piu della prima volta.", "ap": "", "es": ""}, {"s": "S6", "f": "Lavoro", "se": "1 / 1 / 1", "rp": "9 / 8 / MAX", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Top da 9 — UN colpo in piu del test, non due: e il tetto del blocco. Poi un back-off da 8 e una serie a esaurimento a −20%.", "ap": "", "es": ""}, {"s": "S7", "f": "Lavoro", "se": "1 / 2", "rp": "9 / 8", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Si conferma il top da 9, senza serie a esaurimento.", "ap": "", "es": ""}, {"s": "S8", "f": "Misura", "se": "1 / 2", "rp": "MAX / 8", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[MISURA] Una serie a esaurimento al peso del test, poi 2 serie da 8 a −20%. Segna i colpi del MAX accanto al 8 di S1.", "ap": "", "es": ""}]}, {"t": "LEG EXTENSION", "nome": "LEG EXTENSION", "ruolo": "", "rows": [{"s": "S1", "f": "Test", "se": "ramp + 2", "rp": "10 / 10", "ca": "peso trovato in S1 poi 2 serie al 90%", "rec": "2 min", "n": "[TEST 10 COLPI] Trova il carico con cui fai 10 colpi puliti, l ultimo come il primo, senza cedimento. Scrivilo negli Appunti: regge tutto il blocco. Poi togli il 10% e fai 2 serie da 10. Tieni un secondo in alto, poi scendi piano.", "ap": "", "es": ""}, {"s": "S2", "f": "Lavoro", "se": "1 / 3", "rp": "9 / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Una serie da 9 al peso del test, poi 3 serie da 10 togliendo il 20%. Nel top si spinge, nei back-off no.", "ap": "", "es": ""}, {"s": "S3", "f": "Lavoro", "se": "1 / 3", "rp": "10 / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Il top arriva a 10 colpi: e il numero del test, ma dopo una settimana di lavoro.", "ap": "", "es": ""}, {"s": "S4", "f": "Lavoro", "se": "1 / 4", "rp": "9 / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Top piu leggero e una serie di richiamo in piu: settimana di volume.", "ap": "", "es": ""}, {"s": "S5", "f": "Lavoro", "se": "1 / 4", "rp": "10 / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Di nuovo 10 colpi al top, ma con una serie di richiamo in piu della prima volta.", "ap": "", "es": ""}, {"s": "S6", "f": "Lavoro", "se": "1 / 1 / 1", "rp": "11 / 10 / MAX", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Top da 11 — UN colpo in piu del test, non due: e il tetto del blocco. Poi un back-off da 10 e una serie a esaurimento a −20%.", "ap": "", "es": ""}, {"s": "S7", "f": "Lavoro", "se": "1 / 3", "rp": "11 / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Si conferma il top da 11, senza serie a esaurimento.", "ap": "", "es": ""}, {"s": "S8", "f": "Misura", "se": "1 / 3", "rp": "MAX / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[MISURA] Una serie a esaurimento al peso del test, poi 3 serie da 10 a −20%. Segna i colpi del MAX accanto al 10 di S1.", "ap": "", "es": ""}]}, {"t": "CROCI AI CAVI", "nome": "CROCI AI CAVI", "ruolo": "", "rows": [{"s": "S1", "f": "Test", "se": "ramp + 2", "rp": "12 / 12", "ca": "peso trovato in S1 poi 2 serie al 90%", "rec": "90 s", "n": "[TEST 12 COLPI] Trova il carico con cui fai 12 colpi puliti e scrivilo negli Appunti. Poi togli il 10% e fai 2 serie da 12. Isolamento: il peso serve a sentire il petto, non a spostarlo.", "ap": "", "es": ""}, {"s": "S2", "f": "Lavoro", "se": "3 / 1", "rp": "5 + 5 / 12", "ca": "peso del test −30% sull ultima", "rec": "90 s", "n": "[STOP REPS] 3 serie cosi: 5 colpi, appoggi e conti 15 secondi, altri 5 colpi. Poi una serie da 12 togliendo il 30%.", "ap": "", "es": ""}, {"s": "S3", "f": "Lavoro", "se": "3 / 1", "rp": "6 + 5 / 12", "ca": "peso del test −30% sull ultima", "rec": "90 s", "n": "[STOP REPS] Un colpo in piu nel primo blocco: 6, pausa di 15 secondi, 5. Poi la serie da 12 a −30%.", "ap": "", "es": ""}, {"s": "S4", "f": "Lavoro", "se": "4 / 1", "rp": "5 + 5 / 12", "ca": "peso del test −30% sull ultima", "rec": "90 s", "n": "[STOP REPS] Una serie in piu e si torna a 5 + 5.", "ap": "", "es": ""}, {"s": "S5", "f": "Lavoro", "se": "4 / 1", "rp": "6 + 6 / 12", "ca": "peso del test −30% sull ultima", "rec": "90 s", "n": "[STOP REPS] 6, pausa, 6: quattro volte.", "ap": "", "es": ""}, {"s": "S6", "f": "Lavoro", "se": "3 / 1", "rp": "6 + 6 + 6 / 12", "ca": "peso del test −30% sull ultima", "rec": "2 min", "n": "[STOP REPS] Tre blocchi dentro la serie invece di due: 6, pausa, 6, pausa, 6. Recupero piu lungo tra le serie.", "ap": "", "es": ""}, {"s": "S7", "f": "Lavoro", "se": "4 / 1", "rp": "6 + 6 / 12", "ca": "peso del test −30% sull ultima", "rec": "90 s", "n": "[STOP REPS] Si torna a due blocchi, quattro serie: settimana di consolidamento.", "ap": "", "es": ""}, {"s": "S8", "f": "Misura", "se": "3 / 1", "rp": "MAX + MAX / 12", "ca": "peso del test −30% sull ultima", "rec": "2 min", "n": "[MISURA] 3 serie a esaurimento con la pausa di 15 secondi in mezzo. Segna i colpi totali di ogni serie.", "ap": "", "es": ""}]}, {"t": "SHOULDER PRESS — forza", "nome": "SHOULDER PRESS", "ruolo": "forza", "rows": [{"s": "S1", "f": "Test", "se": "ramp + 2", "rp": "5 / 5", "ca": "da ~45 kg sali al 5RM poi 2 serie al 90% del test", "rec": "3 min", "n": "[TEST 5 COLPI] Sali a singole e doppie fino al massimo carico con cui chiudi 5 colpi puliti — l ultimo deve somigliare al primo, non va a cedimento. SCRIVI IL NUMERO NEGLI APPUNTI: tutte le settimane dopo girano su questo. Poi togli il 10% e fai 2 sole serie da 5 a quel peso. Addome contratto, niente inarco di schiena.", "ap": "", "es": ""}, {"s": "S2", "f": "Lavoro", "se": "4", "rp": "4", "ca": "87,5% del 5RM", "rec": "3 min", "n": "[DENTE DI SEGA] 4 serie da 4 al 87,5% del peso del test. Prima onda corta: poche ripetizioni, carico gia serio ma controllato.", "ap": "", "es": ""}, {"s": "S3", "f": "Lavoro", "se": "4", "rp": "6", "ca": "80% del 5RM", "rec": "3 min", "n": "[DENTE DI SEGA] 4 serie da 6 al 80% del peso del test. Onda lunga: piu ripetizioni a carico piu basso. Le due onde salgono in parallelo, non si incrociano.", "ap": "", "es": ""}, {"s": "S4", "f": "Lavoro", "se": "4", "rp": "4", "ca": "90% del 5RM", "rec": "3 min", "n": "[DENTE DI SEGA] 4 serie da 4 al 90% del peso del test. Seconda onda corta, un gradino sopra la prima.", "ap": "", "es": ""}, {"s": "S5", "f": "Lavoro", "se": "4", "rp": "6", "ca": "82,5% del 5RM", "rec": "3 min", "n": "[DENTE DI SEGA] 4 serie da 6 al 82,5% del peso del test. Onda lunga, un gradino sopra la precedente: piu pesante di due settimane fa, piu leggera di settimana scorsa.", "ap": "", "es": ""}, {"s": "S6", "f": "Lavoro", "se": "4", "rp": "4", "ca": "92,5% del 5RM", "rec": "3 min", "n": "[DENTE DI SEGA] 4 serie da 4 al 92,5% del peso del test. PUNTA DEL BLOCCO: il tuo 5RM ripetuto 4 volte. Se una serie si rompe, recuperi e continui finche non hai fatto i 16 colpi totali, anche spezzandoli.", "ap": "", "es": ""}, {"s": "S7", "f": "Lavoro", "se": "4", "rp": "6", "ca": "85% del 5RM = il tuo 5RM stimato", "rec": "3 min", "n": "[DENTE DI SEGA] 4 serie da 6 al 85% del peso del test. ULTIMA ONDA: 6 colpi a quello che dovrebbe essere il tuo 6RM, calcolato dal test di S1. Se una serie si rompe, recuperi e continui finche non hai fatto i 24 colpi totali, anche spezzandoli.", "ap": "", "es": ""}, {"s": "S8", "f": "Misura", "se": "ramp + 2", "rp": "5 / 5", "ca": "ri-test poi 2 serie al 90%", "rec": "3 min", "n": "[MISURA] Si rifa lo stesso test di S1, 5 colpi puliti, poi 2 serie da 5 al 90% del nuovo peso. Scrivi il numero accanto a quello di S1: la differenza e il risultato di otto settimane e diventa il riferimento del prossimo blocco.", "ap": "", "es": ""}]}, {"t": "LAT MACHINE — presa trazy bar", "nome": "LAT MACHINE", "ruolo": "presa trazy bar", "rows": [{"s": "S1", "f": "Test", "se": "ramp + 2", "rp": "8 / 8", "ca": "peso trovato in S1 poi 2 serie al 90%", "rec": "2 min", "n": "[TEST 8 COLPI] Trova il carico con cui fai 8 colpi puliti, l ultimo come il primo, senza cedimento. Scrivilo negli Appunti: regge tutto il blocco. Poi togli il 10% e fai 2 serie da 8. Porta la barra al petto, non dietro il collo.", "ap": "", "es": ""}, {"s": "S2", "f": "Lavoro", "se": "1 / 2", "rp": "7 / 8", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Una serie da 7 al peso del test, poi 2 serie da 8 togliendo il 20%. Nel top si spinge, nei back-off no.", "ap": "", "es": ""}, {"s": "S3", "f": "Lavoro", "se": "1 / 2", "rp": "8 / 8", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Il top arriva a 8 colpi: e il numero del test, ma dopo una settimana di lavoro.", "ap": "", "es": ""}, {"s": "S4", "f": "Lavoro", "se": "1 / 3", "rp": "7 / 8", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Top piu leggero e una serie di richiamo in piu: settimana di volume.", "ap": "", "es": ""}, {"s": "S5", "f": "Lavoro", "se": "1 / 3", "rp": "8 / 8", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Di nuovo 8 colpi al top, ma con una serie di richiamo in piu della prima volta.", "ap": "", "es": ""}, {"s": "S6", "f": "Lavoro", "se": "1 / 1 / 1", "rp": "9 / 8 / MAX", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Top da 9 — UN colpo in piu del test, non due: e il tetto del blocco. Poi un back-off da 8 e una serie a esaurimento a −20%.", "ap": "", "es": ""}, {"s": "S7", "f": "Lavoro", "se": "1 / 2", "rp": "9 / 8", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Si conferma il top da 9, senza serie a esaurimento.", "ap": "", "es": ""}, {"s": "S8", "f": "Misura", "se": "1 / 2", "rp": "MAX / 8", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[MISURA] Una serie a esaurimento al peso del test, poi 2 serie da 8 a −20%. Segna i colpi del MAX accanto al 8 di S1.", "ap": "", "es": ""}]}, {"t": "LEG CURL SDRAIATO", "nome": "LEG CURL SDRAIATO", "ruolo": "", "rows": [{"s": "S1", "f": "Test", "se": "ramp + 2", "rp": "10 / 10", "ca": "peso trovato in S1 poi 2 serie al 90%", "rec": "2 min", "n": "[TEST 10 COLPI] Trova il carico con cui fai 10 colpi puliti, l ultimo come il primo, senza cedimento. Scrivilo negli Appunti: regge tutto il blocco. Poi togli il 10% e fai 2 serie da 10. Bacino sempre appoggiato.", "ap": "", "es": ""}, {"s": "S2", "f": "Lavoro", "se": "1 / 3", "rp": "9 / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Una serie da 9 al peso del test, poi 3 serie da 10 togliendo il 20%. Nel top si spinge, nei back-off no.", "ap": "", "es": ""}, {"s": "S3", "f": "Lavoro", "se": "1 / 3", "rp": "10 / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Il top arriva a 10 colpi: e il numero del test, ma dopo una settimana di lavoro.", "ap": "", "es": ""}, {"s": "S4", "f": "Lavoro", "se": "1 / 4", "rp": "9 / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Top piu leggero e una serie di richiamo in piu: settimana di volume.", "ap": "", "es": ""}, {"s": "S5", "f": "Lavoro", "se": "1 / 4", "rp": "10 / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Di nuovo 10 colpi al top, ma con una serie di richiamo in piu della prima volta.", "ap": "", "es": ""}, {"s": "S6", "f": "Lavoro", "se": "1 / 1 / 1", "rp": "11 / 10 / MAX", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Top da 11 — UN colpo in piu del test, non due: e il tetto del blocco. Poi un back-off da 10 e una serie a esaurimento a −20%.", "ap": "", "es": ""}, {"s": "S7", "f": "Lavoro", "se": "1 / 3", "rp": "11 / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Si conferma il top da 11, senza serie a esaurimento.", "ap": "", "es": ""}, {"s": "S8", "f": "Misura", "se": "1 / 3", "rp": "MAX / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[MISURA] Una serie a esaurimento al peso del test, poi 3 serie da 10 a −20%. Segna i colpi del MAX accanto al 10 di S1.", "ap": "", "es": ""}]}, {"t": "CALF IN PIEDI — colpi alti con pausa", "nome": "CALF IN PIEDI", "ruolo": "colpi alti con pausa", "rows": [{"s": "S1", "f": "Test", "se": "3 / 1", "rp": "8 + 8 / 20", "ca": "peso del test del Giorno A, −15% sull ultima", "rec": "90 s", "n": "[STOP REPS] Si usa il peso testato nel Giorno A. Otto colpi, appoggi e conti 15 secondi, altri otto. Tre serie cosi, poi una serie da 20 togliendo il 15%. Il peso resta quello, cambia come lo spendi.", "ap": "", "es": ""}, {"s": "S2", "f": "Lavoro", "se": "4 / 1", "rp": "8 + 8 / 20", "ca": "peso del test del Giorno A, −15% sull ultima", "rec": "90 s", "n": "[STOP REPS] Una serie in piu, stessi colpi.", "ap": "", "es": ""}, {"s": "S3", "f": "Lavoro", "se": "3 / 1", "rp": "10 + 10 / 20", "ca": "peso del test del Giorno A, −15% sull ultima", "rec": "90 s", "n": "[STOP REPS] Si torna a tre serie ma i blocchi salgono a dieci colpi.", "ap": "", "es": ""}, {"s": "S4", "f": "Lavoro", "se": "4 / 1", "rp": "10 + 10 / 20", "ca": "peso del test del Giorno A, −15% sull ultima", "rec": "90 s", "n": "[STOP REPS] Quattro serie da 10 + 10: ottanta colpi, piu il back-off.", "ap": "", "es": ""}, {"s": "S5", "f": "Lavoro", "se": "3 / 1", "rp": "10 + 10 + 10 / 20", "ca": "peso del test del Giorno A, −15% sull ultima", "rec": "90 s", "n": "[STOP REPS] Tre blocchi dentro la serie invece di due: 10, pausa, 10, pausa, 10.", "ap": "", "es": ""}, {"s": "S6", "f": "Lavoro", "se": "4 / 1", "rp": "10 + 10 / 20", "ca": "peso del test del Giorno A, −15% sull ultima", "rec": "90 s", "n": "[STOP REPS] Si torna a due blocchi, quattro serie: consolidamento.", "ap": "", "es": ""}, {"s": "S7", "f": "Lavoro", "se": "3 / 1", "rp": "12 + 12 / 20", "ca": "peso del test del Giorno A, −15% sull ultima", "rec": "90 s", "n": "[STOP REPS] Blocchi da dodici: i colpi piu lunghi del blocco.", "ap": "", "es": ""}, {"s": "S8", "f": "Misura", "se": "3 / 1", "rp": "MAX + MAX / 20", "ca": "peso del test del Giorno A, −15% sull ultima", "rec": "2 min", "n": "[MISURA] Tre serie a esaurimento con la pausa di 15 secondi in mezzo, poi la serie da 20 a −15%. Segna i colpi totali di ogni serie.", "ap": "", "es": ""}]}]}];const LS="sch-si-m5";const TITOLO="Mesociclo 5 — forza-ipertrofia";const MASSIMALI=[];const MIGRA_VECCHIO=false;const SEL0=0;const DSEL0="";const PERSONA0="si";const PROG0="Mesociclo 5";const PROGN0=5;const DASH=true;const DIAG=false;const ARCH0="https://script.google.com/macros/s/AKfycbxAHwzQlwAaeNLaKEy0EHuY-QOC7aiu-AnScNLi1J_kElFpdx4FNrEhDSbT3MSmlCSV/exec";const ARCHK0="nc-D0HwANdwVcy44E_ZaPgOT123";
+<script>const GIORNI=[{"id": "A", "head": "GIORNO A", "blocks": [{"t": "PANCA PIANA — forza", "nome": "PANCA PIANA", "ruolo": "forza", "rows": [{"s": "S1", "f": "Test", "se": "ramp + 2", "rp": "3 / 3", "ca": "da ~70 kg sali al 3RM poi 2 serie al 90% del test", "rec": "3 min", "n": "[TEST 3 COLPI] Sali a singole e doppie fino al massimo carico con cui chiudi 3 colpi puliti — l ultimo deve somigliare al primo, non va a cedimento. SCRIVI IL NUMERO NEGLI APPUNTI: tutte le settimane dopo girano su questo. Poi togli il 10% e fai 2 sole serie da 3 a quel peso. Polsiere, presa larga come sempre.", "ap": "", "es": ""}, {"s": "S2", "f": "Lavoro", "se": "5", "rp": "3", "ca": "90% del 3RM", "rec": "3 min", "n": "[DENTE DI SEGA] 5 serie da 3 al 90% del peso del test. Prima onda corta: poche ripetizioni, carico gia serio ma controllato.", "ap": "", "es": ""}, {"s": "S3", "f": "Lavoro", "se": "5", "rp": "5", "ca": "85% del 3RM", "rec": "3 min", "n": "[DENTE DI SEGA] 5 serie da 5 al 85% del peso del test. Onda lunga: piu ripetizioni a carico piu basso. Le due onde salgono in parallelo, non si incrociano.", "ap": "", "es": ""}, {"s": "S4", "f": "Lavoro", "se": "5", "rp": "3", "ca": "95% del 3RM", "rec": "3 min", "n": "[DENTE DI SEGA] 5 serie da 3 al 95% del peso del test. Seconda onda corta, un gradino sopra la prima.", "ap": "", "es": ""}, {"s": "S5", "f": "Lavoro", "se": "5", "rp": "5", "ca": "90% del 3RM", "rec": "3 min", "n": "[DENTE DI SEGA] 5 serie da 5 al 90% del peso del test. Onda lunga, un gradino sopra la precedente: piu pesante di due settimane fa, piu leggera di settimana scorsa.", "ap": "", "es": ""}, {"s": "S6", "f": "Lavoro", "se": "5", "rp": "3", "ca": "peso del test", "rec": "3 min", "n": "[DENTE DI SEGA] 5 serie da 3 al 100% del peso del test. PUNTA DEL BLOCCO: il tuo 3RM ripetuto 5 volte. Se una serie si rompe, recuperi e continui finche non hai fatto i 15 colpi totali, anche spezzandoli.", "ap": "", "es": ""}, {"s": "S7", "f": "Lavoro", "se": "5", "rp": "5", "ca": "95% del 3RM = il tuo 5RM stimato", "rec": "3 min", "n": "[DENTE DI SEGA] 5 serie da 5 al 95% del peso del test. ULTIMA ONDA: 5 colpi a quello che dovrebbe essere il tuo 5RM, calcolato dal test di S1. Se una serie si rompe, recuperi e continui finche non hai fatto i 25 colpi totali, anche spezzandoli.", "ap": "", "es": ""}, {"s": "S8", "f": "Misura", "se": "ramp + 2", "rp": "3 / 3", "ca": "ri-test poi 2 serie al 90%", "rec": "3 min", "n": "[MISURA] Si rifa lo stesso test di S1, 3 colpi puliti, poi 2 serie da 3 al 90% del nuovo peso. Scrivi il numero accanto a quello di S1: la differenza e il risultato di otto settimane e diventa il riferimento del prossimo blocco.", "ap": "", "es": ""}]}, {"t": "STACCO — forza", "nome": "STACCO", "ruolo": "forza", "rows": [{"s": "S1", "f": "Test", "se": "ramp + 2", "rp": "3 / 3", "ca": "da ~100 kg sali al 3RM poi 2 serie al 90% del test", "rec": "3 min", "n": "[TEST 3 COLPI] Sali fino al carico con cui chiudi 3 colpi puliti, senza cedimento. SCRIVI IL NUMERO NEGLI APPUNTI. Poi togli il 10% e fai 2 sole serie da 3. Ogni colpo riparte da terra ferma, mai di rimbalzo.", "ap": "", "es": ""}, {"s": "S2", "f": "Lavoro", "se": "4", "rp": "5", "ca": "77,5% del 3RM", "rec": "3 min", "n": "[CARICO CHE SALE] 4 serie da 5 al 77,5% del peso del test. Si parte largo e leggero: quattro serie da 5 che devono uscire veloci da terra.", "ap": "", "es": ""}, {"s": "S3", "f": "Lavoro", "se": "4", "rp": "5", "ca": "82,5% del 3RM", "rec": "3 min", "n": "[CARICO CHE SALE] 4 serie da 5 al 82,5% del peso del test. Stessi colpi, primo gradino di carico.", "ap": "", "es": ""}, {"s": "S4", "f": "Lavoro", "se": "4", "rp": "4", "ca": "87,5% del 3RM", "rec": "3 min", "n": "[CARICO CHE SALE] 4 serie da 4 al 87,5% del peso del test. Scende un colpo e sale il carico: e il baratto del blocco, e si ripete fino in fondo.", "ap": "", "es": ""}, {"s": "S5", "f": "Lavoro", "se": "4", "rp": "4", "ca": "90% del 3RM", "rec": "3 min", "n": "[CARICO CHE SALE] 4 serie da 4 al 90% del peso del test. Stessi quattro colpi, un gradino sopra.", "ap": "", "es": ""}, {"s": "S6", "f": "Lavoro", "se": "4", "rp": "3", "ca": "92,5% del 3RM", "rec": "3 min", "n": "[CARICO CHE SALE] 4 serie da 3 al 92,5% del peso del test. Tre colpi: da qui in poi e lavoro pesante, ma le serie restano quattro.", "ap": "", "es": ""}, {"s": "S7", "f": "Lavoro", "se": "4", "rp": "3", "ca": "95% del 3RM", "rec": "3 min", "n": "[CARICO CHE SALE] 4 serie da 3 al 95% del peso del test. Il carico piu alto su cui fai ancora tre colpi.", "ap": "", "es": ""}, {"s": "S8", "f": "Misura", "se": "4", "rp": "2", "ca": "100% del 3RM", "rec": "3 min", "n": "[CARICO CHE SALE] 4 serie da 2 al 100% del peso del test. Chiusura: due colpi al peso con cui a novembre ne facevi tre. E la misura del blocco, senza rifare un test.", "ap": "", "es": ""}]}, {"t": "SPINTE SU PANCA 15° — manubri", "nome": "SPINTE SU PANCA 15°", "ruolo": "manubri", "rows": [{"s": "S1", "f": "Test", "se": "ramp + 2", "rp": "8 / 8", "ca": "peso trovato in S1 poi 2 serie al 90%", "rec": "2 min", "n": "[TEST 8 COLPI] Trova il carico con cui fai 8 colpi puliti, l ultimo come il primo, senza cedimento. Scrivilo negli Appunti: regge tutto il blocco. Poi togli il 10% e fai 2 serie da 8. Manubri: sali di 2 kg per volta.", "ap": "", "es": ""}, {"s": "S2", "f": "Lavoro", "se": "1 / 2", "rp": "7 / 8", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Una serie da 7 al peso del test, poi 2 serie da 8 togliendo il 20%. Nel top si spinge, nei back-off no.", "ap": "", "es": ""}, {"s": "S3", "f": "Lavoro", "se": "1 / 2", "rp": "8 / 8", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Il top arriva a 8 colpi: e il numero del test, ma dopo una settimana di lavoro.", "ap": "", "es": ""}, {"s": "S4", "f": "Lavoro", "se": "1 / 3", "rp": "7 / 8", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Top piu leggero e una serie di richiamo in piu: settimana di volume.", "ap": "", "es": ""}, {"s": "S5", "f": "Lavoro", "se": "1 / 3", "rp": "8 / 8", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Di nuovo 8 colpi al top, ma con una serie di richiamo in piu della prima volta.", "ap": "", "es": ""}, {"s": "S6", "f": "Lavoro", "se": "1 / 1 / 1", "rp": "9 / 8 / MAX", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Top da 9 — UN colpo in piu del test, non due: e il tetto del blocco. Poi un back-off da 8 e una serie a esaurimento a −20%.", "ap": "", "es": ""}, {"s": "S7", "f": "Lavoro", "se": "1 / 2", "rp": "9 / 8", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Si conferma il top da 9, senza serie a esaurimento.", "ap": "", "es": ""}, {"s": "S8", "f": "Misura", "se": "1 / 2", "rp": "MAX / 8", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[MISURA] Una serie a esaurimento al peso del test, poi 2 serie da 8 a −20%. Segna i colpi del MAX accanto al 8 di S1.", "ap": "", "es": ""}]}, {"t": "PULLEY CON TRIANGOLO", "nome": "PULLEY CON TRIANGOLO", "ruolo": "", "rows": [{"s": "S1", "f": "Test", "se": "ramp + 2", "rp": "10 / 10", "ca": "peso trovato in S1 poi 2 serie al 90%", "rec": "2 min", "n": "[TEST 10 COLPI] Trova il carico con cui fai 10 colpi puliti, l ultimo come il primo, senza cedimento. Scrivilo negli Appunti: regge tutto il blocco. Poi togli il 10% e fai 2 serie da 10. Macchina: vai al pin piu vicino al peso giusto.", "ap": "", "es": ""}, {"s": "S2", "f": "Lavoro", "se": "1 / 2", "rp": "9 / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Una serie da 9 al peso del test, poi 2 serie da 10 togliendo il 20%. Nel top si spinge, nei back-off no.", "ap": "", "es": ""}, {"s": "S3", "f": "Lavoro", "se": "1 / 2", "rp": "10 / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Il top arriva a 10 colpi: e il numero del test, ma dopo una settimana di lavoro.", "ap": "", "es": ""}, {"s": "S4", "f": "Lavoro", "se": "1 / 3", "rp": "9 / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Top piu leggero e una serie di richiamo in piu: settimana di volume.", "ap": "", "es": ""}, {"s": "S5", "f": "Lavoro", "se": "1 / 3", "rp": "10 / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Di nuovo 10 colpi al top, ma con una serie di richiamo in piu della prima volta.", "ap": "", "es": ""}, {"s": "S6", "f": "Lavoro", "se": "1 / 1 / 1", "rp": "11 / 10 / MAX", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Top da 11 — UN colpo in piu del test, non due: e il tetto del blocco. Poi un back-off da 10 e una serie a esaurimento a −20%.", "ap": "", "es": ""}, {"s": "S7", "f": "Lavoro", "se": "1 / 2", "rp": "11 / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Si conferma il top da 11, senza serie a esaurimento.", "ap": "", "es": ""}, {"s": "S8", "f": "Misura", "se": "1 / 2", "rp": "MAX / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[MISURA] Una serie a esaurimento al peso del test, poi 2 serie da 10 a −20%. Segna i colpi del MAX accanto al 10 di S1.", "ap": "", "es": ""}]}, {"t": "ALZATE LATERALI", "nome": "ALZATE LATERALI", "ruolo": "", "rows": [{"s": "S1", "f": "Test", "se": "1 ladder", "rp": "1-2-3-4-5-5", "ca": "peso trovato in S1", "rec": "15 s / pieno", "n": "[LADDER] Trova il carico da 12 colpi puliti, poi fai UNA scala: 1 colpo, 15 secondi, 2 colpi, 15 secondi, 3, 4, 5 e ancora 5. Quella e una scala. Quindici secondi tra un gradino e l altro, recupero pieno tra una scala e l altra. Niente slancio: se serve la schiena, scendi di peso.", "ap": "", "es": ""}, {"s": "S2", "f": "Lavoro", "se": "2 ladder", "rp": "1-2-3-4-5-5", "ca": "peso della scorsa", "rec": "15 s / pieno", "n": "[LADDER] Due scale, recupero pieno tra una e l altra. Quindici secondi tra un gradino e l altro, recupero pieno tra una scala e l altra.", "ap": "", "es": ""}, {"s": "S3", "f": "Lavoro", "se": "3 ladder", "rp": "1-2-3-4-5-5", "ca": "peso della scorsa", "rec": "15 s / pieno", "n": "[LADDER] Tre scale: settimana piena del primo giro. Quindici secondi tra un gradino e l altro, recupero pieno tra una scala e l altra.", "ap": "", "es": ""}, {"s": "S4", "f": "Lavoro", "se": "1 ladder", "rp": "1-2-3-4-5-5", "ca": "peso della scorsa +1 kg per manubrio", "rec": "15 s / pieno", "n": "[LADDER] Sale il peso di un gradino e si torna a una scala sola. Quindici secondi tra un gradino e l altro, recupero pieno tra una scala e l altra.", "ap": "", "es": ""}, {"s": "S5", "f": "Lavoro", "se": "2 ladder", "rp": "1-2-3-4-5-5", "ca": "peso della scorsa", "rec": "15 s / pieno", "n": "[LADDER] Due scale al peso nuovo. Quindici secondi tra un gradino e l altro, recupero pieno tra una scala e l altra.", "ap": "", "es": ""}, {"s": "S6", "f": "Lavoro", "se": "3 ladder", "rp": "1-2-3-4-5-5", "ca": "peso della scorsa", "rec": "15 s / pieno", "n": "[LADDER] Tre scale al peso nuovo: settimana piena del secondo giro. Quindici secondi tra un gradino e l altro, recupero pieno tra una scala e l altra.", "ap": "", "es": ""}, {"s": "S7", "f": "Lavoro", "se": "1 ladder", "rp": "1-2-3-4-5-5", "ca": "peso della scorsa +1 kg per manubrio", "rec": "15 s / pieno", "n": "[LADDER] Ultimo gradino di peso, una scala. Quindici secondi tra un gradino e l altro, recupero pieno tra una scala e l altra.", "ap": "", "es": ""}, {"s": "S8", "f": "Misura", "se": "2 ladder", "rp": "1-2-3-4-5-5", "ca": "peso della scorsa", "rec": "15 s / pieno", "n": "[MISURA] Due scale. Segna negli Appunti il peso a cui sei arrivato. Quindici secondi tra un gradino e l altro, recupero pieno tra una scala e l altra.", "ap": "", "es": ""}]}, {"t": "CURL AI CAVI + PUSH-DOWN — superserie", "nome": "CURL AI CAVI + PUSH-DOWN", "ruolo": "superserie", "rows": [{"s": "S1", "f": "Test", "se": "ramp + 2", "rp": "6 / 6", "ca": "peso trovato in S1 poi 2 giri al 90%", "rec": "90 s", "n": "[TEST 6 COLPI] Un giro = i due esercizi di fila. Sali di peso fino al giro che ti da 6 colpi puliti su entrambi e scrivilo negli Appunti. Poi togli il 10% e fai 2 giri da 6. Un giro = curl e subito push-down, senza pausa in mezzo.", "ap": "", "es": ""}, {"s": "S2", "f": "Lavoro", "se": "4", "rp": "4", "ca": "peso del test", "rec": "90 s", "n": "[REPS A MEZZI COLPI] Quattro giri da 4 sul peso da 6: intensita alta, volume basso. Niente tecniche dentro la superserie.", "ap": "", "es": ""}, {"s": "S3", "f": "Lavoro", "se": "4", "rp": "4 / 5", "ca": "peso del test", "rec": "90 s", "n": "[REPS A MEZZI COLPI] Mezzo gradino: il primo e il terzo giro da 4, il secondo e il quarto da 5.", "ap": "", "es": ""}, {"s": "S4", "f": "Lavoro", "se": "4", "rp": "5", "ca": "peso del test", "rec": "90 s", "n": "[REPS A MEZZI COLPI] Quattro giri pieni da 5.", "ap": "", "es": ""}, {"s": "S5", "f": "Lavoro", "se": "4", "rp": "5 / 6", "ca": "peso del test", "rec": "90 s", "n": "[REPS A MEZZI COLPI] Mezzo gradino: si alternano 5 e 6 colpi.", "ap": "", "es": ""}, {"s": "S6", "f": "Lavoro", "se": "4", "rp": "6", "ca": "peso del test", "rec": "90 s", "n": "[REPS A MEZZI COLPI] Quattro giri da 6: sei arrivato ai colpi del test, allo stesso peso.", "ap": "", "es": ""}, {"s": "S7", "f": "Lavoro", "se": "4", "rp": "4", "ca": "peso del test", "rec": "90 s", "n": "[REPS A MEZZI COLPI] Sale il peso di un gradino e i colpi tornano a 4: secondo giro della scala.", "ap": "", "es": ""}, {"s": "S8", "f": "Misura", "se": "1 / 3", "rp": "MAX / 5", "ca": "peso del test", "rec": "90 s", "n": "[MISURA] Un giro a esaurimento, poi 3 giri da 5 allo stesso peso. Segna i colpi.", "ap": "", "es": ""}]}, {"t": "CALF IN PIEDI — colpi alti", "nome": "CALF IN PIEDI", "ruolo": "colpi alti", "rows": [{"s": "S1", "f": "Test", "se": "ramp + 2", "rp": "15 / 12", "ca": "peso trovato in S1 poi 2 serie al 90%", "rec": "60 s", "n": "[TEST 15 COLPI] Il polpaccio si testa QUI, in S1, e il peso trovato vale anche negli altri due giorni. Trova il carico con cui fai 15 colpi pieni, scrivilo negli Appunti, poi togli il 10% e fai 2 serie da 12. Sali in punta e scendi in allungo completo, senza rimbalzare.", "ap": "", "es": ""}, {"s": "S2", "f": "Lavoro", "se": "3", "rp": "12", "ca": "peso del test", "rec": "60 s", "n": "[SERIE CHE SALGONO] Tre serie da 12 al peso del test: comode, servono a prendere la misura.", "ap": "", "es": ""}, {"s": "S3", "f": "Lavoro", "se": "4", "rp": "12", "ca": "peso del test", "rec": "60 s", "n": "[SERIE CHE SALGONO] Una serie in piu, stesso peso e stessi colpi.", "ap": "", "es": ""}, {"s": "S4", "f": "Lavoro", "se": "5", "rp": "12", "ca": "peso del test", "rec": "60 s", "n": "[SERIE CHE SALGONO] Cinque serie da 12: 60 colpi in una seduta.", "ap": "", "es": ""}, {"s": "S5", "f": "Lavoro", "se": "6", "rp": "12", "ca": "peso del test", "rec": "60 s", "n": "[SERIE CHE SALGONO] Sei serie: settimana piena del primo giro.", "ap": "", "es": ""}, {"s": "S6", "f": "Lavoro", "se": "3", "rp": "15", "ca": "peso del test", "rec": "60 s", "n": "[SERIE CHE SALGONO] Si riparte da tre serie ma a 15 colpi: i colpi del test, allo stesso peso.", "ap": "", "es": ""}, {"s": "S7", "f": "Lavoro", "se": "4", "rp": "15", "ca": "peso del test", "rec": "60 s", "n": "[SERIE CHE SALGONO] Quattro serie da 15: 60 colpi, tutti lunghi.", "ap": "", "es": ""}, {"s": "S8", "f": "Misura", "se": "1 / 3", "rp": "MAX / 12", "ca": "peso del test", "rec": "60 s", "n": "[MISURA] Una serie a esaurimento al peso del test, poi 3 serie da 12. Segna i colpi del MAX e confrontali con i 15 di S1.", "ap": "", "es": ""}]}]}, {"id": "B", "head": "GIORNO B", "blocks": [{"t": "SQUAT — forza", "nome": "SQUAT", "ruolo": "forza", "rows": [{"s": "S1", "f": "Test", "se": "ramp + 2", "rp": "3 / 3", "ca": "da ~85 kg sali al 3RM poi 2 serie al 90% del test", "rec": "3 min", "n": "[TEST 3 COLPI] Sali fino al massimo carico con cui chiudi 3 colpi puliti, senza andare a cedimento. SCRIVI IL NUMERO NEGLI APPUNTI. Poi togli il 10% e fai 2 sole serie da 3. Stessa profondita a ogni colpo.", "ap": "", "es": ""}, {"s": "S2", "f": "Lavoro", "se": "5", "rp": "7", "ca": "80% del 3RM", "rec": "3 min", "n": "[LOOP 7-5-3] 5 serie da 7 al 80% del peso del test. Parte larga del dente: tanti colpi, carico piu basso.", "ap": "", "es": ""}, {"s": "S3", "f": "Lavoro", "se": "5", "rp": "5", "ca": "87,5% del 3RM", "rec": "3 min", "n": "[LOOP 7-5-3] 5 serie da 5 al 87,5% del peso del test. Scendono i colpi, sale il carico.", "ap": "", "es": ""}, {"s": "S4", "f": "Lavoro", "se": "5", "rp": "3", "ca": "92,5% del 3RM", "rec": "3 min", "n": "[LOOP 7-5-3] 5 serie da 3 al 92,5% del peso del test. Punta del primo giro: 3 colpi al carico piu alto del giro.", "ap": "", "es": ""}, {"s": "S5", "f": "Lavoro", "se": "5", "rp": "7", "ca": "85% del 3RM", "rec": "3 min", "n": "[LOOP 7-5-3] 5 serie da 7 al 85% del peso del test. Secondo giro: stessi 7 colpi di S2 ma piu pesanti.", "ap": "", "es": ""}, {"s": "S6", "f": "Lavoro", "se": "5", "rp": "5", "ca": "90% del 3RM", "rec": "3 min", "n": "[LOOP 7-5-3] 5 serie da 5 al 90% del peso del test. Stessi 5 colpi di S3, un gradino sopra.", "ap": "", "es": ""}, {"s": "S7", "f": "Lavoro", "se": "5", "rp": "3", "ca": "peso del test", "rec": "3 min", "n": "[LOOP 7-5-3] 5 serie da 3 al 100% del peso del test. PUNTA DEL BLOCCO: il tuo 3RM ripetuto 5 volte. Se una serie si rompe, recuperi e continui finche non hai fatto i 15 colpi totali, anche spezzandoli.", "ap": "", "es": ""}, {"s": "S8", "f": "Misura", "se": "ramp + 2", "rp": "3 / 3", "ca": "ri-test poi 2 serie al 90%", "rec": "3 min", "n": "[MISURA] Si rifa il test di S1, poi 2 serie da 3 al 90% del nuovo peso. Scrivi il numero accanto a quello di S1: la differenza e il risultato del blocco ed e il riferimento del prossimo.", "ap": "", "es": ""}]}, {"t": "TRAZIONI", "nome": "TRAZIONI", "ruolo": "", "rows": [{"s": "S1", "f": "Test", "se": "ramp + 2", "rp": "6 / 4", "ca": "corpo + zavorra poi 2 serie da 4 uguali", "rec": "3 min", "n": "[TEST 6 COLPI] Trova la zavorra con cui chiudi 6 trazioni piene e pulite, senza strappi e senza cedimento. NEGLI APPUNTI SCRIVI DUE NUMERI: il tuo peso corporeo e la zavorra. Poi 2 sole serie da 4 alla STESSA zavorra (qui non si toglie il 10%: si tolgono due colpi). Da qui in poi lavori a chili veri, mai a percentuale.", "ap": "", "es": ""}, {"s": "S2", "f": "Lavoro", "se": "6", "rp": "3", "ca": "zavorra del test", "rec": "2 min", "n": "[COLPI SOTTO IL TEST] 6 serie da 3 alla zavorra del test. Sono 3 colpi su 6 possibili: devono uscire facili e tutti uguali.", "ap": "", "es": ""}, {"s": "S3", "f": "Lavoro", "se": "5", "rp": "4", "ca": "zavorra del test", "rec": "2-3 min", "n": "[COLPI SOTTO IL TEST] 5 serie da 4, stessa zavorra. Un colpo in piu, una serie in meno.", "ap": "", "es": ""}, {"s": "S4", "f": "Lavoro", "se": "4", "rp": "5", "ca": "zavorra del test", "rec": "2-3 min", "n": "[COLPI SOTTO IL TEST] 4 serie da 5, stessa zavorra. Questa e la settimana dura del giro: 5 su 6.", "ap": "", "es": ""}, {"s": "S5", "f": "Lavoro", "se": "6", "rp": "3", "ca": "zavorra del test +2,5 kg", "rec": "2 min", "n": "[COLPI SOTTO IL TEST] La zavorra sale di 2,5 kg e si torna a 3 colpi. Secondo giro.", "ap": "", "es": ""}, {"s": "S6", "f": "Lavoro", "se": "5", "rp": "4", "ca": "zavorra del test +2,5 kg", "rec": "2-3 min", "n": "[COLPI SOTTO IL TEST] 5 serie da 4 alla zavorra nuova.", "ap": "", "es": ""}, {"s": "S7", "f": "Lavoro", "se": "4", "rp": "5", "ca": "zavorra del test +2,5 kg", "rec": "2-3 min", "n": "[COLPI SOTTO IL TEST] 4 serie da 5 alla zavorra nuova: settimana dura del secondo giro.", "ap": "", "es": ""}, {"s": "S8", "f": "Misura", "se": "1 / 3", "rp": "MAX / MAX ÷ 2", "ca": "zavorra del test +2,5 kg", "rec": "3 min", "n": "[MISURA] Una serie a esaurimento alla zavorra nuova, poi 3 serie da meta dei colpi che hai fatto. Segna i colpi del MAX: e il nuovo riferimento.", "ap": "", "es": ""}]}, {"t": "ROWING MACHINE", "nome": "ROWING MACHINE", "ruolo": "", "rows": [{"s": "S1", "f": "Test", "se": "ramp + 2", "rp": "10 / 10", "ca": "peso trovato in S1 poi 2 serie al 90%", "rec": "2 min", "n": "[TEST 10 COLPI] Trova il carico con cui fai 10 colpi puliti, l ultimo come il primo, senza cedimento. Scrivilo negli Appunti: regge tutto il blocco. Poi togli il 10% e fai 2 serie da 10. Petto in fuori, tira ai fianchi e non alle spalle.", "ap": "", "es": ""}, {"s": "S2", "f": "Lavoro", "se": "1 / 2", "rp": "9 / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Una serie da 9 al peso del test, poi 2 serie da 10 togliendo il 20%. Nel top si spinge, nei back-off no.", "ap": "", "es": ""}, {"s": "S3", "f": "Lavoro", "se": "1 / 2", "rp": "10 / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Il top arriva a 10 colpi: e il numero del test, ma dopo una settimana di lavoro.", "ap": "", "es": ""}, {"s": "S4", "f": "Lavoro", "se": "1 / 3", "rp": "9 / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Top piu leggero e una serie di richiamo in piu: settimana di volume.", "ap": "", "es": ""}, {"s": "S5", "f": "Lavoro", "se": "1 / 3", "rp": "10 / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Di nuovo 10 colpi al top, ma con una serie di richiamo in piu della prima volta.", "ap": "", "es": ""}, {"s": "S6", "f": "Lavoro", "se": "1 / 1 / 1", "rp": "11 / 10 / MAX", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Top da 11 — UN colpo in piu del test, non due: e il tetto del blocco. Poi un back-off da 10 e una serie a esaurimento a −20%.", "ap": "", "es": ""}, {"s": "S7", "f": "Lavoro", "se": "1 / 2", "rp": "11 / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Si conferma il top da 11, senza serie a esaurimento.", "ap": "", "es": ""}, {"s": "S8", "f": "Misura", "se": "1 / 2", "rp": "MAX / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[MISURA] Una serie a esaurimento al peso del test, poi 2 serie da 10 a −20%. Segna i colpi del MAX accanto al 10 di S1.", "ap": "", "es": ""}]}, {"t": "LENTO AVANTI MANUBRI + ALZATE POSTERIORI AI CAVI — superserie", "nome": "LENTO AVANTI MANUBRI + ALZATE POSTERIORI AI CAVI", "ruolo": "superserie", "rows": [{"s": "S1", "f": "Test", "se": "1 / 3", "rp": "MAX / N", "ca": "peso della scorsa +2 kg se il top > 12", "rec": "90 s", "n": "[TOP A ESAURIMENTO + CODE] Un giro a esaurimento, poi 3 giri con TRE colpi in meno di quelli del MAX di oggi. Scegli il peso: deve darti circa 12 colpi al primo giro. Un giro = lento avanti e subito alzate posteriori. Ogni settimana, PRIMA di iniziare, rileggi i colpi che hai segnato la volta scorsa: o li confermi o ne fai uno in piu.", "ap": "", "es": ""}, {"s": "S2", "f": "Lavoro", "se": "1 / 4", "rp": "MAX / N", "ca": "peso della scorsa +2 kg se il top > 12", "rec": "90 s", "n": "[TOP A ESAURIMENTO + CODE] Un giro di richiamo in piu, sempre a tre colpi in meno del MAX di oggi.", "ap": "", "es": ""}, {"s": "S3", "f": "Lavoro", "se": "1 / 4", "rp": "MAX / N", "ca": "peso della scorsa +2 kg se il top > 12", "rec": "90 s", "n": "[TOP A ESAURIMENTO + CODE] Le code si avvicinano al top: DUE colpi in meno del MAX, non tre.", "ap": "", "es": ""}, {"s": "S4", "f": "Lavoro", "se": "4", "rp": "N", "ca": "peso della scorsa +2 kg se il top > 12", "rec": "90 s", "n": "[TOP A ESAURIMENTO + CODE] Settimana di richiamo: niente esaurimento. Quattro giri a tre colpi in meno del MAX che hai segnato la settimana scorsa.", "ap": "", "es": ""}, {"s": "S5", "f": "Lavoro", "se": "1 / 3", "rp": "MAX / N", "ca": "peso della scorsa +2 kg se il top > 12", "rec": "90 s", "n": "[TOP A ESAURIMENTO + CODE] Si riparte. Se la settimana scorsa il top ha passato i 12 colpi, oggi il peso sale di 2 kg per manubrio. Code a tre colpi dal MAX.", "ap": "", "es": ""}, {"s": "S6", "f": "Lavoro", "se": "1 / 4", "rp": "MAX / N", "ca": "peso della scorsa +2 kg se il top > 12", "rec": "90 s", "n": "[TOP A ESAURIMENTO + CODE] Un richiamo in piu, code a tre colpi dal MAX.", "ap": "", "es": ""}, {"s": "S7", "f": "Lavoro", "se": "1 / 4", "rp": "MAX / N", "ca": "peso della scorsa +2 kg se il top > 12", "rec": "90 s", "n": "[TOP A ESAURIMENTO + CODE] Code a due colpi dal MAX.", "ap": "", "es": ""}, {"s": "S8", "f": "Misura", "se": "1 / 2", "rp": "MAX / N", "ca": "peso della scorsa +2 kg se il top > 12", "rec": "90 s", "n": "[MISURA] Ultimo giro: un MAX e 2 code a due colpi. Confronta i colpi con quelli di S1.", "ap": "", "es": ""}]}, {"t": "CURL BILANCIERE + FRENCH PRESS — superserie", "nome": "CURL BILANCIERE + FRENCH PRESS", "ruolo": "superserie", "rows": [{"s": "S1", "f": "Test", "se": "ramp + 2", "rp": "6 / 6", "ca": "peso trovato in S1 poi 2 giri al 90%", "rec": "90 s", "n": "[TEST 6 COLPI] Un giro = i due esercizi di fila. Sali di peso fino al giro che ti da 6 colpi puliti su entrambi e scrivilo negli Appunti. Poi togli il 10% e fai 2 giri da 6. Un giro = curl e subito french press.", "ap": "", "es": ""}, {"s": "S2", "f": "Lavoro", "se": "4", "rp": "4", "ca": "peso del test", "rec": "90 s", "n": "[REPS A MEZZI COLPI] Quattro giri da 4 sul peso da 6: intensita alta, volume basso. Niente tecniche dentro la superserie.", "ap": "", "es": ""}, {"s": "S3", "f": "Lavoro", "se": "4", "rp": "4 / 5", "ca": "peso del test", "rec": "90 s", "n": "[REPS A MEZZI COLPI] Mezzo gradino: il primo e il terzo giro da 4, il secondo e il quarto da 5.", "ap": "", "es": ""}, {"s": "S4", "f": "Lavoro", "se": "4", "rp": "5", "ca": "peso del test", "rec": "90 s", "n": "[REPS A MEZZI COLPI] Quattro giri pieni da 5.", "ap": "", "es": ""}, {"s": "S5", "f": "Lavoro", "se": "4", "rp": "5 / 6", "ca": "peso del test", "rec": "90 s", "n": "[REPS A MEZZI COLPI] Mezzo gradino: si alternano 5 e 6 colpi.", "ap": "", "es": ""}, {"s": "S6", "f": "Lavoro", "se": "4", "rp": "6", "ca": "peso del test", "rec": "90 s", "n": "[REPS A MEZZI COLPI] Quattro giri da 6: sei arrivato ai colpi del test, allo stesso peso.", "ap": "", "es": ""}, {"s": "S7", "f": "Lavoro", "se": "4", "rp": "4", "ca": "peso del test", "rec": "90 s", "n": "[REPS A MEZZI COLPI] Sale il peso di un gradino e i colpi tornano a 4: secondo giro della scala.", "ap": "", "es": ""}, {"s": "S8", "f": "Misura", "se": "1 / 3", "rp": "MAX / 5", "ca": "peso del test", "rec": "90 s", "n": "[MISURA] Un giro a esaurimento, poi 3 giri da 5 allo stesso peso. Segna i colpi.", "ap": "", "es": ""}]}, {"t": "CALF IN PIEDI — EMOM al minuto", "nome": "CALF IN PIEDI", "ruolo": "EMOM al minuto", "rows": [{"s": "S1", "f": "Test", "se": "8 giri", "rp": "8", "ca": "peso del test del Giorno A, −20%", "rec": "al minuto", "n": "[EMOM] Si usa il peso testato nel Giorno A meno il 20%: qui i colpi sono tanti e ravvicinati, il peso pieno non passa. Otto giri, otto colpi al minuto. Fai i colpi e aspetti lo scadere del minuto: il resto e recupero. Tieni un orologio davanti.", "ap": "", "es": ""}, {"s": "S2", "f": "Lavoro", "se": "8 giri", "rp": "9", "ca": "peso del test del Giorno A, −20%", "rec": "al minuto", "n": "[EMOM] Un colpo in piu al minuto, stesso numero di giri.", "ap": "", "es": ""}, {"s": "S3", "f": "Lavoro", "se": "9 giri", "rp": "9", "ca": "peso del test del Giorno A, −20%", "rec": "al minuto", "n": "[EMOM] Un giro in piu: il minuto comincia a stare stretto.", "ap": "", "es": ""}, {"s": "S4", "f": "Lavoro", "se": "10 giri", "rp": "9", "ca": "peso del test del Giorno A, −20%", "rec": "al minuto", "n": "[EMOM] Dieci giri da 9: novanta colpi in dieci minuti.", "ap": "", "es": ""}, {"s": "S5", "f": "Lavoro", "se": "10 giri", "rp": "10", "ca": "peso del test del Giorno A, −20%", "rec": "al minuto", "n": "[EMOM] Dieci colpi al minuto per dieci minuti: cento colpi.", "ap": "", "es": ""}, {"s": "S6", "f": "Lavoro", "se": "10 giri", "rp": "10", "ca": "peso del test del Giorno A, −20%", "rec": "al minuto", "n": "[EMOM] Si ripete: qui non si sale, si consolida.", "ap": "", "es": ""}, {"s": "S7", "f": "Lavoro", "se": "10 giri", "rp": "11", "ca": "peso del test del Giorno A, −20%", "rec": "al minuto", "n": "[EMOM] Undici al minuto: settimana piu densa del blocco.", "ap": "", "es": ""}, {"s": "S8", "f": "Misura", "se": "1 / 3", "rp": "MAX / 12", "ca": "peso del test del Giorno A, −20%", "rec": "90 s", "n": "[MISURA] Si esce dall orologio: una serie a esaurimento a quel peso, poi 3 serie da 12. Segna i colpi del MAX.", "ap": "", "es": ""}]}]}, {"id": "C", "head": "GIORNO C", "blocks": [{"t": "PANCA PIANA — fermo 2 s al petto", "nome": "PANCA PIANA", "ruolo": "fermo 2 s al petto", "rows": [{"s": "S1", "f": "Test", "se": "ramp + 2", "rp": "8 / 8", "ca": "peso trovato in S1 poi 2 serie al 90%", "rec": "2 min", "n": "[TEST 8 COLPI] Trova il carico con cui fai 8 colpi puliti, l ultimo come il primo, senza cedimento. Scrivilo negli Appunti: regge tutto il blocco. Poi togli il 10% e fai 2 serie da 8. Fermo di 2 secondi al petto a ogni colpo, petto fermo e non molle.", "ap": "", "es": ""}, {"s": "S2", "f": "Lavoro", "se": "1 / 2", "rp": "7 / 8", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Una serie da 7 al peso del test, poi 2 serie da 8 togliendo il 20%. Nel top si spinge, nei back-off no.", "ap": "", "es": ""}, {"s": "S3", "f": "Lavoro", "se": "1 / 2", "rp": "8 / 8", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Il top arriva a 8 colpi: e il numero del test, ma dopo una settimana di lavoro.", "ap": "", "es": ""}, {"s": "S4", "f": "Lavoro", "se": "1 / 3", "rp": "7 / 8", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Top piu leggero e una serie di richiamo in piu: settimana di volume.", "ap": "", "es": ""}, {"s": "S5", "f": "Lavoro", "se": "1 / 3", "rp": "8 / 8", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Di nuovo 8 colpi al top, ma con una serie di richiamo in piu della prima volta.", "ap": "", "es": ""}, {"s": "S6", "f": "Lavoro", "se": "1 / 1 / 1", "rp": "9 / 8 / MAX", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Top da 9 — UN colpo in piu del test, non due: e il tetto del blocco. Poi un back-off da 8 e una serie a esaurimento a −20%.", "ap": "", "es": ""}, {"s": "S7", "f": "Lavoro", "se": "1 / 2", "rp": "9 / 8", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Si conferma il top da 9, senza serie a esaurimento.", "ap": "", "es": ""}, {"s": "S8", "f": "Misura", "se": "1 / 2", "rp": "MAX / 8", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[MISURA] Una serie a esaurimento al peso del test, poi 2 serie da 8 a −20%. Segna i colpi del MAX accanto al 8 di S1.", "ap": "", "es": ""}]}, {"t": "LEG EXTENSION", "nome": "LEG EXTENSION", "ruolo": "", "rows": [{"s": "S1", "f": "Test", "se": "ramp + 2", "rp": "10 / 10", "ca": "peso trovato in S1 poi 2 serie al 90%", "rec": "2 min", "n": "[TEST 10 COLPI] Trova il carico con cui fai 10 colpi puliti, l ultimo come il primo, senza cedimento. Scrivilo negli Appunti: regge tutto il blocco. Poi togli il 10% e fai 2 serie da 10. Tieni un secondo in alto, poi scendi piano.", "ap": "", "es": ""}, {"s": "S2", "f": "Lavoro", "se": "1 / 3", "rp": "9 / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Una serie da 9 al peso del test, poi 3 serie da 10 togliendo il 20%. Nel top si spinge, nei back-off no.", "ap": "", "es": ""}, {"s": "S3", "f": "Lavoro", "se": "1 / 3", "rp": "10 / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Il top arriva a 10 colpi: e il numero del test, ma dopo una settimana di lavoro.", "ap": "", "es": ""}, {"s": "S4", "f": "Lavoro", "se": "1 / 4", "rp": "9 / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Top piu leggero e una serie di richiamo in piu: settimana di volume.", "ap": "", "es": ""}, {"s": "S5", "f": "Lavoro", "se": "1 / 4", "rp": "10 / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Di nuovo 10 colpi al top, ma con una serie di richiamo in piu della prima volta.", "ap": "", "es": ""}, {"s": "S6", "f": "Lavoro", "se": "1 / 1 / 1", "rp": "11 / 10 / MAX", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Top da 11 — UN colpo in piu del test, non due: e il tetto del blocco. Poi un back-off da 10 e una serie a esaurimento a −20%.", "ap": "", "es": ""}, {"s": "S7", "f": "Lavoro", "se": "1 / 3", "rp": "11 / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Si conferma il top da 11, senza serie a esaurimento.", "ap": "", "es": ""}, {"s": "S8", "f": "Misura", "se": "1 / 3", "rp": "MAX / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[MISURA] Una serie a esaurimento al peso del test, poi 3 serie da 10 a −20%. Segna i colpi del MAX accanto al 10 di S1.", "ap": "", "es": ""}]}, {"t": "CROCI AI CAVI", "nome": "CROCI AI CAVI", "ruolo": "", "rows": [{"s": "S1", "f": "Test", "se": "ramp + 2", "rp": "12 / 12", "ca": "peso trovato in S1 poi 2 serie al 90%", "rec": "90 s", "n": "[TEST 12 COLPI] Trova il carico con cui fai 12 colpi puliti e scrivilo negli Appunti. Poi togli il 10% e fai 2 serie da 12. Isolamento: il peso serve a sentire il petto, non a spostarlo.", "ap": "", "es": ""}, {"s": "S2", "f": "Lavoro", "se": "3 / 1", "rp": "5 + 5 / 12", "ca": "peso del test −30% sull ultima", "rec": "90 s", "n": "[STOP REPS] 3 serie cosi: 5 colpi, appoggi e conti 15 secondi, altri 5 colpi. Poi una serie da 12 togliendo il 30%.", "ap": "", "es": ""}, {"s": "S3", "f": "Lavoro", "se": "3 / 1", "rp": "6 + 5 / 12", "ca": "peso del test −30% sull ultima", "rec": "90 s", "n": "[STOP REPS] Un colpo in piu nel primo blocco: 6, pausa di 15 secondi, 5. Poi la serie da 12 a −30%.", "ap": "", "es": ""}, {"s": "S4", "f": "Lavoro", "se": "4 / 1", "rp": "5 + 5 / 12", "ca": "peso del test −30% sull ultima", "rec": "90 s", "n": "[STOP REPS] Una serie in piu e si torna a 5 + 5.", "ap": "", "es": ""}, {"s": "S5", "f": "Lavoro", "se": "4 / 1", "rp": "6 + 6 / 12", "ca": "peso del test −30% sull ultima", "rec": "90 s", "n": "[STOP REPS] 6, pausa, 6: quattro volte.", "ap": "", "es": ""}, {"s": "S6", "f": "Lavoro", "se": "3 / 1", "rp": "6 + 6 + 6 / 12", "ca": "peso del test −30% sull ultima", "rec": "2 min", "n": "[STOP REPS] Tre blocchi dentro la serie invece di due: 6, pausa, 6, pausa, 6. Recupero piu lungo tra le serie.", "ap": "", "es": ""}, {"s": "S7", "f": "Lavoro", "se": "4 / 1", "rp": "6 + 6 / 12", "ca": "peso del test −30% sull ultima", "rec": "90 s", "n": "[STOP REPS] Si torna a due blocchi, quattro serie: settimana di consolidamento.", "ap": "", "es": ""}, {"s": "S8", "f": "Misura", "se": "3 / 1", "rp": "MAX + MAX / 12", "ca": "peso del test −30% sull ultima", "rec": "2 min", "n": "[MISURA] 3 serie a esaurimento con la pausa di 15 secondi in mezzo. Segna i colpi totali di ogni serie.", "ap": "", "es": ""}]}, {"t": "SHOULDER PRESS — forza", "nome": "SHOULDER PRESS", "ruolo": "forza", "rows": [{"s": "S1", "f": "Test", "se": "ramp + 2", "rp": "5 / 5", "ca": "da ~45 kg sali al 5RM poi 2 serie al 90% del test", "rec": "3 min", "n": "[TEST 5 COLPI] Sali a singole e doppie fino al massimo carico con cui chiudi 5 colpi puliti — l ultimo deve somigliare al primo, non va a cedimento. SCRIVI IL NUMERO NEGLI APPUNTI: tutte le settimane dopo girano su questo. Poi togli il 10% e fai 2 sole serie da 5 a quel peso. Addome contratto, niente inarco di schiena.", "ap": "", "es": ""}, {"s": "S2", "f": "Lavoro", "se": "4", "rp": "4", "ca": "87,5% del 5RM", "rec": "3 min", "n": "[DENTE DI SEGA] 4 serie da 4 al 87,5% del peso del test. Prima onda corta: poche ripetizioni, carico gia serio ma controllato.", "ap": "", "es": ""}, {"s": "S3", "f": "Lavoro", "se": "4", "rp": "6", "ca": "80% del 5RM", "rec": "3 min", "n": "[DENTE DI SEGA] 4 serie da 6 al 80% del peso del test. Onda lunga: piu ripetizioni a carico piu basso. Le due onde salgono in parallelo, non si incrociano.", "ap": "", "es": ""}, {"s": "S4", "f": "Lavoro", "se": "4", "rp": "4", "ca": "90% del 5RM", "rec": "3 min", "n": "[DENTE DI SEGA] 4 serie da 4 al 90% del peso del test. Seconda onda corta, un gradino sopra la prima.", "ap": "", "es": ""}, {"s": "S5", "f": "Lavoro", "se": "4", "rp": "6", "ca": "82,5% del 5RM", "rec": "3 min", "n": "[DENTE DI SEGA] 4 serie da 6 al 82,5% del peso del test. Onda lunga, un gradino sopra la precedente: piu pesante di due settimane fa, piu leggera di settimana scorsa.", "ap": "", "es": ""}, {"s": "S6", "f": "Lavoro", "se": "4", "rp": "4", "ca": "92,5% del 5RM", "rec": "3 min", "n": "[DENTE DI SEGA] 4 serie da 4 al 92,5% del peso del test. PUNTA DEL BLOCCO: il tuo 5RM ripetuto 4 volte. Se una serie si rompe, recuperi e continui finche non hai fatto i 16 colpi totali, anche spezzandoli.", "ap": "", "es": ""}, {"s": "S7", "f": "Lavoro", "se": "4", "rp": "6", "ca": "85% del 5RM = il tuo 5RM stimato", "rec": "3 min", "n": "[DENTE DI SEGA] 4 serie da 6 al 85% del peso del test. ULTIMA ONDA: 6 colpi a quello che dovrebbe essere il tuo 6RM, calcolato dal test di S1. Se una serie si rompe, recuperi e continui finche non hai fatto i 24 colpi totali, anche spezzandoli.", "ap": "", "es": ""}, {"s": "S8", "f": "Misura", "se": "ramp + 2", "rp": "5 / 5", "ca": "ri-test poi 2 serie al 90%", "rec": "3 min", "n": "[MISURA] Si rifa lo stesso test di S1, 5 colpi puliti, poi 2 serie da 5 al 90% del nuovo peso. Scrivi il numero accanto a quello di S1: la differenza e il risultato di otto settimane e diventa il riferimento del prossimo blocco.", "ap": "", "es": ""}]}, {"t": "LAT MACHINE — presa trazy bar", "nome": "LAT MACHINE", "ruolo": "presa trazy bar", "rows": [{"s": "S1", "f": "Test", "se": "ramp + 2", "rp": "8 / 8", "ca": "peso trovato in S1 poi 2 serie al 90%", "rec": "2 min", "n": "[TEST 8 COLPI] Trova il carico con cui fai 8 colpi puliti, l ultimo come il primo, senza cedimento. Scrivilo negli Appunti: regge tutto il blocco. Poi togli il 10% e fai 2 serie da 8. Porta la barra al petto, non dietro il collo.", "ap": "", "es": ""}, {"s": "S2", "f": "Lavoro", "se": "1 / 2", "rp": "7 / 8", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Una serie da 7 al peso del test, poi 2 serie da 8 togliendo il 20%. Nel top si spinge, nei back-off no.", "ap": "", "es": ""}, {"s": "S3", "f": "Lavoro", "se": "1 / 2", "rp": "8 / 8", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Il top arriva a 8 colpi: e il numero del test, ma dopo una settimana di lavoro.", "ap": "", "es": ""}, {"s": "S4", "f": "Lavoro", "se": "1 / 3", "rp": "7 / 8", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Top piu leggero e una serie di richiamo in piu: settimana di volume.", "ap": "", "es": ""}, {"s": "S5", "f": "Lavoro", "se": "1 / 3", "rp": "8 / 8", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Di nuovo 8 colpi al top, ma con una serie di richiamo in piu della prima volta.", "ap": "", "es": ""}, {"s": "S6", "f": "Lavoro", "se": "1 / 1 / 1", "rp": "9 / 8 / MAX", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Top da 9 — UN colpo in piu del test, non due: e il tetto del blocco. Poi un back-off da 8 e una serie a esaurimento a −20%.", "ap": "", "es": ""}, {"s": "S7", "f": "Lavoro", "se": "1 / 2", "rp": "9 / 8", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Si conferma il top da 9, senza serie a esaurimento.", "ap": "", "es": ""}, {"s": "S8", "f": "Misura", "se": "1 / 2", "rp": "MAX / 8", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[MISURA] Una serie a esaurimento al peso del test, poi 2 serie da 8 a −20%. Segna i colpi del MAX accanto al 8 di S1.", "ap": "", "es": ""}]}, {"t": "LEG CURL SDRAIATO", "nome": "LEG CURL SDRAIATO", "ruolo": "", "rows": [{"s": "S1", "f": "Test", "se": "ramp + 2", "rp": "10 / 10", "ca": "peso trovato in S1 poi 2 serie al 90%", "rec": "2 min", "n": "[TEST 10 COLPI] Trova il carico con cui fai 10 colpi puliti, l ultimo come il primo, senza cedimento. Scrivilo negli Appunti: regge tutto il blocco. Poi togli il 10% e fai 2 serie da 10. Bacino sempre appoggiato.", "ap": "", "es": ""}, {"s": "S2", "f": "Lavoro", "se": "1 / 3", "rp": "9 / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Una serie da 9 al peso del test, poi 3 serie da 10 togliendo il 20%. Nel top si spinge, nei back-off no.", "ap": "", "es": ""}, {"s": "S3", "f": "Lavoro", "se": "1 / 3", "rp": "10 / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Il top arriva a 10 colpi: e il numero del test, ma dopo una settimana di lavoro.", "ap": "", "es": ""}, {"s": "S4", "f": "Lavoro", "se": "1 / 4", "rp": "9 / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Top piu leggero e una serie di richiamo in piu: settimana di volume.", "ap": "", "es": ""}, {"s": "S5", "f": "Lavoro", "se": "1 / 4", "rp": "10 / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Di nuovo 10 colpi al top, ma con una serie di richiamo in piu della prima volta.", "ap": "", "es": ""}, {"s": "S6", "f": "Lavoro", "se": "1 / 1 / 1", "rp": "11 / 10 / MAX", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Top da 11 — UN colpo in piu del test, non due: e il tetto del blocco. Poi un back-off da 10 e una serie a esaurimento a −20%.", "ap": "", "es": ""}, {"s": "S7", "f": "Lavoro", "se": "1 / 3", "rp": "11 / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[TOP + BACK-OFF] Si conferma il top da 11, senza serie a esaurimento.", "ap": "", "es": ""}, {"s": "S8", "f": "Misura", "se": "1 / 3", "rp": "MAX / 10", "ca": "peso del test −20% sul back-off", "rec": "2 min", "n": "[MISURA] Una serie a esaurimento al peso del test, poi 3 serie da 10 a −20%. Segna i colpi del MAX accanto al 10 di S1.", "ap": "", "es": ""}]}, {"t": "CALF IN PIEDI — colpi alti con pausa", "nome": "CALF IN PIEDI", "ruolo": "colpi alti con pausa", "rows": [{"s": "S1", "f": "Test", "se": "3 / 1", "rp": "8 + 8 / 20", "ca": "peso del test del Giorno A, −15% sull ultima", "rec": "90 s", "n": "[STOP REPS] Si usa il peso testato nel Giorno A. Otto colpi, appoggi e conti 15 secondi, altri otto. Tre serie cosi, poi una serie da 20 togliendo il 15%. Il peso resta quello, cambia come lo spendi.", "ap": "", "es": ""}, {"s": "S2", "f": "Lavoro", "se": "4 / 1", "rp": "8 + 8 / 20", "ca": "peso del test del Giorno A, −15% sull ultima", "rec": "90 s", "n": "[STOP REPS] Una serie in piu, stessi colpi.", "ap": "", "es": ""}, {"s": "S3", "f": "Lavoro", "se": "3 / 1", "rp": "10 + 10 / 20", "ca": "peso del test del Giorno A, −15% sull ultima", "rec": "90 s", "n": "[STOP REPS] Si torna a tre serie ma i blocchi salgono a dieci colpi.", "ap": "", "es": ""}, {"s": "S4", "f": "Lavoro", "se": "4 / 1", "rp": "10 + 10 / 20", "ca": "peso del test del Giorno A, −15% sull ultima", "rec": "90 s", "n": "[STOP REPS] Quattro serie da 10 + 10: ottanta colpi, piu il back-off.", "ap": "", "es": ""}, {"s": "S5", "f": "Lavoro", "se": "3 / 1", "rp": "10 + 10 + 10 / 20", "ca": "peso del test del Giorno A, −15% sull ultima", "rec": "90 s", "n": "[STOP REPS] Tre blocchi dentro la serie invece di due: 10, pausa, 10, pausa, 10.", "ap": "", "es": ""}, {"s": "S6", "f": "Lavoro", "se": "4 / 1", "rp": "10 + 10 / 20", "ca": "peso del test del Giorno A, −15% sull ultima", "rec": "90 s", "n": "[STOP REPS] Si torna a due blocchi, quattro serie: consolidamento.", "ap": "", "es": ""}, {"s": "S7", "f": "Lavoro", "se": "3 / 1", "rp": "12 + 12 / 20", "ca": "peso del test del Giorno A, −15% sull ultima", "rec": "90 s", "n": "[STOP REPS] Blocchi da dodici: i colpi piu lunghi del blocco.", "ap": "", "es": ""}, {"s": "S8", "f": "Misura", "se": "3 / 1", "rp": "MAX + MAX / 20", "ca": "peso del test del Giorno A, −15% sull ultima", "rec": "2 min", "n": "[MISURA] Tre serie a esaurimento con la pausa di 15 secondi in mezzo, poi la serie da 20 a −15%. Segna i colpi totali di ogni serie.", "ap": "", "es": ""}]}]}];const LS="sch-si-m5";const TITOLO="Mesociclo 5 — forza-ipertrofia";const MASSIMALI=[];const MIGRA_VECCHIO=false;const SEL0=0;const DSEL0="";const PERSONA0="si";const PROG0="Mesociclo 5";const PROGN0=5;const DASH=true;const DIAG=false;const SFAT=false;const RINOMINA0={"id": "", "m": {}};const PRECARICA0={"id": "", "d": {}};const INIZIO0="2026-11-16";const GSETT0=null;const ARCH0="https://script.google.com/macros/s/AKfycbxAHwzQlwAaeNLaKEy0EHuY-QOC7aiu-AnScNLi1J_kElFpdx4FNrEhDSbT3MSmlCSV/exec";const ARCHK0="nc-D0HwANdwVcy44E_ZaPgOT123";
 const SETT=(function(){const s={};GIORNI.forEach(function(g){g.blocks.forEach(function(b){
   b.rows.forEach(function(r){const n=parseInt(String(r.s).replace(/\D/g,""));if(n)s[n]=1})})});
   return Object.keys(s).map(Number).sort(function(a,b){return a-b})})();
@@ -405,6 +523,32 @@ const SETT=(function(){const s={};GIORNI.forEach(function(g){g.blocks.forEach(fu
    ===================================================================== */
 let state={};try{state=JSON.parse(localStorage.getItem(LS)||"{}")}catch(e){}
 function save(){try{localStorage.setItem(LS,JSON.stringify(state))}catch(e){}}
+/* programma ricomposto (giorni scambiati, esercizi spostati): quello che l'atleta ha gia' segnato segue
+   l'esercizio nella nuova posizione. Il JSON dice {"rinomina": {"C_0_5": "E_3_0", ...}, "rinomina_id": "..."};
+   si fa una volta sola per id. Se la nuova posizione ha gia' un dato, il dato nuovo non si tocca (2026-11-04) */
+if(typeof RINOMINA0!=="undefined"&&RINOMINA0&&RINOMINA0.id&&state.__rinominato!==RINOMINA0.id){
+  /* prima si decide tutto, poi si sposta: cosi' «E_3_1 → E_3_0» e «E_3_0 → C_0_5» nello stesso giro non si pestano */
+  const M=RINOMINA0.m||{}, DA=Object.keys(M), mosse={}, ferme={};
+  Object.keys(state).forEach(function(k){
+    let nk=k;
+    for(let i=0;i<DA.length;i++){const re=new RegExp("(^|_)"+DA[i]+"(?=_|$)");if(re.test(k)){nk=k.replace(re,"$1"+M[DA[i]]);break}}
+    if(nk!==k) mosse[k]=nk; else ferme[k]=1;
+  });
+  const val={}; Object.keys(mosse).forEach(function(k){val[k]=state[k];delete state[k]});
+  Object.keys(mosse).forEach(function(k){const nk=mosse[k];if(ferme[nk]||state[nk]!==undefined)return;state[nk]=val[k]});
+  state.__rinominato=RINOMINA0.id; save();
+}
+/* dati messi dal coach «come se li avesse segnati l'atleta» (dal file Excel annotato): una volta sola per id,
+   e solo dove l'atleta non ha gia' scritto qualcosa (2026-11-04) */
+if(typeof PRECARICA0!=="undefined"&&PRECARICA0&&PRECARICA0.id&&state.__precaricato!==PRECARICA0.id){
+  const P=PRECARICA0.d||{};
+  Object.keys(P).forEach(function(k){if(state[k]===undefined||state[k]==="")state[k]=P[k]});
+  state.__precaricato=PRECARICA0.id; save();
+}
+/* vista coach: la pagina e' stata aperta dalla pagina «Clienti» del coach, con una copia dei dati dell'atleta
+   presa dall'archivio. Qui non si manda niente all'archivio (se no una copia vecchia coprirebbe quella vera) */
+let COACH=null;
+try{const c=JSON.parse(localStorage.getItem("nc-coach")||"null");if(c&&c.p===PERSONA0)COACH=c}catch(e){}
 /* pagine nate col motore vecchio: le chiavi "A0_3" diventano "A_0_3" (fatica, note, top), una volta sola */
 if(typeof MIGRA_VECCHIO!=="undefined"&&MIGRA_VECCHIO&&!state.__migrato){
   Object.keys(state).forEach(function(k){
@@ -453,7 +597,16 @@ function settDelTest(b){
   return 1;
 }
 function vuoleLavoro(b){return b.rows.some(r=>/peso di lavoro/i.test(String(r.ca||"")))}
-function rifT(bk){return num(state["T_"+bk])}
+function rifT(bk,i){
+  /* superserie con il test per ogni esercizio (b.testEs): T_<blocco>_<esercizio>; se non c'e', il test del blocco */
+  if(i!==undefined){const v=state["T_"+bk+"_"+i]; if(v!==undefined&&String(v).trim()!=="") return num(v)}
+  return num(state["T_"+bk])}
+/* i colpi serie per serie: "6-4-4-4-6" su 5 serie e' una lista; "10-12" su 2 serie e' un RANGE (dai 10 ai 12 colpi),
+   non 10 poi 12 (coach, 5/11: Y e T da prono). Due numeri che salgono = range */
+function listaColpi(rp,n){const rr=String(rp||"").split("-").map(function(z){return z.trim()});
+  if(rr.length!==n) return null;
+  if(n===2&&/^\d+$/.test(rr[0])&&/^\d+$/.test(rr[1])&&+rr[0]<+rr[1]) return null;
+  return rr}
 /* unità dell'esercizio: kg (di serie), s (tenute a tempo), altezza (push up su rialzo) */
 function unitaDi(b){return (b&&b.unita)||"kg"}
 function fmtU(b,x){const u=unitaDi(b);
@@ -523,7 +676,8 @@ function daTest(t,T){
 function risolvi(t,bk,b,k,i){
   t=String(t||"").trim(); k=k||""; i=i||0;
   if(!t||t==="—") return "";
-  const T=rifT(bk); let m;
+  let T=rifT(bk), m;
+  if(b&&b.testEs) T=rifT(bk,i);
   if(t==="__TEST__"){
     /* la serie del test: scritto TEST 10RM, e appena il test e' compilato anche il peso */
     const rm=testDi(b)||"";
@@ -637,10 +791,14 @@ function usato(bk,k,i,t){
   const ms=serieMulti(k,i,t); if(ms) return usatoSerie(bk,k,i,t,ms);
   const pr=precUsato(bk,k,i), zav=/zavorr|corpo libero/i.test(t||"");
   const piu=/salire|ogni serie/i.test(t||"");
-  const kk="U_"+k+"_"+i, v=state[kk]||"";
+  const kk="U_"+k+"_"+i; let v=state[kk]||"";
+  /* esercizi a peso fisso (posturali: Y e T, face pull): il peso scritto la prima volta resta, non si riscrive ogni volta
+     (coach, 5/11). Si vede gia' scritto; se cambia, lo si corregge e da li' in avanti vale il nuovo */
+  const b0=bloccoDi(bk), fisso=!!(b0&&b0.rec===false&&!v&&pr);
+  if(fisso) v=pr.v;
   return '<span class="mx usato"><input type="text"'+(piu?'':' inputmode="decimal"')+' class="mini" data-k="'+kk+
     '" value="'+esc(v)+'" placeholder="'+(pr?esc(pr.s+": "+pr.v):(piu?"60-70-80":"kg"))+'" style="width:'+(piu?104:84)+'px">'+
-    '<em>'+(zav?'kg di zavorra':'kg usati')+'</em></span>'+(t?'<span class="raw">'+t+'</span>':'');
+    '<em>'+(zav?'kg di zavorra':'kg usati')+(fisso?' \u00b7 resta quello':'')+'</em></span>'+(t?'<span class="raw">'+t+'</span>':'');
 }
 /* pesi diversi serie per serie (12-10-8 «a salire», 60-70-80): una casella per ogni serie, sotto i suoi colpi.
    Le caselle sono U_<riga>_<pezzo>_s0, _s1…; U_<riga>_<pezzo> resta il riassunto «60-70-80» (2026-11-03) */
@@ -649,11 +807,11 @@ function serieMulti(k,i,t){
   const ts=tipoSerie(x.r.se); if(ts.t!=="num") return null;
   const p=parti(x.r)[i]; if(!p) return null;
   const n=parseInt(p.se)||0; if(n<2||n>8) return null;
-  const rr=String(p.rp||"").split("-").map(function(z){return z.trim()});
-  const diversi=rr.length===n&&rr.some(function(z){return z!==rr[0]});
+  const rr=listaColpi(p.rp,n)||String(p.rp||"").split("-").map(function(z){return z.trim()});
+  const diversi=!!listaColpi(p.rp,n)&&rr.some(function(z){return z!==rr[0]});
   const lista=numeri(t).length===n&&/^[\d\s.,\-\u2013]+\s*(kg)?$/i.test(String(t||"").trim());
   if(!(diversi||lista||/salire|ogni serie/i.test(t||""))) return null;
-  return {n:n,rp:rr.length===n?rr:null};
+  return {n:n,rp:listaColpi(p.rp,n)};
 }
 function usatoSerie(bk,k,i,t,ms){
   const base="U_"+k+"_"+i, unito=numeri(state[base]);
@@ -765,6 +923,20 @@ function howTo(rm){
 }
 function riferimenti(b,bk,sett){
   let h=''; const rm=testDi(b), tw=settDelTest(b);
+  const nomiT=b.testEs?nomiBlocco(b):null;
+  if(rm&&nomiT){
+    /* superserie: il test si fa su ognuno dei due esercizi, uno alla volta; poi si lavora a giri (coach, 5/11) */
+    const vv=nomiT.map(function(x,i){const v=state["T_"+bk+"_"+i];return v===undefined?"":v});
+    if(!sett||sett===tw||b.rifSempre||(vv.some(function(v){return !v})&&sett>tw)){
+      h+='<div class="tbx">';
+      nomiT.forEach(function(nm,i){
+        h+='<div class="tes"><span class="lb">Il tuo '+rm+' · '+cap(nm.toLowerCase())+'</span><input type="text" inputmode="decimal" data-k="T_'+bk+'_'+i+
+          '" value="'+esc(vv[i])+'" placeholder="—"><span class="u">'+uLab(b)+'</span></div>'});
+      h+='<span class="hint">Il test si fa su ognuno dei due, separati. Poi lavori a giri: '+nomiT.map(function(x){return x.toLowerCase()}).join(' e subito ')+', e il recupero è alla fine del giro.</span>'+
+        '<details class="how"'+(vv.every(function(v){return v})?'':' open')+'><summary>Come si trova il '+rm+'</summary><p>'+howTo(rm)+'</p></details></div>';
+    }
+    return h;
+  }
   if(rm){
     const v=state["T_"+bk]===undefined?"":state["T_"+bk];
     if(!sett||sett===tw||b.rifSempre||(!v&&sett>tw)){
@@ -850,7 +1022,8 @@ function rigaHTML(r,b,bk,k,sett){
   const recLab=(ts.t==="giri"&&!/giro|giri|onda|onde/i.test(r.rec||""))?('Rec tra '+(ts.parola==="onde"?'le onde':'i giri')):'Rec';
   const pill=r.rec?'<span class="rec"><em>'+recLab+'</em>'+recVedi(r.rec)+'</span>':'';
   const car=function(p,i){let x=risolvi(p.ca,bk,b,k,i);
-    if(!x&&ts.t!=="nessuna") x=usato(bk,k,i,"");
+    if(b.casa) x="";                                  /* a casa: niente kg da scrivere */
+    else if(!x&&ts.t!=="nessuna") x=usato(bk,k,i,"");
     return '<div class="car" data-car="'+k+'_'+i+'">'+x+'</div>'};
   let h='<div class="wk">'+(sett?'':'<div class="s">Settimana '+String(r.s).replace(/\D/g,"")+'</div>')+scorsaHTML(b,bk,rigaDi(k),sett);
 
@@ -870,6 +1043,13 @@ function rigaHTML(r,b,bk,k,sett){
     h+='</div>';
     if(ts.extra){const p=pz[pz.length-1];
       h+='<div class="poi">poi</div><div class="parte"><div class="sch">'+schema({se:ts.extra,rp:p.rp},k,pz.length,bk)+'</div>'+car(p,pz.length)+'</div>';}
+    /* superserie: poi un giro diverso, stessi esercizi (es. 1 giro da 15 togliendo il 30%): i kg escono dal peso di ognuno */
+    if(r.giro2){const G=r.giro2, sc=1-(G.sconto||0)/100;
+      h+='<div class="poi">poi</div><div class="giro"><div class="gt">'+((G.n||1)===1?'<b>1</b> giro':'Ripeti <b>'+G.n+'</b> volte')+(G.sconto?' <em>togliendo il '+G.sconto+'%</em>':'')+'</div>';
+      pz.forEach(function(p,i){const base=pesoLavoro(bk,k,i);
+        h+='<div class="gp">'+(nomi?'<span class="gn">'+nomi[i]+'</span>':'')+'<div class="gl"><div class="sch"><span class="n"><b>'+G.rp+'</b><em>colpi</em></span></div>'+
+          '<div class="car">'+((isFinite(base)&&base>0)?kg(base*sc):'<span class="wait">dal peso di sopra</span>')+'</div></div></div>'});
+      h+='</div>';}
   }
   else if(ts.t==="ramp"){
     const p0=pz[0];
@@ -906,7 +1086,7 @@ function rigaHTML(r,b,bk,k,sett){
   }
   if(b.cs!==false&&!h.includes('class="emom"')) h+=contaserie(r,b,k);   /* EMOM: conta il timer */
   if(r.n) h+='<div class="nota">'+notaCoach(r.n)+'</div>';
-  return h+feedback(k,r)+'</div>';
+  return h+(b.casa?'':feedback(k,r))+'</div>';
 }
 
 /* ---------- contaserie: segni la serie, parte il recupero (solo da quanto stai recuperando) ---------- */
@@ -915,13 +1095,14 @@ function serieDi(r){
   const pz=parti(r), out=[];
   if(ts.t==="giri"){
     for(let g=0;g<ts.n;g++) out.push({rp:pz.map(function(p){return p.rp}).join(" + "),lab:"giro"});
+    if(r.giro2) for(let g=0;g<(r.giro2.n||1);g++) out.push({rp:String(r.giro2.rp),lab:"giro"});
     for(let x=0;x<ts.extra;x++) out.push({rp:pz[pz.length-1].rp,lab:"serie"});
     return out;
   }
   if(ts.t==="ramp"&&ts.extra){const p=pz[1]||pz[0];for(let x=0;x<ts.extra;x++)out.push({rp:p.rp,lab:"serie"});return out}
   (ts.t==="ramp"?pz.slice(1):pz).forEach(function(p){
-    const n=parseInt(p.se)||0, rr=String(p.rp).split("-").map(function(x){return x.trim()});
-    for(let x=0;x<n;x++) out.push({rp:(rr.length===n?rr[x]:p.rp),lab:"serie"});
+    const n=parseInt(p.se)||0, rr=listaColpi(p.rp,n);
+    for(let x=0;x<n;x++) out.push({rp:(rr?rr[x]:p.rp),lab:"serie"});
   });
   return out.length?out:null;
 }
@@ -989,6 +1170,11 @@ function segnaSerie(k,nuovo){
   let rec=null;
   try{ricostruisci(); if(ultima) rec=cercaRecord(function(e){return e.k===k})}catch(err){segnalaErrore(err)}
   if(ultima){if(rec)festaRecord(rec);else clin()}
+  /* ultima serie dell'ultimo esercizio del giorno: l'allenamento si chiude da solo (2026-11-07) */
+  if(ultima){try{const w=settimanaDi(x.r),g=k.split("_")[0],key=attKey(g,w);
+    if(state["AT_"+key]&&!state["AF_"+key]&&tuttoFatto(g,w)){chiudiAtt(key,Date.now(),true);
+      const bar=document.querySelector('.att.on'); if(bar) bar.outerHTML=attHTML(g);
+      const fin=document.querySelector('.attfine'); if(fin) fin.remove();}}catch(err){segnalaErrore(err)}}
   document.querySelectorAll(".cs").forEach(function(el){            /* un solo recupero acceso alla volta */
     try{const kk=el.id.slice(3), y=rigaObj(kk), t=document.createElement("div");
       t.innerHTML=contaserie(y.r,y.b,kk); el.replaceWith(t.firstChild);}catch(err){segnalaErrore(err)}
@@ -997,8 +1183,8 @@ function segnaSerie(k,nuovo){
     if(nb){nb.classList.add("batti");setTimeout(function(){nb.classList.remove("batti")},650)}}
 }
 function clin(){
-  /* due tocchi di vetro, corti e puliti: la serie e' segnata (suono A) */
-  try{const o=busVetro(.55);tocco(o,2093,0,.32);tocco(o,2794,.095,.32)}catch(e){}
+  /* la serie e' segnata: due note che salgono, nel timbro della scheda */
+  suona("clin");
   try{if(navigator.vibrate) navigator.vibrate(18)}catch(e){}
 }
 document.addEventListener("click",function(e){
@@ -1008,17 +1194,32 @@ document.addEventListener("click",function(e){
   else if(t.dataset.act==="meno") segnaSerie(k,f2-1);
   else {const i=parseInt(t.dataset.i); segnaSerie(k,i<f2?i:i+1)}
 });
+/* la data dell'allenamento (per «Frequenza», coach 4/11 sera): al primo segno di un giorno di una settimana si scrive
+   DT_<giorno>_<settimana> = la data di oggi. Una volta sola; nella vista coach mai (e' la scheda di un altro) */
+function segnaData(t){
+  if(COACH||!t||!t.closest) return;
+  const e=t.closest("[data-k],[data-cs],[data-fp],[data-car],[data-emom]"); if(!e) return;
+  const v=e.dataset.k||e.dataset.cs||e.dataset.fp||e.dataset.car||e.dataset.emom||"";
+  const m=String(v).match(/([A-Z])_(\d+)_(\d+)/); if(!m) return;
+  try{const x=rigaObj(m[1]+"_"+m[2]+"_"+m[3]); const w=settimanaDi(x.r); if(!w) return;
+    const k="DT_"+m[1]+"_"+w; if(state[k]) return;
+    const d=new Date(); state[k]=d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2); save();
+  }catch(err){}
+}
+document.addEventListener("input",function(e){segnaData(e.target)},true);
+document.addEventListener("click",function(e){segnaData(e.target)},true);
 /* il recupero conta sempre in avanti; quando arriva al tempo del coach: un plin, una vibrazione corta,
    e la scritta diventa "puoi ripartire". Il contatore non si ferma. */
 const PLIN={};
-setInterval(function(){document.querySelectorAll(".csr[data-t]").forEach(function(e){
+setInterval(function(){document.querySelectorAll(".att-t[data-t0]").forEach(function(e){e.textContent=mmss((Date.now()-parseInt(e.dataset.t0))/1000)});
+document.querySelectorAll(".csr[data-t]").forEach(function(e){
   const sec=(Date.now()-parseInt(e.dataset.t))/1000, b=e.querySelector("b"); if(b) b.textContent=mmss(sec);
   const fine=parseInt(e.dataset.f)||0; if(!fine||sec<fine) return;
   if(!e.classList.contains("fine")){e.classList.add("fine");const em=e.querySelector("em");if(em)em.textContent="puoi ripartire"}
   const key=e.dataset.t+"|"+fine; if(!PLIN[key]&&sec<fine+20){PLIN[key]=1;plin()}
 })},1000);
 function plin(){
-  try{const o=busVetro(.6);tocco(o,3520,0,.5);tocco(o,3520,.16,.7,.7)}catch(e){}
+  suona("plin");
   try{if(navigator.vibrate) navigator.vibrate([70,60,70])}catch(e){}
 }
 /* durante il recupero lo schermo resta acceso (se no il telefono ferma la pagina e il plin non arriva):
@@ -1114,7 +1315,7 @@ function kgNum(p,bk,b,k,i){
   }
   const u=state["U_"+k+"_"+i];
   if(u!==undefined&&String(u).trim()!==""){const a=numeri(u);return a.length?(a.length===1?a[0]:a):NaN}
-  const t=String(p.ca||"").trim(), T=rifT(bk); let m;
+  const t=String(p.ca||"").trim(), T=rifT(bk,b&&b.testEs?i:undefined); let m;
   const pc=function(x){return parseFloat(x.replace(",","."))/100};
   if(/^(corpo libero|senza peso)$/i.test(t)) return 0;
   if(t==="__TEST__") return T>0?T:NaN;
@@ -1152,7 +1353,13 @@ function vociTutte(){
   GIORNI.forEach(function(g){g.blocks.forEach(function(b,bi){
     if(norec(b)) return;
     const bk=g.id+"_"+bi, rm=testDi(b), uS=unitaDi(b)==="s", T=rifT(bk);
-    if(rm&&T>0){
+    if(rm&&b.testEs){const nomiT=nomiBlocco(b)||[];
+      const tw=settDelTest(b); let ri=b.rows.findIndex(function(r){return settimanaDi(r)===tw}); if(ri<0) ri=0;
+      nomiT.forEach(function(nm,i){const Ti=num(state["T_"+bk+"_"+i]), rr=parseInt(rm)||0;
+        if(Ti>0&&rr) out.push(voce({k:bk+"_"+ri,i:i,ty:"rm",rm:rm,ex:exDi(b,b.rows[ri],i,nomiT),nome:cap(nm.toLowerCase()),kg:Ti,r:rr,u:"",n:1,
+          d:durDi(b,b.rows[ri],i),w:tw,g:g.id,cl:b.colpilab||""}))});
+    }
+    else if(rm&&T>0){
       const tw=settDelTest(b); let ri=b.rows.findIndex(function(r){return settimanaDi(r)===tw}); if(ri<0) ri=0;
       const r0=b.rows[ri], rr=uS?Math.round(T):(parseInt(rm)||0);
       if(rr) out.push(voce({k:bk+"_"+ri,i:0,ty:"rm",rm:rm,ex:exDi(b,r0,0,null),nome:b.nome,kg:uS?0:T,r:rr,u:uS?"s":"",n:1,
@@ -1182,7 +1389,7 @@ function vociRiga(out,g,b,bk,r,ri){
   /* le serie fatte: dal tasto; prima del tasto, una riga compilata (kg o fatica) vale come fatta */
   const S=serieDi(r); if(!S) return;
   const tot=S.length; let c=Math.min(parseInt(state["CS_"+k])||0,tot);
-  if(!c){let ev=!!state["fp_"+k];for(let i=0;i<6&&!ev;i++)if(String(state["U_"+k+"_"+i]||"").trim()||String(state["W_"+k+"_"+i]||"").trim())ev=true;if(ev)c=tot}
+  if(!c&&state["CS_"+k]===undefined){let ev=!!state["fp_"+k];   /* contatore segnato (anche 0): vale quello */for(let i=0;i<6&&!ev;i++)if(String(state["U_"+k+"_"+i]||"").trim()||String(state["W_"+k+"_"+i]||"").trim())ev=true;if(ev)c=tot}
   if(!c) return;
   const fatte=[];                                         /* {i, rp, j (indice della serie dentro il pezzo), nP} */
   if(ts.t==="giri"){const gd=Math.min(c,ts.n);
@@ -1191,8 +1398,8 @@ function vociRiga(out,g,b,bk,r,ri){
   } else if(ts.t==="ramp"&&ts.extra){const ii=pz[1]?1:0;for(let j=0;j<c;j++)fatte.push({i:ii,rp:pz[ii].rp,j:j,nP:ts.extra})}
   else {const lista=[];
     pz.forEach(function(p,i){if(ts.t==="ramp"&&i===0)return;
-      const n=parseInt(p.se)||0, rr=String(p.rp).split("-").map(function(x){return x.trim()});
-      for(let j=0;j<n;j++)lista.push({i:i,rp:(rr.length===n?rr[j]:p.rp),j:j,nP:n})});
+      const n=parseInt(p.se)||0, rr=listaColpi(p.rp,n);
+      for(let j=0;j<n;j++)lista.push({i:i,rp:(rr?rr[j]:p.rp),j:j,nP:n})});
     lista.slice(0,c).forEach(function(x){fatte.push(x)});
   }
   const gruppi={};
@@ -1360,32 +1567,197 @@ function guardaRecord(kk,subito){
   },subito?60:1400);
 }
 
-/* suoni: lo stesso vetro. Serie fatta = due tocchi (A); record = i due tocchi e poi la campana (B) */
-const VETRO=[[1,1],[2.76,0.28],[5.4,0.08]];
 /* audio: iPhone sospende o "interrompe" il suono quando l'app va in secondo piano o lo schermo si spegne.
    A ogni tocco lo si risveglia (con un suono muto, il trucco classico di Safari), e prima di ogni suono si
    controlla che sia acceso davvero (2026-11-03) */
-function audio(){
+/* iPhone: l'interruttore laterale su silenzioso zittisce i suoni della pagina (Web Audio) anche se l'audio è "acceso".
+   Con audioSession.type="playback" (iOS 16.4+) i suoni escono comunque; si rimette "auto" poco dopo il suono,
+   cosi' la musica dell'atleta non resta interrotta (2026-11-04) */
+let SESST=null;
+function sessione(){
+  try{
+    const s=navigator.audioSession; if(!s) return;
+    if(s.type!=="playback") s.type="playback";
+    clearTimeout(SESST); SESST=setTimeout(function(){try{s.type="auto"}catch(e){}},3000);
+  }catch(e){}
+}
+function audio(forte){
   try{
     if(!ACTX||ACTX.state==="closed") ACTX=new (window.AudioContext||window.webkitAudioContext)();
     if(ACTX.state!=="running"){const p=ACTX.resume();if(p&&p.catch)p.catch(function(){})}
   }catch(e){}
   return ACTX;
 }
+/* iPhone, app dalla schermata Home: dopo un po' (schermo spento, altra app, telefono in tasca) il contesto audio
+   passa a "interrupted" e resume() non risponde piu': il suono sparisce finche' non si riavvia l'app. Ad ogni tocco,
+   se l'audio non e' acceso davvero, se ne apre uno nuovo (creato dentro un tocco parte sempre) (2026-11-04) */
+/* Non basta guardare lo stato: in un'app dalla Home iPhone a volte dice "running" ma non esce piu' niente
+   (dopo schermo spento, altra app, o minuti fermi). Quindi si riapre anche quando la pagina e' andata in
+   secondo piano o dall'ultimo tocco e' passato piu' di un minuto. Ogni riapertura si annota (diagnostica e
+   archivio): cosi' si vede sul telefono vero quando e perche' il suono si perde (2026-11-04) */
+let AU_NASC=false, AU_TOCCO=0;
+const AU_LOG=[];
+function annotaAudio(cosa){
+  try{
+    const d=new Date(), hh=("0"+d.getHours()).slice(-2)+":"+("0"+d.getMinutes()).slice(-2);
+    AU_LOG.push(hh+" "+cosa); if(AU_LOG.length>12) AU_LOG.shift();
+    localStorage.setItem(LS+"__audio",JSON.stringify(AU_LOG));
+  }catch(e){}
+}
+try{const v=JSON.parse(localStorage.getItem(LS+"__audio")||"[]");if(Array.isArray(v))v.slice(-12).forEach(function(x){AU_LOG.push(x)})}catch(e){}
+document.addEventListener("visibilitychange",function(){if(document.visibilityState==="hidden")AU_NASC=true});
+window.addEventListener("pagehide",function(){AU_NASC=true});
+function riapriAudio(){
+  try{
+    const ora=Date.now(), fermo=AU_TOCCO&&ora-AU_TOCCO>60000; AU_TOCCO=ora;
+    const st=ACTX?ACTX.state:"nessuno";
+    if(ACTX&&st==="running"&&!AU_NASC&&!fermo) return;
+    const perche=!ACTX?"primo":(st!=="running"?st:(AU_NASC?"dopo secondo piano":"dopo pausa"));
+    AU_NASC=false;
+    const vecchio=ACTX;
+    ACTX=new (window.AudioContext||window.webkitAudioContext)();
+    if(ACTX.state!=="running"){const p=ACTX.resume();if(p&&p.catch)p.catch(function(){})}
+    if(vecchio){try{const c=vecchio.close();if(c&&c.catch)c.catch(function(){})}catch(e){}}
+    annotaAudio("riaperto ("+perche+") → "+ACTX.state);
+  }catch(e){annotaAudio("errore "+(e&&e.message||e))}
+}
+window.audioDiario=function(){return AU_LOG.slice()};
 function sblocca(){
+  const dopo=!SBLOCCATI?"primo tocco":(AU_NASC?"dopo secondo piano":"");
+  if(dopo){sbloccaFile(dopo==="primo tocco"?"":dopo);if(dopo!=="primo tocco")AU_DOPO=dopo}
+  riapriAudio();
   const a=audio(); if(!a) return;
   try{const b=a.createBuffer(1,1,22050),src=a.createBufferSource();src.buffer=b;src.connect(a.destination);src.start(0)}catch(e){}
   diagAudio();
 }
 ["touchend","click","keydown"].forEach(function(ev){document.addEventListener(ev,sblocca,{capture:true,passive:true})});
 document.addEventListener("visibilitychange",function(){if(document.visibilityState==="visible"&&ACTX&&ACTX.state!=="running")audio()});
-function busVetro(g){const a=audio();const o=a.createGain();o.gain.value=g;o.connect(a.destination);return o}
-function tocco(out,fr,t0,d,g){const t=ACTX.currentTime+0.02+t0;
-  VETRO.forEach(function(h){const o=ACTX.createOscillator(),e=ACTX.createGain();
-    o.type="sine";o.frequency.value=fr*h[0];o.connect(e);e.connect(out);
-    e.gain.setValueAtTime(0.0001,t);e.gain.exponentialRampToValueAtTime((g||1)*h[1],t+0.004);
-    e.gain.exponentialRampToValueAtTime(0.0001,t+(h[0]===1?d:d*0.4));o.start(t);o.stop(t+d+0.05)})}
-function suonoRecord(){try{const o=busVetro(.55);tocco(o,2093,0,.32);tocco(o,2794,.095,.32);tocco(o,3136,.3,1.6,1)}catch(e){}}
+
+/* ---------- i suoni: tre timbri, leggeri (2026-11-04, sera) ----------
+   Richiesta del coach: «togli tutti questi suoni, dammi solo tre suoni professionali, niente pagliacciate,
+   in linea con l'eleganza del programma» e «la scheda e' troppo carica, si blocca». Quindi:
+   - TRE timbri soli (Cristallo, Legno, Piano). Uno alla volta: ogni suono della scheda (serie fatta, fine
+     recupero, record, fatica) usa lo stesso timbro, cosi' la scheda parla una lingua sola.
+   - Niente preparato in blocco all'apertura: i suoni si calcolano dopo che la pagina e' disegnata, a pezzi
+     piccoli, e la fatica solo dopo (o al primo tocco, se serve prima). Ogni nota si calcola una volta sola.
+   - Sblocco minimo: al tocco si sbloccano solo i 2 file che partono senza un tocco (fine recupero e record).
+     Prima erano 19 file a ogni tocco dopo ogni blocco schermo: era quello che bloccava la scheda.
+   - LA MUSICA NON SI FERMA MAI (coach, 4/11): file audio solo con audioSession «ambient»; se il telefono non
+     ce l'ha (Android), gli stessi suoni passano da Web Audio, che non ferma la musica. Se il file viene
+     fermato, suona lo stesso suono da Web Audio. Ogni esito si annota nel diario (diagnostica + archivio). */
+const SRS=22050, FAT_PASSO=0.05;   /* fatica piu' veloce: numeri e note allo stesso passo (coach, 4/11 sera) */
+const SCALA=[523.25,587.33,659.25,783.99,880,1046.5,1174.66,1318.51,1567.98,1760];
+/* un timbro = parziali [rapporto, ampiezza, tempo di smorzamento in s] + attacco + ottava */
+const TIMBRI={
+  cristallo:{nome:"Cristallo",ott:2,a:.006,p:[[1,1,.42],[2,.10,.16],[3,.035,.08]]},
+  legno:{nome:"Legno",ott:1,a:.0025,p:[[1,1,.13],[3.98,.16,.035],[9.1,.04,.012]],colpo:.1},
+  piano:{nome:"Piano",ott:1,a:.007,p:[[1,1,.62],[2,.30,.26],[3,.09,.12],[4,.035,.07]],colpo:.05}
+};
+const TIMBRO_BASE="legno";   /* scelta del coach, 4/11 sera */
+function timbroScelto(){let v="";try{v=localStorage.getItem("nc-timbro")||""}catch(e){}return TIMBRI[v]?v:TIMBRO_BASE}
+let FILE_OK=false;
+try{const s=navigator.audioSession;if(s){s.type="ambient";FILE_OK=(s.type==="ambient")}}catch(e){FILE_OK=false}
+/* una nota: parziali smorzate (oscillatore a rotazione: niente sin/exp per campione, e' veloce) */
+const NOTE={};
+function nota(T,fr,dur){
+  const key=fr+"|"+dur; if(NOTE[key]) return NOTE[key];
+  const n=Math.round(dur*SRS), y=new Float32Array(n), f0=fr*T.ott;
+  T.p.forEach(function(p){
+    const f=f0*p[0]; if(f>SRS*.45) return;
+    const w=2*Math.PI*f/SRS, c=Math.cos(w), s=Math.sin(w), k=Math.exp(-1/(p[2]*SRS));
+    let x=1, z=0, e=p[1];
+    for(let i=0;i<n;i++){y[i]+=z*e; const nx=x*c-z*s; z=x*s+z*c; x=nx; e*=k;}
+  });
+  if(T.colpo){let lp=0,r=12345;const m=Math.min(n,Math.round(.006*SRS));      /* il colpo del martelletto, appena */
+    for(let i=0;i<m;i++){r=(r*1103515245+12345)&0x7fffffff;lp=lp*.55+((r/0x3fffffff)-1)*.45;y[i]+=lp*T.colpo*(1-i/m)}}
+  const na=Math.max(1,Math.round(T.a*SRS)); for(let i=0;i<na&&i<n;i++) y[i]*=i/na;
+  const fade=Math.min(n,Math.round(Math.min(.02,dur/4)*SRS)); for(let i=0;i<fade;i++) y[n-1-i]*=i/fade;
+  return NOTE[key]=y;
+}
+function mixa(T,pezzi,dur,vol){
+  const n=Math.round(dur*SRS), y=new Float32Array(n);
+  pezzi.forEach(function(p){const q=nota(T,p[1],p[2]),o=Math.round(p[0]*SRS);for(let i=0;i<q.length&&o+i<n;i++)y[o+i]+=q[i]*p[3]});
+  let m=0; for(let i=0;i<n;i++){const a=y[i]<0?-y[i]:y[i]; if(a>m) m=a}
+  if(m>0){const g=.8*(vol||1)/m; for(let i=0;i<n;i++) y[i]*=g}
+  return y;
+}
+/* le partiture: [quando, nota, durata, volume] */
+const PARTITURE={
+  clin:{d:.6,c:[[0,783.99,.35,.7],[.09,1046.5,.5,1]]},                      /* serie fatta: due note che salgono */
+  plin:{d:1.0,c:[[0,1318.51,.45,1],[.17,1318.51,.8,.75]]},                    /* puoi ripartire: la stessa nota due volte */
+  record:{d:1.9,c:[[0,523.25,.5,.6],[.09,659.25,.5,.65],[.18,783.99,.6,.7],[.32,1046.5,1.5,1]]}   /* record: l'accordo che sale */
+};
+/* la fatica (coach, 4/11 sera): scaletta fitta e molto bassa; il numero premuto un po' piu' deciso ma corto
+   (si taglia prima); tutta la fatica piu' bassa degli altri suoni */
+function partituraFatica(v){const c=[];
+  for(let i=0;i<v;i++){const ult=i===v-1; c.push([i*FAT_PASSO,SCALA[i],ult?.13:.07,ult?1:.16])}   /* un «du» secco, niente coda */
+  return {d:(v-1)*FAT_PASSO+.15,c:c,vol:.25}}   /* volume fatica: un quarto (coach, 4/11 sera: «piu' basso ancora») */
+function wavDa(y){
+  const n=y.length,b=new ArrayBuffer(44+n*2),v=new DataView(b);
+  function s(o,x){for(let i=0;i<x.length;i++)v.setUint8(o+i,x.charCodeAt(i))}
+  s(0,"RIFF");v.setUint32(4,36+n*2,true);s(8,"WAVE");s(12,"fmt ");v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,1,true);
+  v.setUint32(24,SRS,true);v.setUint32(28,SRS*2,true);v.setUint16(32,2,true);v.setUint16(34,16,true);s(36,"data");v.setUint32(40,n*2,true);
+  for(let i=0;i<n;i++){const x=y[i]>1?1:(y[i]<-1?-1:y[i]);v.setInt16(44+i*2,x<0?x*0x8000:x*0x7fff,true)}
+  return new Blob([b],{type:"audio/wav"})}
+/* SUONI[nome] = {y: i campioni, url, el: i lettori}. La fatica usa un lettore solo, condiviso (parte sempre da un tocco) */
+const SUONI={}; let SBLOCCATI=false, AU_DOPO="", TIMBRO=timbroScelto(), FATEL=null;
+const COPIE={clin:2,plin:1,record:1};
+function suonoDi(nome){
+  if(SUONI[nome]) return SUONI[nome];
+  try{
+    const T=TIMBRI[TIMBRO], m=nome.match(/^fat_(\d+)$/), P=m?partituraFatica(+m[1]):PARTITURE[nome]; if(!P) return null;
+    const y=mixa(T,P.c,P.d,P.vol), S={y:y,url:"",el:[],i:0};
+    if(FILE_OK){S.url=URL.createObjectURL(wavDa(y));
+      for(let i=0;i<(COPIE[nome]||0);i++){const a=new Audio();a.preload="auto";a.src=S.url;a.setAttribute("playsinline","");a.dataset.s=nome;S.el.push(a)}}
+    return SUONI[nome]=S;
+  }catch(e){return null}
+}
+/* si preparano dopo che la pagina e' disegnata, uno per volta: prima i tre suoni, poi le dieci fatiche */
+function preparaTutto(){
+  const coda=["clin","plin","record","fat_1","fat_2","fat_3","fat_4","fat_5","fat_6","fat_7","fat_8","fat_9","fat_10"];
+  (function un(){const n=coda.shift(); if(!n) return; suonoDi(n); setTimeout(un,40)})();
+}
+if(document.readyState==="complete") setTimeout(preparaTutto,300); else window.addEventListener("load",function(){setTimeout(preparaTutto,300)});
+function cambiaTimbro(id){
+  if(!TIMBRI[id]) return; try{localStorage.setItem("nc-timbro",id)}catch(e){}
+  Object.keys(SUONI).forEach(function(k){try{if(SUONI[k].url)URL.revokeObjectURL(SUONI[k].url)}catch(e){}delete SUONI[k]});
+  Object.keys(NOTE).forEach(function(k){delete NOTE[k]});
+  TIMBRO=id; SBLOCCATI=false; preparaTutto();
+}
+/* lo stesso suono da Web Audio (Android, o file fermato dal telefono) */
+function suonaWA(S){
+  try{const c=audio(true); if(!c||!S) return;
+    const b=c.createBuffer(1,S.y.length,SRS); b.getChannelData(0).set(S.y);
+    const src=c.createBufferSource(), g=c.createGain(); g.gain.value=.9; src.buffer=b; src.connect(g); g.connect(c.destination);
+    src.start(c.currentTime+.005)}catch(e){}
+}
+function suona(nome){
+  const S=suonoDi(nome); if(!S) return;
+  if(!FILE_OK||!S.url){suonaWA(S);return}
+  let a;
+  if(S.el.length) a=S.el[S.i++%S.el.length];
+  else{if(!FATEL){FATEL=new Audio();FATEL.preload="auto";FATEL.setAttribute("playsinline","")}
+    a=FATEL; a.dataset.s=nome; if(a.dataset.u!==S.url){a.src=S.url;a.dataset.u=S.url}}
+  a.dataset.sbl="";            /* se lo sblocco e' ancora in corso su questo file, non lo deve fermare */
+  try{a.pause();a.currentTime=0}catch(e){}
+  let p=null; try{a.muted=false;a.volume=1;p=a.play()}catch(e){p=Promise.reject(e)}
+  if(p&&p.then) p.then(function(){if(AU_DOPO){annotaAudio(nome+" ok (file) "+AU_DOPO);AU_DOPO=""}})
+    .catch(function(err){annotaAudio(nome+": file fermato ("+((err&&err.name)||"?")+") → Web Audio");suonaWA(S)});
+}
+/* sblocco: solo i suoni che partono senza un tocco (fine recupero, record). Partono muti e si fermano subito */
+function sbloccaFile(perche){
+  if(!FILE_OK) return;
+  const el=[]; ["plin","record"].forEach(function(k){const S=suonoDi(k); if(S) S.el.forEach(function(a){el.push(a)})});
+  let ok=0;
+  el.forEach(function(a){
+    try{a.muted=true;a.dataset.sbl="1";const p=a.play();
+      if(p&&p.then) p.then(function(){if(a.dataset.sbl==="1"){a.pause();a.currentTime=0;a.muted=false;a.dataset.sbl=""}ok++;if(ok===el.length&&perche)annotaAudio("file sbloccati ("+perche+")")})
+        .catch(function(err){a.muted=false;if(perche)annotaAudio("sblocco file fermato ("+((err&&err.name)||"?")+")")});
+      else{a.pause();a.muted=false}
+    }catch(e){a.muted=false}});
+  SBLOCCATI=true;
+}
+function suonoRecord(){suona("record")}
 
 function festa(titolo,testo){
   try{if(navigator.vibrate) navigator.vibrate([40,60,40,60,140])}catch(e){}
@@ -1429,6 +1801,8 @@ let DIAGT=null;
 function diagAudio(){clearTimeout(DIAGT);DIAGT=setTimeout(function(){
   const st=ACTX?ACTX.state:"non ancora usato";
   diagRiga("diag-audio","Suono: "+(st==="running"?"acceso":"bloccato dal telefono ("+st+")")+
+    (AU_LOG.length?" · ultimo: "+AU_LOG[AU_LOG.length-1]:"")+
+    " · sessione audio: "+(navigator.audioSession?"supportata":"non supportata da questo iOS")+
     (/iPhone|iPad/.test(navigator.userAgent)?" \u00b7 su iPhone, con l\u2019interruttore laterale su silenzioso i suoni della scheda non si sentono":""));
 },400)}
 function segnalaErrore(err){
@@ -1442,7 +1816,7 @@ let EMOMT=null, ACTX=null;
 function beep(n,freq){
   /* onda quadra, due toni sovrapposti, compressore a valle: il massimo che un telefono tira fuori */
   try{
-    audio();
+    audio(true);
     const comp=ACTX.createDynamicsCompressor();
     comp.threshold.value=-6; comp.knee.value=0; comp.ratio.value=20; comp.attack.value=0.001; comp.release.value=0.05;
     const out=ACTX.createGain(); out.gain.value=1.0; comp.connect(out); out.connect(ACTX.destination);
@@ -1505,7 +1879,10 @@ function segnato(){
   GIORNI.forEach(function(g){g.blocks.forEach(function(b,bi){
     const bk=g.id+"_"+bi;
     const T=state["T_"+bk];
-    if(T&&String(T).trim()) out.push({g:g.id,nome:b.nome,riga:testDi(b)+": "+T+" kg"});
+    /* l'unita' giusta: kg, secondi, o l'altezza dell'appoggio (push up su rialzo: piu' basso = piu' difficile) */
+    if(b.testEs) (nomiBlocco(b)||[]).forEach(function(nm,i){const Ti=state["T_"+bk+"_"+i];
+      if(Ti&&String(Ti).trim()) out.push({g:g.id,nome:nm,riga:testDi(b)+": "+String(Ti).trim()+" kg"})});
+    if(T&&String(T).trim()) out.push({g:g.id,nome:b.nome,riga:testDi(b)+": "+(unitaDi(b)==="altezza"?"altezza "+String(T).trim()+" (più bassa = più difficile)":String(T).trim()+" "+(uLab(b)||"kg"))});
     b.rows.forEach(function(r,ri){
       const k=bk+"_"+ri, pezzi=[];
       const fp=state["fp_"+k], ap=state["ap_"+k], sf=state["SF_"+k];
@@ -1538,6 +1915,109 @@ function testo(){
 function manda(){const t=testo();if(!t){alert("Non hai ancora segnato niente.");return}
   window.open("https://wa.me/?text="+encodeURIComponent(t),"_blank");}
 
+/* ---------- intensita' relativa teorica (IRT) — metodo del coach, 2026-11-06 ----------
+   IRT = % del massimale a cui lavori ÷ % massima con cui si fanno quei colpi × 100 (5×5 all'80 % = 93).
+   Vale per una serie: piu' serie, piu' fatica. Oltre 100 non si chiude. La tabella e' quella del coach. */
+const IRT_TAB={1:100,2:95,3:92,4:89,5:86,6:83,7:81,8:79,9:77,10:75,11:73,12:71,13:70,14:68,15:67};
+function irtDi(pcMassimale,colpi){const m=IRT_TAB[colpi];return (m&&pcMassimale>0)?pcMassimale/m*100:NaN}
+/* a quanti colpi e' il test di un esercizio: TEST xRM scritto, «sali al 3RM», oppure il top del ramping (ramp ×8 = 8RM) */
+function rmDi(b){
+  const rm=testDi(b); if(rm){const n=parseInt(rm); if(n) return n}
+  for(const r of b.rows){const m=String(r.ca||"").match(/\bal\s+(\d+)\s*RM\b/i); if(m) return parseInt(m[1])}
+  for(const r of b.rows){if(tipoSerie(r.se).t==="ramp"){const n=parseInt(String(parti(r)[0].rp||"")); if(n) return n}}
+  return 0;
+}
+/* la % del massimale di un pezzo prescritto: scritta sul massimale, oppure sul test a n colpi (riportata con IRT_TAB).
+   ramp=true: e' il pezzo «poi N serie al X %» di una riga di ramping (il top e' il test, non si conta) */
+function pcMassimale(p,b,ramp){
+  const t=String(p.ca||"").trim(); let m;
+  if(!ramp&&(m=t.match(/^(\d+(?:[.,]\d+)?)(?:\s*[-–]\s*(\d+(?:[.,]\d+)?))?\s*%$/))) return parseFloat((m[2]||m[1]).replace(",","."));
+  let n=0; if((m=t.match(/%\s*del\s*(\d+)\s*RM\b/i))) n=parseInt(m[1]); if(!n) n=rmDi(b);
+  const q=n?IRT_TAB[n]:0; if(!q) return NaN;
+  if(ramp){m=t.match(/\bpoi\s+\d+\s+(?:serie|giri)\s+al\s+(\d+(?:[.,]\d+)?)\s*%/i); return m?parseFloat(m[1].replace(",","."))*q/100:NaN}
+  if((m=t.match(/^(\d+(?:[.,]\d+)?)(?:\s*[-–]\s*(\d+(?:[.,]\d+)?))?\s*%\s*del\s*(?:test|\d+\s*RM)\b/i))) return parseFloat((m[2]||m[1]).replace(",","."))*q/100;
+  if(/peso del test|^\d+\s*RM\b|^[−\-]\s*\d/i.test(t)){const s=t.match(/[−\-]\s*(\d+(?:[.,]\d+)?)\s*%/); return (s?(100-parseFloat(s[1].replace(",","."))):100)*q/100}
+  return NaN;
+}
+/* i colpi di un pezzo, serie per serie (null se non sono un numero: MAX, tenute, range) */
+function colpiPezzo(p,nSerie){
+  const n=nSerie||parseInt(p.se)||0; if(!n) return null;
+  const rp=String(p.rp||"").trim(); if(!/^[\d\-– ]+$/.test(rp)) return null;
+  const rr=listaColpi(rp,n); if(rr) return rr.map(function(x){return parseInt(x)});
+  if(!/^\d+$/.test(rp)) return null;                 /* "10-12" su 3 serie = range: non si sa */
+  const c=parseInt(rp); const out=[]; for(let i=0;i<n;i++) out.push(c); return out;
+}
+/* intensita' teorica di un gruppo di righe: colpi con una %, % media pesata sui colpi, IRT media e la riga piu' dura */
+function intensitaRighe(righe){
+  let c=0,s=0,si=0,ci=0,mx=null;
+  righe.forEach(function(x){const b=x.b,r=x.r,ts=tipoSerie(r.se);
+    parti(r).forEach(function(p,i){
+      if(p.ca==="__TEST__"||p.ca==="__NUOVO__") return;
+      const ramp=ts.t==="ramp"; if(ramp&&(i===0||!ts.extra)) return;
+      const pc=pcMassimale(p,b,ramp); if(!(pc>0)||pc>115) return;
+      const cc=colpiPezzo(p,ramp?ts.extra:0); if(!cc) return;
+      cc.forEach(function(k){c+=k;s+=pc*k;const v=irtDi(pc,k);if(isFinite(v)){si+=v*k;ci+=k;if(!mx||v>mx.v)mx={v:v,nome:cap(String(b.nome||"").toLowerCase()),se:cc.length,rp:k}}});
+    })});
+  return {c:c,i:c?s/c:0,irt:ci?si/ci:0,max:mx};
+}
+
+/* ---------- l'allenamento: avvio, durata, fine (coach, 2026-11-07) ----------
+   AT_<giorno>_<settimana> = quando e' partito, AF_… = quando e' finito. Finisce da solo quando segni l'ultima serie
+   dell'ultimo esercizio del giorno, oppure col tasto «Fine allenamento» in fondo. La durata si vede nel calendario. */
+function attKey(g,w){return g+"_"+w}
+function righeDi(g,w){const out=[];const G=GIORNI.find(function(x){return x.id===g});if(!G)return out;
+  G.blocks.forEach(function(b,bi){b.rows.forEach(function(r,ri){if(settimanaDi(r)===w)out.push({b:b,r:r,k:g+"_"+bi+"_"+ri,bk:g+"_"+bi})})});return out}
+function tuttoFatto(g,w){
+  const rr=righeDi(g,w).filter(function(x){return haCs(x.r,x.b)}); if(!rr.length) return false;
+  return rr.every(function(x){const S=serieDi(x.r);return S&&(parseInt(state["CS_"+x.k])||0)>=S.length});
+}
+function ultimoSegno(g,w){let t=0;righeDi(g,w).forEach(function(x){const c=parseInt(state["CT_"+x.k]);if(c>t)t=c});return t}
+function durataTxt(ms){const m=Math.round(ms/60000);if(m<60)return m+" min";const h=Math.floor(m/60),r=m%60;return h+" h"+(r?" "+(r<10?"0":"")+r:"")}
+function avviaAtt(key){
+  if(COACH) return;
+  const alt=state.__att; if(alt&&alt!==key&&state["AT_"+alt]&&!state["AF_"+alt]){const p=alt.split("_");chiudiAtt(alt,ultimoSegno(p[0],+p[1])||Date.now(),true)}
+  state["AT_"+key]=Date.now(); delete state["AF_"+key]; state.__att=key;
+  const d=new Date(), dk="DT_"+key; if(!state[dk]) state[dk]=d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2);
+  save(); tieniAcceso(); draw();
+}
+function chiudiAtt(key,t,zitto){
+  if(!state["AT_"+key]||state["AF_"+key]) return;
+  state["AF_"+key]=Math.max(t||Date.now(),parseInt(state["AT_"+key])+60000);   /* mai sotto il minuto */
+  if(state.__att===key) delete state.__att;
+  save(); if(!zitto) draw();
+}
+function riapriAtt(key){if(COACH)return;delete state["AF_"+key];state.__att=key;save();draw()}
+function attHTML(g){
+  if(!sel) return "";
+  const key=attKey(g,sel), t0=parseInt(state["AT_"+key]), t1=parseInt(state["AF_"+key]);
+  if(t0&&!t1) return '<span class="att on"><em>in corso</em><b class="att-t" data-t0="'+t0+'">'+mmss((Date.now()-t0)/1000)+'</b></span>';
+  if(t0&&t1) return '<span class="att fatto"><em>durata</em><b>'+durataTxt(t1-t0)+'</b>'+(COACH?'':'<button type="button" class="riapri" data-riapri="'+key+'">riapri</button>')+'</span>';
+  return COACH?'':'<button type="button" class="att" data-att="'+key+'">Avvia allenamento</button>';
+}
+function attFineHTML(g){
+  if(!sel) return ""; const key=attKey(g,sel);
+  return (state["AT_"+key]&&!state["AF_"+key])?'<div class="attfine"><button type="button" data-attfine="'+key+'">Fine allenamento</button><span>Si chiude da solo all’ultima serie dell’ultimo esercizio.</span></div>':'';
+}
+document.addEventListener("click",function(e){
+  const a=e.target.closest("[data-att]"); if(a){avviaAtt(a.dataset.att);return}
+  const f=e.target.closest("[data-attfine]"); if(f){chiudiAtt(f.dataset.attfine);return}
+  const r=e.target.closest("[data-riapri]"); if(r){riapriAtt(r.dataset.riapri);return}
+});
+/* la data di un allenamento (giorno g, settimana w): segnata dall'app (DT_, o l'avvio), oppure l'ora dei recuperi,
+   oppure — se il JSON dice da che lunedi' parte il programma e in che giorno della settimana cade ogni Giorno —
+   ricavata dal programma. Niente di tutto questo = niente data */
+const INIZIO=(typeof INIZIO0!=="undefined"&&INIZIO0)||"";
+const GSETT=(typeof GSETT0!=="undefined"&&GSETT0)||null;
+function dataAllenamento(g,w){
+  const key=attKey(g,w), v=state["DT_"+key];
+  if(v){const p=String(v).split("-");return {d:new Date(+p[0],+p[1]-1,+p[2]),fonte:"segnata"}}
+  const t0=parseInt(state["AT_"+key]); if(t0){const d=new Date(t0);return {d:new Date(d.getFullYear(),d.getMonth(),d.getDate()),fonte:"segnata"}}
+  let ct=0; righeDi(g,w).forEach(function(x){const c=parseInt(state["CT_"+x.k]);if(c&&(!ct||c<ct))ct=c});
+  if(ct){const d=new Date(ct);return {d:new Date(d.getFullYear(),d.getMonth(),d.getDate()),fonte:"recupero"}}
+  if(INIZIO&&GSETT&&GSETT[g]&&w){const p=INIZIO.split("-"),d=new Date(+p[0],+p[1]-1,+p[2]);d.setDate(d.getDate()+(w-1)*7+(GSETT[g]-1));return {d:d,fonte:"programma"}}
+  return null;
+}
+
 /* ---------- selettori e disegno ---------- */
 let sel=(typeof SEL0!=="undefined"&&SEL0)?SEL0:1, dsel=(typeof DSEL0!=="undefined"&&DSEL0)?DSEL0:"";
 /* la settimana e il giorno scelti restano quelli dell'ultima volta */
@@ -1562,7 +2042,7 @@ function draw(){
     const righe=g.blocks.map(function(b){return b.rows.filter(function(r){return !sel||settimanaDi(r)===sel})});
     const ne=righe.filter(function(x){return x.length}).length; if(!ne) return;
     const ns=righe.reduce(function(a,rr){return a+rr.reduce(function(y,r){return y+nserie(r)},0)},0);
-    h+='<div class="daybar">'+g.head+'<span>'+ne+' esercizi'+(sel&&ns?' · '+ns+' serie':'')+'</span></div>';
+    h+='<div class="daybar">'+g.head+'<span>'+ne+' esercizi'+(sel&&ns?' · '+ns+' serie':'')+'</span>'+attHTML(g.id)+'</div>';
     g.blocks.forEach(function(b,bi){
       const bk=g.id+"_"+bi, rr=b.rows.filter(function(r){return !sel||settimanaDi(r)===sel}); if(!rr.length) return;
       if(b.demo) h+='<div class="caso">'+b.demo+'</div>';
@@ -1570,6 +2050,7 @@ function draw(){
       rr.forEach(function(r){h+=rigaHTML(r,b,bk,bk+"_"+b.rows.indexOf(r),sel)});
       h+='</div>';
     });
+    h+=attFineHTML(g.id);
   });
   document.getElementById("out").innerHTML=h||'<p class="note">Niente da mostrare.</p>';
   document.querySelectorAll(".sc").forEach(function(box){paintFp(box,parseInt(state["fp_"+box.dataset.k])||0,false)});
@@ -1621,9 +2102,11 @@ draw();
    niente: i dati restano sul telefono e partono alla volta dopo. */
 (function(){
   if(typeof ARCH0==="undefined"||!ARCH0) return;
+  if(COACH){const ft=document.querySelector("footer");if(ft)ft.textContent="Vista coach: quello che tocchi qui resta su questo telefono e non va all\u2019archivio.";return}
   let T=null;
   function dove(){const ua=navigator.userAgent, app=(navigator.standalone||(window.matchMedia&&matchMedia("(display-mode: standalone)").matches));
-    return (app?"app":"browser")+" \u00b7 "+(/iPhone|iPad/.test(ua)?"iPhone":(/Android/.test(ua)?"Android":"computer"))}
+    let au="";try{const L=window.audioDiario?audioDiario():[];if(L.length)au=" \u00b7 audio: "+L.slice(-4).join(" | ")}catch(e){}
+    return (app?"app":"browser")+" \u00b7 "+(/iPhone|iPad/.test(ua)?"iPhone":(/Android/.test(ua)?"Android":"computer"))+au}
   function pacco(){const seg=segnato();
     return {n:seg.length,corpo:JSON.stringify({k:ARCHK0,p:PERSONA,ls:LS,pg:PROG,tit:TITOLO,n:seg.length,seg:seg,st:state,sto:STO,ua:dove()})}}
   function giaMandato(){try{return parseInt(localStorage.getItem(LS+"__archN"))||0}catch(e){return 0}}
@@ -1650,6 +2133,54 @@ draw();
   const ft=document.querySelector("footer"); if(ft) ft.textContent="Quello che scrivi resta su questo telefono e arriva anche al tuo coach.";
   mandaArchivio(2000);
 })();
+
+/* ---------- vista coach: striscia in alto con chi e quando, e il ritorno all'elenco ---------- */
+(function(){
+  if(!COACH) return;
+  try{
+    const d=new Date(COACH.t||Date.now());
+    const hh=("0"+d.getHours()).slice(-2)+":"+("0"+d.getMinutes()).slice(-2), gg=("0"+d.getDate()).slice(-2)+"/"+("0"+(d.getMonth()+1)).slice(-2);
+    const el=document.createElement("div"); el.id="coachbar";
+    el.innerHTML='<a href="'+(COACH.da||"../")+'">\u2190 Clienti</a><span>Vista coach \u00b7 <b></b> \u00b7 dati delle '+hh+' del '+gg+'</span>';
+    el.querySelector("b").textContent=COACH.nome||PERSONA;
+    document.body.insertBefore(el,document.body.firstChild);
+    const st=document.createElement("style"); st.textContent="#inst{display:none!important}"; document.head.appendChild(st);
+    /* la barra non deve finire sotto l'orologio: area sicura dell'iPhone */
+    const mv=document.querySelector('meta[name="viewport"]'); if(mv&&mv.content.indexOf("viewport-fit")<0) mv.content+=",viewport-fit=cover";   /* niente «installa l'app»: e' la scheda di un altro */
+  }catch(e){}
+})();
+
+/* ---------- la fatica: l'accensione dei numeri va allo stesso passo del suono (richiesta del coach, 4/11) ----------
+   Tocchi il 10: si accende l'1 con la sua nota, poi il 2, ... fino al 10, che suona pieno. Stesso timbro della scheda. */
+const paintFpBase=paintFp;
+paintFp=function(box,v,anim){
+  if(!anim) return paintFpBase(box,v,anim);
+  const kids=box.children,key=box.dataset.k||"";
+  if(FPT[key]) FPT[key].forEach(clearTimeout); FPT[key]=[];
+  for(let i=0;i<10;i++){const b=kids[i];b.style.background="";b.style.borderColor="";b.style.color="";b.className=""}
+  if(!v) return;
+  suona("fat_"+v);
+  for(let i=0;i<v;i++)FPT[key].push(setTimeout(function(){const b=kids[i],n=i+1;b.style.background=fcol(n);b.style.borderColor=fbord(n);b.style.color=fink(n);b.className=(n===v)?"on sel":"on"},i*FAT_PASSO*1000));
+};
+/* la scelta del timbro: solo sul campo di prova (dove il JSON ha suoni_fatica). Tre bottoni e l'ascolto */
+(function(){
+  if(typeof SFAT==="undefined"||!SFAT) return;
+  const box=document.createElement("div"); box.id="fatprova";
+  function disegna(){
+    box.innerHTML='<span>Timbro della scheda <em>scegline uno</em></span>'+Object.keys(TIMBRI).map(function(k){
+      return '<button type="button" data-tb="'+k+'" aria-pressed="'+(TIMBRO===k)+'">'+TIMBRI[k].nome+'</button>'}).join("")+
+      '<div class="demo"><b>Ascolta:</b> <button type="button" data-as="clin">Serie</button><button type="button" data-as="plin">Recupero</button>'+
+      '<button type="button" data-as="record">Record</button><button type="button" data-as="fat_8">Fatica</button></div>'}
+  disegna();
+  box.addEventListener("click",function(e){
+    const t=e.target.closest("[data-tb]"); if(t){cambiaTimbro(t.dataset.tb);disegna();suona("clin");return}
+    const a=e.target.closest("[data-as]"); if(!a) return;
+    if(a.dataset.as==="fat_8"){const sc=document.querySelector(".sc");
+      if(sc){paintFp(sc,8,true);setTimeout(function(){paintFp(sc,parseInt(state["fp_"+sc.dataset.k])||0,false)},2200)}else suona("fat_8");return}
+    suona(a.dataset.as)});
+  const h=document.querySelector("header"); if(h) h.insertAdjacentElement("afterend",box);
+})();
+
 
 /* ---------- I TUOI NUMERI: record e grafici dell'atleta (solo nelle pagine con DASH) ----------
    Legge lo storico dei record (nc-storico-<persona>): niente di nuovo da segnare.
@@ -1693,7 +2224,8 @@ function seriePerSett(){
   GIORNI.forEach(function(g){g.blocks.forEach(function(b){
     b.rows.forEach(function(r,ri){if(!haCs(r,b))return;const w=settimanaDi(r),S=serieDi(r);if(!S)return;
       const k=g.id+"_"+g.blocks.indexOf(b)+"_"+ri, tot=S.length; let c=Math.min(parseInt(state["CS_"+k])||0,tot);
-      if(!c){let ev=!!state["fp_"+k];for(let i=0;i<6&&!ev;i++)if(String(state["U_"+k+"_"+i]||"").trim()||String(state["W_"+k+"_"+i]||"").trim()||String(state["RK_"+k+"_"+i]||"").trim()||String(state["MX_"+k+"_"+i]||"").trim())ev=true;if(ev)c=tot}
+      /* se il contatore e' stato segnato (anche 0) vale quello: 0 = top fatta, serie dopo no (2026-11-04) */
+      if(!c&&state["CS_"+k]===undefined){let ev=!!state["fp_"+k];for(let i=0;i<6&&!ev;i++)if(String(state["U_"+k+"_"+i]||"").trim()||String(state["W_"+k+"_"+i]||"").trim()||String(state["RK_"+k+"_"+i]||"").trim()||String(state["MX_"+k+"_"+i]||"").trim())ev=true;if(ev)c=tot}
       m[w]=m[w]||{p:0,f:0}; m[w].p+=tot; m[w].f+=c;});
   })});
   return SETT.map(function(w){return {w:w,p:(m[w]||{}).p||0,f:(m[w]||{}).f||0}});
@@ -1708,6 +2240,84 @@ function esercizi(){
 }
 function nomeEx(ex){return cap(ex.replace(" · MAV"," (MAV)"))}
 
+/* ---- dati per le sezioni nuove (2026-11-04) ---- */
+/* tutte le righe del programma, con quello che c'e' segnato */
+function righeTutte(){
+  const out=[];
+  GIORNI.forEach(function(g){g.blocks.forEach(function(b,bi){b.rows.forEach(function(r,ri){
+    const k=g.id+"_"+bi+"_"+ri, fp=parseInt(state["fp_"+k])||0, cs=parseInt(state["CS_"+k])||0;
+    let tocc=!!fp||cs>0; for(let i=0;i<6&&!tocc;i++) if(["U_","W_","RK_","MX_"].some(function(p){return String(state[p+k+"_"+i]||"").trim()}))tocc=true;
+    out.push({g:g.id,b:b,r:r,k:k,w:settimanaDi(r),fp:fp,cs:cs,fatta:tocc,nome:cap(String(b.nome||"").toLowerCase())});
+  })})});
+  return out;
+}
+/* fatica: media per settimana, le sedute piu' dure, gli esercizi piu' duri */
+function datiFatica(R){
+  const conF=R.filter(function(x){return x.fp>0});
+  const perW={}; conF.forEach(function(x){(perW[x.w]=perW[x.w]||[]).push(x.fp)});
+  const sett=SETT.map(function(w){const a=perW[w]||[];return {w:w,n:a.length,m:a.length?a.reduce(function(s,v){return s+v},0)/a.length:0,max:a.length?Math.max.apply(null,a):0}});
+  const perEx={}; conF.forEach(function(x){const e=perEx[x.nome]=perEx[x.nome]||{nome:x.nome,v:[]};e.v.push(x.fp)});
+  const ex=Object.keys(perEx).map(function(k){const e=perEx[k];e.m=e.v.reduce(function(s,v){return s+v},0)/e.v.length;return e})
+    .sort(function(a,b){return (b.m-a.m)||(b.v.length-a.v.length)});
+  const dure=conF.slice().sort(function(a,b){return (b.fp-a.fp)||(b.w-a.w)});
+  const media=conF.length?conF.reduce(function(s,x){return s+x.fp},0)/conF.length:0;
+  return {n:conF.length,media:media,sett:sett,ex:ex,dure:dure,alte:conF.filter(function(x){return x.fp>=8}).length};
+}
+/* volume: kg x colpi x serie delle serie segnate, per settimana (solo kg, solo questo programma) */
+function datiVolume(){
+  const per={}; let tot=0;
+  tutteLeVoci().filter(function(e){return e.ls===LS&&e.u===""&&e.kg>0&&e.ty!=="rm"}).forEach(function(e){
+    const v=e.kg*e.r*(e.n||1); per[e.w]=(per[e.w]||0)+v; tot+=v});
+  return {sett:SETT.map(function(w){return {w:w,v:per[w]||0}}),tot:tot};
+}
+/* calendario (coach, 7/11): il mese vero, un allenamento per casella, la durata e la fatica quando si tocca.
+   La data viene dal motore (dataAllenamento): segnata dall'app, dall'ora dei recuperi, o ricavata dal programma
+   quando il JSON dice da che lunedi' parte (inizio) e in che giorno cade ogni Giorno (giorni_sett) */
+function dataDi(ms){const d=new Date(ms);return new Date(d.getFullYear(),d.getMonth(),d.getDate())}
+function chiaveData(d){return d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2)}
+function datiCalendario(R){
+  const fatti={}; R.forEach(function(x){if(x.fatta)fatti[x.g+"_"+x.w]=1});
+  Object.keys(state).forEach(function(k){const m=k.match(/^AT_([A-Z])_(\d+)$/);if(m)fatti[m[1]+"_"+m[2]]=1});   /* anche solo avviato col tasto */
+  const giorni={}, senza=[];
+  Object.keys(fatti).forEach(function(k){const p=k.split("_"), g=p[0], w=+p[1], D=dataAllenamento(g,w);
+    if(!D){senza.push(k);return}
+    const righe=righeDi(g,w), fp=righe.filter(function(x){return parseInt(state["fp_"+x.k])>0}).map(function(x){return {nome:cap(String(x.b.nome||"").toLowerCase()),fp:parseInt(state["fp_"+x.k])}});
+    fp.sort(function(a,b){return b.fp-a.fp});
+    let sp=0,sf=0; righe.forEach(function(x){if(!haCs(x.r,x.b))return;const S=serieDi(x.r);if(!S)return;sp+=S.length;sf+=Math.min(parseInt(state["CS_"+x.k])||0,S.length)});
+    const t0=parseInt(state["AT_"+k]), t1=parseInt(state["AF_"+k]);
+    const I=intensitaRighe(righe);
+    (giorni[chiaveData(D.d)]=giorni[chiaveData(D.d)]||[]).push({g:g,w:w,fonte:D.fonte,durata:(t0&&t1)?t1-t0:0,inCorso:!!(t0&&!t1),
+      fatica:fp.length?fp.reduce(function(s,x){return s+x.fp},0)/fp.length:0,nfat:fp.length,dure:fp.slice(0,3),sp:sp,sf:sf,irt:I.irt,pc:I.i,colpi:I.c})});
+  const date=Object.keys(giorni).sort();
+  const sw={}; senza.forEach(function(k){sw[k.split("_")[1]]=1});
+  return {giorni:giorni,date:date,senza:Object.keys(sw).map(Number).sort(function(a,b){return a-b})};
+}
+/* intensita' relativa teorica e volume: dal programma scritto, non da quello che hai fatto.
+   Intensita' = media dei %1RM pesata sui colpi; volume = colpi in programma (serie x ripetizioni) delle stesse righe.
+   Contano solo i pezzi con un % del massimale (non "% del top", non RPE, non MAX) */
+function datiIntensita(){
+  return SETT.map(function(w){
+    const righe=[]; GIORNI.forEach(function(g){g.blocks.forEach(function(b,bi){b.rows.forEach(function(r,ri){if(settimanaDi(r)===w)righe.push({b:b,r:r,k:g.id+"_"+bi+"_"+ri})})})});
+    const I=intensitaRighe(righe); return {w:w,c:I.c,i:I.i,irt:I.irt,max:I.max}});
+}
+window.__datiIntensita=datiIntensita;   /* per il collaudo */
+/* stima del massimale dai top a RPE e dai test (RPE: colpi in canna = 10 - RPE). E' una stima, non un numero vero */
+function datiStima(){
+  const fam=[["SQUAT",/^SQUAT/],["PANCA",/^PANCA/],["STACCO",/^STACCO(?! RUMENO)/]], out=[];
+  const voci=tutteLeVoci().filter(function(e){return e.pgn>0&&e.u===""&&e.kg>0&&(e.ty==="top"||e.ty==="rm"||e.ty==="max")});
+  fam.forEach(function(f){
+    let best=null;
+    voci.filter(function(e){return f[1].test(e.ex)}).forEach(function(e){
+      const rpe=e.ty==="top"?(e.rpe!=null?e.rpe:null):10; if(rpe==null||e.r>10) return;
+      const st=e.kg*(1+(e.r+10-rpe)/30);
+      if(!best||st>best.st) best={st:st,e:e,rpe:rpe}});
+    const mass=tutteLeVoci().filter(function(e){return e.pgn===0&&f[1].test(e.ex)})[0];
+    out.push({nome:cap(f[0].toLowerCase()),best:best,mass:mass});
+  });
+  return out.filter(function(x){return x.best});
+}
+function f1(v){return (Math.round(v*10)/10).toString().replace(".",",")}
+
 /* ---- disegno ---- */
 function el(t,c,h){const x=document.createElement(t);if(c)x.className=c;if(h!==undefined)x.innerHTML=h;return x}
 function disegnaDash(){
@@ -1717,8 +2327,10 @@ function disegnaDash(){
   const finora=sps.filter(function(x){return x.w<=ultimaW});
   const fatte=finora.reduce(function(a,x){return a+x.f},0), prev=finora.reduce(function(a,x){return a+x.p},0);
   const allen=sps.filter(function(x){return x.f>0}).length;
-  if(!tutteLeVoci().some(function(e){return e.pgn>0})){
-    dash.appendChild(el("p","d-vuoto","Qui compaiono i tuoi record e i grafici appena segni qualcosa: i kg, il top, i colpi del MAX o il tasto <b>Serie fatta</b>."));
+  const R=righeTutte();
+  /* finche' non c'e' niente di segnato, niente da mostrare; basta una serie fatta o una fatica (anche senza kg) per il calendario (7/11) */
+  if(!tutteLeVoci().some(function(e){return e.pgn>0})&&!R.some(function(x){return x.fatta})){
+    dash.appendChild(el("p","d-vuoto","Qui compaiono i tuoi record, il calendario e i grafici appena segni qualcosa: i kg, il top, i colpi del MAX o il tasto <b>Serie fatta</b>."));
     return;
   }
   /* numeri in alto */
@@ -1729,7 +2341,7 @@ function disegnaDash(){
     '<div><span class="d-lab">Settimane allenate</span><b>'+allen+'</b><em>su '+SETT.length+'</em></div></div>';
   dash.appendChild(top);
   /* ultimi record */
-  const sr=el("section","d-sez");
+  const sr=el("section","d-sez"); sr.dataset.sez="record";
   sr.appendChild(el("h2","d-h","Ultimi record"));
   if(!recs.length) sr.appendChild(el("p","d-nota","Ancora nessuno. Il primo arriva quando batti qualcosa che avevi già segnato in una settimana prima."));
   else{
@@ -1747,7 +2359,7 @@ function disegnaDash(){
   const exs=esercizi().filter(function(x){return x.ns>=1});
   if(exs.length){
     if(!exSel||!exs.some(function(x){return x.ex===exSel})) exSel=state.__exSel&&exs.some(function(x){return x.ex===state.__exSel})?state.__exSel:exs[0].ex;
-    const g1=el("section","d-sez");
+    const g1=el("section","d-sez"); g1.dataset.sez="peso";
     g1.appendChild(el("h2","d-h","Il peso più alto, settimana per settimana"));
     const ch=el("div","d-chips"); ch.setAttribute("role","tablist");
     exs.forEach(function(x){const b=el("button","",nomeEx(x.ex));b.type="button";b.setAttribute("aria-pressed",x.ex===exSel?"true":"false");
@@ -1758,14 +2370,218 @@ function disegnaDash(){
     const act=ch.querySelector('[aria-pressed="true"]'); if(act&&ch.scrollWidth>ch.clientWidth) ch.scrollLeft=Math.max(0,act.offsetLeft-ch.clientWidth/2+act.offsetWidth/2);
   }
   /* grafico 2: serie fatte */
-  const g2=el("section","d-sez");
+  const g2=el("section","d-sez"); g2.dataset.sez="serie";
   g2.appendChild(el("h2","d-h","Serie fatte, settimana per settimana"));
   const gr2=el("div","d-graf"); g2.appendChild(gr2); grafSerie(gr2,sps);
   dash.appendChild(g2);
+  /* sezioni nuove: fatica, costanza, volume, stima del massimale */
+  const F=datiFatica(R);
+  sezFatica(F); sezCalendario(datiCalendario(R)); sezIntensita(datiIntensita()); sezVolume(datiVolume()); sezStima(datiStima());
+  /* scegli cosa vedere: resta sul telefono */
+  scelte();
   /* come ragiona */
   dash.appendChild(el("p","d-come",'<b>Come nasce un record.</b> Ogni cosa che segni resta sul telefono, anche nei programmi dopo. '+
     'È record quando fai più peso agli stessi colpi, più colpi allo stesso peso, più serie allo stesso peso, oppure lo stesso peso più dura '+
-    '(negativa lenta, fermi). Uguale a prima non è record. Le cose della stessa settimana non si confrontano tra loro.'));
+    '(negativa lenta, fermi). Uguale a prima non è record.'));
+}
+
+/* ---- le sezioni nuove ---- */
+const SEZ=[["record","Ultimi record"],["peso","Il peso più alto"],["serie","Serie fatte"],["fatica","Fatica percepita"],
+  ["calendario","Calendario"],["intensita","Intensità, IRT e volume"],["volume","Volume"],["stima","Stima del massimale"]];
+function sezOff(){try{return JSON.parse(localStorage.getItem("nc-dash-off")||"[]")}catch(e){return []}}
+function scelte(){
+  const off=sezOff();
+  dash.querySelectorAll("[data-sez]").forEach(function(s){s.hidden=off.indexOf(s.dataset.sez)>=0});
+  const box=el("section","d-sez d-scelte");
+  const b=el("button","d-tutti","Scegli cosa vedere");b.type="button";box.appendChild(b);
+  const lista=el("div","d-sce"); lista.hidden=true;
+  SEZ.forEach(function(x){const c=el("label","",'<input type="checkbox"'+(off.indexOf(x[0])<0?" checked":"")+'> '+x[1]);
+    c.querySelector("input").onchange=function(e){const o=sezOff().filter(function(k){return k!==x[0]});if(!e.target.checked)o.push(x[0]);
+      try{localStorage.setItem("nc-dash-off",JSON.stringify(o))}catch(z){} const s=dash.querySelector('[data-sez="'+x[0]+'"]');if(s)s.hidden=!e.target.checked};
+    lista.appendChild(c)});
+  b.onclick=function(){lista.hidden=!lista.hidden};
+  box.appendChild(lista); dash.appendChild(box);
+}
+function colonne(box,dati,opz){
+  /* colonne per settimana, un solo colore; opz: {max, fmt, etic, vuote} */
+  const W=340,H=150,L=30,R=10,T=16,B=24,n=dati.length;
+  const hi=opz.max||Math.max.apply(null,dati.map(function(x){return x.v}).concat([1]));
+  const passo=opz.passo||scala(hi*1.1), top=opz.max||Math.ceil(hi*1.05/passo)*passo;
+  const bw=(W-L-R)/n, wd=Math.min(22,bw*0.6), ys=function(v){return T+(top-v)*(H-T-B)/top};
+  let s='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+esc(opz.etic||"")+'">';
+  for(let v=0;v<=top+1e-9;v+=passo) s+='<line class="d-grid" x1="'+L+'" x2="'+(W-R)+'" y1="'+ys(v)+'" y2="'+ys(v)+'"/><text x="'+(L-6)+'" y="'+(ys(v)+3)+'" text-anchor="end">'+(opz.asse?opz.asse(v):v)+'</text>';
+  let ultima=-1; dati.forEach(function(x,i){if(x.v>0)ultima=i});
+  dati.forEach(function(x,i){const cx=L+i*bw+(bw-wd)/2, h=H-B-ys(x.v);
+    if(x.v>0){const r=Math.min(4,h,wd/2);s+='<path d="M'+cx+' '+(H-B)+'V'+(ys(x.v)+r)+'Q'+cx+' '+ys(x.v)+' '+(cx+r)+' '+ys(x.v)+'H'+(cx+wd-r)+'Q'+(cx+wd)+' '+ys(x.v)+' '+(cx+wd)+' '+(ys(x.v)+r)+'V'+(H-B)+'Z" fill="'+(x.col||COL)+'"/>'}
+    s+='<text x="'+(cx+wd/2)+'" y="'+(H-B+14)+'" text-anchor="middle">S'+x.w+'</text>';
+    if(i===ultima) s+='<text class="d-v" x="'+(cx+wd/2)+'" y="'+(ys(x.v)-5)+'" text-anchor="middle">'+opz.fmt(x.v)+'</text>';
+    s+='<rect class="d-hit" data-i="'+i+'" x="'+(L+i*bw)+'" y="'+T+'" width="'+bw+'" height="'+(H-T-B+18)+'" fill="transparent"/>';});
+  s+='</svg>';
+  const sv=el("div","d-svg",s); box.appendChild(sv);
+  sv.querySelectorAll(".d-hit").forEach(function(h){h.addEventListener("click",function(ev){ev.stopPropagation();
+    const i=+h.dataset.i,x=dati[i],r=sv.getBoundingClientRect(),sc=r.width/W;
+    tip(sv,(L+i*bw+bw/2)*sc,ys(x.v)*sc,'<b>S'+x.w+'</b>'+(x.tip||opz.fmt(x.v)))})});
+  sv.addEventListener("click",function(){nascondiTip(sv)});
+}
+function sezFatica(F){
+  const s=el("section","d-sez"); s.dataset.sez="fatica"; s.appendChild(el("h2","d-h","Fatica percepita"));
+  if(!F.n){s.appendChild(el("p","d-nota","Compare quando segni la fatica (da 1 a 10) sotto un esercizio."));dash.appendChild(s);return}
+  const fatte=F.sett.filter(function(x){return x.n}), ult=fatte[fatte.length-1], pri=fatte[0];
+  const t=el("div","d-tiles");
+  t.innerHTML='<div><span class="d-lab">Media</span><b>'+f1(F.media)+'<small>/10</small></b><em>su '+F.n+' esercizi segnati</em></div>'+
+    '<div><span class="d-lab">Da 8 in su</span><b>'+F.alte+'</b><em>'+(F.n?Math.round(F.alte*100/F.n):0)+'% delle volte</em></div>'+
+    (fatte.length>1?'<div><span class="d-lab">S'+pri.w+' \u2192 S'+ult.w+'</span><b>'+(ult.m>=pri.m?"+":"")+f1(ult.m-pri.m)+'</b><em>media della settimana</em></div>':'');
+  s.appendChild(t);
+  const g=el("div","d-graf"); g.appendChild(el("div","d-gs","La media della fatica di ogni settimana. Tocca una colonna: la più dura di quella settimana."));
+  colonne(g,F.sett.map(function(x){const d=F.dure.filter(function(y){return y.w===x.w})[0];
+    return {w:x.w,v:x.m,col:x.m>=8?"#8C2F1F":COL,tip:x.n?('media '+f1(x.m)+' su '+x.n+(d?'<em>la più dura: '+esc(d.nome)+' · '+d.fp+'/10</em>':'')):'niente segnato'}}),
+    {max:10,passo:2,fmt:function(v){return f1(v)},etic:"Fatica media per settimana"});
+  s.appendChild(g);
+  /* dove hai sofferto di piu' */
+  const d=el("div","d-graf d-lista"); d.appendChild(el("div","d-gs","Dove hai sofferto di più"));
+  const ul=el("ul","d-dure");
+  F.dure.slice(0,5).forEach(function(x){const li=el("li");
+    li.innerHTML='<span class="d-fp" data-v="'+x.fp+'">'+x.fp+'</span><span class="d-nm"></span><span class="d-qd">S'+x.w+' \u00b7 Giorno '+x.g+'</span>';
+    li.querySelector(".d-nm").textContent=x.nome; ul.appendChild(li)});
+  d.appendChild(ul); s.appendChild(d);
+  /* gli esercizi piu' duri, in media */
+  if(F.ex.length){
+    const e=el("div","d-graf d-lista"); e.appendChild(el("div","d-gs","La fatica media di ogni esercizio, dal più duro. Tra parentesi quante volte l’hai segnata."));
+    const ue=el("ul","d-barre");
+    F.ex.forEach(function(x){const li=el("li");
+      li.innerHTML='<span class="d-nm"></span><span class="d-bar"><i style="width:'+(x.m*10)+'%"></i></span><b>'+f1(x.m)+'</b>';
+      li.querySelector(".d-nm").textContent=x.nome+" ("+x.v.length+")"; ue.appendChild(li)});
+    e.appendChild(ue); s.appendChild(e);
+  }
+  dash.appendChild(s);
+}
+const MESI=["gen","feb","mar","apr","mag","giu","lug","ago","set","ott","nov","dic"];
+const MESI_L=["gennaio","febbraio","marzo","aprile","maggio","giugno","luglio","agosto","settembre","ottobre","novembre","dicembre"];
+const GSET_L=["lunedì","martedì","mercoledì","giovedì","venerdì","sabato","domenica"];
+let CAL_MESE=null;   /* "YYYY-MM" del mese mostrato; si parte da questo mese */
+function sezCalendario(Q){
+  const s=el("section","d-sez"); s.dataset.sez="calendario"; s.appendChild(el("h2","d-h","Calendario"));
+  const oggi=dataDi(Date.now());
+  /* da che mese si puo' andare indietro: il primo allenamento, o l'inizio del programma */
+  let primo=Q.date.length?Q.date[0]:null;
+  if(INIZIO&&(!primo||INIZIO<primo)) primo=INIZIO;
+  if(!primo){
+    s.appendChild(el("p","d-nota","Compare dal primo allenamento: ogni giorno in cui tocchi «Avvia allenamento» o segni qualcosa prende la sua data."+
+      (Q.senza.length?" Le settimane "+Q.senza.map(function(w){return "S"+w}).join(", ")+" sono fatte ma senza data.":"")));
+    dash.appendChild(s); return}
+  const pm=primo.split("-"), mMin=pm[0]+"-"+pm[1], mMax=chiaveData(oggi).slice(0,7);
+  if(!CAL_MESE||CAL_MESE>mMax||CAL_MESE<mMin) CAL_MESE=mMax;
+  const anno=+CAL_MESE.slice(0,4), mese=+CAL_MESE.slice(5,7)-1;
+  const d1=new Date(anno,mese,1), dn=new Date(anno,mese+1,0);
+  /* numeri del mese */
+  let nAll=0, nRip=0, settW={};
+  for(let d=new Date(d1);d<=dn;d.setDate(d.getDate()+1)){const q=Q.giorni[chiaveData(d)];
+    if(q){nAll++;q.forEach(function(y){settW[y.w]=1})} else if(d<=oggi&&chiaveData(d)>=primo) nRip++}
+  const sw=Object.keys(settW).map(Number).sort(function(a,b){return a-b});
+  const t=el("div","d-tiles");
+  t.innerHTML='<div><span class="d-lab">Allenamenti</span><b>'+nAll+'</b><em>nel mese</em></div>'+
+    '<div><span class="d-lab">Riposo</span><b>'+nRip+'</b><em>giorn'+(nRip===1?'o':'i')+' finora</em></div>'+
+    '<div><span class="d-lab">Settimane</span><b>'+(sw.length?(sw.length===1?'S'+sw[0]:'S'+sw[0]+'–S'+sw[sw.length-1]):'—')+'</b><em>del programma</em></div>';
+  s.appendChild(t);
+  const g=el("div","d-graf d-cal");
+  /* testata col mese e le frecce */
+  const nav=el("div","d-calnav");
+  const prev=el("button","","‹"); prev.type="button"; prev.setAttribute("aria-label","mese prima"); prev.disabled=(CAL_MESE<=mMin);
+  const next=el("button","","›"); next.type="button"; next.setAttribute("aria-label","mese dopo"); next.disabled=(CAL_MESE>=mMax);
+  const tit=el("b","",MESI_L[mese]+" "+anno);
+  nav.appendChild(prev); nav.appendChild(tit); nav.appendChild(next); g.appendChild(nav);
+  function vai(k){CAL_MESE=k;disegnaDash();const z=dash.querySelector('[data-sez="calendario"]');if(z)z.scrollIntoView({block:"start"})}
+  prev.onclick=function(){const m=new Date(anno,mese-1,1);vai(chiaveData(m).slice(0,7))};
+  next.onclick=function(){const m=new Date(anno,mese+1,1);vai(chiaveData(m).slice(0,7))};
+  /* la griglia: lunedi' -> domenica */
+  let h='<table class="d-fq d-mese"><thead><tr>'+["L","M","M","G","V","S","D"].map(function(x){return '<th>'+x+'</th>'}).join("")+'</tr></thead><tbody>';
+  const lun=new Date(d1); lun.setDate(d1.getDate()-((d1.getDay()+6)%7));
+  for(let d=new Date(lun);d<=dn;d.setDate(d.getDate()+7)){
+    h+='<tr>';
+    for(let i=0;i<7;i++){const x=new Date(d);x.setDate(d.getDate()+i);const k=chiaveData(x),q=Q.giorni[k],fuori=x.getMonth()!==mese,fut=x>oggi,og=+x===+oggi;
+      if(fuori){h+='<td><span class="d-fd fuori"></span></td>';continue}
+      const inf=q&&q.every(function(y){return y.fonte==="programma"}), corso=q&&q.some(function(y){return y.inCorso});
+      h+='<td><button type="button" class="d-fd'+(q?' on':'')+(inf?' inf':'')+(corso?' corso':'')+(fut?' fut':'')+(og?' oggi':'')+'" data-d="'+k+'"'+(q?'':' disabled')+
+        ' aria-label="'+x.getDate()+' '+MESI[x.getMonth()]+(q?' · '+q.map(function(y){return 'S'+y.w+' Giorno '+y.g}).join(', '):(fut?'':' · riposo'))+'">'+
+        '<i>'+x.getDate()+'</i>'+(q?'<b>'+q.map(function(y){return y.g}).join("")+'</b>':'')+'</button></td>'}
+    h+='</tr>'}
+  h+='</tbody></table>';
+  g.appendChild(el("div","d-calw",h));
+  g.appendChild(el("div","d-leg",'<span><i class="d-l1"></i>allenamento (la lettera è il giorno)</span><span><i class="d-l2"></i>data ricavata dal programma</span><span><i class="d-l3"></i>riposo</span>'));
+  /* il dettaglio di un allenamento, quando lo tocchi */
+  const det=el("div","d-caldet"); det.hidden=true; g.appendChild(det);
+  function mostraDet(k){
+    const q=Q.giorni[k]; if(!q) return; const p=k.split("-"), d=new Date(+p[0],+p[1]-1,+p[2]);
+    let hh='<div class="d-cdd">'+GSET_L[(d.getDay()+6)%7]+' '+d.getDate()+' '+MESI_L[d.getMonth()]+'</div>';
+    q.forEach(function(y){
+      hh+='<div class="d-cdw"><b>S'+y.w+' · Giorno '+y.g+'</b>'+(y.fonte==="programma"?'<em>data ricavata dal programma</em>':'')+'<ul>';
+      hh+='<li><span>Durata</span><b>'+(y.durata?durataTxt(y.durata):(y.inCorso?'in corso':'non registrata'))+'</b></li>';
+      hh+='<li><span>Serie fatte</span><b>'+y.sf+(y.sp?' su '+y.sp:'')+'</b></li>';
+      hh+='<li><span>Fatica media</span><b>'+(y.nfat?f1(y.fatica)+'/10':'—')+'</b>'+(y.nfat?'<small>su '+y.nfat+' eserciz'+(y.nfat===1?'io':'i')+'</small>':'')+'</li>';
+      if(y.colpi) hh+='<li><span>Intensità teorica</span><b>'+Math.round(y.pc)+'%</b><small>del massimale · IRT media '+Math.round(y.irt)+'</small></li>';
+      if(y.dure.length) hh+='<li class="d-cdf"><span>Più fatica</span><b>'+y.dure.map(function(x){return esc(x.nome)+' <i>'+x.fp+'</i>'}).join(', ')+'</b></li>';
+      hh+='</ul></div>'});
+    det.innerHTML=hh; det.hidden=false;
+  }
+  g.querySelectorAll(".d-fd.on").forEach(function(b){b.addEventListener("click",function(){
+    g.querySelectorAll(".d-fd.sel").forEach(function(z){z.classList.remove("sel")}); b.classList.add("sel"); mostraDet(b.dataset.d)})});
+  if(Q.senza.length) g.appendChild(el("p","d-nota","Le settimane "+Q.senza.map(function(w){return "S"+w}).join(", ")+" sono fatte ma senza data: non sono nel calendario."));
+  s.appendChild(g); dash.appendChild(s);
+}
+function sezIntensita(D){
+  const con=D.filter(function(x){return x.c>0}); if(!con.length) return;
+  const s=el("section","d-sez"); s.dataset.sez="intensita"; s.appendChild(el("h2","d-h","Intensità, IRT e volume"));
+  const g=el("div","d-graf"); g.appendChild(el("div","d-gs","<b>Teorici, dal programma.</b> Colonne: i colpi in programma con una percentuale. Linea oro: il % medio del massimale. "+
+    "Linea scura: l’<b>IRT</b>, l’intensità relativa teorica (quanto è vicina al tuo limite una serie: 100 = al limite). Tocca una settimana."));
+  const W=340,H=170,L=34,R=34,T=18,B=24,n=D.length;
+  const cmax=Math.max.apply(null,con.map(function(x){return x.c})), passo=scala(cmax*1.1), ctop=Math.ceil(cmax*1.05/passo)*passo;
+  const vals=con.map(function(x){return x.i}).concat(con.filter(function(x){return x.irt>0}).map(function(x){return x.irt}));
+  const imin=Math.floor((Math.min.apply(null,vals)-5)/5)*5, imax=Math.ceil((Math.max.apply(null,vals)+3)/5)*5;
+  const yc=function(v){return T+(ctop-v)*(H-T-B)/ctop}, yi=function(v){return T+(imax-v)*(H-T-B)/(imax-imin)};
+  const bw=(W-L-R)/n, wd=Math.min(20,bw*0.55);
+  let sv='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Intensità, IRT e volume per settimana">';
+  for(let v=0;v<=ctop+1e-9;v+=passo) sv+='<line class="d-grid" x1="'+L+'" x2="'+(W-R)+'" y1="'+yc(v)+'" y2="'+yc(v)+'"/><text x="'+(L-6)+'" y="'+(yc(v)+3)+'" text-anchor="end">'+v+'</text>';
+  for(let v=imin;v<=imax;v+=5) sv+='<text x="'+(W-R+6)+'" y="'+(yi(v)+3)+'">'+v+'</text>';
+  if(imin<=100&&100<=imax) sv+='<line class="d-ref" x1="'+L+'" x2="'+(W-R)+'" y1="'+yi(100)+'" y2="'+yi(100)+'"/>';
+  let pts=[], pti=[];
+  D.forEach(function(x,i){const cx=L+i*bw+(bw-wd)/2;
+    if(x.c>0){sv+='<rect x="'+cx+'" y="'+yc(x.c)+'" width="'+wd+'" height="'+(H-B-yc(x.c))+'" rx="3" fill="var(--line)"/>';pts.push([cx+wd/2,yi(x.i)]);if(x.irt>0)pti.push([cx+wd/2,yi(x.irt)])}
+    sv+='<text x="'+(cx+wd/2)+'" y="'+(H-B+14)+'" text-anchor="middle">S'+x.w+'</text>';
+    sv+='<rect class="d-hit" data-i="'+i+'" x="'+(L+i*bw)+'" y="'+T+'" width="'+bw+'" height="'+(H-T-B+18)+'" fill="transparent"/>'});
+  if(pts.length>1) sv+='<polyline points="'+pts.map(function(p){return p.join(",")}).join(" ")+'" fill="none" stroke="'+COL+'" stroke-width="2.2" stroke-linejoin="round"/>';
+  pts.forEach(function(p){sv+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="3.2" fill="'+COL+'"/>'});
+  if(pti.length>1) sv+='<polyline class="d-irt" points="'+pti.map(function(p){return p.join(",")}).join(" ")+'" fill="none" stroke="var(--ink)" stroke-width="2" stroke-dasharray="5 4" stroke-linejoin="round"/>';
+  pti.forEach(function(p){sv+='<circle class="d-irt" cx="'+p[0]+'" cy="'+p[1]+'" r="3" fill="var(--ink)"/>'});
+  sv+='</svg>';
+  const box=el("div","d-svg",sv); g.appendChild(box);
+  box.querySelectorAll(".d-hit").forEach(function(hh){hh.addEventListener("click",function(ev){ev.stopPropagation();
+    const i=+hh.dataset.i,x=D[i],r=box.getBoundingClientRect(),sc=r.width/W;
+    tip(box,(L+i*bw+bw/2)*sc,(x.c?Math.min(yc(x.c),yi(x.i)):H-B)*sc,'<b>S'+x.w+'</b>'+(x.c?f1(x.i)+'% medio · '+x.c+' colpi'+
+      (x.irt>0?'<em>IRT media '+Math.round(x.irt)+(x.max?' · la più dura '+Math.round(x.max.v)+': '+esc(x.max.nome)+' '+x.max.se+'×'+x.max.rp:'')+'</em>':''):'niente con il %'))})});
+  box.addEventListener("click",function(){nascondiTip(box)});
+  g.appendChild(el("div","d-leg",'<span><i class="d-lb"></i>volume (colpi)</span><span><i class="d-ll"></i>% del massimale</span><span><i class="d-li"></i>IRT</span>'));
+  s.appendChild(g); dash.appendChild(s);
+}
+function sezVolume(V){
+  const s=el("section","d-sez"); s.dataset.sez="volume"; s.appendChild(el("h2","d-h","Volume, settimana per settimana"));
+  if(!V.tot){s.appendChild(el("p","d-nota","Compare quando ci sono serie con i kg."));dash.appendChild(s);return}
+  const g=el("div","d-graf"); g.appendChild(el("div","d-gs","Chili sollevati in tutto: kg × colpi × serie delle serie con il peso, settimana per settimana."));
+  const t1=function(v){return v>=1000?f1(v/1000)+" t":Math.round(v)+" kg"};
+  colonne(g,V.sett.map(function(x){return {w:x.w,v:x.v}}),{fmt:t1,asse:function(v){return v>=1000?(v/1000)+"t":v},etic:"Volume per settimana"});
+  s.appendChild(g); dash.appendChild(s);
+}
+function sezStima(S){
+  if(!S.length) return;
+  const s=el("section","d-sez"); s.dataset.sez="stima"; s.appendChild(el("h2","d-h","Stima del massimale"));
+  const g=el("div","d-graf d-lista");
+  g.appendChild(el("div","d-gs","Dal tuo top migliore a RPE o dal test: il peso che sposteresti per un colpo solo. <b>È una stima</b>, non un massimale vero, e con fermi e tempi il numero da gara è più alto."));
+  const ul=el("ul","d-stima");
+  S.forEach(function(x){const e=x.best.e,li=el("li");
+    li.innerHTML='<span class="d-nm"></span><b>'+f(Math.round(x.best.st*2)/2)+' kg</b><span class="d-qd"></span>';
+    li.querySelector(".d-nm").textContent=x.nome;
+    li.querySelector(".d-qd").textContent="da "+f(e.kg)+" × "+e.r+" @"+x.best.rpe+(durZero(e.d)?"":" "+durTxt(e.d))+" · S"+e.w+(x.mass?" · riferimento "+f(x.mass.kg):"");
+    ul.appendChild(li)});
+  g.appendChild(ul); s.appendChild(g); dash.appendChild(s);
 }
 
 /* tooltip comune: un tocco su un punto o su una colonna */
@@ -1833,7 +2649,9 @@ function grafPeso(box,ex,recs){
     }
   }
 }
-function scala(r){const c=[1,2,2.5,5,10,20,25,50];for(let i=0;i<c.length;i++)if(r/c[i]<=5)return c[i];return 100}
+function scala(r){/* un passo "tondo" che da' al massimo 5 righe, per qualsiasi grandezza */
+  if(!(r>0)) return 1; const e=Math.pow(10,Math.floor(Math.log10(r/5)));
+  const c=[1,2,2.5,5,10].map(function(x){return x*e}); for(let i=0;i<c.length;i++) if(r/c[i]<=5) return c[i]; return 10*e}
 
 function grafSerie(box,sps){
   box.appendChild(el("div","d-gs","La colonna oro sono le serie fatte, il grigio quelle previste. Contate dal tasto Serie fatta; prima del tasto, dalle righe compilate."));
@@ -1892,6 +2710,7 @@ document.addEventListener("visibilitychange",function(){
     navigator.serviceWorker.getRegistration().then(function(r){if(r)r.update()}).catch(function(){});
 });
 let PROMPT=null;
+const SVGPUNTINI='<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="5" cy="12" r="2" fill="currentColor"/><circle cx="12" cy="12" r="2" fill="currentColor"/><circle cx="19" cy="12" r="2" fill="currentColor"/></svg>';
 function giaInstallata(){
   return window.matchMedia("(display-mode: standalone)").matches || navigator.standalone===true;
 }
@@ -1961,12 +2780,16 @@ function comeInstallare(){
       '<div class="riga"><button onclick="apriSafari()">Apri in Safari</button>'+
       '<button class="no" onclick="copiaLink(this)">Copia il link</button></div></li>';
   }
-  h+='<li>In Safari tocca il tasto <b>Condividi</b> <span class="ic">'+SVGCOND+'</span>, '+
-    'nella barra in fondo allo schermo.<br><span class="pic">Non la vedi? Tocca una volta '+
-    'il fondo dello schermo: la barra ricompare.</span></li>'+
-    '<li>Scorri l’elenco e scegli <b>Aggiungi a Home</b> '+
-    '<span class="pic">(in inglese: Add to Home Screen)</span></li>'+
-    '<li>Conferma in alto a destra</li></ol>';
+  /* iPhone di adesso: in Safari il tasto Condividi sta dentro i tre puntini in basso a destra; sugli iPhone piu'
+     vecchi e' l'icona Condividi nella barra in fondo. Si dicono tutte e due (richiesta del coach 2026-11-04) */
+  h+='<li>In Safari tocca i <b>tre puntini</b> <span class="ic">'+SVGPUNTINI+'</span> <b>in basso a destra</b>, '+
+    'accanto all\u2019indirizzo.<br><span class="pic">Non li vedi? Tocca una volta il fondo dello schermo: la barra ricompare. '+
+    'Su un iPhone meno recente al posto dei tre puntini c\u2019\u00e8 direttamente il tasto Condividi '+
+    '<span class="ic">'+SVGCOND+'</span> in fondo allo schermo: tocca quello e salta il passo 2.</span></li>'+
+    '<li>Nel menu tocca <b>Condividi</b> <span class="ic">'+SVGCOND+'</span></li>'+
+    '<li>Scorri l\u2019elenco verso il basso e scegli <b>Aggiungi alla schermata Home</b> '+
+    '<span class="pic">(in inglese: Add to Home Screen). Se non c\u2019\u00e8, tocca \u00abAltro\u00bb in fondo all\u2019elenco.</span></li>'+
+    '<li>Se c\u2019\u00e8 \u00abApri come app web\u00bb, lascialo acceso. Poi tocca <b>Aggiungi</b> in alto a destra</li></ol>';
   if(!inAppBrowser())
     h+='<div class="riga"><button class="no" onclick="copiaLink(this)">Copia il link</button></div>';
   p.innerHTML=h;
