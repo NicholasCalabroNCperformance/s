@@ -739,7 +739,11 @@ function eRamp(k){try{return tipoSerie(rigaObj(k).r.se).t==="ramp"}catch(e){retu
    Quanto sia il gradino dipende dalla macchina: il peso nuovo lo scrive lui nella casella, e dalle settimane dopo
    si vede gia' scritto. Se sale ancora, lo corregge e da li' in avanti vale il nuovo. G_<riga>_<pezzo> */
 const RE_GRAD=/\+\s*(?:1|un|il)?\s*(?:gradino|minimo|scatto)\b/i;
-function haGradino(t){return RE_GRAD.test(String(t||""))}
+/* «peso del test, o +5 kg», «…, o manubrio successivo»: sale solo se la regola della nota lo dice (es. MAX di S3), quindi
+   la casella del peso nuovo puo' restare vuota e allora vale il peso di base (2026-11-10) */
+const RE_ALT=/,?\s*o\s+(?:\+\s*\d+(?:[.,]\d+)?\s*kg\b|(?:il\s+)?manubrio\s+successivo|un\s+gradino(?:\s+in\s+pi[u\u00f9])?)/i;
+function haGradino(t){t=String(t||"");return RE_GRAD.test(t)||RE_ALT.test(t)}
+function giornoLab(id){const g=GIORNI.find(function(x){return x.id===id});return (g&&g.lab)||id}   /* «Giorno 1» invece di «A» se il JSON lo dice */
 function condiviso(r){return !!r&&!/\//.test(String(r.ca||""))}   /* un solo carico scritto per tutti i pezzi della riga */
 function gradinoDi(bk,k,i){
   const ri=rigaDi(k), b=bloccoDi(bk);
@@ -763,8 +767,8 @@ function gradinoHTML(t,T,bk,k,i){
   if(/peso di lavoro/i.test(t)) base=pesoLavoro(bk,k,i);
   else if(/peso della scorsa/i.test(t)){const e=scorsaEff(bk,k,i); if(e) base=e.v}
   else base=T;
-  const bs=(isFinite(base)&&base>0)?f(base)+' kg':'<span class="wait">dopo il test</span>';
-  return '<span class="gbase">'+bs+' <span class="lieve">+ 1 gradino</span></span> <span class="freccia">→</span> '+casella(kk,"",'peso nuovo')+raw;
+  const bs=(isFinite(base)&&base>0)?f(base)+' kg':'<span class="wait">'+(/peso della scorsa/i.test(t)?'peso della scorsa':(/peso di lavoro/i.test(t)?'peso di lavoro':'dopo il test'))+'</span>', alt=t.match(RE_ALT);
+  return '<span class="gbase">'+bs+' <span class="lieve">'+(alt?esc(alt[0].replace(/^,?\s*/,"")):'+ 1 gradino')+'</span></span> <span class="freccia">→</span> '+casella(kk,"",alt?'peso nuovo, se sali':'peso nuovo')+raw;
 }
 /* ---------- «peso della scorsa», «peso della scorsa +1 kg per manubrio», «+2 kg se il top > 12» (2026-11-09) ----------
    Il peso della settimana prima si vede gia' scritto; se c'e' un «+N kg» (e la condizione sul top della scorsa regge)
@@ -779,6 +783,8 @@ function scorsaEff(bk,k,i,prof){
   const r=b.rows[ri], cond=condiviso(r);
   let mio=state["U_"+k+"_"+i]; if((mio===undefined||String(mio).trim()==="")&&cond&&i>0) mio=state["U_"+k+"_0"];
   if(mio!==undefined&&String(mio).trim()!=="") return {v:num(mio),mio:true,piu:0};
+  if(prof>0){const p=parti(r)[i]||parti(r)[0]||{}, c0=String(p.ca||""); if(haGradino(c0)||!/peso della scorsa/i.test(c0)){
+    const v=kgNum(p,bk,b,k,i); if(isFinite(v)&&v>0) return {v:v,mio:false,piu:0};}}   /* settimana prima con peso calcolato (2026-11-10) */
   if(ri<=0) return null;
   const pk=bk+"_"+(ri-1), pr=parti(b.rows[ri-1]); let prev=null;
   for(let j=0;j<pr.length&&!prev;j++){const e=scorsaEff(bk,pk,j,prof+1); if(e&&isFinite(e.v)&&e.v>0) prev=e}
@@ -854,6 +860,8 @@ function risolvi0(t,bk,b,k,i){
     return Math.max(30,Math.round(T*pc+1e-9))+' secondi<span class="raw">'+t+'</span>';
   }
   if((m=t.match(/^(\d+(?:[.,]\d+)?)\s*kg\s+per manubrio$/i))) return f(parseFloat(m[1].replace(",",".")))+' kg <span class="lieve">per manubrio</span>';
+  if((m=t.match(/^(\d+(?:[.,]\d+)?)\s*kg(?:\s*\((\d+(?:[.,]\d+)?)\s*%\))?$/i)))     /* «50 kg (74%)»: peso fisso del coach (2026-11-10) */
+    return kg(parseFloat(m[1].replace(",",".")))+(m[2]?'<span class="raw">'+m[2]+'% del massimale stimato</span>':'');
   if(/^senza peso$/i.test(t)) return '<span class="lieve">senza peso</span>';
   /* peso del test, zavorra del test, 5RM -15%, -20% da solo */
   if(/(peso|zavorra) del test/i.test(t)) return daTest(t,T);
@@ -1073,7 +1081,7 @@ function rifMancanti(b,bk,sett){
   b.rows.forEach(function(r,ri){ if(settimanaDi(r)!==sett) return; const k=bk+"_"+ri;
     parti(r).forEach(function(p){ const rr=rampaRif(b,bk,k,String(p.ca||"")); if(!rr||visti[rr.key]) return; visti[rr.key]=1;
       const v=state[rr.key]; if(v!==undefined&&String(v).trim()!=="") return;
-      h+='<div class="tbx"><span class="lb">Il tuo '+rr.n+'RM (settimana '+rr.w+(rr.g?', Giorno '+rr.g:'')+')</span><input type="text" inputmode="decimal" data-k="'+rr.key+
+      h+='<div class="tbx"><span class="lb">Il tuo '+rr.n+'RM (settimana '+rr.w+(rr.g?', Giorno '+giornoLab(rr.g):'')+')</span><input type="text" inputmode="decimal" data-k="'+rr.key+
         '" value="" placeholder="\u2014"><span class="u">'+uLab(b)+'</span><span class="hint">il peso che hai trovato col ramping in settimana '+rr.w+
         ': scrivilo qui e i carichi di oggi escono da soli.</span></div>';
     });});
@@ -1483,7 +1491,7 @@ function kgNum(p,bk,b,k,i){
   if(/^(corpo libero|senza peso)$/i.test(t)) return 0;
   /* carichi a parole (2026-11-09): % del top del ramping, gradino, peso della scorsa, zavorra del test +N kg */
   if(i>0&&eRamp(k)&&((m=t.match(RE_POI))||RE_UGUALI.test(t))){const tv=num(state["RK_"+k+"_0"]);return tv>0?tv*(m?pc(m[1]):1):NaN}
-  if(haGradino(t)){const g=gradinoDi(bk,k,i);return (g&&g.v>0)?g.v:NaN}
+  if(haGradino(t)){const g=gradinoDi(bk,k,i); if(g&&g.v>0) return g.v; return (RE_ALT.test(t)&&T>0)?T:NaN}
   if(/peso della scorsa/i.test(t)){const e=scorsaEff(bk,k,i);return (e&&e.v>0)?e.v:NaN}
   if((m=t.match(RE_PIUKG))) return T>0?T+parseFloat(m[1].replace(",",".")):NaN;
   if(t==="__TEST__") return T>0?T:NaN;
@@ -1491,6 +1499,7 @@ function kgNum(p,bk,b,k,i){
   if((m=t.match(/^(\d+(?:[.,]\d+)?)\s*%\s*del nuovo$/i))||/^peso del nuovo$/i.test(t)){const v=num(state["NT_"+k]);return v>0?v*(m?pc(m[1]):1):NaN}
   if(b.regola&&/^(peso del giorno|stesso peso)$/i.test(t)) return pesoGiorno(bk,b,rigaDi(k));
   if((m=t.match(/^(\d+(?:[.,]\d+)?)\s*kg\s+per manubrio$/i))) return parseFloat(m[1].replace(",","."));
+  if((m=t.match(/^(\d+(?:[.,]\d+)?)\s*kg(?:\s*\((\d+(?:[.,]\d+)?)\s*%\))?$/i))) return parseFloat(m[1].replace(",","."));
   if(/(peso|zavorra) del test/i.test(t)||/^\d+\s*RM\s*[−\-]\s*\d+\s*%/i.test(t)||/^[−\-]\s*\d+\s*%$/.test(t)) return T>0?T*sconto(t):NaN;
   if(/peso di lavoro/i.test(t)){const base=pesoLavoro(bk,k,i);return base>0?base*sconto(t):NaN}
   if((m=t.match(RE_PCTEST))) return T>0?T*pc(m[1]):NaN;
@@ -2282,7 +2291,7 @@ function scegli(w,d){if(w!==null)sel=w;if(d!==null)dsel=d;state.__sel=sel;state.
 const chips=document.getElementById("chips"), dchips=document.getElementById("dchips");
 SETT.forEach(function(w){const b=document.createElement("button");b.textContent="S"+w;b.onclick=function(){scegli(w,null)};chips.appendChild(b)});
 (function(){const b=document.createElement("button");b.className="all";b.textContent="TUTTE";b.onclick=function(){scegli(0,null)};chips.appendChild(b)})();
-GIORNI.forEach(function(g){const b=document.createElement("button");b.textContent=g.id;b.onclick=function(){scegli(null,dsel===g.id?"":g.id)};dchips.appendChild(b)});
+GIORNI.forEach(function(g){const b=document.createElement("button");b.textContent=g.lab||g.id;b.onclick=function(){scegli(null,dsel===g.id?"":g.id)};dchips.appendChild(b)});
 (function(){const b=document.createElement("button");b.className="all";b.textContent="TUTTI";b.onclick=function(){scegli(null,"")};dchips.appendChild(b)})();
 function nserie(r){const ts=tipoSerie(r.se);if(ts.t!=="num")return 0;const m=String(r.se).match(/\d+/g);return m?m.reduce(function(a,x){return a+parseInt(x)},0):0}
 function settimanaDi(r){return parseInt(String(r.s).replace(/\D/g,""))||0}
@@ -2703,7 +2712,7 @@ function sezFatica(F){
   const d=el("div","d-graf d-lista"); d.appendChild(el("div","d-gs","Dove hai sofferto di più"));
   const ul=el("ul","d-dure");
   F.dure.slice(0,5).forEach(function(x){const li=el("li");
-    li.innerHTML='<span class="d-fp" data-v="'+x.fp+'">'+x.fp+'</span><span class="d-nm"></span><span class="d-qd">S'+x.w+' \u00b7 Giorno '+x.g+'</span>';
+    li.innerHTML='<span class="d-fp" data-v="'+x.fp+'">'+x.fp+'</span><span class="d-nm"></span><span class="d-qd">S'+x.w+' \u00b7 Giorno '+giornoLab(x.g)+'</span>';
     li.querySelector(".d-nm").textContent=x.nome; ul.appendChild(li)});
   d.appendChild(ul); s.appendChild(d);
   /* gli esercizi piu' duri, in media */
@@ -2764,7 +2773,7 @@ function sezCalendario(Q){
       if(fuori){h+='<td><span class="d-fd fuori"></span></td>';continue}
       const inf=q&&q.every(function(y){return y.fonte==="programma"}), corso=q&&q.some(function(y){return y.inCorso});
       h+='<td><button type="button" class="d-fd'+(q?' on':'')+(inf?' inf':'')+(corso?' corso':'')+(fut?' fut':'')+(og?' oggi':'')+'" data-d="'+k+'"'+(q?'':' disabled')+
-        ' aria-label="'+x.getDate()+' '+MESI[x.getMonth()]+(q?' · '+q.map(function(y){return 'S'+y.w+' Giorno '+y.g}).join(', '):(fut?'':' · riposo'))+'">'+
+        ' aria-label="'+x.getDate()+' '+MESI[x.getMonth()]+(q?' · '+q.map(function(y){return 'S'+y.w+' Giorno '+giornoLab(y.g)}).join(', '):(fut?'':' · riposo'))+'">'+
         '<i>'+x.getDate()+'</i>'+(q?'<b>'+q.map(function(y){return y.g}).join("")+'</b>':'')+'</button></td>'}
     h+='</tr>'}
   h+='</tbody></table>';
@@ -2776,7 +2785,7 @@ function sezCalendario(Q){
     const q=Q.giorni[k]; if(!q) return; const p=k.split("-"), d=new Date(+p[0],+p[1]-1,+p[2]);
     let hh='<div class="d-cdd">'+GSET_L[(d.getDay()+6)%7]+' '+d.getDate()+' '+MESI_L[d.getMonth()]+'</div>';
     q.forEach(function(y){
-      hh+='<div class="d-cdw"><b>S'+y.w+' · Giorno '+y.g+'</b>'+(y.fonte==="programma"?'<em>data ricavata dal programma</em>':'')+'<ul>';
+      hh+='<div class="d-cdw"><b>S'+y.w+' · Giorno '+giornoLab(y.g)+'</b>'+(y.fonte==="programma"?'<em>data ricavata dal programma</em>':'')+'<ul>';
       hh+='<li><span>Durata</span><b>'+(y.durata?durataTxt(y.durata):(y.inCorso?'in corso':'non registrata'))+'</b></li>';
       hh+='<li><span>Serie fatte</span><b>'+y.sf+(y.sp?' su '+y.sp:'')+'</b></li>';
       hh+='<li><span>Fatica media</span><b>'+(y.nfat?f1(y.fatica)+'/10':'—')+'</b>'+(y.nfat?'<small>su '+y.nfat+' eserciz'+(y.nfat===1?'io':'i')+'</small>':'')+'</li>';
