@@ -634,7 +634,9 @@ function pesoLavoroDa(bk,k,i){
      scritto: si corregge solo quando si sale); se non c'e' mai stato, il peso del test del blocco (2026-11-09) */
   const v=state["W_"+k+"_"+i]; if(v!==undefined&&String(v).trim()!=="") return {v:num(v),da:"mio"};
   const ri=parseInt(k.slice(k.lastIndexOf("_")+1))||0, b=bloccoDi(bk);
-  for(let r=ri-1;r>=0;r--){const w=state["W_"+bk+"_"+r+"_"+i]; if(w!==undefined&&String(w).trim()!=="") return {v:num(w),da:"S"+(b?String(b.rows[r].s).replace(/\D/g,""):"")};}
+  for(let r=ri-1;r>=0;r--){const w=state["W_"+bk+"_"+r+"_"+i]; if(w!==undefined&&String(w).trim()!=="") return {v:num(w),da:"S"+(b?String(b.rows[r].s).replace(/\D/g,""):"")};
+    /* dopo un ramping: il peso di lavoro parte dal top trovato (2026-11-10) */
+    if(b&&b.rows[r]&&tipoSerie(b.rows[r].se).t==="ramp"){const t=num(state["RK_"+bk+"_"+r+"_0"]); if(isFinite(t)&&t>0) return {v:t,da:"S"+String(b.rows[r].s).replace(/\D/g,"")};}}
   if(b&&testDi(b)){const T=rifT(bk,b.testEs?i:undefined); if(isFinite(T)&&T>0) return {v:T,da:"test"}}
   return {v:NaN,da:""};
 }
@@ -695,22 +697,33 @@ function daTest(t,T){
    «peso del test del Giorno A, −20%»: il test e' quello dello stesso esercizio in un altro giorno.
    «peso del test −20% sul back-off»: lo sconto e' solo delle serie dopo il top; «−30% sull'ultima»: solo dell'ultima.
    Restituisce il testo del pezzo ripulito e il riferimento T (2026-11-09) */
-function rifRM(b,bk,k,n){
-  /* «100% del 15RM» dopo «ramping fino al 15RM» in S7: vale il top di quel ramping (2026-11-10). null = nessun
-     ramping a quei colpi prima di questa riga → si usa il test del blocco */
-  const ri=rigaDi(k);
-  for(let r=ri-1;r>=0;r--){const row=b.rows[r]; if(tipoSerie(row.se).t!=="ramp") continue;
-    const p0=parti(row)[0]||{}; if(parseInt(String(p0.rp||"").replace(/\D/g,""))===n) return num(state["RK_"+bk+"_"+r+"_0"]);}
-  return null;
+function rampaRif(b,bk,k,t){
+  /* «100% del 8RM», anche «100% del 8RM del Giorno B»: vale il top del ramping a quei colpi fatto prima, nello stesso
+     esercizio o nell'esercizio con lo stesso nome del giorno indicato (programma che sposta un esercizio di giorno,
+     2026-11-10). null = nessun ramping: vale il test del blocco */
+  const m=String(t||"").match(/%\s*del\s*(\d+)\s*RM\b/i); if(!m||!b||!k) return null;
+  const n=parseInt(m[1]); let tb=b, tbk=bk;
+  const g=String(t).match(/\bdel\s+giorno\s+([A-Z])\b/i);
+  if(g){const G=GIORNI.find(function(x){return x.id===g[1].toUpperCase()});
+    if(G){const bi=G.blocks.findIndex(function(x){return norm(x.nome)===norm(b.nome)}); if(bi>=0){tb=G.blocks[bi];tbk=G.id+"_"+bi}}}
+  const ri0=rigaDi(k), row=b.rows[ri0], w=row?settimanaDi(row):0; let hit=null;
+  tb.rows.forEach(function(r,ri){
+    if(tipoSerie(r.se).t!=="ramp") return;
+    if(tb===b?ri>=ri0:settimanaDi(r)>=w) return;
+    const p0=parti(r)[0]||{}; if(parseInt(String(p0.rp||"").replace(/\D/g,""))!==n) return;
+    hit={key:"RK_"+tbk+"_"+ri+"_0", w:settimanaDi(r), n:n, g:(tb===b?"":tbk.split("_")[0])};
+  });
+  return hit;
 }
 function normCa(t,b,bk,k,i){
   let T=rifT(bk,(b&&b.testEs)?i:undefined), m;
-  if(b&&k&&(m=String(t).match(/%\s*del\s*(\d+)\s*RM\b/i))){const v=rifRM(b,bk,k,parseInt(m[1])); if(v!==null) T=v;}
+  const rr=rampaRif(b,bk,k,t);
   if((m=t.match(/\s*\bdel\s+giorno\s+([A-Z])\b\s*,?/i))&&b){
     const g=GIORNI.find(function(x){return x.id===m[1].toUpperCase()}), nome=norm(b.nome);
     if(g){const bi=g.blocks.findIndex(function(x){return norm(x.nome)===nome}); if(bi>=0) T=rifT(g.id+"_"+bi)}
     t=(t.slice(0,m.index)+" "+t.slice(m.index+m[0].length)).replace(/\s+/g," ").trim();
   }
+  if(rr) T=num(state[rr.key]);
   const q=t.match(/\s*(sul\s+back-?off|sull[’'\s]*ultim[ao])\s*$/i);
   if(q&&k){let n=1; try{n=parti(rigaObj(k).r).length}catch(e){}
     const mio=/ultim/i.test(q[1])?(i===n-1):(i>0);
@@ -784,6 +797,13 @@ function scorsaHTMLcar(t,bk,k,i){
   return casella("U_"+k+"_"+i,f(e.v),e.mio?'kg usati':(e.piu?'kg \u00b7 scorsa + '+f(e.piu):'kg \u00b7 come la scorsa'),84)+raw;
 }
 function risolvi(t,bk,b,k,i){
+  /* se in questa riga c'e' un peso scritto in una casella che con il motore nuovo non c'e' piu' (schede ricostruite),
+     si vede lo stesso: «avevi scritto 40 kg» (2026-11-10). Il dato non e' mai stato toccato */
+  const h=risolvi0(t,bk,b,k,i), kk="U_"+k+"_"+(i||0), u=k?state[kk]:undefined;
+  if(u!==undefined&&String(u).trim()!==""&&h.indexOf('data-k="'+kk+'"')<0) return h+'<span class="raw">avevi scritto '+esc(String(u).trim())+(b&&uLab(b)?' '+uLab(b):'')+'</span>';
+  return h;
+}
+function risolvi0(t,bk,b,k,i){
   t=String(t||"").trim(); k=k||""; i=i||0;
   if(!t||t==="—") return "";
   const nc=normCa(t,b,bk,k,i); t=nc.t; let T=nc.T, m;
@@ -1046,8 +1066,21 @@ function howTo(rm){
    ' colpi. Aumenta il peso un po’ alla volta, sempre serie da '+n+', fino a quando arrivi al peso che riesci ancora '+
    'a completare pulito. Se sali e '+(uno?art:"i")+' '+n+' colpi non li chiudi, il tuo '+rm+' è il peso di prima. Di norma ci arrivi in 3-5 serie.';
 }
+function rifMancanti(b,bk,sett){
+  /* il ramping di riferimento c'era (settimana 3) ma il numero non e' scritto: la casella compare qui, nella settimana
+     in cui serve, e scrive nello stesso posto del ramping (2026-11-10) */
+  let h=''; if(!sett) return h; const visti={};
+  b.rows.forEach(function(r,ri){ if(settimanaDi(r)!==sett) return; const k=bk+"_"+ri;
+    parti(r).forEach(function(p){ const rr=rampaRif(b,bk,k,String(p.ca||"")); if(!rr||visti[rr.key]) return; visti[rr.key]=1;
+      const v=state[rr.key]; if(v!==undefined&&String(v).trim()!=="") return;
+      h+='<div class="tbx"><span class="lb">Il tuo '+rr.n+'RM (settimana '+rr.w+(rr.g?', Giorno '+rr.g:'')+')</span><input type="text" inputmode="decimal" data-k="'+rr.key+
+        '" value="" placeholder="\u2014"><span class="u">'+uLab(b)+'</span><span class="hint">il peso che hai trovato col ramping in settimana '+rr.w+
+        ': scrivilo qui e i carichi di oggi escono da soli.</span></div>';
+    });});
+  return h;
+}
 function riferimenti(b,bk,sett){
-  let h=''; const rm=testDi(b), tw=settDelTest(b);
+  let h=rifMancanti(b,bk,sett); const rm=testDi(b), tw=settDelTest(b);
   const nomiT=b.testEs?nomiBlocco(b):null;
   if(rm&&nomiT){
     /* superserie: il test si fa su ognuno dei due esercizi, uno alla volta; poi si lavora a giri (coach, 5/11) */
