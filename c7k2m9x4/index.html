@@ -110,7 +110,13 @@ function quando(iso){const d=new Date(iso);if(isNaN(d))return "";const n=giorni(
 function iniziali(t){const p=String(t).trim().split(/\s+/);return ((p[0]||"")[0]||"").toUpperCase()+((p[1]||"")[0]||(p[0]||"")[1]||"").toUpperCase()}
 function norm(t){return String(t||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"")}
 let DATI=[], FILTRO="tutti", APERTO=null;
-function mostraChiave(){$("chiave").hidden=false;["cercaBox","filtri","piede","stato","tuttebox"].forEach(function(i){$(i).hidden=true});$("lista").innerHTML="";$("conta").hidden=true;setTimeout(function(){$("k").focus()},50)}
+/* senza archivio (chiave mancante o sbagliata, niente rete) i link delle schede si vedono lo stesso: l'elenco viene da
+   questa pagina, non dall'archivio (coach, 10/11: «non vedo il collegamento della scheda nuova») */
+function soloElenco(){
+  DATI=Object.keys(MAP).filter(function(p){return p!=="collaudo"}).map(function(p){return {persona:p,programma:PROG[p]||"",nuova:true,n:0,senza:true}});
+  ["cercaBox","filtri"].forEach(function(i){$(i).hidden=false}); disegna();
+}
+function mostraChiave(){$("chiave").hidden=false;["piede","tuttebox"].forEach(function(i){$(i).hidden=true});soloElenco();setTimeout(function(){$("k").focus()},50)}
 $("salvak").onclick=function(){const v=$("k").value.trim();if(!v)return;s("nc-coach-k",v);$("chiave").hidden=true;carica()};
 $("k").addEventListener("keydown",function(e){if(e.key==="Enter")$("salvak").click()});
 $("cambiak").onclick=function(){$("k").value="";mostraChiave()};
@@ -130,8 +136,8 @@ async function chiama(extra){
   try{const r=await fetch(ARCH+"?k="+encodeURIComponent(k)+(extra||"")+"&t="+Date.now(),{credentials:"omit",cache:"no-store"});return await r.json()}catch(e){return null}
 }
 function erroreArchivio(j){
-  if(!j){stato("Non riesco a leggere l’archivio: controlla la rete e riprova.",true);return true}
-  if(!j.ok){if(j.err==="chiave"){s("nc-coach-k","");stato("Chiave sbagliata.",true);setTimeout(mostraChiave,900)}else stato("Errore: "+j.err,true);return true}
+  if(!j){stato("Non riesco a leggere l’archivio: controlla la rete e riprova. Intanto qui sotto ci sono i link delle schede.",true);if(!DATI.length)soloElenco();return true}
+  if(!j.ok){if(j.err==="chiave"){s("nc-coach-k","");stato("L’archivio non accetta la chiave: i dati non li leggo, i link delle schede sì.",true);setTimeout(mostraChiave,900)}else{stato("Errore: "+j.err,true);if(!DATI.length)soloElenco()}return true}
   return false;
 }
 async function carica(tutte){
@@ -168,11 +174,13 @@ function disegna(){
     r.querySelector(".av").textContent=iniziali(titolo); r.querySelector(".n").textContent=titolo;
     if(o.nome) r.querySelector(".sig").textContent=x.persona;
     r.querySelector(".info").textContent=x.programma||"";
-    if(x.nuova){r.querySelector(".quando").textContent="non ancora usata";
+    if(x.nuova){r.querySelector(".quando").textContent=x.senza?"dati non letti":"non ancora usata";
       const c=r.querySelector(".cose"); c.innerHTML='<button class="link" type="button">Copia il link</button>';
       c.querySelector("button").onclick=function(e){e.stopPropagation();copia(location.origin+"/s/"+MAP[x.persona]+"/",this)}}
     else{r.querySelector(".quando").textContent=quando(x.aggiornato); r.querySelector(".cose").textContent=(x.n||0)+" segnate"}
-    r.onclick=function(e){if(e.target.closest(".mat"))return;apri(x,titolo,r)};
+    r.onclick=function(e){if(e.target.closest(".mat"))return;
+      if(x.senza){stato("Senza l’archivio non vedo i dati di «"+titolo+"»: il link lo copi col tasto qui accanto.",true);return}
+      apri(x,titolo,r)};
     r.querySelector(".mat").onclick=function(e){e.stopPropagation();APERTO=APERTO===x.persona?null:x.persona;disegna()};
     box.appendChild(r);
     if(APERTO===x.persona){const f=document.createElement("div");f.className="ren";
