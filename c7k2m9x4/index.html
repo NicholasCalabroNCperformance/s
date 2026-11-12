@@ -98,7 +98,7 @@ main{max-width:640px;margin:0 auto;padding:12px 16px calc(env(safe-area-inset-bo
     I nomi li scrivi tu con la matita e restano solo su questo telefono. <button id="cambiak" type="button">Cambia chiave</button></div>
 </main>
 <script>
-const ARCH="https://script.google.com/macros/s/AKfycbxAHwzQlwAaeNLaKEy0EHuY-QOC7aiu-AnScNLi1J_kElFpdx4FNrEhDSbT3MSmlCSV/exec", MAP={"nicho": "k3m9x7q2", "sab": "ki48cgwe", "af": "b6t3w9k1", "collaudo": "p4q7z2m8", "si": "s7h2n4v6", "fp": "9e9a9hx8", "gz": "y48z9kfq"}, PROG={"nicho": "Mesociclo 5", "sab": "Mesociclo 2", "af": "Mesociclo 3", "collaudo": "Collaudo", "si": "Mesociclo 5", "fp": "Mesociclo 1", "gz": "Mesociclo 4"}, QUI=location.pathname;
+const ARCH="https://script.google.com/macros/s/AKfycbxAHwzQlwAaeNLaKEy0EHuY-QOC7aiu-AnScNLi1J_kElFpdx4FNrEhDSbT3MSmlCSV/exec", MAP={"nicho": "k3m9x7q2", "sab": "ki48cgwe", "af": "b6t3w9k1", "collaudo": "p4q7z2m8", "si": "s7h2n4v6", "fp": "9e9a9hx8", "gz": "y48z9kfq", "mp": "1ya1k8fj"}, PROG={"nicho": "Mesociclo 5", "sab": "Mesociclo 2", "af": "Mesociclo 3", "collaudo": "Collaudo", "si": "Mesociclo 5", "fp": "Mesociclo 1", "gz": "Mesociclo 4", "mp": "Mesociclo 5"}, QUI=location.pathname;
 const $=function(id){return document.getElementById(id)};
 function g(k){try{return localStorage.getItem(k)}catch(e){return null}}
 function s(k,v){try{localStorage.setItem(k,v)}catch(e){}}
@@ -207,7 +207,9 @@ async function apri(x,nome,riga){
   }
   const D=x.st||{}; const st=D.st||D, sto=D.sto||null;
   try{
-    if(x.ls) localStorage.setItem(x.ls,JSON.stringify(st));     /* scheda non ancora usata: niente dati da copiare */
+    /* la copia porta il segno «__copiaCoach»: se poi la scheda si apre da questo browser col link diretto, non la manda
+       all'archivio (coprirebbe i dati veri dell'atleta) — 2026-11-12 */
+    if(x.ls) localStorage.setItem(x.ls,JSON.stringify(Object.assign({},st,{__copiaCoach:Date.now()})));     /* scheda non ancora usata: niente dati da copiare */
     if(sto) localStorage.setItem("nc-storico-"+x.persona,JSON.stringify(sto)); else localStorage.removeItem("nc-storico-"+x.persona);
     localStorage.setItem("nc-coach",JSON.stringify({p:x.persona,t:x.aggiornato,da:QUI,nome:nome}));
   }catch(e){}
