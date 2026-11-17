@@ -522,7 +522,8 @@ const SETT=(function(){const s={};GIORNI.forEach(function(g){g.blocks.forEach(fu
      - carichi scritti in kg, % del test, peso del test, peso di lavoro, sconti
    ===================================================================== */
 let state={};try{state=JSON.parse(localStorage.getItem(LS)||"{}")}catch(e){}
-function save(){try{localStorage.setItem(LS,JSON.stringify(state))}catch(e){}}
+var VAL_SNAP=null;   /* regola 57: la foto dei dati all'ultimo salvataggio (si confronta per sapere cosa e' cambiato) */
+function save(){try{valTraccia()}catch(e){}try{localStorage.setItem(LS,JSON.stringify(state))}catch(e){}}
 /* programma ricomposto (giorni scambiati, esercizi spostati): quello che l'atleta ha gia' segnato segue
    l'esercizio nella nuova posizione. Il JSON dice {"rinomina": {"C_0_5": "E_3_0", ...}, "rinomina_id": "..."};
    si fa una volta sola per id. Se la nuova posizione ha gia' un dato, il dato nuovo non si tocca (2026-11-04) */
@@ -1471,7 +1472,7 @@ document.addEventListener("click",function(e){
 /* la data dell'allenamento (per «Frequenza», coach 4/11 sera): al primo segno di un giorno di una settimana si scrive
    DT_<giorno>_<settimana> = la data di oggi. Una volta sola; nella vista coach mai (e' la scheda di un altro) */
 function segnaData(t){
-  if(COACH||!t||!t.closest) return;
+  if(!t||!t.closest) return;   /* 17/11: anche il coach che segue il cliente da' la data (regola 57) */
   const e=t.closest("[data-k],[data-cs],[data-fp],[data-car],[data-emom]"); if(!e) return;
   const v=e.dataset.k||e.dataset.cs||e.dataset.fp||e.dataset.car||e.dataset.emom||"";
   const m=String(v).match(/([A-Z])_(\d+)_(\d+)/); if(!m) return;
@@ -2354,7 +2355,6 @@ function tuttoFatto(g,w){
 function ultimoSegno(g,w){let t=0;righeDi(g,w).forEach(function(x){const c=parseInt(state["CT_"+x.k]);if(c>t)t=c});return t}
 function durataTxt(ms){const m=Math.round(ms/60000);if(m<60)return m+" min";const h=Math.floor(m/60),r=m%60;return h+" h"+(r?" "+(r<10?"0":"")+r:"")}
 function avviaAtt(key){
-  if(COACH) return;
   const alt=state.__att; if(alt&&alt!==key&&state["AT_"+alt]&&!state["AF_"+alt]){const p=alt.split("_");chiudiAtt(alt,ultimoSegno(p[0],+p[1])||Date.now(),true)}
   state["AT_"+key]=Date.now(); delete state["AF_"+key]; state.__att=key;
   const d=new Date(), dk="DT_"+key; if(!state[dk]) state[dk]=d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2);
@@ -2366,13 +2366,13 @@ function chiudiAtt(key,t,zitto){
   if(state.__att===key) delete state.__att;
   save(); if(!zitto) draw();
 }
-function riapriAtt(key){if(COACH)return;delete state["AF_"+key];state.__att=key;save();draw()}
+function riapriAtt(key){delete state["AF_"+key];state.__att=key;save();draw()}
 function attHTML(g){
   if(!sel) return "";
   const key=attKey(g,sel), t0=parseInt(state["AT_"+key]), t1=parseInt(state["AF_"+key]);
   if(t0&&!t1) return '<span class="att on"><em>in corso</em><b class="att-t" data-t0="'+t0+'">'+mmss((Date.now()-t0)/1000)+'</b></span>';
-  if(t0&&t1) return '<span class="att fatto"><em>durata</em><b>'+durataTxt(t1-t0)+'</b>'+(COACH?'':'<button type="button" class="riapri" data-riapri="'+key+'">riapri</button>')+'</span>';
-  return COACH?'':'<button type="button" class="att" data-att="'+key+'">Avvia allenamento</button>';
+  if(t0&&t1) return '<span class="att fatto"><em>durata</em><b>'+durataTxt(t1-t0)+'</b>'+'<button type="button" class="riapri" data-riapri="'+key+'">riapri</button>'+'</span>';
+  return '<button type="button" class="att" data-att="'+key+'">Avvia allenamento</button>';
 }
 function attFineHTML(g){
   if(!sel) return ""; const key=attKey(g,sel);
@@ -2455,7 +2455,7 @@ function legaCaselle(){
   document.querySelectorAll("input[data-k]").forEach(function(i){if(i.dataset.bound)return;i.dataset.bound=1;
     i.addEventListener("input",function(e){const kk=e.target.dataset.k;state[kk]=e.target.value;try{valScritto(kk,e.target)}catch(err){}unisciSerie(kk);save();
       if(/^(T_|W_|ref_|NT_|P_|G_|U_)/.test(kk)) ridipingi(); if(/^RK_/.test(kk)){ridipingiTop(kk);ridipingi()} if(/^MX_/.test(kk)) ridipingiRel(kk); segnaManda(); guardaRecord(kk);});
-    i.addEventListener("change",function(e){guardaRecord(e.target.dataset.k,true);try{if(COACH) valManda(e.target.dataset.k,0)}catch(err){}});});
+    i.addEventListener("change",function(e){guardaRecord(e.target.dataset.k,true);try{if(COACH) valInviaPresto(0)}catch(err){}});});
   try{valSegni()}catch(e){}
 }
 function ridipingi(){
@@ -2490,6 +2490,7 @@ function ridipingiTop(kk){
 rifBox();
 ricostruisci();
 const VAL_APERTURA=(function(){try{return valApplica()}catch(e){return 0}})();
+VAL_SNAP=valCopia(state);
 draw();
 if(VAL_APERTURA&&!COACH) setTimeout(function(){valAvviso(VAL_APERTURA)},700);
 
@@ -2499,7 +2500,7 @@ if(VAL_APERTURA&&!COACH) setTimeout(function(){valAvviso(VAL_APERTURA)},700);
    niente: i dati restano sul telefono e partono alla volta dopo. */
 (function(){
   if(typeof ARCH0==="undefined"||!ARCH0) return;
-  if(COACH){const ft=document.querySelector("footer");if(ft)ft.textContent="Vista coach: i numeri che scrivi nelle caselle arrivano anche a "+(COACH.nome||"l\u2019atleta")+" (vince l\u2019ultimo scritto). Fatica e serie fatte restano su questo telefono.";return}
+  if(COACH){const ft=document.querySelector("footer");if(ft)ft.textContent="Vista coach: quello che segni qui (caselle, serie fatte, fatica, avvio e fine) arriva anche a "+(COACH.nome||"l\u2019atleta")+". Vince l\u2019ultimo segnato.";return}
   let T=null;
   function dove(){const ua=navigator.userAgent, app=(navigator.standalone||(window.matchMedia&&matchMedia("(display-mode: standalone)").matches));
     let au="";try{const L=window.audioDiario?audioDiario():[];if(L.length)au=" \u00b7 audio: "+L.slice(-4).join(" | ")}catch(e){}
@@ -2688,15 +2689,23 @@ function corrDecora(){
     bt.addEventListener("click",function(e){e.stopPropagation();corrApri(car)}); car.appendChild(bt);
   });
 }
-/* ---------- carichi del coach (regola 56, 16/11) ----------
-   Coach: «quando i clienti segnano il carico io lo vedo… ma quando lo segno io, il cliente apre l'applicazione e non lo vede».
-   Nella vista coach un numero scritto in una casella (kg, colpi, test, note) parte all'archivio come correzione
-   {id:"v|<casella>", tipo:"valore", chiave:<casella>, v:<testo>, t:<quando l'ha scritto>}: stessa strada e stessa chiave
-   di «✎ modifica», lo script dell'archivio non cambia. La scheda dell'atleta lo scrive nella sua casella all'apertura e quando
-   si torna sull'app. VINCE L'ULTIMO SCRITTO (coach, 16/11): il numero del coach entra se e' piu' recente dell'ultima volta che
-   l'atleta ha scritto in quella casella (state.__vt, l'ora di ogni casella); se l'atleta riscrive dopo, resta il suo.
-   Le caselle arrivate dal coach hanno il bordo oro (state.__vc) finche' l'atleta non le riscrive. Fatica e serie fatte non
-   partono. Una scheda che ha solo numeri del coach non va mai all'archivio (regola 50, soloCoach). */
+/* ---------- carichi del coach (regola 56, 16/11; regola 57, 17/11) ----------
+   Coach (16/11): «quando i clienti segnano il carico io lo vedo… ma quando lo segno io, il cliente apre l'applicazione e non lo vede».
+   Coach (17/11): «quando seguo il cliente segno tutto dal mio telefono… quando apre, perche' deve finire l'allenamento da solo,
+   deve avere gia' quello che ho segnato, compreso il segnaserie, l'intensita' percepita, eccetera, tutto».
+   Ogni salvataggio confronta i dati con la foto di prima (VAL_SNAP) e sa cosa e' cambiato: caselle, serie fatte (CS_/CT_), fatica
+   (fp_), avvio e fine dell'allenamento (AT_/AF_), data (DT_), note. Le chiavi interne «__» non contano.
+   - Sul telefono dell'atleta: per ogni dato si ricorda quando l'ha scritto (state.__vt).
+   - Nella vista coach: ogni cambio diventa una correzione {id:"v|<chiave>", tipo:"valore", chiave, v (il valore com'e', anche
+     numero; null = tolto), t} salvata subito sul telefono del coach e mandata all'archivio 1,5 s dopo l'ultimo tocco (stessa strada
+     e stessa chiave di «✎ modifica», lo script dell'archivio non cambia); conferma in basso. Uscendo parte subito; quelle senza
+     conferma ripartono da sole e alla prossima apertura della vista coach.
+   - La scheda dell'atleta le applica all'apertura e quando si torna sull'app. VINCE L'ULTIMO SEGNATO: il dato del coach entra se e'
+     piu' recente dell'ultima volta che l'atleta ha toccato quel dato; se l'atleta lo cambia dopo, resta il suo. Le caselle arrivate
+     dal coach hanno il bordo oro (state.__vc) finche' l'atleta non le riscrive, e un avviso dice quante cose ha segnato il coach.
+   - Una scheda che ha solo dati del coach non va mai all'archivio (regola 50, soloCoach). */
+function valNorm(v){return v==null?"":(typeof v==="object"?JSON.stringify(v):String(v))}
+function valCopia(s){const o={};Object.keys(s).forEach(function(k){if(k.indexOf("__")!==0)o[k]=s[k]});return o}
 function valTutte(){
   let b=[]; try{b=JSON.parse(localStorage.getItem("nc-corr-"+LS)||"[]")||[]}catch(e){}
   const per={}; b.forEach(function(c){if(!c||c.tipo!=="valore"||!c.chiave) return; if(!per[c.chiave]||(+c.t||0)>=(+per[c.chiave].t||0)) per[c.chiave]=c});
@@ -2705,52 +2714,80 @@ function valTutte(){
 function valApplica(){
   const vt=state.__vt||{}, vc=state.__vc||{}; let n=0;
   valTutte().forEach(function(c){
-    const k=c.chiave, v=c.v==null?"":String(c.v), t=+c.t||0;
-    if(!(t>(+vt[k]||0))) return;                                            /* l'atleta ha scritto dopo: resta il suo */
-    if(String(state[k]==null?"":state[k])===v) return;
-    if(v==="") delete state[k]; else state[k]=v;
+    const k=c.chiave, t=+c.t||0;
+    if(k.indexOf("__")===0) return;
+    if(!(t>(+vt[k]||0))) return;                                            /* l'atleta ha segnato dopo: resta il suo */
+    if(valNorm(state[k])===valNorm(c.v)) return;
+    if(c.v==null||c.v==="") delete state[k]; else state[k]=c.v;
     vt[k]=t; vc[k]=1; n++; try{unisciSerie(k)}catch(e){}
   });
-  if(n){state.__vt=vt; state.__vc=vc; CORR=null; save()}
+  if(n){state.__vt=vt; state.__vc=vc; CORR=null; if(VAL_SNAP) VAL_SNAP=valCopia(state); save()}   /* non e' un tocco dell'atleta */
   return n;
 }
-function valScritto(kk,el){
-  const vt=state.__vt||(state.__vt={}); vt[kk]=Date.now();
-  if(state.__vc&&state.__vc[kk]){delete state.__vc[kk]; if(el&&el.classList) el.classList.remove("dalcoach")}
-  if(COACH){
-    /* sul telefono del coach la correzione si salva subito (non si perde se esce), parte 1,5 s dopo l'ultimo tasto */
-    const c={id:"v|"+kk,tipo:"valore",chiave:kk,v:String(state[kk]==null?"":state[kk]),t:vt[kk],loc:1};
-    corrSalva(corrLocali().filter(function(x){return !(x&&x.tipo==="valore"&&x.chiave===kk&&x.loc)}).concat([c]));
-    valManda(kk,1500);
-  }
-}
-const VALT={};
-function valManda(kk,dopo){
-  clearTimeout(VALT[kk]);
-  VALT[kk]=setTimeout(async function(){
-    delete VALT[kk];
-    const c=corrLocali().filter(function(x){return x&&x.tipo==="valore"&&x.chiave===kk&&x.loc}).pop(); if(!c) return;
-    const chi=(COACH&&COACH.nome)||"l\u2019atleta", r=await corrManda(c);
-    corrAvviso(r==="ok"?("Arrivato all\u2019archivio: "+chi+" lo vede quando apre la scheda o ci torna sopra."):r);
-  },dopo||0);
-}
-/* uscendo dalla scheda con un invio ancora in attesa: parte subito, senza aspettare la conferma */
-document.addEventListener("visibilitychange",function(){
-  if(document.visibilityState!=="hidden"||!COACH) return;
-  Object.keys(VALT).forEach(function(kk){
-    clearTimeout(VALT[kk]); delete VALT[kk];
-    const c=corrLocali().filter(function(x){return x&&x.tipo==="valore"&&x.chiave===kk&&x.loc}).pop(); if(!c) return;
-    const kc=(function(){try{return localStorage.getItem("nc-coach-k")||""}catch(e){return ""}})(); if(!kc||typeof ARCH0==="undefined"||!ARCH0) return;
-    try{fetch(ARCH0,{method:"POST",mode:"no-cors",keepalive:true,headers:{"Content-Type":"application/x-www-form-urlencoded"},
-      body:"d="+encodeURIComponent(JSON.stringify({tipo:"correzione",k:ARCHK0,kc:kc,ls:LS,p:PERSONA,c:c}))})}catch(e){}
+function valTraccia(){
+  if(!VAL_SNAP) return;                                                     /* prima della foto di partenza: niente */
+  const now=Date.now(), cambi=[], visti={};
+  Object.keys(state).concat(Object.keys(VAL_SNAP)).forEach(function(k){
+    if(visti[k]||k.indexOf("__")===0) return; visti[k]=1;
+    if(valNorm(state[k])!==valNorm(VAL_SNAP[k])) cambi.push(k);
   });
+  if(!cambi.length) return;
+  const vt=state.__vt||(state.__vt={});
+  cambi.forEach(function(k){vt[k]=now; if(state.__vc) delete state.__vc[k]});
+  VAL_SNAP=valCopia(state);
+  if(COACH) valCoda(cambi,now);
+}
+function valScritto(kk,el){if(el&&el.classList) el.classList.remove("dalcoach")}
+/* vista coach: i cambi si salvano subito sul telefono del coach (non si perdono se esce), poi partono insieme */
+function valCoda(keys,t){
+  let loc=corrLocali();
+  keys.forEach(function(k){
+    loc=loc.filter(function(x){return !(x&&x.tipo==="valore"&&x.chiave===k&&x.loc)});
+    loc.push({id:"v|"+k,tipo:"valore",chiave:k,v:state[k]===undefined?null:state[k],t:t,loc:1});
+  });
+  corrSalva(loc); valInviaPresto(1500);
+}
+let VAL_T=null, VAL_IN=false;
+function valInviaPresto(dopo){clearTimeout(VAL_T); VAL_T=setTimeout(valInvia,dopo||0)}
+function valKc(){try{return localStorage.getItem("nc-coach-k")||""}catch(e){return ""}}
+function valPosta(c,kc,keep){
+  return fetch(ARCH0,{method:"POST",mode:"no-cors",keepalive:!!keep,headers:{"Content-Type":"application/x-www-form-urlencoded"},
+    body:"d="+encodeURIComponent(JSON.stringify({tipo:"correzione",k:ARCHK0,kc:kc,ls:LS,p:PERSONA,c:c}))}).catch(function(){});
+}
+async function valInvia(){
+  VAL_T=null; if(!COACH||typeof ARCH0==="undefined"||!ARCH0) return;
+  if(VAL_IN){valInviaPresto(1500);return}
+  const pend=corrLocali().filter(function(x){return x&&x.tipo==="valore"&&x.loc}); if(!pend.length) return;
+  const chi=COACH.nome||"l\u2019atleta", kc=valKc();
+  if(!kc){corrAvviso("Salvato su questo telefono. Per mandarlo a "+chi+" apri NC Coach e scrivi la chiave di lettura.");return}
+  VAL_IN=true;
+  try{
+    for(const c of pend) await valPosta(c,kc,false);
+    let fatti=false;
+    for(let n=0;n<5&&!fatti;n++){
+      await new Promise(function(r){setTimeout(r,1500)});
+      const arr=await corrLeggi(); if(!arr) continue;
+      const ids={}; arr.forEach(function(x){if(x&&x.id) ids[x.id+"|"+(x.t||0)]=1});
+      if(pend.every(function(c){return ids[c.id+"|"+(c.t||0)]})){
+        corrSalva(corrLocali().map(function(x){if(x&&x.loc&&ids[x.id+"|"+(x.t||0)]){const y=Object.assign({},x);delete y.loc;return y}return x}));
+        fatti=true;
+      }
+    }
+    corrAvviso(fatti?("Arrivato all\u2019archivio: "+chi+" lo vede quando apre la scheda o ci torna sopra."):"Non ancora arrivato all\u2019archivio: riprovo da solo tra poco.");
+    if(!fatti) valInviaPresto(20000);
+  }finally{VAL_IN=false}
+}
+/* uscendo dalla scheda con qualcosa ancora da mandare: parte subito, senza aspettare la conferma */
+document.addEventListener("visibilitychange",function(){
+  if(document.visibilityState!=="hidden"||!COACH||typeof ARCH0==="undefined"||!ARCH0) return;
+  clearTimeout(VAL_T); VAL_T=null; const kc=valKc(); if(!kc) return;
+  corrLocali().filter(function(x){return x&&x.tipo==="valore"&&x.loc}).forEach(function(c){valPosta(c,kc,true)});
 });
-/* vista coach, all'apertura: i carichi rimasti sul telefono del coach senza conferma dell'archivio ripartono */
+/* vista coach, all'apertura: quello rimasto sul telefono del coach senza conferma dell'archivio riparte */
 async function valRimanda(){
   if(!COACH) return 0; await corrAggiorna();
-  const pend=corrLocali().filter(function(x){return x&&x.tipo==="valore"&&x.loc&&!VALT[x.chiave]});
-  for(const c of pend){await corrManda(c)}
-  return pend.length;
+  const n=corrLocali().filter(function(x){return x&&x.tipo==="valore"&&x.loc}).length; if(n) valInviaPresto(0);
+  return n;
 }
 function valSegni(){
   const vc=state.__vc||{};
@@ -2759,7 +2796,7 @@ function valSegni(){
   document.querySelectorAll("input[data-k]").forEach(function(i){const on=!!vc[i.dataset.k]; i.classList.toggle("dalcoach",on); if(on) i.title="Scritto dal coach"; else if(i.title==="Scritto dal coach") i.removeAttribute("title")});
 }
 function valAvviso(n){
-  corrAvviso("Il coach ha aggiornato "+(n===1?"una casella":n+" caselle")+": "+(n===1?"la vedi":"le vedi")+" col bordo oro.");
+  corrAvviso("Il coach ha segnato "+(n===1?"una cosa":n+" cose")+" sulla tua scheda: le caselle cambiate hanno il bordo oro.");
 }
 if(COACH) setTimeout(function(){valRimanda()},2500);
 /* all'apertura: le correzioni del coach arrivano dall'archivio (anche nella vista coach, per vedere quelle vive) */
