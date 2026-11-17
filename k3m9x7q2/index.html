@@ -570,7 +570,7 @@ function corrTutte(){
   let a=[]; try{a=(typeof CORREZIONI0!=="undefined"&&CORREZIONI0)||[]}catch(e){}
   let b=[]; try{b=JSON.parse(localStorage.getItem("nc-corr-"+LS)||"[]")||[]}catch(e){}
   const per={}; a.concat(b).forEach(function(c){if(!c||!c.id) return; if(!per[c.id]||(c.t||0)>=(per[c.id].t||0)) per[c.id]=c});
-  return Object.keys(per).map(function(id){return per[id]}).filter(function(c){return !c.via&&isFinite(num(c.v))})
+  return Object.keys(per).map(function(id){return per[id]}).filter(function(c){return c.tipo!=="valore"&&!c.via&&isFinite(num(c.v))})
     .sort(function(x,y){return (x.t||0)-(y.t||0)});
 }
 let CORR=null, CORR_RIGA=null, NC_K="";
@@ -789,6 +789,7 @@ const RE_PIUKG=/^(?:peso|zavorra)\s+del\s+test\s*\+\s*(\d+(?:[.,]\d+)?)\s*kg/i; 
 const RE_PCTEST=/(\d+(?:[.,]\d+)?)(?:\s*[-–]\s*(\d+(?:[.,]\d+)?))?\s*%\s*del\s*(?:test|\d+\s*RM)\b/i; /* «90% del test», «90% del 3RM» */
 function eRamp(k){try{return tipoSerie(rigaObj(k).r.se).t==="ramp"}catch(e){return false}}
 /* ---------- il gradino più piccolo: «peso del test + 1 gradino», «+ il minimo» (coach, 2026-11-09) ----------
+   Scritto «+ il minimo» nel programma, la scheda dice «+ il minimo», mai «gradino» (coach, 15/11: «non esiste un gradino»; regola 54)
    Quanto sia il gradino dipende dalla macchina: il peso nuovo lo scrive lui nella casella, e dalle settimane dopo
    si vede gia' scritto. Se sale ancora, lo corregge e da li' in avanti vale il nuovo. G_<riga>_<pezzo> */
 const RE_GRAD=/\+\s*(?:1|un|il)?\s*(?:gradino|minimo|scatto)\b/i;
@@ -821,7 +822,7 @@ function gradinoHTML(t,T,bk,k,i){
   else if(/peso della scorsa/i.test(t)){const e=scorsaEff(bk,k,i); if(e) base=e.v}
   else base=T;
   const bs=(isFinite(base)&&base>0)?f(base)+' kg':'<span class="wait">'+(/peso della scorsa/i.test(t)?'peso della scorsa':(/peso di lavoro/i.test(t)?'peso di lavoro':'dopo il test'))+'</span>', alt=t.match(RE_ALT);
-  return '<span class="gbase">'+bs+' <span class="lieve">'+(alt?esc(alt[0].replace(/^,?\s*/,"")):'+ 1 gradino')+'</span></span> <span class="freccia">→</span> '+casella(kk,"",alt?'peso nuovo, se sali':'peso nuovo')+raw;
+  return '<span class="gbase">'+bs+' <span class="lieve">'+(alt?esc(alt[0].replace(/^,?\s*/,"")):(/minimo/i.test(t)?'+ il minimo':'+ 1 gradino'))+'</span></span> <span class="freccia">→</span> '+casella(kk,"",alt?'peso nuovo, se sali':'peso nuovo')+raw;
 }
 /* ---------- «peso della scorsa», «peso della scorsa +1 kg per manubrio», «+2 kg se il top > 12» (2026-11-09) ----------
    Il peso della settimana prima si vede gia' scritto; se c'e' un «+N kg» (e la condizione sul top della scorsa regge)
@@ -2452,9 +2453,10 @@ function draw(){
 }
 function legaCaselle(){
   document.querySelectorAll("input[data-k]").forEach(function(i){if(i.dataset.bound)return;i.dataset.bound=1;
-    i.addEventListener("input",function(e){const kk=e.target.dataset.k;state[kk]=e.target.value;unisciSerie(kk);save();
+    i.addEventListener("input",function(e){const kk=e.target.dataset.k;state[kk]=e.target.value;try{valScritto(kk,e.target)}catch(err){}unisciSerie(kk);save();
       if(/^(T_|W_|ref_|NT_|P_|G_|U_)/.test(kk)) ridipingi(); if(/^RK_/.test(kk)){ridipingiTop(kk);ridipingi()} if(/^MX_/.test(kk)) ridipingiRel(kk); segnaManda(); guardaRecord(kk);});
-    i.addEventListener("change",function(e){guardaRecord(e.target.dataset.k,true)});});
+    i.addEventListener("change",function(e){guardaRecord(e.target.dataset.k,true);try{if(COACH) valManda(e.target.dataset.k,0)}catch(err){}});});
+  try{valSegni()}catch(e){}
 }
 function ridipingi(){
   GIORNI.forEach(function(g){g.blocks.forEach(function(b,bi){const bk=g.id+"_"+bi;
@@ -2487,7 +2489,9 @@ function ridipingiTop(kk){
 }
 rifBox();
 ricostruisci();
+const VAL_APERTURA=(function(){try{return valApplica()}catch(e){return 0}})();
 draw();
+if(VAL_APERTURA&&!COACH) setTimeout(function(){valAvviso(VAL_APERTURA)},700);
 
 /* ---------- archivio: una copia di quello che segni arriva al coach (foglio Google del coach) ----------
    All'apertura parte tutto quello che c'e' gia' sul telefono (anche le settimane passate); poi una copia
@@ -2495,7 +2499,7 @@ draw();
    niente: i dati restano sul telefono e partono alla volta dopo. */
 (function(){
   if(typeof ARCH0==="undefined"||!ARCH0) return;
-  if(COACH){const ft=document.querySelector("footer");if(ft)ft.textContent="Vista coach: quello che tocchi qui resta su questo telefono e non va all\u2019archivio.";return}
+  if(COACH){const ft=document.querySelector("footer");if(ft)ft.textContent="Vista coach: i numeri che scrivi nelle caselle arrivano anche a "+(COACH.nome||"l\u2019atleta")+" (vince l\u2019ultimo scritto). Fatica e serie fatte restano su questo telefono.";return}
   let T=null;
   function dove(){const ua=navigator.userAgent, app=(navigator.standalone||(window.matchMedia&&matchMedia("(display-mode: standalone)").matches));
     let au="";try{const L=window.audioDiario?audioDiario():[];if(L.length)au=" \u00b7 audio: "+L.slice(-4).join(" | ")}catch(e){}
@@ -2512,7 +2516,7 @@ draw();
     if(state.__copiaCoach) return true;
     const P=(typeof PRECARICA0!=="undefined"&&PRECARICA0&&PRECARICA0.d)||{};
     return Object.keys(state).every(function(k){const v=state[k];
-      return k.indexOf("__")===0||v===""||v==null||(P[k]!==undefined&&String(P[k])===String(v))});
+      return k.indexOf("__")===0||v===""||v==null||(P[k]!==undefined&&String(P[k])===String(v))||!!(state.__vc&&state.__vc[k])});
   }
   function invia(beacon){
     T=null; if(soloCoach()) return; const p=pacco();
@@ -2571,7 +2575,7 @@ async function corrAggiorna(){
   const ids={}; arr.forEach(function(c){if(c&&c.id) ids[c.id+"|"+(c.t||0)]=1});
   const resto=corrLocali().filter(function(c){return c&&c.loc&&!ids[c.id+"|"+(c.t||0)]});   /* fatte dal coach e non ancora arrivate */
   const prima=JSON.stringify(corrLocali()), dopo=arr.concat(resto);
-  if(JSON.stringify(dopo)!==prima){corrSalva(dopo); try{draw()}catch(e){}}
+  if(JSON.stringify(dopo)!==prima){corrSalva(dopo); let nv=0; try{nv=valApplica()}catch(e){} try{draw()}catch(e){} if(nv&&!COACH) valAvviso(nv)}
   return true;
 }
 async function corrManda(c){
@@ -2602,6 +2606,13 @@ function corrStile(){
   document.head.appendChild(st);
 }
 function corrChiudi(){const m=document.getElementById("corrm"); if(m) m.remove()}
+/* avviso in basso per l'esito di un invio quando la finestra e' gia' chiusa (15/11); niente alert, si toglie da solo */
+function corrAvviso(t){
+  let a=document.getElementById("corrav"); if(a) a.remove();
+  a=document.createElement("div"); a.id="corrav"; a.textContent=t;
+  a.style.cssText="position:fixed;left:12px;right:12px;bottom:calc(env(safe-area-inset-bottom) + 14px);z-index:60;background:var(--card);color:var(--ink);border:1px solid var(--gold);border-radius:12px;padding:12px 14px;font:500 14px -apple-system,sans-serif;box-shadow:0 6px 24px rgba(0,0,0,.2)";
+  a.onclick=function(){a.remove()}; document.body.appendChild(a); setTimeout(function(){if(a.parentNode) a.remove()},7000);
+}
 function corrApri(car){
   const id=car.dataset.car, j=id.lastIndexOf("_"), k=id.slice(0,j), i=+id.slice(j+1);
   const ro=rigaObj(k), b=ro.b, r=ro.r, bk=k.split("_").slice(0,2).join("_"), w=settimanaDi(r);
@@ -2638,7 +2649,10 @@ function corrApri(car){
   const passo2=function(c){
     let h='<div class="box">';
     if(c){h+='<h4>Sei sicuro di voler modificare il '+(c.tipo==="test"?'peso del test':'peso prestabilito')+'?</h4>'+
-      '<p><b>'+esc(cap(nomeEs.toLowerCase()))+'</b>: '+(isFinite(c.prima)&&c.prima>0?f(c.prima)+' kg → ':'')+'<b>'+f(c.v)+' kg</b>, dalla settimana '+c.da+' in avanti.</p>'+
+      '<p><b>'+esc(cap(nomeEs.toLowerCase()))+'</b>: '+(isFinite(c.prima)&&c.prima>0?f(c.prima)+' kg'+
+        /* 15/11: con una correzione gia' attiva il «prima» e' il peso corretto; si dice anche quello scritto dall'atleta */
+        (c.tipo==="test"&&ctOra&&isFinite(Torig)&&Torig>0&&Torig!==c.prima?' (corretto da te; '+esc(chi)+' aveva scritto '+f(Torig)+' kg)':'')+' → ':'')+'<b>'+f(c.v)+' kg</b>, dalla settimana '+c.da+' in avanti.</p>'+
+      (isFinite(c.prima)&&c.prima===c.v?'<p><b>È già '+f(c.v)+' kg:</b> confermi solo la settimana da cui vale.</p>':'')+
       '<p>'+esc(cap(chi))+' lo vede alla prossima apertura della scheda. Le settimane prima e i pesi che ha segnato restano come sono.</p>'+
       '<div class="bt"><button type="button" id="cno">No, torna indietro</button><button type="button" class="si" id="csi">Sì, modifica</button></div>';}
     else{h+='<h4>Sei sicuro di voler togliere la correzione?</h4><p>'+esc(cap(nomeEs.toLowerCase()))+' torna ai pesi del programma, da subito.</p>'+
@@ -2650,10 +2664,17 @@ function corrApri(car){
       if(c){const x=Object.assign({id:"c"+t.toString(36),t:t,loc:1},c); if(!(isFinite(x.prima)&&x.prima>0)) delete x.prima; if(x.pezzo===undefined) delete x.pezzo; nuove=[x]}
       else nuove=attive.map(function(a){return {id:a.id,via:true,t:t,loc:1,tipo:a.tipo,chiave:a.chiave,v:a.v}});
       corrSalva(corrLocali().concat(nuove)); draw();
-      const es=m.querySelector("#cesito"); es.textContent="Mando all’archivio…"; m.querySelector("#csi").disabled=true;
+      /* 15/11 (coach: «schiaccio sì e rimango lì»): l'archivio ci mette 10-20 secondi a confermare. Subito: sparisce «Sì»,
+         compare «Chiudi» (l'invio continua anche se chiudi); a conferma arrivata la finestra si chiude da sola.
+         Se qualcosa non va e la finestra e' gia' chiusa, l'avviso compare in basso. */
+      const es=m.querySelector("#cesito"); es.textContent="Mando all’archivio… ci vogliono una decina di secondi. Puoi chiudere: l’invio continua.";
+      m.querySelector("#csi").style.display="none"; m.querySelector("#cno").textContent="Chiudi"; m.querySelector("#cno").onclick=corrChiudi;
       let msg="ok"; for(const x of nuove){const r2=await corrManda(x); if(r2!=="ok") msg=r2}
-      es.textContent=msg==="ok"?("Fatto: "+chi+" la vede alla prossima apertura."):msg;
-      m.querySelector("#cno").textContent="Chiudi"; m.querySelector("#cno").onclick=corrChiudi; m.querySelector("#csi").style.display="none";
+      const aperta=document.body.contains(m);
+      if(msg==="ok"){
+        if(aperta){es.textContent="Fatto: "+chi+" la vede alla prossima apertura."; setTimeout(function(){if(document.body.contains(m)) corrChiudi()},1600)}
+        else corrAvviso("Correzione arrivata all’archivio: "+chi+" la vede alla prossima apertura.");
+      } else { if(aperta) es.textContent=msg; else corrAvviso(msg); }
     };
   };
   passo1();
@@ -2667,6 +2688,80 @@ function corrDecora(){
     bt.addEventListener("click",function(e){e.stopPropagation();corrApri(car)}); car.appendChild(bt);
   });
 }
+/* ---------- carichi del coach (regola 56, 16/11) ----------
+   Coach: «quando i clienti segnano il carico io lo vedo… ma quando lo segno io, il cliente apre l'applicazione e non lo vede».
+   Nella vista coach un numero scritto in una casella (kg, colpi, test, note) parte all'archivio come correzione
+   {id:"v|<casella>", tipo:"valore", chiave:<casella>, v:<testo>, t:<quando l'ha scritto>}: stessa strada e stessa chiave
+   di «✎ modifica», lo script dell'archivio non cambia. La scheda dell'atleta lo scrive nella sua casella all'apertura e quando
+   si torna sull'app. VINCE L'ULTIMO SCRITTO (coach, 16/11): il numero del coach entra se e' piu' recente dell'ultima volta che
+   l'atleta ha scritto in quella casella (state.__vt, l'ora di ogni casella); se l'atleta riscrive dopo, resta il suo.
+   Le caselle arrivate dal coach hanno il bordo oro (state.__vc) finche' l'atleta non le riscrive. Fatica e serie fatte non
+   partono. Una scheda che ha solo numeri del coach non va mai all'archivio (regola 50, soloCoach). */
+function valTutte(){
+  let b=[]; try{b=JSON.parse(localStorage.getItem("nc-corr-"+LS)||"[]")||[]}catch(e){}
+  const per={}; b.forEach(function(c){if(!c||c.tipo!=="valore"||!c.chiave) return; if(!per[c.chiave]||(+c.t||0)>=(+per[c.chiave].t||0)) per[c.chiave]=c});
+  return Object.keys(per).map(function(k){return per[k]});
+}
+function valApplica(){
+  const vt=state.__vt||{}, vc=state.__vc||{}; let n=0;
+  valTutte().forEach(function(c){
+    const k=c.chiave, v=c.v==null?"":String(c.v), t=+c.t||0;
+    if(!(t>(+vt[k]||0))) return;                                            /* l'atleta ha scritto dopo: resta il suo */
+    if(String(state[k]==null?"":state[k])===v) return;
+    if(v==="") delete state[k]; else state[k]=v;
+    vt[k]=t; vc[k]=1; n++; try{unisciSerie(k)}catch(e){}
+  });
+  if(n){state.__vt=vt; state.__vc=vc; CORR=null; save()}
+  return n;
+}
+function valScritto(kk,el){
+  const vt=state.__vt||(state.__vt={}); vt[kk]=Date.now();
+  if(state.__vc&&state.__vc[kk]){delete state.__vc[kk]; if(el&&el.classList) el.classList.remove("dalcoach")}
+  if(COACH){
+    /* sul telefono del coach la correzione si salva subito (non si perde se esce), parte 1,5 s dopo l'ultimo tasto */
+    const c={id:"v|"+kk,tipo:"valore",chiave:kk,v:String(state[kk]==null?"":state[kk]),t:vt[kk],loc:1};
+    corrSalva(corrLocali().filter(function(x){return !(x&&x.tipo==="valore"&&x.chiave===kk&&x.loc)}).concat([c]));
+    valManda(kk,1500);
+  }
+}
+const VALT={};
+function valManda(kk,dopo){
+  clearTimeout(VALT[kk]);
+  VALT[kk]=setTimeout(async function(){
+    delete VALT[kk];
+    const c=corrLocali().filter(function(x){return x&&x.tipo==="valore"&&x.chiave===kk&&x.loc}).pop(); if(!c) return;
+    const chi=(COACH&&COACH.nome)||"l\u2019atleta", r=await corrManda(c);
+    corrAvviso(r==="ok"?("Arrivato all\u2019archivio: "+chi+" lo vede quando apre la scheda o ci torna sopra."):r);
+  },dopo||0);
+}
+/* uscendo dalla scheda con un invio ancora in attesa: parte subito, senza aspettare la conferma */
+document.addEventListener("visibilitychange",function(){
+  if(document.visibilityState!=="hidden"||!COACH) return;
+  Object.keys(VALT).forEach(function(kk){
+    clearTimeout(VALT[kk]); delete VALT[kk];
+    const c=corrLocali().filter(function(x){return x&&x.tipo==="valore"&&x.chiave===kk&&x.loc}).pop(); if(!c) return;
+    const kc=(function(){try{return localStorage.getItem("nc-coach-k")||""}catch(e){return ""}})(); if(!kc||typeof ARCH0==="undefined"||!ARCH0) return;
+    try{fetch(ARCH0,{method:"POST",mode:"no-cors",keepalive:true,headers:{"Content-Type":"application/x-www-form-urlencoded"},
+      body:"d="+encodeURIComponent(JSON.stringify({tipo:"correzione",k:ARCHK0,kc:kc,ls:LS,p:PERSONA,c:c}))})}catch(e){}
+  });
+});
+/* vista coach, all'apertura: i carichi rimasti sul telefono del coach senza conferma dell'archivio ripartono */
+async function valRimanda(){
+  if(!COACH) return 0; await corrAggiorna();
+  const pend=corrLocali().filter(function(x){return x&&x.tipo==="valore"&&x.loc&&!VALT[x.chiave]});
+  for(const c of pend){await corrManda(c)}
+  return pend.length;
+}
+function valSegni(){
+  const vc=state.__vc||{};
+  if(!document.getElementById("valst")){const st=document.createElement("style"); st.id="valst";
+    st.textContent="input.dalcoach{border-color:var(--gold)!important;box-shadow:inset 0 0 0 1px var(--gold)}"; document.head.appendChild(st)}
+  document.querySelectorAll("input[data-k]").forEach(function(i){const on=!!vc[i.dataset.k]; i.classList.toggle("dalcoach",on); if(on) i.title="Scritto dal coach"; else if(i.title==="Scritto dal coach") i.removeAttribute("title")});
+}
+function valAvviso(n){
+  corrAvviso("Il coach ha aggiornato "+(n===1?"una casella":n+" caselle")+": "+(n===1?"la vedi":"le vedi")+" col bordo oro.");
+}
+if(COACH) setTimeout(function(){valRimanda()},2500);
 /* all'apertura: le correzioni del coach arrivano dall'archivio (anche nella vista coach, per vedere quelle vive) */
 setTimeout(function(){corrAggiorna()},800);
 document.addEventListener("visibilitychange",function(){if(document.visibilityState==="visible") corrAggiorna()});
