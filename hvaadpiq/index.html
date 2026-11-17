@@ -1342,7 +1342,7 @@ function rigaHTML(r,b,bk,k,sett){
   }
   h+=tenuteHTML(r,b,bk,k,pz);                                             /* plank, hollow, tenute: il timer dei secondi (2026-11-09) */
   if(b.cs!==false&&!fare&&!h.includes('class="emom"')) h+=contaserie(r,b,k);   /* EMOM: conta il timer */
-  if(r.n) h+='<div class="nota">'+notaCoach(r.n)+'</div>';
+  if(r.n) h+='<div class="nota">'+(r.__var?'<b class="varc">variante del coach da S'+r.__var+'</b> ':'')+notaCoach(r.n)+'</div>';
   return h+(b.casa?'':(fare?soloNote(k,r):feedback(k,r)))+'</div>';
 }
 
@@ -2432,7 +2432,7 @@ function draw(){
     g.blocks.forEach(function(b,bi){
       const bk=g.id+"_"+bi, rr=b.rows.filter(function(r){return !sel||settimanaDi(r)===sel}); if(!rr.length) return;
       if(b.demo) h+='<div class="caso">'+b.demo+'</div>';
-      h+='<div class="ex"><h3>'+b.nome+(b.ruolo?'<em>'+b.ruolo+'</em>':'')+'</h3>'+riferimenti(b,bk,sel);
+      h+='<div class="ex" data-bk="'+bk+'"><h3>'+b.nome+(b.ruolo?'<em>'+b.ruolo+'</em>':'')+'</h3>'+riferimenti(b,bk,sel);
       rr.forEach(function(r){h+=rigaHTML(r,b,bk,bk+"_"+b.rows.indexOf(r),sel)});
       h+='</div>';
     });
@@ -2487,6 +2487,7 @@ function ridipingiTop(kk){
     const tv=num(state[kk]), pct=parseFloat(e.dataset.pct);
     e.innerHTML=(isFinite(tv)&&tv>0)?kg(tv*pct/100):'<span class="wait">dopo il top</span>';});
 }
+try{varApplica()}catch(e){}
 rifBox();
 ricostruisci();
 const VAL_APERTURA=(function(){try{return valApplica()}catch(e){return 0}})();
@@ -2576,7 +2577,7 @@ async function corrAggiorna(){
   const ids={}; arr.forEach(function(c){if(c&&c.id) ids[c.id+"|"+(c.t||0)]=1});
   const resto=corrLocali().filter(function(c){return c&&c.loc&&!ids[c.id+"|"+(c.t||0)]});   /* fatte dal coach e non ancora arrivate */
   const prima=JSON.stringify(corrLocali()), dopo=arr.concat(resto);
-  if(JSON.stringify(dopo)!==prima){corrSalva(dopo); let nv=0; try{nv=valApplica()}catch(e){} try{draw()}catch(e){} if(nv&&!COACH) valAvviso(nv)}
+  if(JSON.stringify(dopo)!==prima){corrSalva(dopo); let nv=0; try{nv=valApplica()}catch(e){} try{if(varApplica()) ricostruisci()}catch(e){} try{draw()}catch(e){} if(nv&&!COACH) valAvviso(nv)}
   return true;
 }
 async function corrManda(c){
@@ -2683,11 +2684,136 @@ function corrApri(car){
 function corrDecora(){
   if(!COACH) return;
   corrStile();
+  try{varDecora()}catch(e){}
   document.querySelectorAll(".car[data-car]").forEach(function(car){
     if(car.querySelector(".corrbtn")||!car.textContent.trim()) return;
     const bt=document.createElement("button"); bt.type="button"; bt.className="corrbtn"; bt.textContent=car.querySelector(".raw.corr")?"✎ corretto":"✎ modifica";
     bt.addEventListener("click",function(e){e.stopPropagation();corrApri(car)}); car.appendChild(bt);
   });
+}
+/* ---------- variante di un esercizio cambiata dal coach (regola 58, 17/11) ----------
+   Coach: «dalla mia applicazione da coach voglio avere la possibilita' di modificare anche una variante… dalla settimana 10,
+   programma di una cliente, giorno B, la panca con 3 secondi in discesa mi diventa 3 secondi di fermo al petto… devo avere la
+   possibilita' di farlo io». Nella vista coach, sotto il nome di ogni esercizio: «✎ variante» → al posto di cosa, cosa scrivere, da
+   che settimana → anteprima → «Sei sicuro?». Una correzione {id, tipo:"variante", chiave:<blocco>, da, a?, cerca, metti, t}: stessa
+   strada di «✎ modifica» (archivio, chiave di lettura del coach). Sulla scheda (atleta e coach) dalla settimana «da» in avanti la nota
+   di ogni riga di quell'esercizio cambia «cerca» in «metti» (maiuscole o no); dove «cerca» non c'e' (o e' vuoto) «metti» va in testa
+   alla nota. Le settimane prima restano. La nota dice «variante del coach da S10». I record leggono la nota nuova (fermo, discesa).
+   Si toglie con la stessa conferma; l'ultima per id vince. */
+function escH(t){return String(t==null?"":t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
+function varTutte(){
+  let a=[]; try{a=(typeof CORREZIONI0!=="undefined"&&CORREZIONI0)||[]}catch(e){}
+  let b=[]; try{b=JSON.parse(localStorage.getItem("nc-corr-"+LS)||"[]")||[]}catch(e){}
+  const per={}; a.concat(b).forEach(function(c){if(!c||!c.id||c.tipo!=="variante") return; if(!per[c.id]||(c.t||0)>=(per[c.id].t||0)) per[c.id]=c});
+  return Object.keys(per).map(function(id){return per[id]}).filter(function(c){return !c.via&&c.chiave&&String(c.metti||"").trim()})
+    .sort(function(x,y){return (x.t||0)-(y.t||0)});
+}
+/* il pezzo da cambiare: quello scritto dal coach; se in una settimana e' scritto piu' corto («3'' di discesa» invece di
+   «3'' di discesa controllata») vale anche il pezzo piu' corto, mai sotto le tre parole */
+function varTrova(nota,cerca){
+  const low=String(nota||"").toLowerCase(); let w=String(cerca||"").trim().split(/\s+/).filter(Boolean);
+  while(w.length){const f=w.join(" "); if(low.indexOf(f.toLowerCase())>=0) return f; if(w.length<=3) break; w=w.slice(0,-1)}
+  return "";
+}
+function varSostituisci(nota,c){
+  const n=String(nota||""), metti=escH(String(c.metti||"").trim()), cerca=varTrova(n,c.cerca);
+  if(cerca){const low=n.toLowerCase(), cl=cerca.toLowerCase(); let out="", da=0, j=low.indexOf(cl);
+    while(j>=0){out+=n.slice(da,j)+metti; da=j+cerca.length; j=low.indexOf(cl,da)} return out+n.slice(da)}
+  if(String(c.cerca||"").trim()) return n;                   /* scritto «al posto di» ma qui non c'e': la settimana resta com'e' */
+  return metti+(n?" \u00b7 "+n:"");
+}
+function varApplica(){
+  let prima="", dopo="";
+  GIORNI.forEach(function(g){g.blocks.forEach(function(b){b.rows.forEach(function(r){
+    if(r.__n0===undefined) r.__n0=(r.n===undefined?null:r.n);
+    prima+=(r.n||"")+"|"+(r.__var||"")+"\n";
+    if(r.__n0===null) delete r.n; else r.n=r.__n0; r.__var=null;
+  })})});
+  varTutte().forEach(function(c){
+    const p=String(c.chiave).split("_"), g=GIORNI.find(function(x){return x.id===p[0]}), b=g&&g.blocks[+p[1]]; if(!b) return;
+    b.rows.forEach(function(r){const w=settimanaDi(r); if(w<(c.da||1)||(c.a&&w>c.a)) return; const nn=varSostituisci(r.n,c); if(nn!==String(r.n||"")){r.n=nn; r.__var=c.da||1}});
+  });
+  GIORNI.forEach(function(g){g.blocks.forEach(function(b){b.rows.forEach(function(r){dopo+=(r.n||"")+"|"+(r.__var||"")+"\n"})})});
+  return prima!==dopo;
+}
+function varDecora(){
+  if(!document.getElementById("varst")){const st=document.createElement("style"); st.id="varst";
+    st.textContent=".varc{color:var(--gold);font-weight:600;font-size:12px;letter-spacing:.02em;margin-right:4px}.varbtn{display:inline-block;margin:2px 0 8px;font:600 11px -apple-system,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);background:none;border:1px solid var(--gold);border-radius:999px;padding:3px 9px;cursor:pointer}#corrm textarea{font:inherit;font-size:16px;width:100%;min-height:58px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink)}#corrm .anteprima{background:var(--soft,rgba(0,0,0,.04));border-radius:10px;padding:8px 10px;font-size:14px;color:var(--ink)}";
+    document.head.appendChild(st)}
+  document.querySelectorAll(".ex[data-bk]").forEach(function(ex){
+    if(ex.querySelector(".varbtn")) return;
+    const bt=document.createElement("button"); bt.type="button"; bt.className="varbtn"; bt.textContent="\u270e variante";
+    bt.addEventListener("click",function(e){e.stopPropagation();varApri(ex.dataset.bk)});
+    const h3=ex.querySelector("h3"); if(h3) h3.insertAdjacentElement("afterend",bt); else ex.insertBefore(bt,ex.firstChild);
+  });
+}
+function varApri(bk){
+  const p=bk.split("_"), g=GIORNI.find(function(x){return x.id===p[0]}), b=g&&g.blocks[+p[1]]; if(!b) return;
+  const sett=b.rows.map(settimanaDi).filter(function(w,i,a){return w&&a.indexOf(w)===i}).sort(function(x,y){return x-y});
+  const w0=(sel&&sett.indexOf(sel)>=0)?sel:(sett[0]||1), chi=(COACH&&COACH.nome)||"l\u2019atleta";
+  const rigaW=function(w){return b.rows.find(function(r){return settimanaDi(r)===w})};
+  const attive=varTutte().filter(function(c){return c.chiave===bk});
+  /* proposta per «al posto di»: il tempo scritto nella nota (3'' di discesa controllata, 2" di fermo…) */
+  const proposta=function(w){const r=rigaW(w), n=String(r&&r.__n0||"");
+    const m=n.match(/\d+\s*(?:''|"|\u2033|\u201d|sec(?:ondi)?\.?)\s+(?:di\s+)?[a-z\u00e0-\u00f9]+(?:\s+(?:al|alla|in|controllat[ao]|lent[ao]|sul|sulla|petto|basso|alto)\b)*/i);
+    return m?m[0].trim():""};
+  corrStile(); corrChiudi();
+  const m=document.createElement("div"); m.id="corrm"; document.body.appendChild(m);
+  m.addEventListener("click",function(e){if(e.target===m) corrChiudi()});
+  const nuovaNota=function(w,c){const r=rigaW(w); return r?varSostituisci(r.__n0,c):""};
+  const passo1=function(val){
+    val=val||{cerca:proposta(w0),metti:"",da:w0};
+    let h='<div class="box"><h4>'+escH(cap(String(b.nome).toLowerCase()))+' \u00b7 variante</h4>';
+    h+='<p>Cambia come si esegue, da una settimana in avanti. Le settimane prima restano com\u2019erano.</p>';
+    h+='<div class="riga" style="display:block">Al posto di<br><textarea id="vcerca" placeholder="es. 3\u2033 di discesa controllata (vuoto = la scrivo in testa alla nota)"></textarea></div>';
+    h+='<div class="riga" style="display:block">scrivi<br><textarea id="vmetti" placeholder="es. 3\u2033 di fermo al petto"></textarea></div>';
+    h+='<div class="riga">da <select id="vda">'+sett.map(function(w){return '<option value="'+w+'"'+(w===val.da?' selected':'')+'>S'+w+'</option>'}).join("")+'</select> in avanti</div>';
+    h+='<div class="anteprima" id="vant"></div>';
+    if(attive.length) h+='<p>Varianti gi\u00e0 attive qui: '+attive.map(function(c){return 'da S'+(c.da||1)+' \u00ab'+escH(c.metti)+'\u00bb'}).join(' \u00b7 ')+'</p>';
+    h+='<div class="bt"><button type="button" id="cno">Annulla</button><button type="button" class="si" id="cav">Avanti</button></div>';
+    if(attive.length) h+='<div class="bt"><button type="button" class="via" id="cvia">Togli la variante</button></div>';
+    h+='</div>'; m.innerHTML=h;
+    m.querySelector("#vcerca").value=val.cerca; m.querySelector("#vmetti").value=val.metti;
+    const leggi=function(){return {cerca:m.querySelector("#vcerca").value.trim(),metti:m.querySelector("#vmetti").value.trim(),da:+m.querySelector("#vda").value}};
+    const ant=function(){const c=leggi(), dove=sett.filter(function(w){return w>=c.da}), r=rigaW(c.da);
+      if(!c.metti){m.querySelector("#vant").innerHTML='Scrivi la variante nuova.';return}
+      const trovate=dove.filter(function(w){const x=rigaW(w);return c.cerca&&x&&!!varTrova(x.__n0,c.cerca)});
+      m.querySelector("#vant").innerHTML='<b>S'+c.da+':</b> '+(nuovaNota(c.da,c)||'\u2014')+'<br><span class="lieve">'+
+        (c.cerca?(trovate.length?'Cambia in '+trovate.map(function(w){return 'S'+w}).join(', ')+'.':'')+
+          (trovate.length<dove.length?' '+(trovate.length?'In ':'')+dove.filter(function(w){return trovate.indexOf(w)<0}).map(function(w){return 'S'+w}).join(', ')+' non c\u2019\u00e8: '+(trovate.length<dove.length-1?'restano come sono scritte':'resta com\u2019\u00e8 scritta')+'.':'')
+          :'Va in testa alla nota da S'+c.da+' in avanti.')+'</span>'};
+    ["vcerca","vmetti","vda"].forEach(function(id){m.querySelector("#"+id).addEventListener("input",ant);m.querySelector("#"+id).addEventListener("change",ant)}); ant();
+    m.querySelector("#cno").onclick=corrChiudi;
+    m.querySelector("#cav").onclick=function(){const c=leggi(); if(!c.metti){m.querySelector("#vmetti").focus();return} passo2(c)};
+    const via=m.querySelector("#cvia"); if(via) via.onclick=function(){passo2(null)};
+  };
+  const passo2=function(c){
+    let h='<div class="box">';
+    if(c){const r=rigaW(c.da);
+      h+='<h4>Sei sicuro di voler cambiare la variante?</h4><p><b>'+escH(cap(String(b.nome).toLowerCase()))+'</b>, dalla S'+c.da+' in avanti.</p>'+
+        '<p class="lieve">Prima: '+(r&&r.__n0?escH(r.__n0):'\u2014')+'</p><p>Dopo: '+(nuovaNota(c.da,c)||'\u2014')+'</p>'+
+        '<p>'+escH(cap(chi))+' lo vede alla prossima apertura della scheda. Le settimane prima e quello che ha segnato restano come sono.</p>'+
+        '<div class="bt"><button type="button" id="cno">No, torna indietro</button><button type="button" class="si" id="csi">S\u00ec, cambia</button></div>';}
+    else h+='<h4>Sei sicuro di voler togliere la variante?</h4><p>'+escH(cap(String(b.nome).toLowerCase()))+' torna com\u2019era scritto nel programma, da subito.</p>'+
+      '<div class="bt"><button type="button" id="cno">No, torna indietro</button><button type="button" class="si" id="csi">S\u00ec, togli</button></div>';
+    h+='<div class="esito" id="cesito"></div></div>'; m.innerHTML=h;
+    m.querySelector("#cno").onclick=function(){passo1(c||undefined)};
+    m.querySelector("#csi").onclick=async function(){
+      const t=Date.now();
+      const nuove=c?[{id:"var"+t.toString(36),tipo:"variante",chiave:bk,da:c.da,cerca:c.cerca,metti:c.metti,t:t,loc:1}]
+        :attive.map(function(a){return {id:a.id,via:true,t:t,loc:1,tipo:"variante",chiave:bk,metti:a.metti}});
+      corrSalva(corrLocali().concat(nuove)); try{varApplica();ricostruisci()}catch(e){} draw();
+      const es=m.querySelector("#cesito"); es.textContent="Mando all\u2019archivio\u2026 ci vogliono una decina di secondi. Puoi chiudere: l\u2019invio continua.";
+      m.querySelector("#csi").style.display="none"; m.querySelector("#cno").textContent="Chiudi"; m.querySelector("#cno").onclick=corrChiudi;
+      let msg="ok"; for(const x of nuove){const r2=await corrManda(x); if(r2!=="ok") msg=r2}
+      const aperta=document.body.contains(m);
+      if(msg==="ok"){
+        if(aperta){es.textContent="Fatto: "+chi+" la vede alla prossima apertura."; setTimeout(function(){if(document.body.contains(m)) corrChiudi()},1600)}
+        else corrAvviso("Variante arrivata all\u2019archivio: "+chi+" la vede alla prossima apertura.");
+      } else { if(aperta) es.textContent=msg; else corrAvviso(msg); }
+    };
+  };
+  passo1();
 }
 /* ---------- carichi del coach (regola 56, 16/11; regola 57, 17/11) ----------
    Coach (16/11): «quando i clienti segnano il carico io lo vedo… ma quando lo segno io, il cliente apre l'applicazione e non lo vede».
